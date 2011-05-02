@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for the Calendar Display extension in the FRONTEND</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_calendardisplay_domain_model_resource">Resource</label>
+			<label index="tx_calendardisplay_domain_model_resource.name">name</label>
+			<label index="tx_calendardisplay_domain_model_resource.number">number</label>
+			<label index="tx_calendardisplay_domain_model_booking">Booking</label>
+			<label index="tx_calendardisplay_domain_model_booking.time_begin">timeBegin</label>
+			<label index="tx_calendardisplay_domain_model_booking.time_end">asdftimeEnd</label>
+			<label index="tx_calendardisplay_domain_model_booking.note">note</label>
+			<label index="tx_calendardisplay_domain_model_booking.resources">resources</label>
+
+			<label index="new_booking">New Booking</label>
+			<label index="update_booking">Update Booking</label>
+		</languageKey>
+	</data>
+</T3locallang>

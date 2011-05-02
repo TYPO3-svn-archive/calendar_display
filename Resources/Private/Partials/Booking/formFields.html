@@ -1,0 +1,28 @@
+<script type="text/javascript">
+
+		// <![CDATA[
+
+		(function($) {
+			$(function() {
+				$(document).ready(function(){
+
+					$('#example1').datetimepicker(CalendarDisplay.TimePicker.options);
+
+
+				}); // end DOM ready
+			}); // end of clausure
+		})(jQuery);
+		// ]]>
+	</script>
+<label for="timeBegin">
+	<f:translate key="tx_calendardisplay_domain_model_booking.time_begin" />
+</label><br />
+<f:form.textbox property="timeBegin" /><br />
+<label for="timeEnd">
+	<f:translate key="tx_calendardisplay_domain_model_booking.time_end" />
+</label><br />
+	<f:form.textbox property="timeEnd" id="example1"/><br />
+<label for="note">
+	<f:translate key="tx_calendardisplay_domain_model_booking.note" />
+</label><br />
+	<f:form.textbox property="note" /><br />

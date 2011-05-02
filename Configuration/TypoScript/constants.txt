@@ -1,0 +1,14 @@
+plugin.tx_calendardisplay {
+	view {
+		# cat=plugin.tx_calendardisplay/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:calendar_display/Resources/Private/Templates/
+		# cat=plugin.tx_calendardisplay/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:calendar_display/Resources/Private/Partials/
+		# cat=plugin.tx_calendardisplay/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:calendar_display/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_calendardisplay//a; type=int+; label=Default storage PID
+		storagePid = 
+	}
+}
