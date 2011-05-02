@@ -11,14 +11,21 @@ plugin.tx_calendardisplay {
 		}
 
 		timePicker {
+			# Reference: http://trentrichardson.com/examples/timepicker/
 			# Example values:
-			# hourMin: 8,hourMax: 18,stepHour: 1,stepMinute: 10
+			# {hourMin: 8,hourMax: 18,stepHour: 1,stepMinute: 10}
+			options = {}
+		}
+
+		waitingUI {
+			# Reference: http://jquery.malsup.com/block/#demos
 			options = {}
 		}
 
 		calendar {
+			# Reference: http://arshaw.com/fullcalendar/docs/
 			# Example values:
-			# theme: false
+			# {theme: false}
 			options = {}
 		}
 	}
@@ -41,12 +48,11 @@ page.includeCSS.jquery_fullcalendar = EXT:calendar_display/Resources/Public/Java
 page.includeCSS.jquery_fullcalendar_print = EXT:calendar_display/Resources/Public/JavaScript/fullcalendar/fullcalendar.print.css
 page.includeCSS.jquery_fullcalendar_print.media = print
 page.includeCSS.jquery_uid = EXT:calendar_display/Resources/Public/JavaScript/jquery-ui-1.8.12.custom/css/ui-lightness/jquery-ui-1.8.12.custom.css
+page.includeCSS.calendar_display = EXT:calendar_display/Resources/Public/Media/StyleSheets/CalendarDisplay.css
 
 # JavaScript Lib
 page.includeJSlibs.jquery = EXT:calendar_display/Resources/Public/JavaScript/jquery-1.5.2.min.js
 page.includeJSlibs.jquery_ui = EXT:calendar_display/Resources/Public/JavaScript/jquery-ui-1.8.12.custom/js/jquery-ui-1.8.12.custom.min.js
-// Default jquery ui coming with FullCalendar
-// page.includeJSlibs.jquery_ui = EXT:calendar_display/Resources/Public/JavaScript/jquery-ui-1.8.11.custom.min.js
 
 # jQuery FullCalendar
 page.includeJS.jquery_fullcalendar = EXT:calendar_display/Resources/Public/JavaScript/fullcalendar/fullcalendar.js
@@ -56,38 +62,15 @@ page.includeJS.jquery_fullcalendar = EXT:calendar_display/Resources/Public/JavaS
 page.includeJS.jquery_timepicker = EXT:calendar_display/Resources/Public/JavaScript/timepicker/jquery-ui-timepicker-addon.js
 // page.includeJS.jquery_timepicker_lang = EXT:calendar_display/Resources/Public/JavaScript/timepicker/jquery-ui-timepicker-addon-fr.js
 
+# jQuery Block UI
+page.includeJS.jquery_blockuid = EXT:calendar_display/Resources/Public/JavaScript/jquery.blockUI/jquery.blockUI.js
+
 ################################
 # CSS Styles
 ################################
 plugin.tx_calendardisplay._CSS_DEFAULT_STYLE (
-	input.f3-form-error {
-		background-color:#FF9F9F;
-		border: 1px #FF0000 solid;
-	}
-
-	.tx-calendardisplay-pi1 table {
-		border-collapse:separate;
-		border-spacing:10px;
-	}
-
-	.tx-calendardisplay-pi1 table th {
-		font-weight:bold;
-	}
-
-	.tx-calendardisplay-pi1 table td {
-		vertical-align:top;
-	}
-
-
-	/* css for timepicker */
-	.ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
-	.ui-timepicker-div dl{ text-align: left; }
-	.ui-timepicker-div dl dt{ height: 25px; }
-	.ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
-	.ui-timepicker-div td { font-size: 90%; }
 
 )
-
 
 ################################
 # AJAX

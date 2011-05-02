@@ -1,0 +1,24 @@
+input.f3-form-error {
+	background-color:#FF9F9F;
+	border: 1px #FF0000 solid;
+}
+
+/* CSS for timepicker */
+.ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
+.ui-timepicker-div dl{ text-align: left; }
+.ui-timepicker-div dl dt{ height: 25px; }
+.ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+
+/* CSS for waiting */
+.tx-calendardisplay-waiting {
+
+	background-image: url('../Icons/loading_big.gif');
+	background-repeat:no-repeat;
+	background-position: 50% center;
+
+	/* for IE */
+	filter:alpha(opacity=40);
+	/* CSS3 standard */
+	opacity:0.4;
+}

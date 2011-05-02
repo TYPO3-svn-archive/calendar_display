@@ -20,6 +20,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 		var _dialogTitleUpdate = '<f:translate key="update_booking" />';
 		var _timePicker = {settings.timePicker.options};
 		var _calendar = {settings.calendar.options};
+		var _waitingUI = {settings.waitingUI.options};
 
 		// <![CDATA[
 
@@ -31,6 +32,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 			TimePicker : {},
 			Calendar : {},
 			Dialog : {},
+			WaitingUI : {},
 			Lang : {
 				dialogTitleNew :  _dialogTitleNew,
 				dialogTitleUpdate :  _dialogTitleUpdate
@@ -48,14 +50,21 @@ Otherwise your changes will be overwritten the next time you save the extension 
 					CalendarDisplay.Dialog = CalendarDisplay.initializeDialog();
 					CalendarDisplay.TimePicker.options = CalendarDisplay.getTimePickerOptions();
 					CalendarDisplay.Calendar.options = CalendarDisplay.getCalendarOptions();
+					CalendarDisplay.WaitingUI.options = CalendarDisplay.getWaitingUIOptions();
+
 					
 					// Load dialog box
 					$('#tx-calendardisplay-link-new').click(function() {
-						CalendarDisplay.Dialog.dialog('enable');
+
+						$.blockUI(CalendarDisplay.WaitingUI.options);
+
 						CalendarDisplay.Dialog.load(
 							CalendarDisplay.newUrl,
 							{},
 							function (responseText, textStatus, XMLHttpRequest) {
+								
+								// release UI
+								$.unblockUI();
 
 								// define title dialog box
 								CalendarDisplay.Dialog.dialog('option', 'title', CalendarDisplay.Lang.dialogTitleNew);
@@ -92,6 +101,17 @@ Otherwise your changes will be overwritten the next time you save the extension 
 		}
 
 		/**
+		 * Return WaitingUI options
+		 */
+		CalendarDisplay.getWaitingUIOptions = function() {
+			// Calendar default options
+			var defaultOptions = {
+				message: null
+			}
+			return $.extend(defaultOptions, _waitingUI);
+		}
+
+		/**
 		 * Return Time picker options
 		 */
 		CalendarDisplay.getTimePickerOptions = function() {
@@ -123,6 +143,11 @@ Otherwise your changes will be overwritten the next time you save the extension 
 			var m = date.getMonth();
 			var y = date.getFullYear();
 
+			// @temp
+			console.log(d);
+			console.log(m);
+			console.log(y);
+
 			// Calendar default options
 			var defaultOptions = {
 				header: {
@@ -140,10 +165,17 @@ Otherwise your changes will be overwritten the next time you save the extension 
 				eventClick: function(calEvent, jsEvent, view) {
 
 					if (calEvent.id) {
+
+						// GUI
+						$.blockUI(CalendarDisplay.WaitingUI.options);
+
 						CalendarDisplay.Dialog.load(
 							CalendarDisplay.newUrl,
 							{},
 							function (responseText, textStatus, XMLHttpRequest) {
+								
+								// release UI
+								$.unblockUI();
 
 								// define title dialog box
 								CalendarDisplay.Dialog.dialog('option', 'title', CalendarDisplay.Lang.dialogTitleUpdate);
@@ -158,29 +190,44 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 				},
 				//select: function(start, end, allDay) {
-					// @see check example online
+				// @see check example online
 				//},
 
-				events: [
-					{
-						id: 123,
-						title: 'Meeting',
-						start: new Date(y, m, d, 10, 30),
-						allDay: false
-					},
-					{
-						title: 'Lunch',
-						start: new Date(y, m, d, 12, 0),
-						end: new Date(y, m, d, 14, 0),
-						allDay: false
-					},
-					{
-						title: 'Birthday Party',
-						start: new Date(y, m, d+1, 19, 0),
-						end: new Date(y, m, d+1, 22, 30),
-						allDay: false
-					}
+				eventSources: [
+
+						// your event source
+						{
+							events: [ // put the array in the `events` property
+							   {
+										id: 123,
+										title: 'Meeting',
+										start: new Date(y, m, d, 10, 30),
+										allDay: false
+									},
+									{
+										title: 'Lunch',
+										start: new Date(y, m, d, 12, 0),
+										end: new Date(y, m, d, 14, 0),
+										allDay: false
+									},
+									{
+										title: 'Birthday Party',
+										start: new Date(y, m, d+1, 19, 0),
+										end: new Date(y, m, d+1, 22, 30),
+										allDay: false
+									}
+							]
+				//            color: 'black',     // an option!
+				//            textColor: 'yellow' // an option!
+						},
+						// http://arshaw.com/fullcalendar/docs/event_data/events_json_feed/
+				//		{
+				//			url: '/myFeed.php'
+				//
+				//		}
+
 				]
+				
 			};
 
 			// merge language options if any
