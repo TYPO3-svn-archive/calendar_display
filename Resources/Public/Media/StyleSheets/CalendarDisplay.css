@@ -22,3 +22,203 @@ input.f3-form-error {
 	/* CSS3 standard */
 	opacity:0.4;
 }
+
+/* CSS for booking list */
+.tx-calendardisplay-pi1 .booking-list {
+	width: 100%;
+}
+
+.tx-calendardisplay-pi1 .booking-list .new-booking {
+	overflow: hidden;
+	margin: 0 0 30px 0;
+}
+
+.tx-calendardisplay-pi1 .booking-list .new-booking h2 {
+	float: left;
+	margin: 0 8px 0 0;
+}
+
+.tx-calendardisplay-pi1 .booking-list .new-booking a {
+	display: block;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+	text-indent: 999em;
+	float: left;
+	background: url("../Icons/new.gif") no-repeat center center;
+}
+	
+.tx-calendardisplay-pi1 .booking-list .filter-wrapper {
+	width: 100%;
+	margin: 0 0 10px 0;
+	overflow: hidden;
+}
+
+.tx-calendardisplay-pi1 .booking-list .filter {
+	float: left;
+}
+
+.tx-calendardisplay-pi1 .booking-list .filter select {
+	width: 80px;
+	margin: 0 0 0 5px;
+}
+
+.tx-calendardisplay-pi1 .booking-list .search {
+	float: left;
+}
+
+.tx-calendardisplay-pi1 .booking-list .search input.keyword {
+	width: 120px;
+	margin: 0 0 0 30px;
+	background: url("../Icons/search_bg.gif") no-repeat left center;
+	padding-left: 12px;
+}
+
+.tx-calendardisplay-pi1 .booking-list .date-start {
+	float: right;
+}
+
+.tx-calendardisplay-pi1 .booking-list .date-start input {
+	width: 100px;
+	margin: 0 0 0 5px;
+}
+
+.tx-calendardisplay-pi1 .booking-list .filter-wrapper
+
+.tx-calendardisplay-pi1 .booking-list .filter-wrapper div {
+	float: left;
+}
+
+.tx-calendardisplay-pi1 .booking-list table {
+	width: 100%;
+}
+
+.tx-calendardisplay-pi1 .booking-list table thead {
+	background-color: #396BA0;
+	color: #FFFFFF;
+}
+
+.tx-calendardisplay-pi1 .booking-list table tr.odd {
+	background-color: #E3ECF5;
+}
+
+.tx-calendardisplay-pi1 .booking-list table th,
+.tx-calendardisplay-pi1 .booking-list table td {
+	border: 1px solid #000000;
+	padding: 5px 5px 5px 5px;
+}
+
+.tx-calendardisplay-pi1 .booking-list table tbody tr {
+	vertical-align: top;
+}
+
+.tx-calendardisplay-pi1 .booking-list table .quantity,
+.tx-calendardisplay-pi1 .booking-list table .edit,
+.tx-calendardisplay-pi1 .booking-list table .delete {
+	text-align: center;
+}
+
+.tx-calendardisplay-pi1 .booking-list table td.edit a,
+.tx-calendardisplay-pi1 .booking-list table td.delete a {
+	display: block;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+	text-indent: 999em;
+	margin: auto;
+}
+
+.tx-calendardisplay-pi1 .booking-list table td.edit a {
+	background: url("../Icons/edit.gif") no-repeat center center;
+}
+
+.tx-calendardisplay-pi1 .booking-list table td.delete a {
+	background: url("../Icons/delete.gif") no-repeat center center;
+}
+
+/* CSS for booking edit */
+.tx-calendardisplay-pi1 .booking-form {
+	margin: 0 0 30px 0;
+}
+
+.tx-calendardisplay-pi1 .booking-form div {
+	clear: both;
+	padding: 0 0 10px 0;
+}
+
+.tx-calendardisplay-pi1 .booking-form div.note {
+	margin: 20px 0 0 0;
+}
+
+.tx-calendardisplay-pi1 .booking-form label {
+	width: 100px;
+	float: left;
+	display: block;
+}
+
+.tx-calendardisplay-pi1 .available-item .filter-wrapper {
+	width: 100%;
+	margin: 0 0 10px 0;
+	overflow: hidden;
+}
+
+.tx-calendardisplay-pi1 .available-item .filter {
+	float: left;
+}
+
+.tx-calendardisplay-pi1 .available-item .filter select {
+	width: 80px;
+	margin: 0 0 0 5px;
+}
+
+.tx-calendardisplay-pi1 .available-item .search {
+	float: right;
+}
+
+.tx-calendardisplay-pi1 .available-item .search input.keyword {
+	width: 120px;
+	background: url("../Icons/search_bg.gif") no-repeat left center;
+	padding-left: 12px;
+}
+
+.tx-calendardisplay-pi1 .available-item {
+	width: 80%;
+}
+
+.tx-calendardisplay-pi1 .available-item p {
+	margin: 0 0 30px 0;
+}
+
+.tx-calendardisplay-pi1 .available-item table {
+	width: 100%;
+}
+
+.tx-calendardisplay-pi1 .available-item table thead {
+	background-color: #396BA0;
+	color: #FFFFFF;
+}
+
+.tx-calendardisplay-pi1 .available-item table tr.odd {
+	background-color: #E3ECF5;
+}
+
+.tx-calendardisplay-pi1 .available-item table th,
+.tx-calendardisplay-pi1 .available-item table td {
+	border: 1px solid #000000;
+	padding: 5px 5px 5px 5px;
+	
+}
+
+.tx-calendardisplay-pi1 .available-item table tbody tr {
+	vertical-align: top;
+}
+
+.tx-calendardisplay-pi1 .available-item table .available-number,
+.tx-calendardisplay-pi1 .available-item table .reserve-number,
+.tx-calendardisplay-pi1 .available-item table .image {
+	text-align: center;
+}
+
+.tx-calendardisplay-pi1 .available-item table td.reserve-number input {
+	width: 50px;
+}

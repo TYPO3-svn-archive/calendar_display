@@ -1,41 +1,332 @@
+{namespace calendar=Tx_CalendarDisplay_ViewHelpers}
 <f:layout name="Default" />
-
-This Template is responsible for creating a table of domain objects.
-
-
-If you modify this template, do not forget to change the overwrite settings 
-in /Configuration/Kickstarter/settings.yaml:
-	Resources:
-		Private: 
-			Templates:
-				List.html		keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the kickstarter
-
 <f:section name="main">
-<h1>Listing for Booking</h1>
 
-<f:flashMessages />
+	<script type="text/javascript">
+		var _dialogTitleNew = '<f:translate key="new_booking" />';
+		var _dialogTitleUpdate = '<f:translate key="update_booking" />';
+		var _timePicker = {settings.timePicker.options};
+		var _calendar = {settings.calendar.options};
+		var _waitingUI = {settings.waitingUI.options};
 
-<table  class="tx_calendardisplay" >
-	<tr>
-		<th><f:translate key="tx_calendardisplay_domain_model_booking.time_begin" /></th>
-		<th><f:translate key="tx_calendardisplay_domain_model_booking.time_end" /></th>
-		<th><f:translate key="tx_calendardisplay_domain_model_booking.note" /></th>
-		<th> </th>
-		<th> </th>
-	</tr>
+		// <![CDATA[
 
-	<f:for each="{bookings}" as="booking">
-		<tr>
-			<td><f:link.action action="show" arguments="{booking : booking}"> {booking.timeBegin}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{booking : booking}"> {booking.timeEnd}</f:link.action></td>
-			<td><f:link.action action="show" arguments="{booking : booking}"> {booking.note}</f:link.action></td>
-			<td><f:link.action action="edit" arguments="{booking : booking}">Edit</f:link.action></td>
-			<td><f:link.action action="delete" arguments="{booking : booking}">Delete</f:link.action></td>
-		</tr>
-	</f:for>
-</table>
+		/**
+		 * Initialize object that contains configuration
+		 */
+		var CalendarDisplay = {
+			newUrl : '/?type=12636', // &no_cache=1 (debug purposes)
+			TimePicker : {},
+			Calendar : {},
+			Dialog : {},
+			WaitingUI : {},
+			Lang : {
+				dialogTitleNew :  _dialogTitleNew,
+				dialogTitleUpdate :  _dialogTitleUpdate
+			}
+		};
 
-<f:link.action action="new">New Booking</f:link.action>
+		/**
+		 * Return Dialog object
+		 */
+		(function($) {
+			$(function() {
+				$(document).ready(function(){
+
+					// Initialize CalendarDisplay object
+					CalendarDisplay.Dialog = CalendarDisplay.initializeDialog();
+					CalendarDisplay.TimePicker.options = CalendarDisplay.getTimePickerOptions();
+					CalendarDisplay.Calendar.options = CalendarDisplay.getCalendarOptions();
+					CalendarDisplay.WaitingUI.options = CalendarDisplay.getWaitingUIOptions();
+
+					
+					// Load dialog box
+					$('#tx-calendardisplay-link-new').click(function() {
+
+						$.blockUI(CalendarDisplay.WaitingUI.options);
+
+						CalendarDisplay.Dialog.load(
+							CalendarDisplay.newUrl,
+							{},
+							function (responseText, textStatus, XMLHttpRequest) {
+								
+								// release UI
+								$.unblockUI();
+
+								// define title dialog box
+								CalendarDisplay.Dialog.dialog('option', 'title', CalendarDisplay.Lang.dialogTitleNew);
+
+								// open dialog box
+								CalendarDisplay.Dialog.dialog('open');
+							}
+						);
+
+						// prevent the default action, e.g., following a link
+						return false;
+					});
+
+					var calendar = $('#calendar').fullCalendar(CalendarDisplay.Calendar.options);
+
+				}); // end DOM ready
+
+			}); // end of clausure
+		})(jQuery);
+
+
+		/**
+		 * Return Dialog object
+		 */
+		CalendarDisplay.initializeDialog = function() {
+			// Dialog box
+			var dialog = $('<div></div>')
+			.dialog({
+				autoOpen: false,
+				modal: true
+			});
+			
+			return dialog;
+		}
+
+		/**
+		 * Return WaitingUI options
+		 */
+		CalendarDisplay.getWaitingUIOptions = function() {
+			// Calendar default options
+			var defaultOptions = {
+				message: null
+			}
+			return $.extend(defaultOptions, _waitingUI);
+		}
+
+		/**
+		 * Return Time picker options
+		 */
+		CalendarDisplay.getTimePickerOptions = function() {
+			// Calendar default options
+			var defaultOptions = {
+				hourMin: 8,
+				hourMax: 18,
+				stepHour: 1,
+				stepMinute: 10
+			}
+
+			// merge language options if any
+			var languageOptions = {};
+			if (typeof($.timepicker.getLanguageOptions) == 'function') {
+				languageOptions = $.timepicker.getLanguageOptions();
+			}
+
+			return $.extend(defaultOptions, languageOptions, _timePicker);
+		}
+
+		/**
+		 * Return calendar options
+		 */
+		CalendarDisplay.getCalendarOptions = function() {
+
+			// Calendar
+			var date = new Date();
+			var d = date.getDate();
+			var m = date.getMonth();
+			var y = date.getFullYear();
+
+			// @temp
+			console.log(d);
+			console.log(m);
+			console.log(y);
+
+			// Calendar default options
+			var defaultOptions = {
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay'
+				},
+				theme: true,
+				defaultView: 'agendaWeek',
+				allDaySlot: false,
+				firstHour: 8,
+				editable: false,
+				selectable: false,
+				selectHelper: true,
+				eventClick: function(calEvent, jsEvent, view) {
+
+					if (calEvent.id) {
+
+						// GUI
+						$.blockUI(CalendarDisplay.WaitingUI.options);
+
+						CalendarDisplay.Dialog.load(
+							CalendarDisplay.newUrl,
+							{},
+							function (responseText, textStatus, XMLHttpRequest) {
+								
+								// release UI
+								$.unblockUI();
+
+								// define title dialog box
+								CalendarDisplay.Dialog.dialog('option', 'title', CalendarDisplay.Lang.dialogTitleUpdate);
+
+								// open dialog box
+								CalendarDisplay.Dialog.dialog('open');
+							}
+						);
+					}
+					// change the border color just for fun
+					$(this).css('border-color', 'red');
+
+				},
+				//select: function(start, end, allDay) {
+				// @see check example online
+				//},
+
+				eventSources: [
+
+						// your event source
+						{
+							events: [ // put the array in the `events` property
+							   {
+										id: 123,
+										title: 'Meeting',
+										start: new Date(y, m, d, 10, 30),
+										allDay: false
+									},
+									{
+										title: 'Lunch',
+										start: new Date(y, m, d, 12, 0),
+										end: new Date(y, m, d, 14, 0),
+										allDay: false
+									},
+									{
+										title: 'Birthday Party',
+										start: new Date(y, m, d+1, 19, 0),
+										end: new Date(y, m, d+1, 22, 30),
+										allDay: false
+									}
+							]
+				//            color: 'black',     // an option!
+				//            textColor: 'yellow' // an option!
+						},
+						// http://arshaw.com/fullcalendar/docs/event_data/events_json_feed/
+				//		{
+				//			url: '/myFeed.php'
+				//
+				//		}
+
+				]
+				
+			};
+
+			// merge language options if any
+			var languageOptions = {};
+			if (typeof($.fullCalendar.getLanguageOptions) == 'function') {
+				languageOptions = $.fullCalendar.getLanguageOptions();
+			}
+
+			return $.extend(defaultOptions, languageOptions, _calendar);
+		}
+
+		$(document).ready(function(){
+			// add datetime picker to date-start
+			$('.date-start > input').datetimepicker();
+
+			$('.keyword').focus(function() {
+				var defaultValue = $('#defauleSearchLabel').val();
+				if(defaultValue == $('.keyword').val()) $('.keyword').val('');
+				else if ($('.keyword').val() == '') $('.keyword').val(defaultValue);
+			});
+
+			$('.keyword').blur(function() {
+				var defaultValue = $('#defauleSearchLabel').val();
+				if(defaultValue == $('.keyword').val()) $('.keyword').val('');
+				else if ($('.keyword').val() == '') $('.keyword').val(defaultValue);
+			});
+		});
+		// ]]>
+	</script>
+	
+	<f:flashMessages />
+	
+	<div class="booking-list">
+		<div class="new-booking">
+			<h2><f:translate key="make_new_booking" /></h2>
+			<f:link.action id="tx-calendardisplay-link-new" action="new" title="<f:translate key='new_booking' />">
+				<f:translate key="new_booking" />			
+			</f:link.action>
+		</div>
+		
+		<f:if condition="{bookings}">
+			<f:then>
+				<div class="filter-wrapper">
+					<f:form method="post" action="list" name="filter">
+						<div class="filter">
+							<label><f:translate key="filter_category" /></label>							
+							<f:form.select property="category" options="{calendar:tca.options()}" /> 
+						</div>
+						<div class="search">
+							<f:form.textbox property="keyword" class="keyword" value="<f:translate key='search' />" />
+							<input id="defauleSearchLabel" type="hidden" value="<f:translate key='search' />" />
+						</div>
+						<div class="date-start">
+							<label><f:translate key="choose_start_date" /></label>
+							<f:form.textbox property="dateStart" value="" />
+						</div>
+					</f:form>
+				</div>
+				
+				<table>
+					<thead>
+						<tr>
+							<th class="start"><f:translate key="start" /></th>
+							<th class="end"><f:translate key="end" /></th>
+							<th class="note"><f:translate key="note" /></th>
+							<th class="material"><f:translate key="material" /></th>
+							<th class="quantity"><f:translate key="quantity" /></th>
+							<th class="bookedBy"><f:translate key="booked_by" /></th>
+							<th class="phone"><f:translate key="phone" /></th>
+							<th class="edit"><f:translate key="edit" /></th>
+							<th class="delete"><f:translate key="delete" /></th>
+						</tr>
+					</thead>
+					<tbody>
+						<f:for each="{bookings}" as="booking">
+							<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
+								<tr class="{zebraClass}">
+									<td class="start">{booking.timeBegin}</td>
+									<td class="end">{booking.timeEnd}</td>
+									<td class="note">{booking.note}</td>
+									<td class="material">
+										<f:for each="{booking.resources}" as="resource" iteration="resourceIterator">
+											{resource.name}
+											<f:if condition="{booking.resources -> f:count()} > {resourceIterator.cycle}">
+												<f:then>,&nbsp;</f:then>
+											</f:if>
+										</f:for>
+									</td>
+									<td class="quantity"></td>
+									<td class="bookedBy"></td>
+									<td class="phone"></td>
+									<td class="edit">
+										<f:link.action action="edit" arguments="{booking: booking}" title="<f:translate key='edit' />">
+											<f:translate key="edit" />
+										</f:link.action>
+									</td>
+									<td class="delete">
+										<f:link.action action="delete" arguments="{booking: booking}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
+											<f:translate key="delete" />
+										</f:link.action>
+									</td>
+								</tr>
+							</f:cycle>
+						</f:for>
+					</tbody>
+				</table>
+			</f:then>
+			<f:else>
+				<div class="noBookingItem">
+					<f:translate key="no_booking_item" />
+				</div>
+			</f:else>
+		</f:if>	
+	</div>
 </f:section>

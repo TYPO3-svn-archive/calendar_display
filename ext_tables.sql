@@ -5,6 +5,8 @@ CREATE TABLE tx_calendardisplay_domain_model_resource (
 	
 	name varchar(255) DEFAULT '' NOT NULL,
 	number varchar(255) DEFAULT '' NOT NULL,
+	image text NOT NULL,
+	category int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,

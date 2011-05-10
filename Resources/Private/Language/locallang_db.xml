@@ -9,6 +9,11 @@
 			<label index="tx_calendardisplay_domain_model_resource">Resource</label>
 			<label index="tx_calendardisplay_domain_model_resource.name">Name</label>
 			<label index="tx_calendardisplay_domain_model_resource.number">Number</label>
+			<label index="tx_calendardisplay_domain_model_resource.image">Image</label>
+			<label index="tx_calendardisplay_domain_model_resource.category">Category</label>
+			<label index="tx_calendardisplay_domain_model_resource.please_select">Please select</label>
+			<label index="tx_calendardisplay_domain_model_resource.category.1">Lorem</label>
+			<label index="tx_calendardisplay_domain_model_resource.category.2">Ipsum</label>
 			<label index="tx_calendardisplay_domain_model_booking">Booking</label>
 			<label index="tx_calendardisplay_domain_model_booking.time_begin">Time Begin</label>
 			<label index="tx_calendardisplay_domain_model_booking.time_end">Time End</label>

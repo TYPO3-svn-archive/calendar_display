@@ -1,28 +1,107 @@
+{namespace calendar=Tx_CalendarDisplay_ViewHelpers}
 <script type="text/javascript">
+// <![CDATA[
 
-		// <![CDATA[
+(function($) {
+	$(function() {
+		$(document).ready(function(){
 
-		(function($) {
-			$(function() {
-				$(document).ready(function(){
+			//$('#example1').datetimepicker(CalendarDisplay.TimePicker.options);
+			$('#timeBegin').datetimepicker();
+			$('#timeEnd').datetimepicker();
 
-					$('#example1').datetimepicker(CalendarDisplay.TimePicker.options);
+			$('.keyword').focus(function() {
+				var defaultValue = $('#defauleSearchLabel').val();
+				if(defaultValue == $('.keyword').val()) $('.keyword').val('');
+				else if ($('.keyword').val() == '') $('.keyword').val(defaultValue);
+			});
 
+			$('.keyword').blur(function() {
+				var defaultValue = $('#defauleSearchLabel').val();
+				if(defaultValue == $('.keyword').val()) $('.keyword').val('');
+				else if ($('.keyword').val() == '') $('.keyword').val(defaultValue);
+			});
+		}); // end DOM ready
+	}); // end of clausure
+})(jQuery);
+// ]]>
+</script>
 
-				}); // end DOM ready
-			}); // end of clausure
-		})(jQuery);
-		// ]]>
-	</script>
-<label for="timeBegin">
-	<f:translate key="tx_calendardisplay_domain_model_booking.time_begin" />
-</label><br />
-<f:form.textbox property="timeBegin" /><br />
-<label for="timeEnd">
-	<f:translate key="tx_calendardisplay_domain_model_booking.time_end" />
-</label><br />
-	<f:form.textbox property="timeEnd" id="example1"/><br />
-<label for="note">
-	<f:translate key="tx_calendardisplay_domain_model_booking.note" />
-</label><br />
-	<f:form.textbox property="note" /><br />
+<div class="booking-form">
+	<div>
+		<label for="timeBegin">
+			<f:translate key="tx_calendardisplay_domain_model_booking.time_begin" />
+		</label>
+		<f:form.textbox id="timeBegin" property="timeBegin" />
+	</div>
+	
+	<div>
+		<label for="timeEnd">
+			<f:translate key="tx_calendardisplay_domain_model_booking.time_end" />
+		</label>
+		<f:form.textbox id="timeEnd" property="timeEnd" />
+	</div>
+	
+	<div class="note">
+		<label for="note">
+			<f:translate key="tx_calendardisplay_domain_model_booking.note" />
+		</label>
+		<f:form.textarea id="note" property="note" rows="3" cols="80" />
+	</div>
+</div>
+
+<f:if condition="{resources}">
+	<f:then>
+		<div class="available-item">
+			<p>
+				<f:translate key="alvailable_item_description" />
+			</p>
+			<div class="filter-wrapper">
+				<div class="filter">
+					<label><f:translate key="filter_category" /></label>
+					<f:form.select property="category" options="{calendar:tca.options()}" /> 
+				</div>
+				<div class="search">
+					<f:form.textbox property="keyword" class="keyword" value="<f:translate key='search' />" />
+					<input id="defauleSearchLabel" type="hidden" value="<f:translate key='search' />" />
+				</div>
+			</div>
+			
+			<table>
+				<thead>
+					<tr>
+						<th class="image"></th>
+						<th class="material"><f:translate key="material" /></th>
+						<th class="category"><f:translate key="category" /></th>
+						<th class="available-number"><f:translate key="available_number" /></th>
+						<th class="reserve-number"><f:translate key="reserve_number" /></th>
+					</tr>
+				</thead>
+				<tbody>
+					<f:for each="{resources}" as="resource">
+						<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
+							<tr class="{zebraClass}">
+								<td class="image">
+									<f:if condition="{resource.image}">
+										<f:image src="uploads/tx_calendardisplay/{resource.image}"  width="50" alt="{resource.name}" />
+									</f:if>
+								</td>
+								<td class="material">{resource.name}</td>
+								<td class="category">{resource.category}</td>								
+								<td class="available-number">{resource.number}</td>
+								<td class="reserve-number">
+									<f:form.textbox property="reserveNumber" value="" />
+								</td>
+							</tr>
+						</f:cycle>
+					</f:for>
+				</tbody>
+			</table>
+		</div>
+	</f:then>
+	<f:else>
+		<div class="noAvailableItem">
+			<f:translate key="no_available_item" />
+		</div>
+	</f:else>
+</f:if>

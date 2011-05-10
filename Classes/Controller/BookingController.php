@@ -40,6 +40,13 @@
 	 * @var Tx_CalendarDisplay_Domain_Repository_BookingRepository
 	 */
 	protected $bookingRepository;
+	
+	/**
+	 * resourceRepository
+	 *
+	 * @var Tx_CalendarDisplay_Domain_Repository_ResourceRepository
+	 */
+	protected $resourceRepository;
 
 	/**
 	 * Initializes the current action
@@ -48,7 +55,7 @@
 	 */
 	protected function initializeAction() {
 		$this->bookingRepository = t3lib_div::makeInstance('Tx_CalendarDisplay_Domain_Repository_BookingRepository');
-
+		$this->resourceRepository = t3lib_div::makeInstance('Tx_CalendarDisplay_Domain_Repository_ResourceRepository');
 	}
 
 	/**
@@ -122,6 +129,7 @@
 	 */
 	public function editAction(Tx_CalendarDisplay_Domain_Model_Booking $booking) {
 		$this->view->assign('booking', $booking);
+		$this->view->assign('resources', $this->resourceRepository->findAll());
 	}
 
 	/**

@@ -47,6 +47,20 @@
 	 * @var string $number
 	 */
 	protected $number;
+	
+	/**
+	 * image
+	 *
+	 * @var string $image
+	 */
+	protected $image;
+	
+	/**
+	 * category
+	 *
+	 * @var integer $category
+	 */
+	protected $category;
 
 	/**
 	 * Setter for name
@@ -84,6 +98,44 @@
 	 */
 	public function getNumber() {
 		return $this->number;
+	}
+	
+ 	/**
+	 * Setter for image
+	 *
+	 * @param string $image image
+	 * @return void
+	 */
+	public function setImage($image) {
+		$this->image = $image;
+	}
+
+	/**
+	 * Getter for image
+	 *
+	 * @return string image
+	 */
+	public function getImage() {
+		return $this->image;
+	}
+	
+ 	/**
+	 * Setter for category
+	 *
+	 * @param integer $category category
+	 * @return void
+	 */
+	public function setCategory($category) {
+		$this->category = $category;
+	}
+
+	/**
+	 * Getter for category
+	 *
+	 * @return integer category
+	 */
+	public function getCategory() {
+		return $this->category;
 	}
 
 	/**

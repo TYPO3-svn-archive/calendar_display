@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_calendardisplay_domain_model_resource'] = array(
 	'ctrl' => $TCA['tx_calendardisplay_domain_model_resource']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList'	=> 'name,number',
+		'showRecordFieldList'	=> 'name,number,image,category',
 	),
 	'types' => array(
-		'1' => array('showitem'	=> 'name,number'),
+		'1' => array('showitem'	=> 'name,number,image,category'),
 	),
 	'palettes' => array(
 		'1' => array('showitem'	=> ''),
@@ -78,6 +78,31 @@ $TCA['tx_calendardisplay_domain_model_resource'] = array(
 				'size' => 30,
 				'eval' => 'trim'
 			),
+		),
+		'image' => array(
+			'exclude'	=> 1,
+			'label'		=> 'LLL:EXT:calendar_display/Resources/Private/Language/locallang_db.xml:tx_calendardisplay_domain_model_resource.image',
+			'config'	=> array(
+				'type' => 'group',
+				'internal_type' => 'file',
+				'uploadfolder' => 'uploads/tx_calendardisplay',
+				'show_thumbs' => 1,
+				'size' => 5,
+				'allowed' => 'gif,jpg,jpeg,png',
+				'disallowed' => '',
+			),
+		),
+		'category' => array (  
+			'exclude' => 0,  
+			'label' => 'LLL:EXT:calendar_display/Resources/Private/Language/locallang_db.xml:tx_calendardisplay_domain_model_resource.category',  
+			'config' => array (
+				'type' => 'select', 
+				'items' => array(
+					array('LLL:EXT:calendar_display/Resources/Private/Language/locallang_db.xml:tx_calendardisplay_domain_model_resource.please_select', 0),
+					array('LLL:EXT:calendar_display/Resources/Private/Language/locallang_db.xml:tx_calendardisplay_domain_model_resource.category.1', 1),
+					array('LLL:EXT:calendar_display/Resources/Private/Language/locallang_db.xml:tx_calendardisplay_domain_model_resource.category.2', 2),
+				),
+			)
 		),
 	),
 );

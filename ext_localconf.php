@@ -11,7 +11,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'Resource' => 'list, show, new, create, edit, update, delete',
 	),
 	array(
-		'Booking' => 'create, update, delete',
+		'Booking' => 'list, create, update, delete',
 		'Resource' => 'create, update, delete',
 	)
 );

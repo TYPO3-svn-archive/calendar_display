@@ -1,16 +1,4 @@
 <f:layout name="Default" />
-
-This template displays a EDIT form for the current domain object.
-
-If you modify this template, do not forget to change the overwrite settings 
-in /Configuration/Kickstarter/settings.yaml:
-	Resources:
-		Private: 
-			Templates:
-				Update.html		keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the kickstarter
-
 <f:section name="main">
 <h1>Edit Booking</h1>
 
@@ -19,7 +7,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <f:render partial="formErrors" />
 
 <f:form method="post" action="update" name="booking" object="{booking}" >
-<f:render partial="Booking/formFields" arguments="{booking:booking}" />
+	<f:render partial="Booking/formFields" arguments="{booking:booking, resources:resources}" />
 	<f:form.submit value="Save" />
 </f:form>
 </f:section>

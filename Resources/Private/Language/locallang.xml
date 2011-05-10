@@ -17,6 +17,26 @@
 
 			<label index="new_booking">New Booking</label>
 			<label index="update_booking">Update Booking</label>
+			<label index="make_new_booking">Make new booking</label>
+			<label index="filter_category">Filter selection: category</label>
+			<label index="search">Search...</label>
+			<label index="choose_start_date">choose a start date</label>
+			<label index="start">Start</label>
+			<label index="end">End</label>
+			<label index="note">Note</label>
+			<label index="material">Material</label>
+			<label index="quantity">Qty</label>
+			<label index="booked_by">Booked by</label>
+			<label index="phone">Tel</label>
+			<label index="edit">Edit</label>
+			<label index="delete">Delete</label>
+			<label index="confirm_delete">Are you sure to delete the booking?</label>
+			<label index="no_booking_item">No booking item</label>
+			<label index="alvailable_item_description">Among the equipment available, choose the desired number for each item.</label>
+			<label index="category">Category</label>
+			<label index="available_number">num. Available</label>
+			<label index="reserve_number">num. Reserve</label>
+			<label index="no_available_item">No available item</label>
 		</languageKey>
 	</data>
 </T3locallang>
