@@ -155,6 +155,27 @@
 		$this->flashMessageContainer->add('Your Booking was removed.');
 		$this->redirect('list');
 	}
-
+	
+ 	/**
+	 * Filter the booking list which follows by parameter category, keyword, and timeBegin
+	 *
+	 * @param integer $category the Category to be filter
+	 * @param string $keyword the Keyword 
+	 * @return void
+	 */
+	public function filterAction($category = NULL, $keyword = '') {
+		$this->view->assign('bookings', $this->bookingRepository->filter($category, $keyword, $dateBegin));
+	}
+	
+ 	/**
+	 * Filter available item by some parameters category and keyword
+	 *
+	 * @param integer $category the Category to be filter
+	 * @param string $keyword the Keyword
+	 * @return void
+	 */
+	public function filterItemsAction($category = NULL, $keyword = '') {
+		$this->view->assign('resources', $this->resourceRepository->filterItems($category, $keyword));
+	}
 }
 ?>

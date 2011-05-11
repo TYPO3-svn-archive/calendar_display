@@ -33,6 +33,34 @@
  */
 
  class Tx_CalendarDisplay_Domain_Repository_BookingRepository extends Tx_Extbase_Persistence_Repository {
+ 	/**
+	 * Gets resoureces following by $category and $$keyword
+	 * 
+	 * @param integer $category Category
+	 * @param string $keyword Keyword
+	 * @return array of Tx_CalendarDisplay_Domain_Model_Resource
+	 */
+	public function filter($category = NULL, $keyword = '', $timeBegin = NULL) {
+		$query = $this->createQuery();
+		if ($category) {
+			$constraint = $query->equals('resources.category', $category);
+		}
+		
+		if ($keyword) {
+			$constraintKeyword = $query->like('note', '%' . $keyword . '%');
+			if ($constraint) {
+				$constraint = $query->logicalAnd($constraint, $constraintKeyword);
+			} else {
+				$constraint = $constraintKeyword;
+			}
+		}
+		
+		if ($timeBegin) {
+			
+		}
 
+		return $query->matching($constraint)
+			->execute();
+	}
 }
 ?>

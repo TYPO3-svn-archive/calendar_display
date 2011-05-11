@@ -1,0 +1,29 @@
+{namespace calendar=Tx_CalendarDisplay_ViewHelpers}
+<f:if condition="{resources}">
+	<f:then>
+		<f:for each="{resources}" as="resource">
+			<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
+				<tr class="{zebraClass}">
+					<td class="image">
+						<f:if condition="{resource.image}">
+							<f:image src="uploads/tx_calendardisplay/{resource.image}"  width="50" alt="{resource.name}" />
+						</f:if>
+					</td>
+					<td class="material">{resource.name}</td>
+					<td class="category">{calendar:tca.options(value:"{resource.category}")}</td>								
+					<td class="available-number">{resource.number}</td>
+					<td class="reserve-number">
+						<f:form.textbox property="reserveNumber" value="" />
+					</td>
+				</tr>
+			</f:cycle>
+		</f:for>
+	</f:then>
+	<f:else>
+		<tr class="odd">
+			<td colspan="5">
+				<f:translate key="no_available_item" />
+			</td>
+		</tr>
+	</f:else>
+</f:if>

@@ -1,0 +1,42 @@
+{namespace calendar=Tx_CalendarDisplay_ViewHelpers}
+<f:if condition="{bookings}">
+	<f:then>
+		<f:for each="{bookings}" as="booking">
+			<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
+				<tr class="{zebraClass}">
+					<td class="start">{booking.timeBegin}</td>
+					<td class="end">{booking.timeEnd}</td>
+					<td class="note">{booking.note}</td>
+					<td class="material">
+						<f:for each="{booking.resources}" as="resource" iteration="resourceIterator">
+							{resource.name}
+							<f:if condition="{booking.resources -> f:count()} > {resourceIterator.cycle}">
+								<f:then>,&nbsp;</f:then>
+							</f:if>
+						</f:for>
+					</td>
+					<td class="quantity"></td>
+					<td class="bookedBy"></td>
+					<td class="phone"></td>
+					<td class="edit">
+						<f:link.action action="edit" arguments="{booking: booking}" title="<f:translate key='edit' />">
+							<f:translate key="edit" />
+						</f:link.action>
+					</td>
+					<td class="delete">
+						<f:link.action action="delete" arguments="{booking: booking}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
+							<f:translate key="delete" />
+						</f:link.action>
+					</td>
+				</tr>
+			</f:cycle>
+		</f:for>
+	</f:then>
+	<f:else>
+		<tr class="odd">
+			<td colspan="9">
+				<f:translate key="no_booking_item" />
+			</td>
+		</tr>
+	</f:else>
+</f:if>	

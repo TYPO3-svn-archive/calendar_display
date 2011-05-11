@@ -33,6 +33,32 @@
  */
 
  class Tx_CalendarDisplay_Domain_Repository_ResourceRepository extends Tx_Extbase_Persistence_Repository {
-
+ 	
+ 	/**
+	 * Gets resoureces following by $category and $$keyword
+	 * 
+	 * @param integer $category Category
+	 * @param string $keyword Keyword
+	 * @return array of Tx_CalendarDisplay_Domain_Model_Resource
+	 */
+	public function filterItems($category = NULL, $keyword = '') {
+		$query = $this->createQuery();
+		if ($category) {
+			$constraint = $query->equals('category', $category);
+		}
+		
+		if ($keyword) {
+			$constraintKeyword = $query->like('name', '%' . $keyword . '%');
+			if ($constraint) {
+				$constraint = $query->logicalAnd($constraint, $constraintKeyword);
+			} else {
+				$constraint = $constraintKeyword;
+			}
+		}
+		
+		return $query->matching($constraint)
+			->setOrderings(array('name' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))	
+			->execute();
+	}
 }
 ?>

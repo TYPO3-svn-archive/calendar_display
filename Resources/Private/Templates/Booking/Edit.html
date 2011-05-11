@@ -6,7 +6,7 @@
 
 <f:render partial="formErrors" />
 
-<f:form method="post" action="update" name="booking" object="{booking}" >
+<f:form method="post" action="update" name="editBooking" object="{booking}" >
 	<f:render partial="Booking/formFields" arguments="{booking:booking, resources:resources}" />
 	<f:form.submit value="Save" />
 </f:form>

@@ -53,16 +53,17 @@
 <f:if condition="{resources}">
 	<f:then>
 		<div class="available-item">
+			<f:image class="loading" src="EXT:calendar_display/Resources/Public/Media/Icons/loading.gif" alt="" />
 			<p>
 				<f:translate key="alvailable_item_description" />
 			</p>
 			<div class="filter-wrapper">
 				<div class="filter">
 					<label><f:translate key="filter_category" /></label>
-					<f:form.select property="category" options="{calendar:tca.options()}" /> 
+					<f:form.select class="category" name="category" options="{calendar:tca.options()}" /> 
 				</div>
 				<div class="search">
-					<f:form.textbox property="keyword" class="keyword" value="<f:translate key='search' />" />
+					<f:form.textbox name="keyword" class="keyword" value="<f:translate key='search' />" />
 					<input id="defauleSearchLabel" type="hidden" value="<f:translate key='search' />" />
 				</div>
 			</div>
@@ -87,7 +88,7 @@
 									</f:if>
 								</td>
 								<td class="material">{resource.name}</td>
-								<td class="category">{resource.category}</td>								
+								<td class="category">{calendar:tca.options(value:"{resource.category}")}</td>								
 								<td class="available-number">{resource.number}</td>
 								<td class="reserve-number">
 									<f:form.textbox property="reserveNumber" value="" />

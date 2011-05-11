@@ -261,19 +261,19 @@
 					<f:form method="post" action="list" name="filter">
 						<div class="filter">
 							<label><f:translate key="filter_category" /></label>							
-							<f:form.select property="category" options="{calendar:tca.options()}" /> 
+							<f:form.select class="category" name="category" options="{calendar:tca.options()}" /> 
 						</div>
 						<div class="search">
-							<f:form.textbox property="keyword" class="keyword" value="<f:translate key='search' />" />
+							<f:form.textbox class="keyword" name="keyword" class="keyword" value="<f:translate key='search' />" />
 							<input id="defauleSearchLabel" type="hidden" value="<f:translate key='search' />" />
 						</div>
 						<div class="date-start">
 							<label><f:translate key="choose_start_date" /></label>
-							<f:form.textbox property="dateStart" value="" />
+							<f:form.textbox class="timeBegin" name="dateStart" value="" />
 						</div>
 					</f:form>
 				</div>
-				
+				<f:image class="loading" src="EXT:calendar_display/Resources/Public/Media/Icons/loading.gif" alt="" />
 				<table>
 					<thead>
 						<tr>

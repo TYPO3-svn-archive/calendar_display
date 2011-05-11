@@ -31,11 +31,12 @@
  */
 class Tx_CalendarDisplay_ViewHelpers_Tca_OptionsViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 	/**
-	 * Is returning select values for a property
+	 * Is returning select values for a property of category or its value
 	 * 
-	 * @return array The select options as array
+	 * @param mixed $value The value of category 
+	 * @return mixed The select options as array or the value of category
 	 */
-	public function render() {   		
+	public function render($value = NULL) {   		
 		$tableName = 'tx_calendardisplay_domain_model_resource';
 		$columnName = 'category';
 		global $GLOBALS;
@@ -48,7 +49,7 @@ class Tx_CalendarDisplay_ViewHelpers_Tca_OptionsViewHelper extends Tx_Fluid_Core
 			}
 		}
 		
-		return $selectOptions;
+		return $value ? $selectOptions[$value] : $selectOptions; 
 	}
 }
 

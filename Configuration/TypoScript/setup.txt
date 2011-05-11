@@ -65,6 +65,10 @@ page.includeJS.jquery_timepicker = EXT:calendar_display/Resources/Public/JavaScr
 # jQuery Block UI
 page.includeJS.jquery_blockuid = EXT:calendar_display/Resources/Public/JavaScript/jquery.blockUI/jquery.blockUI.js
 
+# JavaScript for CalendarDisplay
+page.includeJS.calendar_display  = EXT:calendar_display/Resources/Public/JavaScript/CalendarDisplay.js
+
+
 ################################
 # CSS Styles
 ################################
@@ -92,6 +96,8 @@ ajax12636 {
 			switchableControllerActions {
 				Booking {
 					1 = new
+					2 = filterItems
+					3 = filter
 				}
 			}
         }
