@@ -109,3 +109,8 @@ ajax12636 {
 		admPanel = 0
 	}
 }
+
+
+ajax12637 < ajax12636
+ajax12637.typeNum = 12637
+ajax12637.10.10.switchableControllerActions.Booking.1 = filterItems
