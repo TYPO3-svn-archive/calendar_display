@@ -104,6 +104,7 @@
 	 */
 	public function newAction(Tx_CalendarDisplay_Domain_Model_Booking $newBooking = null) {
 		$this->view->assign('newBooking', $newBooking);
+		$this->view->assign('resources', $this->resourceRepository->findAll());
 	}
 
 	/**

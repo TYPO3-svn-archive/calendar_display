@@ -19,6 +19,10 @@
 			<label index="tx_calendardisplay_domain_model_booking.time_end">Time End</label>
 			<label index="tx_calendardisplay_domain_model_booking.note">Note</label>
 			<label index="tx_calendardisplay_domain_model_booking.resources">Resources</label>
+			<label index="tx_calendardisplay_domain_model_booking.quantity">Qty</label>
+			<label index="tx_calendardisplay_domain_model_booking.purchaser">Purchaser</label>
+			<label index="tx_calendardisplay_domain_model_booking.item_booking">Item booking</label>
+			<label index="tx_calendardisplay_domain_model_itembooking">Booking Item</label>
 		</languageKey>
 	</data>
 </T3locallang>

@@ -33,10 +33,11 @@ class Tx_CalendarDisplay_ViewHelpers_Tca_OptionsViewHelper extends Tx_Fluid_Core
 	/**
 	 * Is returning select values for a property of category or its value
 	 * 
+	 * @param string $type type of return in text or array option
 	 * @param mixed $value The value of category 
 	 * @return mixed The select options as array or the value of category
 	 */
-	public function render($value = NULL) {   		
+	public function render($type = 'array', $value = NULL) {   		
 		$tableName = 'tx_calendardisplay_domain_model_resource';
 		$columnName = 'category';
 		global $GLOBALS;
@@ -47,9 +48,12 @@ class Tx_CalendarDisplay_ViewHelpers_Tca_OptionsViewHelper extends Tx_Fluid_Core
 			foreach ($columnConfig['items'] as $option) {
 				$selectOptions[$option[1]] = Tx_Extbase_Utility_Localization::translate($option[0], $this->controllerContext->getRequest()->getControllerExtensionName());
 			}
+		}		
+		if ($type == 'text') {
+			return $value ? $selectOptions[$value] : ''; 
 		}
 		
-		return $value ? $selectOptions[$value] : $selectOptions; 
+		return $selectOptions;		
 	}
 }
 

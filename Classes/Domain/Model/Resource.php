@@ -38,13 +38,15 @@
 	 * name
 	 *
 	 * @var string $name
+	 * @validate NotEmpty
 	 */
 	protected $name;
 
 	/**
 	 * number
 	 *
-	 * @var string $number
+	 * @var integer $number
+	 * @validate NotEmpty
 	 */
 	protected $number;
 	

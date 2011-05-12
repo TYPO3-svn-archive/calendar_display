@@ -38,6 +38,7 @@
 	 * timeBegin
 	 *
 	 * @var integer $timeBegin
+	 * @validate NotEmpty
 	 */
 	protected $timeBegin;
 
@@ -45,6 +46,7 @@
 	 * timeEnd
 	 *
 	 * @var integer $timeEnd
+	 * @validate NotEmpty
 	 */
 	protected $timeEnd;
 
@@ -54,13 +56,6 @@
 	 * @var string $note
 	 */
 	protected $note;
-
-	/**
-	 * resources
-	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_CalendarDisplay_Domain_Model_Resource> $resources
-	 */
-	protected $resources;
 
 	/**
 	 * The constructor.
@@ -142,26 +137,7 @@
 	public function getNote() {
 		return $this->note;
 	}
-
-	/**
-	 * Setter for resources
-	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_CalendarDisplay_Domain_Model_Resource> $resources resources
-	 * @return void
-	 */
-	public function setResources(Tx_Extbase_Persistence_ObjectStorage $resources) {
-		$this->resources = $resources;
-	}
-
-	/**
-	 * Getter for resources
-	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_CalendarDisplay_Domain_Model_Resource> resources
-	 */
-	public function getResources() {
-		return $this->resources;
-	}
-
+	
 	/**
 	 * Adds a Resource
 	 *

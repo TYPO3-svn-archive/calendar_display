@@ -67,7 +67,7 @@ $TCA['tx_calendardisplay_domain_model_resource'] = array(
 			'config'	=> array(
 				'type' => 'input',
 				'size' => 30,
-				'eval' => 'trim'
+				'eval' => 'trim,required'
 			),
 		),
 		'number' => array(
@@ -75,8 +75,8 @@ $TCA['tx_calendardisplay_domain_model_resource'] = array(
 			'label'		=> 'LLL:EXT:calendar_display/Resources/Private/Language/locallang_db.xml:tx_calendardisplay_domain_model_resource.number',
 			'config'	=> array(
 				'type' => 'input',
-				'size' => 30,
-				'eval' => 'trim'
+				'size' => 4,
+				'eval' => 'int,required'
 			),
 		),
 		'image' => array(
@@ -92,11 +92,11 @@ $TCA['tx_calendardisplay_domain_model_resource'] = array(
 				'disallowed' => '',
 			),
 		),
-		'category' => array (  
+		'category' => array (
 			'exclude' => 0,  
 			'label' => 'LLL:EXT:calendar_display/Resources/Private/Language/locallang_db.xml:tx_calendardisplay_domain_model_resource.category',  
 			'config' => array (
-				'type' => 'select', 
+				'type' => 'select',
 				'items' => array(
 					array('LLL:EXT:calendar_display/Resources/Private/Language/locallang_db.xml:tx_calendardisplay_domain_model_resource.please_select', 0),
 					array('LLL:EXT:calendar_display/Resources/Private/Language/locallang_db.xml:tx_calendardisplay_domain_model_resource.category.1', 1),
