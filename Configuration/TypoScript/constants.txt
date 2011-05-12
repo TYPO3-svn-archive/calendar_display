@@ -9,6 +9,6 @@ plugin.tx_calendardisplay {
 	}
 	persistence {
 		# cat=plugin.tx_calendardisplay//a; type=int+; label=Default storage PID
-		storagePid = 
+		storagePid = 1
 	}
 }

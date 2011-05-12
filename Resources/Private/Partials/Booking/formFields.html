@@ -28,19 +28,23 @@
 </script>
 
 <div class="booking-form">
-	<div>
-		<label for="timeBegin">
-			<f:translate key="tx_calendardisplay_domain_model_booking.time_begin" />
-		</label>
-		<f:form.textbox id="timeBegin" property="timeBegin" />
-	</div>
-	
-	<div>
-		<label for="timeEnd">
-			<f:translate key="tx_calendardisplay_domain_model_booking.time_end" />
-		</label>
-		<f:form.textbox id="timeEnd" property="timeEnd" />
-	</div>
+
+	<table>
+		<tr>
+			<td>
+				<label for="timeBegin">
+					<f:translate key="tx_calendardisplay_domain_model_booking.time_begin" />
+				</label>
+				<f:form.textbox id="timeBegin" property="timeBegin" />
+			</td>
+			<td style="padding-left: 20px">
+				<label for="timeEnd">
+					<f:translate key="tx_calendardisplay_domain_model_booking.time_end" />
+				</label>
+				<f:form.textbox id="timeEnd" property="timeEnd" />
+			</td>
+		</tr>
+	</table>
 	
 	<div class="note">
 		<label for="note">
@@ -103,6 +107,7 @@
 	<f:else>
 		<div class="noAvailableItem">
 			<f:translate key="no_available_item" />
+			-> add a button that will create new dummy resources
 		</div>
 	</f:else>
 </f:if>

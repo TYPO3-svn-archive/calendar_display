@@ -152,8 +152,12 @@ input.f3-form-error {
 
 .tx-calendardisplay-pi1 .booking-form label {
 	width: 100px;
-	float: left;
 	display: block;
+}
+
+#timeBegin,
+#timeEnd {
+	width: 200px;
 }
 
 .tx-calendardisplay-pi1 .available-item .filter-wrapper {

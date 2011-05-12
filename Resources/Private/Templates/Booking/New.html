@@ -12,14 +12,13 @@ in /Configuration/Kickstarter/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the kickstarter
 
 <f:section name="main">
-<h1>New Booking</h1>
 
 <f:flashMessages />
 
 <f:render partial="formErrors" />
 
 <f:form method="post" action="create"  name="newBooking" object="{newBooking}">
-<f:render partial="Booking/formFields" />
-	<f:form.submit value="Create new" />
+	<f:render partial="Booking/formFields" />
+	
 </f:form>
 </f:section>
