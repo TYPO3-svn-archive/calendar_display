@@ -35,27 +35,19 @@
  class Tx_CalendarDisplay_Domain_Model_Booking extends Tx_Extbase_DomainObject_AbstractEntity {
 
 	/**
-	 * timeBegin
+	 * resources
 	 *
-	 * @var integer $timeBegin
-	 * @validate NotEmpty
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_CalendarDisplay_Domain_Model_Resource> $resources
 	 */
-	protected $timeBegin;
+	protected $resources;
 
 	/**
-	 * timeEnd
+	 * number
 	 *
-	 * @var integer $timeEnd
+	 * @var integer $number
 	 * @validate NotEmpty
 	 */
-	protected $timeEnd;
-
-	/**
-	 * note
-	 *
-	 * @var string $note
-	 */
-	protected $note;
+	protected $number;
 
 	/**
 	 * The constructor.
@@ -80,64 +72,45 @@
 		*/
 		$this->resources = new Tx_Extbase_Persistence_ObjectStorage();
 	}
-
-	/**
-	 * Setter for timeBegin
-	 *
-	 * @param integer $timeBegin timeBegin
-	 * @return void
-	 */
-	public function setTimeBegin($timeBegin) {
-		$this->timeBegin = $timeBegin;
-	}
-
-	/**
-	 * Getter for timeBegin
-	 *
-	 * @return integer timeBegin
-	 */
-	public function getTimeBegin() {
-		return $this->timeBegin;
-	}
-
-	/**
-	 * Setter for timeEnd
-	 *
-	 * @param integer $timeEnd timeEnd
-	 * @return void
-	 */
-	public function setTimeEnd($timeEnd) {
-		$this->timeEnd = $timeEnd;
-	}
-
-	/**
-	 * Getter for timeEnd
-	 *
-	 * @return integer timeEnd
-	 */
-	public function getTimeEnd() {
-		return $this->timeEnd;
-	}
-
-	/**
-	 * Setter for note
-	 *
-	 * @param string $note note
-	 * @return void
-	 */
-	public function setNote($note) {
-		$this->note = $note;
-	}
-
-	/**
-	 * Getter for note
-	 *
-	 * @return string note
-	 */
-	public function getNote() {
-		return $this->note;
-	}
 	
+ 	/**
+	 * Setter for resources
+	 *
+	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_CalendarDisplay_Domain_Model_Resource> $resources resources
+	 * @return void
+	 */
+	public function setBooking(Tx_Extbase_Persistence_ObjectStorage $resources) {
+		$this->resources = $resources;
+	}
+
+	/**
+	 * Getter for resources
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_CalendarDisplay_Domain_Model_Resource> resources
+	 */
+	public function getResources() {
+		return $this->resources;
+	}
+
+	/**
+	 * Setter for number
+	 *
+	 * @param integer $number number
+	 * @return void
+	 */
+	public function setNumber($number) {
+		$this->number = $number;
+	}
+
+	/**
+	 * Getter for number
+	 *
+	 * @return integer number
+	 */
+	public function getNumber() {
+		return $this->number;
+	}
+
 	/**
 	 * Adds a Resource
 	 *
@@ -157,6 +130,5 @@
 	public function removeResource(Tx_CalendarDisplay_Domain_Model_Resource $resourceToRemove) {
 		$this->resources->detach($resourceToRemove);
 	}
-
 }
 ?>

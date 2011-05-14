@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_calendardisplay_domain_model_booking'] = array(
 	'ctrl' => $TCA['tx_calendardisplay_domain_model_booking']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList'	=> 'time_begin,time_end,note,purchaser,itembooking',
+		'showRecordFieldList'	=> 'resources,number',
 	),
 	'types' => array(
-		'1' => array('showitem'	=> 'time_begin,time_end,note,purchaser,itembooking'),
+		'1' => array('showitem'	=> 'resources,number'),
 	),
 	'palettes' => array(
 		'1' => array('showitem'	=> ''),
@@ -61,67 +61,53 @@ $TCA['tx_calendardisplay_domain_model_booking'] = array(
 				'type'	=> 'check',
 			)
 		),
-		'time_begin' => array(
+		'resources' => array(
 			'exclude'	=> 0,
-			'label'		=> 'LLL:EXT:calendar_display/Resources/Private/Language/locallang_db.xml:tx_calendardisplay_domain_model_booking.time_begin',
+			'label'		=> 'LLL:EXT:calendar_display/Resources/Private/Language/locallang_db.xml:tx_calendardisplay_domain_model_booking.resources',
 			'config'	=> array(
-				'type' => 'input',
-				'size' => 10,
-				'max' => 20,
-				'eval' => 'datetime,required',
-				'checkbox' => 0,
-				'default' => 0
-			),
-		),
-		'time_end' => array(
-			'exclude'	=> 0,
-			'label'		=> 'LLL:EXT:calendar_display/Resources/Private/Language/locallang_db.xml:tx_calendardisplay_domain_model_booking.time_end',
-			'config'	=> array(
-				'type' => 'input',
-				'size' => 10,
-				'max' => 20,
-				'eval' => 'datetime,required',
-				'checkbox' => 0,
-				'default' => 0
-			),
-		),
-		'note' => array(
-			'exclude'	=> 0,
-			'label'		=> 'LLL:EXT:calendar_display/Resources/Private/Language/locallang_db.xml:tx_calendardisplay_domain_model_booking.note',
-			'config'	=> array(
-				'type' => 'text',
-				'cols' => 40,
-				'rows' => 15,
-				'eval' => 'trim'
-			),
-		),
-		'purchaser' => array(
-			'exclude' => 0,
-			'label'		=> 'LLL:EXT:calendar_display/Resources/Private/Language/locallang_db.xml:tx_calendardisplay_domain_model_booking.purchaser',
-			'config'  => array(
 				'type' => 'select',
-				'foreign_table' => 'fe_users',
-				'foreign_table_where' => 'AND fe_users.deleted=0 ORDER BY fe_users.username ASC',
+				'foreign_table' => 'tx_calendardisplay_domain_model_resource',
+				'MM' => 'tx_calendardisplay_booking_resource_mm',
 				'size' => 1,
 				'minitems' => 1,
 				'maxitems' => 1,
-			)
-		),		
-		'itembooking' => array(
-			'exclude'	=> 0,
-			'label'		=> 'LLL:EXT:calendar_display/Resources/Private/Language/locallang_db.xml:tx_calendardisplay_domain_model_booking.item_booking',
-			'config'	=> array(
-				'type' => 'inline',
-				'foreign_table' => 'tx_calendardisplay_domain_model_itembooking',
-				'foreign_field' => 'booking',
-				'maxitems'      => 9999,
-				'appearance' => array(
-					'collapse' => 0,
-					'newRecordLinkPosition' => 'bottom',
-					'showSynchronizationLink' => 1,
-					'showPossibleLocalizationRecords' => 1,
-					'showAllLocalizationLink' => 1
+				'wizards' => array(
+					'_PADDING' => 1,
+					'_VERTICAL' => 0,
+					'edit' => array(
+						'type' => 'popup',
+						'title' => 'Edit',
+						'script' => 'wizard_edit.php',
+						'icon' => 'edit2.gif',
+						'popup_onlyOpenIfSelected' => 1,
+						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
+						),
+					'add' => Array(
+						'type' => 'script',
+						'title' => 'Create new',
+						'icon' => 'add.gif',
+						'params' => array(
+							'table'=>'tx_calendardisplay_domain_model_resource',
+							'pid' => '###CURRENT_PID###',
+							'setValue' => 'prepend'
+							),
+						'script' => 'wizard_add.php',
+					),
 				),
+			),
+		),
+		'number' => array(
+			'exclude'	=> 0,
+			'label'		=> 'LLL:EXT:calendar_display/Resources/Private/Language/locallang_db.xml:tx_calendardisplay_domain_model_booking.number',
+			'config'	=> array(
+				'type' => 'input',
+				'size' => 4,
+				'eval' => 'int,required',
+			),
+		),		
+		'event' => array(
+			'config' => array(
+				'type'	=> 'passthrough',
 			),
 		),
 	),

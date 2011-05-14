@@ -7,10 +7,8 @@
     </meta>
     <data type="array">
         <languageKey index="default" type="array">
-			<label index="time_begin.description">timeBegin</label>
-			<label index="time_end.description">timeEnd</label>
-			<label index="note.description">note</label>
-			<label index="resources.description">resources</label>
+			<label index="resource.description">resource</label>
+			<label index="number.description">number</label>
 		</languageKey>
     </data>
 </T3locallang>
