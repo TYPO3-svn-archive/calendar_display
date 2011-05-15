@@ -1,13 +1,13 @@
 <f:layout name="Default" />
 <f:section name="main">
-<h1>Edit Booking</h1>
+<h1>Edit Event</h1>
 
 <f:flashMessages />
 
 <f:render partial="formErrors" />
 
 <f:form method="post" action="update" name="editBooking" object="{booking}" >
-	<f:render partial="Booking/formFields" arguments="{booking:booking, resources:resources}" />
+	<f:render partial="Event/formFields" arguments="{booking:booking, resources:resources}" />
 	<f:form.submit value="Save" />
 </f:form>
 </f:section>

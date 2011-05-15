@@ -25,7 +25,7 @@
 
 
 /**
- * Booking
+ * Event
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
@@ -37,7 +37,7 @@
 	/**
 	 * timeBegin
 	 *
-	 * @var integer $timeBegin
+	 * @var DateTime $timeBegin
 	 * @validate NotEmpty
 	 */
 	protected $timeBegin;
@@ -45,7 +45,7 @@
 	/**
 	 * timeEnd
 	 *
-	 * @var integer $timeEnd
+	 * @var DateTime $timeEnd
 	 * @validate NotEmpty
 	 */
 	protected $timeEnd;
@@ -98,7 +98,7 @@
 	/**
 	 * Setter for timeBegin
 	 *
-	 * @param integer $timeBegin timeBegin
+	 * @param DateTime $timeBegin timeBegin
 	 * @return void
 	 */
 	public function setTimeBegin($timeBegin) {
@@ -108,7 +108,7 @@
 	/**
 	 * Getter for timeBegin
 	 *
-	 * @return integer timeBegin
+	 * @return DateTime timeBegin
 	 */
 	public function getTimeBegin() {
 		return $this->timeBegin;
@@ -117,7 +117,7 @@
 	/**
 	 * Setter for timeEnd
 	 *
-	 * @param integer $timeEnd timeEnd
+	 * @param DateTime $timeEnd timeEnd
 	 * @return void
 	 */
 	public function setTimeEnd($timeEnd) {
@@ -127,7 +127,7 @@
 	/**
 	 * Getter for timeEnd
 	 *
-	 * @return integer timeEnd
+	 * @return DateTime timeEnd
 	 */
 	public function getTimeEnd() {
 		return $this->timeEnd;
@@ -207,7 +207,7 @@
 	 * @return void
 	 */
 	public function removeBooking(Tx_CalendarDisplay_Domain_Model_Booking $bookingToRemove) {
-		$this->resources->detach($bookingToRemove);
+		$this->booking->detach($bookingToRemove);
 	}
 }
 ?>

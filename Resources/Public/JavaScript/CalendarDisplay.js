@@ -1,6 +1,8 @@
 $(document).ready(function(){
+	// hide the loading image
 	$('.loading').hide();
 	
+	// filter option
 	$('div.available-item > div.filter-wrapper > div.filter > select.category').change(function(){
 		filterItems();
 	});	
@@ -9,12 +11,31 @@ $(document).ready(function(){
 		filterItems();
 	});	
 	
-	$('div.booking-list > div.filter-wrapper > form > div.filter > select.category').change(function(){
+	$('div.event-list > div.filter-wrapper > form > div.filter > select.category').change(function(){
 		filterBooking();
 	});	
 	
-	$('div.booking-list > div.filter-wrapper > form > div.search > input.keyword').keyup(function(){
+	$('div.event-list > div.filter-wrapper > form > div.search > input.keyword').keyup(function(){
 		filterBooking();
+	});
+	
+
+	// add datetime picker to date-start
+	$('.date-start > input').datetimepicker();
+	$('#timeBegin').datetimepicker();
+	$('#timeEnd').datetimepicker();
+
+	// add key word search box background
+	$('.keyword').focus(function() {
+		var defaultValue = $('#defauleSearchLabel').val();
+		if(defaultValue == $('.keyword').val()) $('.keyword').val('');
+		else if ($('.keyword').val() == '') $('.keyword').val(defaultValue);
+	});
+
+	$('.keyword').blur(function() {
+		var defaultValue = $('#defauleSearchLabel').val();
+		if(defaultValue == $('.keyword').val()) $('.keyword').val('');
+		else if ($('.keyword').val() == '') $('.keyword').val(defaultValue);
 	});
 });
 
@@ -26,7 +47,7 @@ function filterItems() {
 		keyword = '';
 	}
 	$.ajax({
-		url: '/?type=12636&tx_calendardisplay_pi1[action]=filterItems&tx_calendardisplay_pi1[controller]=Booking&tx_calendardisplay_pi1[category]=' +category + '&tx_calendardisplay_pi1[keyword]=' + keyword,
+		url: '/?type=12637&tx_calendardisplay_pi1[category]=' + category + '&tx_calendardisplay_pi1[keyword]=' + keyword,
 		beforeSend: function() {enableLoading(true)},
 		success: function(data) {
 			enableLoading(false);
@@ -44,11 +65,11 @@ function filterBooking() {
 	}
 	var timeBegin = $('input.timeBegin').val();
 	$.ajax({
-		url: '/?type=12636&tx_calendardisplay_pi1[action]=filter&tx_calendardisplay_pi1[controller]=Booking&tx_calendardisplay_pi1[category]=' +category + '&tx_calendardisplay_pi1[keyword]=' + keyword + '&tx_calendardisplay_pi1[dateBegin]=' + timeBegin,
+		url: '/?type=12638&tx_calendardisplay_pi1[category]=' + category + '&tx_calendardisplay_pi1[keyword]=' + keyword + '&tx_calendardisplay_pi1[dateBegin]=' + timeBegin,
 		beforeSend: function() {enableLoading(true)},
 		success: function(data) {
 			enableLoading(false);
-			$('.booking-list > table > tbody').html(data);
+			$('.event-list > table > tbody').html(data);
 		}
 	});
 }

@@ -25,7 +25,7 @@
 
 
 /**
- * Controller for the Booking object
+ * Controller for the Event object
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
@@ -35,11 +35,11 @@
  class Tx_CalendarDisplay_Controller_EventController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
-	 * bookingRepository
+	 * eventRepository
 	 *
-	 * @var Tx_CalendarDisplay_Domain_Repository_BookingRepository
+	 * @var Tx_CalendarDisplay_Domain_Repository_EventRepository
 	 */
-	protected $bookingRepository;
+	protected $eventRepository;
 	
 	/**
 	 * resourceRepository
@@ -54,12 +54,12 @@
 	 * @return void
 	 */
 	protected function initializeAction() {
-		$this->bookingRepository = t3lib_div::makeInstance('Tx_CalendarDisplay_Domain_Repository_BookingRepository');
+		$this->eventRepository = t3lib_div::makeInstance('Tx_CalendarDisplay_Domain_Repository_EventRepository');
 		$this->resourceRepository = t3lib_div::makeInstance('Tx_CalendarDisplay_Domain_Repository_ResourceRepository');
 	}
 
 	/**
-	 * Displays all Bookings in a calendar
+	 * Displays all Events in a calendar
 	 *
 	 * @return string The rendered list view
 	 */
@@ -68,104 +68,102 @@
 	}
 
 	/**
-	 * Displays all Bookings
+	 * Displays all Events
 	 *
 	 * @return string The rendered list view
 	 */
 	public function listAction() {
-		$bookings = $this->bookingRepository->findAll();
+		$events = $this->eventRepository->findAll();
 		
-		if(count($bookings) < 1){
+		if(count($events) < 1){
 			$settings = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
 			if(empty($settings['persistence']['storagePid'])){
 				$this->flashMessageContainer->add('No storagePid configured!');
 			}
 		}
 		
-		$this->view->assign('bookings', $bookings);
+		$this->view->assign('events', $events);
 	}
 
 	/**
-	 * Displays a single Booking
+	 * Displays a single Event
 	 *
-	 * @param Tx_CalendarDisplay_Domain_Model_Booking $booking the Booking to display
+	 * @param Tx_CalendarDisplay_Domain_Model_Event $event the Event to display
 	 * @return string The rendered view
 	 */
-	public function showAction(Tx_CalendarDisplay_Domain_Model_Booking $booking) {
-		$this->view->assign('booking', $booking);
+	public function showAction(Tx_CalendarDisplay_Domain_Model_Event $event) {
+		$this->view->assign('event', $event);
 	}
 
 	/**
-	 * Creates a new Booking and forwards to the list action.
+	 * Creates a new Event and forwards to the list action.
 	 *
-	 * @param Tx_CalendarDisplay_Domain_Model_Booking $newBooking a fresh Booking object which has not yet been added to the repository
-	 * @return string An HTML form for creating a new Booking
-	 * @dontvalidate $newBooking
+	 * @param Tx_CalendarDisplay_Domain_Model_Event $newEvent a fresh Event object which has not yet been added to the repository
+	 * @return string An HTML form for creating a new Event
+	 * @dontvalidate $newEvent
 	 */
-	public function newAction(Tx_CalendarDisplay_Domain_Model_Booking $newBooking = null) {
-		$this->view->assign('newBooking', $newBooking);
+	public function newAction(Tx_CalendarDisplay_Domain_Model_Event $newEvent = null) {
+		$this->view->assign('newEvent', $newEvent);
 		$this->view->assign('resources', $this->resourceRepository->findAll());
 	}
 
 	/**
-	 * Creates a new Booking and forwards to the list action.
+	 * Creates a new Event and forwards to the list action.
 	 *
-	 * @param Tx_CalendarDisplay_Domain_Model_Booking $newBooking a fresh Booking object which has not yet been added to the repository
+	 * @param Tx_CalendarDisplay_Domain_Model_Event $newEvent a fresh Event object which has not yet been added to the repository
 	 * @return void
 	 */
-	public function createAction(Tx_CalendarDisplay_Domain_Model_Booking $newBooking) {
-		$this->bookingRepository->add($newBooking);
-		$this->flashMessageContainer->add('Your new Booking was created.');
-		
-			
+	public function createAction(Tx_CalendarDisplay_Domain_Model_Event $newEvent) {
+		$this->eventRepository->add($newEvent);
+		$this->flashMessageContainer->add('Your new Event was created.');
 		
 		$this->redirect('list');
 	}
 
 	/**
-	 * Updates an existing Booking and forwards to the index action afterwards.
+	 * Updates an existing Event and forwards to the index action afterwards.
 	 *
-	 * @param Tx_CalendarDisplay_Domain_Model_Booking $booking the Booking to display
-	 * @return string A form to edit a Booking
+	 * @param Tx_CalendarDisplay_Domain_Model_Event $event the Event to display
+	 * @return string A form to edit a Event
 	 */
-	public function editAction(Tx_CalendarDisplay_Domain_Model_Booking $booking) {
-		$this->view->assign('booking', $booking);
+	public function editAction(Tx_CalendarDisplay_Domain_Model_Event $event) {
+		$this->view->assign('event', $event);
 		$this->view->assign('resources', $this->resourceRepository->findAll());
 	}
 
 	/**
-	 * Updates an existing Booking and forwards to the list action afterwards.
+	 * Updates an existing Event and forwards to the list action afterwards.
 	 *
-	 * @param Tx_CalendarDisplay_Domain_Model_Booking $booking the Booking to display
+	 * @param Tx_CalendarDisplay_Domain_Model_Event $event the Event to display
 	 * @return
 	 */
-	public function updateAction(Tx_CalendarDisplay_Domain_Model_Booking $booking) {
-		$this->bookingRepository->update($booking);
-		$this->flashMessageContainer->add('Your Booking was updated.');
+	public function updateAction(Tx_CalendarDisplay_Domain_Model_Event $event) {
+		$this->eventRepository->update($event);
+		$this->flashMessageContainer->add('Your Event was updated.');
 		$this->redirect('list');
 	}
 
 	/**
-	 * Deletes an existing Booking
+	 * Deletes an existing Event
 	 *
-	 * @param Tx_CalendarDisplay_Domain_Model_Booking $booking the Booking to be deleted
+	 * @param Tx_CalendarDisplay_Domain_Model_Event $event the Event to be deleted
 	 * @return void
 	 */
-	public function deleteAction(Tx_CalendarDisplay_Domain_Model_Booking $booking) {
-		$this->bookingRepository->remove($booking);
-		$this->flashMessageContainer->add('Your Booking was removed.');
+	public function deleteAction(Tx_CalendarDisplay_Domain_Model_Event $event) {
+		$this->eventRepository->remove($event);
+		$this->flashMessageContainer->add('Your Event was removed.');
 		$this->redirect('list');
 	}
 	
  	/**
-	 * Filter the booking list which follows by parameter category, keyword, and timeBegin
+	 * Filter the event list which follows by parameter category, keyword, and timeBegin
 	 *
 	 * @param integer $category the Category to be filter
 	 * @param string $keyword the Keyword 
 	 * @return void
 	 */
 	public function filterAction($category = NULL, $keyword = '') {
-		$this->view->assign('bookings', $this->bookingRepository->filter($category, $keyword, $dateBegin));
+		$this->view->assign('events', $this->eventRepository->filter($category, $keyword, $dateBegin));
 	}
 	
  	/**

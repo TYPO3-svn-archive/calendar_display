@@ -25,16 +25,16 @@
 
 
 /**
- * Repository for Tx_CalendarDisplay_Domain_Model_Booking
+ * Repository for Tx_CalendarDisplay_Domain_Model_Event
  *
  * @version $Id$
  * @copyright Copyright belongs to the respective authors
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 
- class Tx_CalendarDisplay_Domain_Repository_BookingRepository extends Tx_Extbase_Persistence_Repository {
+ class Tx_CalendarDisplay_Domain_Repository_EventRepository extends Tx_Extbase_Persistence_Repository {
  	/**
-	 * Gets resoureces following by $category and $$keyword
+	 * Gets resoureces following by $category and $keyword
 	 * 
 	 * @param integer $category Category
 	 * @param string $keyword Keyword
@@ -43,7 +43,7 @@
 	public function filter($category = NULL, $keyword = '', $timeBegin = NULL) {
 		$query = $this->createQuery();
 		if ($category) {
-			$constraint = $query->equals('resources.category', $category);
+			$constraint = $query->equals('booking.resources.category', $category);
 		}
 		
 		if ($keyword) {
@@ -58,7 +58,6 @@
 		if ($timeBegin) {
 			
 		}
-
 		return $query->matching($constraint)
 			->execute();
 	}

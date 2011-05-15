@@ -3,8 +3,8 @@
 <f:section name="main">
 
 	<script type="text/javascript">
-		var _dialogTitleNew = '<f:translate key="new_booking" />';
-		var _dialogTitleUpdate = '<f:translate key="update_booking" />';
+		var _dialogTitleNew = '<f:translate key="new_event" />';
+		var _dialogTitleUpdate = '<f:translate key="update_event" />';
 		var _timePicker = {settings.timePicker.options};
 		var _calendar = {settings.calendar.options};
 		var _waitingUI = {settings.waitingUI.options};
@@ -225,37 +225,20 @@
 
 			return $.extend(defaultOptions, languageOptions, _calendar);
 		}
-
-		$(document).ready(function(){
-			// add datetime picker to date-start
-			$('.date-start > input').datetimepicker();
-
-			$('.keyword').focus(function() {
-				var defaultValue = $('#defauleSearchLabel').val();
-				if(defaultValue == $('.keyword').val()) $('.keyword').val('');
-				else if ($('.keyword').val() == '') $('.keyword').val(defaultValue);
-			});
-
-			$('.keyword').blur(function() {
-				var defaultValue = $('#defauleSearchLabel').val();
-				if(defaultValue == $('.keyword').val()) $('.keyword').val('');
-				else if ($('.keyword').val() == '') $('.keyword').val(defaultValue);
-			});
-		});
 		// ]]>
 	</script>
 	
 	<f:flashMessages />
 	
-	<div class="booking-list">
-		<div class="new-booking">
-			<h2><f:translate key="make_new_booking" /></h2>
-			<f:link.action id="tx-calendardisplay-link-new" action="new" title="<f:translate key='new_booking' />">
-				<f:translate key="new_booking" />			
+	<div class="event-list">
+		<div class="new-event">
+			<h2><f:translate key="make_new_event" /></h2>
+			<f:link.action id="tx-calendardisplay-link-new" action="new" title="<f:translate key='new_event' />">
+				<f:translate key="new_event" />			
 			</f:link.action>
 		</div>
 		
-		<f:if condition="{bookings}">
+		<f:if condition="{events}">
 			<f:then>
 				<div class="filter-wrapper">
 					<f:form method="post" action="list" name="filter">
@@ -289,30 +272,39 @@
 						</tr>
 					</thead>
 					<tbody>
-						<f:for each="{bookings}" as="booking">
+						<f:for each="{events}" as="event">
 							<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
 								<tr class="{zebraClass}">
-									<td class="start">{booking.timeBegin}</td>
-									<td class="end">{booking.timeEnd}</td>
-									<td class="note">{booking.note}</td>
+									<td class="start"><f:format.date format="d.m.Y @ H:i">{event.timeBegin}</f:format.date></td>
+									<td class="end"><f:format.date format="d.m.Y @ H:i">{event.timeEnd}</f:format.date></td>
+									<td class="note">{event.note}</td>
 									<td class="material">
-										<f:for each="{booking.resources}" as="resource" iteration="resourceIterator">
-											{resource.name}
-											<f:if condition="{booking.resources -> f:count()} > {resourceIterator.cycle}">
-												<f:then>,&nbsp;</f:then>
+										<f:for each="{event.booking}" as="booking" iteration="resourceIterator">
+											<f:for each="{booking.resources}" as="resource">
+												{resource.name}
+											</f:for>
+											<f:if condition="{event.resources -> f:count()} > {resourceIterator.cycle}">
+												<f:then><br /></f:then>
 											</f:if>
 										</f:for>
 									</td>
-									<td class="quantity">{booking.quantity}</td>
+									<td class="quantity">
+										<f:for each="{event.booking}" as="booking" iteration="resourceIterator">
+											{booking.number}
+											<f:if condition="{event.booking-> f:count()} > {resourceIterator.cycle}">
+												<f:then><br /></f:then>
+											</f:if>
+										</f:for>
+									</td>
 									<td class="bookedBy"></td>
 									<td class="phone"></td>
 									<td class="edit">
-										<f:link.action action="edit" arguments="{booking: booking}" title="<f:translate key='edit' />">
+										<f:link.action action="edit" arguments="{event: event}" title="<f:translate key='edit' />">
 											<f:translate key="edit" />
 										</f:link.action>
 									</td>
 									<td class="delete">
-										<f:link.action action="delete" arguments="{booking: booking}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
+										<f:link.action action="delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
 											<f:translate key="delete" />
 										</f:link.action>
 									</td>

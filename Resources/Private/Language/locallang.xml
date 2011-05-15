@@ -10,14 +10,15 @@
 			<label index="tx_calendardisplay_domain_model_resource.name">Name</label>
 			<label index="tx_calendardisplay_domain_model_resource.number">Number</label>
 			<label index="tx_calendardisplay_domain_model_booking">Booking</label>
-			<label index="tx_calendardisplay_domain_model_booking.time_begin">Time Begin</label>
-			<label index="tx_calendardisplay_domain_model_booking.time_end">Time End</label>
-			<label index="tx_calendardisplay_domain_model_booking.note">Note</label>
-			<label index="tx_calendardisplay_domain_model_booking.resources">Resources</label>
+			<label index="tx_calendardisplay_domain_model_event">Event</label>
+			<label index="tx_calendardisplay_domain_model_event.time_begin">Time Begin</label>
+			<label index="tx_calendardisplay_domain_model_event.time_end">Time End</label>
+			<label index="tx_calendardisplay_domain_model_event.note">Note</label>
+			<label index="tx_calendardisplay_domain_model_event.resources">Resources</label>
 
-			<label index="new_booking">New Booking</label>
-			<label index="update_booking">Update Booking</label>
-			<label index="make_new_booking">Make new booking</label>
+			<label index="new_event">New Event</label>
+			<label index="update_event">Update Booking</label>
+			<label index="make_new_event">Make new evnet</label>
 			<label index="filter_category">Filter selection: category</label>
 			<label index="search">Search...</label>
 			<label index="choose_start_date">choose a start date</label>
@@ -30,7 +31,7 @@
 			<label index="phone">Tel</label>
 			<label index="edit">Edit</label>
 			<label index="delete">Delete</label>
-			<label index="confirm_delete">Are you sure to delete the booking?</label>
+			<label index="confirm_delete">Are you sure to delete the event?</label>
 			<label index="no_booking_item">No booking item</label>
 			<label index="alvailable_item_description">Among the equipment available, choose the desired number for each item.</label>
 			<label index="category">Category</label>

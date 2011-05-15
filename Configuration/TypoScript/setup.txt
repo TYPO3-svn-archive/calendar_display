@@ -94,10 +94,8 @@ ajax12636 {
 
 			# LIMIT CONTROLLER / ACTION
 			switchableControllerActions {
-				Booking {
+				Event {
 					1 = new
-					2 = filterItems
-					3 = filter
 				}
 			}
         }
@@ -113,4 +111,8 @@ ajax12636 {
 
 ajax12637 < ajax12636
 ajax12637.typeNum = 12637
-ajax12637.10.10.switchableControllerActions.Booking.1 = filterItems
+ajax12637.10.10.switchableControllerActions.Event.1 = filterItems
+
+ajax12638 < ajax12636
+ajax12638.typeNum = 12638
+ajax12638.10.10.switchableControllerActions.Event.1 = filter

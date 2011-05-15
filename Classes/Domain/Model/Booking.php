@@ -79,7 +79,7 @@
 	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_CalendarDisplay_Domain_Model_Resource> $resources resources
 	 * @return void
 	 */
-	public function setBooking(Tx_Extbase_Persistence_ObjectStorage $resources) {
+	public function setResources(Tx_Extbase_Persistence_ObjectStorage $resources) {
 		$this->resources = $resources;
 	}
 

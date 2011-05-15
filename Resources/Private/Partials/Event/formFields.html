@@ -7,39 +7,25 @@
 		$(document).ready(function(){
 
 			//$('#example1').datetimepicker(CalendarDisplay.TimePicker.options);
-			$('#timeBegin').datetimepicker();
-			$('#timeEnd').datetimepicker();
-
-			$('.keyword').focus(function() {
-				var defaultValue = $('#defauleSearchLabel').val();
-				if(defaultValue == $('.keyword').val()) $('.keyword').val('');
-				else if ($('.keyword').val() == '') $('.keyword').val(defaultValue);
-			});
-
-			$('.keyword').blur(function() {
-				var defaultValue = $('#defauleSearchLabel').val();
-				if(defaultValue == $('.keyword').val()) $('.keyword').val('');
-				else if ($('.keyword').val() == '') $('.keyword').val(defaultValue);
-			});
 		}); // end DOM ready
 	}); // end of clausure
 })(jQuery);
 // ]]>
 </script>
 
-<div class="booking-form">
+<div class="event-form">
 
 	<table>
 		<tr>
 			<td>
 				<label for="timeBegin">
-					<f:translate key="tx_calendardisplay_domain_model_booking.time_begin" />
+					<f:translate key="tx_calendardisplay_domain_model_event.time_begin" />
 				</label>
 				<f:form.textbox id="timeBegin" property="timeBegin" />
 			</td>
 			<td style="padding-left: 20px">
 				<label for="timeEnd">
-					<f:translate key="tx_calendardisplay_domain_model_booking.time_end" />
+					<f:translate key="tx_calendardisplay_domain_model_event.time_end" />
 				</label>
 				<f:form.textbox id="timeEnd" property="timeEnd" />
 			</td>
@@ -48,7 +34,7 @@
 	
 	<div class="note">
 		<label for="note">
-			<f:translate key="tx_calendardisplay_domain_model_booking.note" />
+			<f:translate key="tx_calendardisplay_domain_model_event.note" />
 		</label>
 		<f:form.textarea id="note" property="note" rows="3" cols="80" />
 	</div>

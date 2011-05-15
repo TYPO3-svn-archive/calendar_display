@@ -23,22 +23,22 @@ input.f3-form-error {
 	opacity:0.4;
 }
 
-/* CSS for booking list */
-.tx-calendardisplay-pi1 .booking-list {
+/* CSS for event list */
+.tx-calendardisplay-pi1 .event-list {
 	width: 100%;
 }
 
-.tx-calendardisplay-pi1 .booking-list .new-booking {
+.tx-calendardisplay-pi1 .event-list .new-event {
 	overflow: hidden;
 	margin: 0 0 30px 0;
 }
 
-.tx-calendardisplay-pi1 .booking-list .new-booking h2 {
+.tx-calendardisplay-pi1 .event-list .new-event h2 {
 	float: left;
 	margin: 0 8px 0 0;
 }
 
-.tx-calendardisplay-pi1 .booking-list .new-booking a {
+.tx-calendardisplay-pi1 .event-list .new-event a {
 	display: block;
 	width: 16px;
 	height: 16px;
@@ -48,78 +48,78 @@ input.f3-form-error {
 	background: url("../Icons/new.gif") no-repeat center center;
 }
 	
-.tx-calendardisplay-pi1 .booking-list .filter-wrapper {
+.tx-calendardisplay-pi1 .event-list .filter-wrapper {
 	width: 100%;
 	margin: 0 0 10px 0;
 	overflow: hidden;
 }
 
-.tx-calendardisplay-pi1 .booking-list .filter {
+.tx-calendardisplay-pi1 .event-list .filter {
 	float: left;
 }
 
-.tx-calendardisplay-pi1 .booking-list .filter select {
+.tx-calendardisplay-pi1 .event-list .filter select {
 	width: 80px;
 	margin: 0 0 0 5px;
 }
 
-.tx-calendardisplay-pi1 .booking-list .search {
+.tx-calendardisplay-pi1 .event-list .search {
 	float: left;
 }
 
-.tx-calendardisplay-pi1 .booking-list .search input.keyword {
+.tx-calendardisplay-pi1 .event-list .search input.keyword {
 	width: 120px;
 	margin: 0 0 0 30px;
 	background: url("../Icons/search_bg.gif") no-repeat left center;
 	padding-left: 12px;
 }
 
-.tx-calendardisplay-pi1 .booking-list .date-start {
+.tx-calendardisplay-pi1 .event-list .date-start {
 	float: right;
 }
 
-.tx-calendardisplay-pi1 .booking-list .date-start input {
+.tx-calendardisplay-pi1 .event-list .date-start input {
 	width: 100px;
 	margin: 0 0 0 5px;
 }
 
-.tx-calendardisplay-pi1 .booking-list .filter-wrapper
+.tx-calendardisplay-pi1 .event-list .filter-wrapper
 
-.tx-calendardisplay-pi1 .booking-list .filter-wrapper div {
+.tx-calendardisplay-pi1 .event-list .filter-wrapper div {
 	float: left;
 }
 
-.tx-calendardisplay-pi1 .booking-list table {
+.tx-calendardisplay-pi1 .event-list table {
 	width: 100%;
 }
 
-.tx-calendardisplay-pi1 .booking-list table thead {
+.tx-calendardisplay-pi1 .event-list table thead {
 	background-color: #396BA0;
 	color: #FFFFFF;
 }
 
-.tx-calendardisplay-pi1 .booking-list table tr.odd {
+.tx-calendardisplay-pi1 .event-list table tr.odd {
 	background-color: #E3ECF5;
 }
 
-.tx-calendardisplay-pi1 .booking-list table th,
-.tx-calendardisplay-pi1 .booking-list table td {
+.tx-calendardisplay-pi1 .event-list table th,
+.tx-calendardisplay-pi1 .event-list table td {
 	border: 1px solid #000000;
 	padding: 5px 5px 5px 5px;
 }
 
-.tx-calendardisplay-pi1 .booking-list table tbody tr {
+.tx-calendardisplay-pi1 .event-list table tbody tr {
 	vertical-align: top;
 }
 
-.tx-calendardisplay-pi1 .booking-list table .quantity,
-.tx-calendardisplay-pi1 .booking-list table .edit,
-.tx-calendardisplay-pi1 .booking-list table .delete {
+.tx-calendardisplay-pi1 .event-list table .quantity,
+.tx-calendardisplay-pi1 .event-list table .edit,
+.tx-calendardisplay-pi1 .event-list table .delete {
 	text-align: center;
 }
 
-.tx-calendardisplay-pi1 .booking-list table td.edit a,
-.tx-calendardisplay-pi1 .booking-list table td.delete a {
+.tx-calendardisplay-pi1 .event-list table td.edit a,
+.tx-calendardisplay-pi1 .event-list table td.delete a {
 	display: block;
 	width: 16px;
 	height: 16px;
@@ -128,29 +128,29 @@ input.f3-form-error {
 	margin: auto;
 }
 
-.tx-calendardisplay-pi1 .booking-list table td.edit a {
+.tx-calendardisplay-pi1 .event-list table td.edit a {
 	background: url("../Icons/edit.gif") no-repeat center center;
 }
 
-.tx-calendardisplay-pi1 .booking-list table td.delete a {
+.tx-calendardisplay-pi1 .event-list table td.delete a {
 	background: url("../Icons/delete.gif") no-repeat center center;
 }
 
-/* CSS for booking edit */
-.tx-calendardisplay-pi1 .booking-form {
+/* CSS for event edit */
+.tx-calendardisplay-pi1 .event-form {
 	margin: 0 0 30px 0;
 }
 
-.tx-calendardisplay-pi1 .booking-form div {
+.tx-calendardisplay-pi1 .event-form div {
 	clear: both;
 	padding: 0 0 10px 0;
 }
 
-.tx-calendardisplay-pi1 .booking-form div.note {
+.tx-calendardisplay-pi1 .event-form div.note {
 	margin: 20px 0 0 0;
 }
 
-.tx-calendardisplay-pi1 .booking-form label {
+.tx-calendardisplay-pi1 .event-form label {
 	width: 100px;
 	display: block;
 }
