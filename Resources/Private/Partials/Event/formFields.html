@@ -21,13 +21,13 @@
 				<label for="timeBegin">
 					<f:translate key="tx_calendardisplay_domain_model_event.time_begin" />
 				</label>
-				<f:form.textbox id="timeBegin" property="timeBegin" />
+				<f:form.textbox id="timeBegin" property="timeBegin" value="{event.timeBegin -> f:format.date(format:'m/d/Y H:i')}" />
 			</td>
 			<td style="padding-left: 20px">
 				<label for="timeEnd">
 					<f:translate key="tx_calendardisplay_domain_model_event.time_end" />
 				</label>
-				<f:form.textbox id="timeEnd" property="timeEnd" />
+				<f:form.textbox id="timeEnd" property="timeEnd" value="{event.timeEnd -> f:format.date(format:'m/d/Y H:i')}" />
 			</td>
 		</tr>
 	</table>
@@ -80,7 +80,7 @@
 								<td class="category">{calendar:tca.options(type:"text", value:"{resource.category}")}</td>								
 								<td class="available-number">{resource.number}</td>
 								<td class="reserve-number">
-									<f:form.textbox property="reserveNumber" value="" />
+									<f:form.textbox name="booking" value="" />
 								</td>
 							</tr>
 						</f:cycle>

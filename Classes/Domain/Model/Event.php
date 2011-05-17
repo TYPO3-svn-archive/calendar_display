@@ -153,22 +153,22 @@
 	}
 	
  	/**
-	 * Setter for perchaser
+	 * Setter for purchaser
 	 *
-	 * @param integer $perchaser perchaser
+	 * @param integer $purchaser purchaser
 	 * @return void
 	 */
-	public function setPerchaser($perchaser) {
-		$this->perchaser = $perchaser;
+	public function setPurchaser($purchaser) {
+		$this->purchaser = purchaser;
 	}
 
 	/**
-	 * Getter for perchaser
+	 * Getter for purchaser
 	 *
-	 * @return integer perchaser
+	 * @return integer purchaser
 	 */
-	public function getPerchaser() {
-		return $this->perchaser;
+	public function getPurchaser() {
+		return $this->purchaser;
 	}
 	
  	/**

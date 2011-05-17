@@ -125,6 +125,7 @@
 	 *
 	 * @param Tx_CalendarDisplay_Domain_Model_Event $event the Event to display
 	 * @return string A form to edit a Event
+	 * @dontvalidate $event
 	 */
 	public function editAction(Tx_CalendarDisplay_Domain_Model_Event $event) {
 		$this->view->assign('event', $event);
@@ -135,7 +136,7 @@
 	 * Updates an existing Event and forwards to the list action afterwards.
 	 *
 	 * @param Tx_CalendarDisplay_Domain_Model_Event $event the Event to display
-	 * @return
+	 * @return void
 	 */
 	public function updateAction(Tx_CalendarDisplay_Domain_Model_Event $event) {
 		$this->eventRepository->update($event);

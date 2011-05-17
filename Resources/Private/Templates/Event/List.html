@@ -257,6 +257,7 @@
 					</f:form>
 				</div>
 				<f:image class="loading" src="EXT:calendar_display/Resources/Public/Media/Icons/loading.gif" alt="" />
+				<f:widget.paginate objects="{events}" as="paginatedEvents" configuration="{itemsPerPage: 5, insertAbove: 0, insertBelow: 1}">
 				<table>
 					<thead>
 						<tr>
@@ -272,7 +273,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<f:for each="{events}" as="event">
+						<f:for each="{paginatedEvents}" as="event">
 							<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
 								<tr class="{zebraClass}">
 									<td class="start"><f:format.date format="d.m.Y @ H:i">{event.timeBegin}</f:format.date></td>
@@ -313,6 +314,7 @@
 						</f:for>
 					</tbody>
 				</table>
+				</f:widget.paginate>
 			</f:then>
 			<f:else>
 				<div class="noBookingItem">
