@@ -89,6 +89,17 @@ input.f3-form-error {
 	float: left;
 }
 
+.tx-calendardisplay-pi1 .event-list .list-wrapper {
+	position: relative;
+	overflow: hidden;
+}
+
+.tx-calendardisplay-pi1 .event-list .list-wrapper img.loading {
+	position: absolute;
+	left: 45%;
+	top: 35%
+}
+	
 .tx-calendardisplay-pi1 .event-list table {
 	width: 100%;
 }
@@ -191,6 +202,17 @@ input.f3-form-error {
 
 .tx-calendardisplay-pi1 .available-item p {
 	margin: 0 0 30px 0;
+}
+
+.tx-calendardisplay-pi1 .available-item .list-wrapper {
+	position: relative;
+	overflow: hidden;
+}
+
+.tx-calendardisplay-pi1 .available-item .list-wrapper img.loading {
+	position: absolute;
+	left: 45%;
+	top: 35%
 }
 
 .tx-calendardisplay-pi1 .available-item table {

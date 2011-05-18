@@ -19,6 +19,10 @@ $(document).ready(function(){
 		filterBooking();
 	});
 	
+	$('input.timeBegin').change(function(){
+		filterBooking();
+	});
+	
 
 	// add datetime picker to date-start
 	$('.date-start > input').datetimepicker();
@@ -51,7 +55,7 @@ function filterItems() {
 		beforeSend: function() {enableLoading(true)},
 		success: function(data) {
 			enableLoading(false);
-			$('.available-item > table > tbody').html(data);
+			$('.available-item > .list-wrapper > table > tbody').html(data);
 		}
 	});
 }
@@ -69,7 +73,7 @@ function filterBooking() {
 		beforeSend: function() {enableLoading(true)},
 		success: function(data) {
 			enableLoading(false);
-			$('.event-list > table > tbody').html(data);
+			$('.event-list > .list-wrapper > table > tbody').html(data);
 		}
 	});
 }

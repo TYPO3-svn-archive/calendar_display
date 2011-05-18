@@ -5,7 +5,7 @@
 
 <f:render partial="formErrors" />
 
-<f:form method="post" action="update" name="editEvent" object="{event}" >
+<f:form method="post" action="update" name="event" object="{event}" >
 	<f:render partial="Event/formFields" arguments="{event:event, resources:resources}" />
 	<f:form.submit value="Save" />
 </f:form>

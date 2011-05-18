@@ -34,11 +34,11 @@
 
  class Tx_CalendarDisplay_Domain_Repository_EventRepository extends Tx_Extbase_Persistence_Repository {
  	/**
-	 * Gets resoureces following by $category and $keyword
+	 * Gets events following by $category and $keyword
 	 * 
 	 * @param integer $category Category
 	 * @param string $keyword Keyword
-	 * @return array of Tx_CalendarDisplay_Domain_Model_Resource
+	 * @return array of Tx_CalendarDisplay_Domain_Model_Event
 	 */
 	public function filter($category = NULL, $keyword = '', $timeBegin = NULL) {
 		$query = $this->createQuery();
@@ -54,12 +54,35 @@
 				$constraint = $constraintKeyword;
 			}
 		}
-		
-		if ($timeBegin) {
-			
+
+		if ($timeBegin) {			
+			$constraintTime = $query->greaterThanOrEqual('time_begin',  strtotime($timeBegin));
+			if ($constraint) {
+				$constraint = $query->logicalAnd($constraint, $constraintTime);
+			} else {
+				$constraint = $constraintTime;
+			}
 		}
+		
 		return $query->matching($constraint)
+			->setOrderings(array('time_begin' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))
 			->execute();
 	}
+	
+	/**
+	 * Gets all events which as start from the $timeBegin
+	 * 
+	 * @param integer $timeBegin Unix timestamp
+	 * @return array of Tx_CalendarDisplay_Domain_Model_Event
+	 */
+ 	public function getAllByTimeBegin($timeBegin) { 		
+		$query = $this->createQuery();
+		$constraint = $query->greaterThanOrEqual('time_begin', $timeBegin);
+
+		return $query->matching($constraint)
+			->setOrderings(array('time_begin' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))
+			->execute();
+	}
+	
 }
 ?>

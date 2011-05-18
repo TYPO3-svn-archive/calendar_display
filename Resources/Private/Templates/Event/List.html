@@ -256,65 +256,67 @@
 						</div>
 					</f:form>
 				</div>
-				<f:image class="loading" src="EXT:calendar_display/Resources/Public/Media/Icons/loading.gif" alt="" />
-				<f:widget.paginate objects="{events}" as="paginatedEvents" configuration="{itemsPerPage: 5, insertAbove: 0, insertBelow: 1}">
-				<table>
-					<thead>
-						<tr>
-							<th class="start"><f:translate key="start" /></th>
-							<th class="end"><f:translate key="end" /></th>
-							<th class="note"><f:translate key="note" /></th>
-							<th class="material"><f:translate key="material" /></th>
-							<th class="quantity"><f:translate key="quantity" /></th>
-							<th class="bookedBy"><f:translate key="booked_by" /></th>
-							<th class="phone"><f:translate key="phone" /></th>
-							<th class="edit"><f:translate key="edit" /></th>
-							<th class="delete"><f:translate key="delete" /></th>
-						</tr>
-					</thead>
-					<tbody>
-						<f:for each="{paginatedEvents}" as="event">
-							<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
-								<tr class="{zebraClass}">
-									<td class="start"><f:format.date format="d.m.Y @ H:i">{event.timeBegin}</f:format.date></td>
-									<td class="end"><f:format.date format="d.m.Y @ H:i">{event.timeEnd}</f:format.date></td>
-									<td class="note">{event.note}</td>
-									<td class="material">
-										<f:for each="{event.booking}" as="booking" iteration="resourceIterator">
-											<f:for each="{booking.resources}" as="resource">
-												{resource.name}
+				<div class="list-wrapper">
+					<f:image class="loading" src="EXT:calendar_display/Resources/Public/Media/Icons/loading.gif" alt="" />
+					<f:widget.paginate objects="{events}" as="paginatedEvents" configuration="{itemsPerPage: 5, insertAbove: 0, insertBelow: 1}">
+					<table>
+						<thead>
+							<tr>
+								<th class="start"><f:translate key="start" /></th>
+								<th class="end"><f:translate key="end" /></th>
+								<th class="note"><f:translate key="note" /></th>
+								<th class="material"><f:translate key="material" /></th>
+								<th class="quantity"><f:translate key="quantity" /></th>
+								<th class="bookedBy"><f:translate key="booked_by" /></th>
+								<th class="phone"><f:translate key="phone" /></th>
+								<th class="edit"><f:translate key="edit" /></th>
+								<th class="delete"><f:translate key="delete" /></th>
+							</tr>
+						</thead>
+						<tbody>
+							<f:for each="{paginatedEvents}" as="event">
+								<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
+									<tr class="{zebraClass}">
+										<td class="start"><f:format.date format="d.m.Y @ H:i">{event.timeBegin}</f:format.date></td>
+										<td class="end"><f:format.date format="d.m.Y @ H:i">{event.timeEnd}</f:format.date></td>
+										<td class="note">{event.note}</td>
+										<td class="material">
+											<f:for each="{event.booking}" as="booking" iteration="resourceIterator">
+												<f:for each="{booking.resources}" as="resource">
+													{resource.name}
+												</f:for>
+												<f:if condition="{event.resources -> f:count()} > {resourceIterator.cycle}">
+													<f:then><br /></f:then>
+												</f:if>
 											</f:for>
-											<f:if condition="{event.resources -> f:count()} > {resourceIterator.cycle}">
-												<f:then><br /></f:then>
-											</f:if>
-										</f:for>
-									</td>
-									<td class="quantity">
-										<f:for each="{event.booking}" as="booking" iteration="resourceIterator">
-											{booking.number}
-											<f:if condition="{event.booking-> f:count()} > {resourceIterator.cycle}">
-												<f:then><br /></f:then>
-											</f:if>
-										</f:for>
-									</td>
-									<td class="bookedBy"></td>
-									<td class="phone"></td>
-									<td class="edit">
-										<f:link.action action="edit" arguments="{event: event}" title="<f:translate key='edit' />">
-											<f:translate key="edit" />
-										</f:link.action>
-									</td>
-									<td class="delete">
-										<f:link.action action="delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
-											<f:translate key="delete" />
-										</f:link.action>
-									</td>
-								</tr>
-							</f:cycle>
-						</f:for>
-					</tbody>
-				</table>
-				</f:widget.paginate>
+										</td>
+										<td class="quantity">
+											<f:for each="{event.booking}" as="booking" iteration="resourceIterator">
+												{booking.number}
+												<f:if condition="{event.booking-> f:count()} > {resourceIterator.cycle}">
+													<f:then><br /></f:then>
+												</f:if>
+											</f:for>
+										</td>
+										<td class="bookedBy"></td>
+										<td class="phone"></td>
+										<td class="edit">
+											<f:link.action action="edit" arguments="{event: event}" title="<f:translate key='edit' />">
+												<f:translate key="edit" />
+											</f:link.action>
+										</td>
+										<td class="delete">
+											<f:link.action action="delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
+												<f:translate key="delete" />
+											</f:link.action>
+										</td>
+									</tr>
+								</f:cycle>
+							</f:for>
+						</tbody>
+					</table>
+					</f:widget.paginate>
+				</div>
 			</f:then>
 			<f:else>
 				<div class="noBookingItem">

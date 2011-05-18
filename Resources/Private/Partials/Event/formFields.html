@@ -56,37 +56,39 @@
 					<input id="defauleSearchLabel" type="hidden" value="<f:translate key='search' />" />
 				</div>
 			</div>
-			<f:image class="loading" src="EXT:calendar_display/Resources/Public/Media/Icons/loading.gif" alt="" />
-			<table>
-				<thead>
-					<tr>
-						<th class="image"></th>
-						<th class="material"><f:translate key="material" /></th>
-						<th class="category"><f:translate key="category" /></th>
-						<th class="available-number"><f:translate key="available_number" /></th>
-						<th class="reserve-number"><f:translate key="reserve_number" /></th>
-					</tr>
-				</thead>
-				<tbody>
-					<f:for each="{resources}" as="resource">
-						<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
-							<tr class="{zebraClass}">
-								<td class="image">
-									<f:if condition="{resource.image}">
-										<f:image src="uploads/tx_calendardisplay/{resource.image}"  width="50" alt="{resource.name}" />
-									</f:if>
-								</td>
-								<td class="material">{resource.name}</td>
-								<td class="category">{calendar:tca.options(type:"text", value:"{resource.category}")}</td>								
-								<td class="available-number">{resource.number}</td>
-								<td class="reserve-number">
-									<f:form.textbox name="booking" value="" />
-								</td>
-							</tr>
-						</f:cycle>
-					</f:for>
-				</tbody>
-			</table>
+			<div class="list-wrapper">
+				<f:image class="loading" src="EXT:calendar_display/Resources/Public/Media/Icons/loading.gif" alt="" />
+				<table>
+					<thead>
+						<tr>
+							<th class="image"></th>
+							<th class="material"><f:translate key="material" /></th>
+							<th class="category"><f:translate key="category" /></th>
+							<th class="available-number"><f:translate key="available_number" /></th>
+							<th class="reserve-number"><f:translate key="reserve_number" /></th>
+						</tr>
+					</thead>
+					<tbody>
+						<f:for each="{resources}" as="resource">
+							<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
+								<tr class="{zebraClass}">
+									<td class="image">
+										<f:if condition="{resource.image}">
+											<f:image src="uploads/tx_calendardisplay/{resource.image}"  width="50" alt="{resource.name}" />
+										</f:if>
+									</td>
+									<td class="material">{resource.name}</td>
+									<td class="category">{calendar:tca.options(type:"text", value:"{resource.category}")}</td>								
+									<td class="available-number">{resource.number}</td>
+									<td class="reserve-number">
+										<f:form.textbox name="booking" value="" />
+									</td>
+								</tr>
+							</f:cycle>
+						</f:for>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</f:then>
 	<f:else>

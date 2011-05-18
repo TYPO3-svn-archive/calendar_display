@@ -73,7 +73,8 @@
 	 * @return string The rendered list view
 	 */
 	public function listAction() {
-		$events = $this->eventRepository->findAll();
+		//$events = $this->eventRepository->findAll();
+		$events = $this->eventRepository->getAllByTimeBegin(strtotime('day'));
 		
 		if(count($events) < 1){
 			$settings = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
@@ -161,9 +162,10 @@
 	 *
 	 * @param integer $category the Category to be filter
 	 * @param string $keyword the Keyword 
+	 * @param string $dateBegin the dateBegin 
 	 * @return void
 	 */
-	public function filterAction($category = NULL, $keyword = '') {
+	public function filterAction($category = NULL, $keyword = '', $dateBegin = NULL) {
 		$this->view->assign('events', $this->eventRepository->filter($category, $keyword, $dateBegin));
 	}
 	
