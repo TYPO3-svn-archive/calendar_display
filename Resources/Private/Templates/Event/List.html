@@ -255,7 +255,7 @@
 						</div>
 						<div class="date-start">
 							<label><f:translate key="choose_start_date" /></label>
-							<f:form.textbox class="timeBegin" name="dateStart" value="" />
+							<f:form.textbox class="timeBegin" name="dateStart" value="<f:format.date format='m/d/Y H:i'>now</f:format.date>" />
 						</div>
 					</f:form>
 				</div>
@@ -279,8 +279,19 @@
 							<f:for each="{paginatedEvents}" as="event">
 								<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
 									<tr class="{zebraClass}">
-										<td class="start"><f:format.date format="d.m.Y @ H:i">{event.timeBegin}</f:format.date></td>
-										<td class="end"><f:format.date format="d.m.Y @ H:i">{event.timeEnd}</f:format.date></td>
+										<td class="start">
+											<f:format.date format="d.m.Y @ H\h:i">{event.timeBegin}</f:format.date>
+										</td>
+										<td class="end">
+											<f:if condition="{event.compareDayBeginDayEnd}">
+												<f:then>
+													<f:format.date format="@ H\h:i">{event.timeEnd}</f:format.date>
+												</f:then>
+												<f:else>
+													<f:format.date format="d.m.Y @ H\h:i">{event.timeEnd}</f:format.date>
+												</f:else>
+											</f:if>												
+										</td>
 										<td class="note">{event.note}</td>
 										<td class="material">
 											<f:if condition="{event.booking}">
@@ -295,7 +306,7 @@
 												</f:then>
 											</f:if>											
 										</td>										
-										<td class="bookedBy"></td>
+										<td class="bookedBy">{event.purchaser}</td>
 										<td class="phone"></td>
 										<td class="edit">
 											<f:link.action action="edit" arguments="{event: event}" title="<f:translate key='edit' />">

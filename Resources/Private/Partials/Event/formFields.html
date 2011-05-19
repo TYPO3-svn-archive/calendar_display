@@ -5,6 +5,34 @@
 (function($) {
 	$(function() {
 		$(document).ready(function(){
+			// hide the loading image
+			$('.loading').hide();
+			
+			// filter option
+			$('div.available-item > div.filter-wrapper > div.filter > select.category').change(function(){
+				filterItems();
+			});	
+			
+			$('div.available-item > div.filter-wrapper > div.search > input.keyword').keyup(function(){
+				filterItems();
+			});	
+			
+			// add datetime picker to date-start
+			$('#timeBegin').datetimepicker();
+			$('#timeEnd').datetimepicker();
+			
+			// add key word search box background
+			$('.keyword').focus(function() {
+				var defaultValue = $('#defauleSearchLabel').val();
+				if(defaultValue == $('.keyword').val()) $('.keyword').val('');
+				else if ($('.keyword').val() == '') $('.keyword').val(defaultValue);
+			});
+
+			$('.keyword').blur(function() {
+				var defaultValue = $('#defauleSearchLabel').val();
+				if(defaultValue == $('.keyword').val()) $('.keyword').val('');
+				else if ($('.keyword').val() == '') $('.keyword').val(defaultValue);
+			});
 
 			//$('#example1').datetimepicker(CalendarDisplay.TimePicker.options);
 		}); // end DOM ready
@@ -82,7 +110,7 @@
 									</td>
 									<td class="material">{resource.name}</td>
 									<td class="category">
-										{resource.category}
+										{resource.category.name}
 									</td>								
 									<td class="available-number">{resource.number}</td>
 									<td class="reserve-number">

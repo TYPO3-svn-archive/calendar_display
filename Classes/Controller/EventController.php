@@ -81,7 +81,7 @@
 	 * @return string The rendered list view
 	 */
 	public function listAction() {
-		$events = $this->eventRepository->getAllByTimeBegin(strtotime('day'));
+		$events = $this->eventRepository->getAllByTimeBegin(strtotime('now'));
 		
 		if(count($events) < 1){
 			$settings = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);

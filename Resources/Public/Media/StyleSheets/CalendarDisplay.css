@@ -70,7 +70,7 @@ input.f3-form-error {
 .tx-calendardisplay-pi1 .event-list .search input.keyword {
 	width: 120px;
 	margin: 0 0 0 5px;
-	background: url("../Icons/search_bg.gif") no-repeat left center;
+	background: #FFFFFF url("../Icons/search_bg.gif") no-repeat left center;
 	padding-left: 12px;
 }
 
@@ -201,7 +201,7 @@ input.f3-form-error {
 
 .tx-calendardisplay-pi1 .available-item .search input.keyword {
 	width: 120px;
-	background: url("../Icons/search_bg.gif") no-repeat left center;
+	background: #FFFFFF url("../Icons/search_bg.gif") no-repeat left center;
 	padding-left: 12px;
 }
 

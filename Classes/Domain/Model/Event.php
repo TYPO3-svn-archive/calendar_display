@@ -191,6 +191,16 @@
 	}
 	
 	/**
+	 * Gets the boolean value of comparing the TimeBegin and TimeEnd
+	 * 
+	 * @return boolean
+	 */
+ 	public function getCompareDayBeginDayEnd() {
+ 		return $this->getTimeBegin()->format('Y-m-d') == $this->getTimeEnd()->format('Y-m-d');
+	}
+	
+	
+	/**
 	 * Adds a Booking
 	 *
 	 * @param Tx_CalendarDisplay_Domain_Model_Booking the Booking to be added

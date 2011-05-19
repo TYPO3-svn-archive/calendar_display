@@ -2,18 +2,9 @@ $(document).ready(function(){
 	// hide the loading image
 	$('.loading').hide();
 	
-	// filter option
-	$('div.available-item > div.filter-wrapper > div.filter > select.category').change(function(){
-		filterItems();
-	});	
-	
-	$('div.available-item > div.filter-wrapper > div.search > input.keyword').keyup(function(){
-		filterItems();
-	});	
-	
 	$('div.event-list > div.filter-wrapper > form > div.filter > select.category').change(function(){
 		filterBooking();
-	});	
+	});
 	
 	$('div.event-list > div.filter-wrapper > form > div.search > input.keyword').keyup(function(){
 		filterBooking();
@@ -26,8 +17,6 @@ $(document).ready(function(){
 
 	// add datetime picker to date-start
 	$('.date-start > input').datetimepicker();
-	$('#timeBegin').datetimepicker();
-	$('#timeEnd').datetimepicker();
 
 	// add key word search box background
 	$('.keyword').focus(function() {
@@ -44,8 +33,8 @@ $(document).ready(function(){
 });
 
 function filterItems() {
-	var category = $('select.category').val();
-	var keyword = $('input.keyword').val();
+	var category = $('div.available-item > div.filter-wrapper > div.filter > select.category').val();
+	var keyword = $('div.available-item > div.filter-wrapper > div.search > input.keyword').val();
 	var defaultValue = $('#defauleSearchLabel').val();
 	if(keyword == defaultValue) {
 		keyword = '';
@@ -61,8 +50,8 @@ function filterItems() {
 }
 
 function filterBooking() {
-	var category = $('select.category').val();
-	var keyword = $('input.keyword').val();
+	var category = $('div.event-list > div.filter-wrapper > form > div.filter > select.category').val();
+	var keyword = $('div.event-list > div.filter-wrapper > form > div.search > input.keyword').val();
 	var defaultValue = $('#defauleSearchLabel').val();
 	if(keyword == defaultValue) {
 		keyword = '';
