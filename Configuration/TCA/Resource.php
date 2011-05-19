@@ -92,17 +92,38 @@ $TCA['tx_calendardisplay_domain_model_resource'] = array(
 				'disallowed' => '',
 			),
 		),
-		'category' => array (
-			'exclude' => 0,  
-			'label' => 'LLL:EXT:calendar_display/Resources/Private/Language/locallang_db.xml:tx_calendardisplay_domain_model_resource.category',  
-			'config' => array (
+		'category' => array(
+			'exclude'	=> 0,
+			'label' => 'LLL:EXT:calendar_display/Resources/Private/Language/locallang_db.xml:tx_calendardisplay_domain_model_resource.category',
+			'config'	=> array(
 				'type' => 'select',
-				'items' => array(
-					array('LLL:EXT:calendar_display/Resources/Private/Language/locallang_db.xml:tx_calendardisplay_domain_model_resource.please_select', 0),
-					array('LLL:EXT:calendar_display/Resources/Private/Language/locallang_db.xml:tx_calendardisplay_domain_model_resource.category.1', 1),
-					array('LLL:EXT:calendar_display/Resources/Private/Language/locallang_db.xml:tx_calendardisplay_domain_model_resource.category.2', 2),
+				'foreign_table' => 'tx_calendardisplay_domain_model_resourcecategory',
+				'minitems' => 0,
+				'maxitems' => 1,
+				'wizards' => array(
+					'_PADDING' => 1,
+					'_VERTICAL' => 0,
+					'edit' => array(
+						'type' => 'popup',
+						'title' => 'Edit',
+						'script' => 'wizard_edit.php',
+						'icon' => 'edit2.gif',
+						'popup_onlyOpenIfSelected' => 1,
+						'JSopenParams' => 'height=350,width=580,status=0,menubar=0,scrollbars=1',
+						),
+					'add' => Array(
+						'type' => 'script',
+						'title' => 'Create new',
+						'icon' => 'add.gif',
+						'params' => array(
+							'table'=>'tx_tttt_domain_model_resourcecategory',
+							'pid' => '###CURRENT_PID###',
+							'setValue' => 'prepend'
+							),
+						'script' => 'wizard_add.php',
+					),
 				),
-			)
+			),
 		),
 	),
 );

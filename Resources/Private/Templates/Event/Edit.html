@@ -6,7 +6,7 @@
 <f:render partial="formErrors" />
 
 <f:form method="post" action="update" name="event" object="{event}" >
-	<f:render partial="Event/formFields" arguments="{event:event, resources:resources}" />
+	<f:render partial="Event/formFields" arguments="{event:event, resources:resources, categories:categories}" />
 	<f:form.submit value="Save" />
 </f:form>
 </f:section>

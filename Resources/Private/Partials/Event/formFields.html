@@ -48,8 +48,11 @@
 			</p>
 			<div class="filter-wrapper">
 				<div class="filter">
-					<label><f:translate key="filter_category" /></label>
-					<f:form.select class="category" name="category" options="{calendar:tca.options()}" /> 
+					<label><f:translate key="filter_selection" /></label>
+					<f:if condition="{categories}">
+						<label><f:translate key="category" /></label>	
+						<calendar:form.select class="category" name="category" prependOption="<f:translate key='all' />" options="{categories}" optionValueField="uid" optionLabelField="name" />
+					</f:if>
 				</div>
 				<div class="search">
 					<f:form.textbox name="keyword" class="keyword" value="<f:translate key='search' />" />
@@ -78,7 +81,9 @@
 										</f:if>
 									</td>
 									<td class="material">{resource.name}</td>
-									<td class="category">{calendar:tca.options(type:"text", value:"{resource.category}")}</td>								
+									<td class="category">
+										{resource.category}
+									</td>								
 									<td class="available-number">{resource.number}</td>
 									<td class="reserve-number">
 										<f:form.textbox name="booking" value="" />

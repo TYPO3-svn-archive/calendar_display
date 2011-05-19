@@ -15,11 +15,12 @@
 			<label index="tx_calendardisplay_domain_model_event.time_end">Time End</label>
 			<label index="tx_calendardisplay_domain_model_event.note">Note</label>
 			<label index="tx_calendardisplay_domain_model_event.resources">Resources</label>
+			<label index="tx_calendardisplay_domain_model_resourcecategory">Resource Category</label>
 
 			<label index="new_event">New Event</label>
 			<label index="update_event">Update Booking</label>
 			<label index="make_new_event">Make new evnet</label>
-			<label index="filter_category">Filter selection: category</label>
+			<label index="filter_selection">Filter selection:</label>
 			<label index="search">Search...</label>
 			<label index="choose_start_date">choose a start date</label>
 			<label index="start">Start</label>
@@ -38,6 +39,8 @@
 			<label index="available_number">num. Available</label>
 			<label index="reserve_number">num. Reserve</label>
 			<label index="no_available_item">No available item</label>
+			<label index="category">category</label>
+			<label index="all">All</label>
 		</languageKey>
 	</data>
 </T3locallang>

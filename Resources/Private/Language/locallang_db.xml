@@ -11,9 +11,6 @@
 			<label index="tx_calendardisplay_domain_model_resource.number">Number</label>
 			<label index="tx_calendardisplay_domain_model_resource.image">Image</label>
 			<label index="tx_calendardisplay_domain_model_resource.category">Category</label>
-			<label index="tx_calendardisplay_domain_model_resource.please_select">Please select</label>
-			<label index="tx_calendardisplay_domain_model_resource.category.1">Lorem</label>
-			<label index="tx_calendardisplay_domain_model_resource.category.2">Ipsum</label>
 			<label index="tx_calendardisplay_domain_model_event">Event</label>
 			<label index="tx_calendardisplay_domain_model_event.time_begin">Time Begin</label>
 			<label index="tx_calendardisplay_domain_model_event.time_end">Time End</label>
@@ -23,6 +20,8 @@
 			<label index="tx_calendardisplay_domain_model_booking">Booking</label>
 			<label index="tx_calendardisplay_domain_model_booking.resources">Resources</label>
 			<label index="tx_calendardisplay_domain_model_booking.number">Number</label>
+			<label index="tx_calendardisplay_domain_model_resourcecategory">Resource Category</label>
+			<label index="tx_calendardisplay_domain_model_resourcecategory.name">Name</label>
 		</languageKey>
 	</data>
 </T3locallang>

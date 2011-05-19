@@ -8,22 +8,17 @@
 					<td class="end"><f:format.date format="d.m.Y @ H:i">{event.timeEnd}</f:format.date></td>
 					<td class="note">{event.note}</td>
 					<td class="material">
-						<f:for each="{event.booking}" as="booking" iteration="resourceIterator">
-							<f:for each="{booking.resources}" as="resource">
-								{resource.name}
-							</f:for>
-							<f:if condition="{event.resources -> f:count()} > {resourceIterator.cycle}">
-								<f:then><br /></f:then>
-							</f:if>
-						</f:for>
-					</td>
-					<td class="quantity">
-						<f:for each="{event.booking}" as="booking" iteration="resourceIterator">
-							{booking.number}
-							<f:if condition="{event.booking-> f:count()} > {resourceIterator.cycle}">
-								<f:then><br /></f:then>
-							</f:if>
-						</f:for>
+						<f:if condition="{event.booking}">
+							<f:then>
+								<ul>
+									<f:for each="{event.booking}" as="booking" iteration="resourceIterator">
+										<f:for each="{booking.resources}" as="resource">
+											<li>{resource.name} ({booking.number})</li>
+										</f:for>
+									</f:for>
+								</ul>
+							</f:then>
+						</f:if>						
 					</td>
 					<td class="bookedBy"></td>
 					<td class="phone"></td>

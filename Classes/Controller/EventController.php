@@ -47,6 +47,13 @@
 	 * @var Tx_CalendarDisplay_Domain_Repository_ResourceRepository
 	 */
 	protected $resourceRepository;
+	
+	/**
+	 * resourceCategoryRepository
+	 *
+	 * @var Tx_CalendarDisplay_Domain_Repository_ResourceCategoryRepository
+	 */
+	protected $resourceCategoryRepository;
 
 	/**
 	 * Initializes the current action
@@ -56,6 +63,7 @@
 	protected function initializeAction() {
 		$this->eventRepository = t3lib_div::makeInstance('Tx_CalendarDisplay_Domain_Repository_EventRepository');
 		$this->resourceRepository = t3lib_div::makeInstance('Tx_CalendarDisplay_Domain_Repository_ResourceRepository');
+		$this->resourceCategoryRepository = t3lib_div::makeInstance('Tx_CalendarDisplay_Domain_Repository_ResourceCategoryRepository');
 	}
 
 	/**
@@ -73,7 +81,6 @@
 	 * @return string The rendered list view
 	 */
 	public function listAction() {
-		//$events = $this->eventRepository->findAll();
 		$events = $this->eventRepository->getAllByTimeBegin(strtotime('day'));
 		
 		if(count($events) < 1){
@@ -84,6 +91,7 @@
 		}
 		
 		$this->view->assign('events', $events);
+		$this->view->assign('categories' , $this->resourceCategoryRepository->findAll());
 	}
 
 	/**
@@ -106,6 +114,7 @@
 	public function newAction(Tx_CalendarDisplay_Domain_Model_Event $newEvent = null) {
 		$this->view->assign('newEvent', $newEvent);
 		$this->view->assign('resources', $this->resourceRepository->findAll());
+		$this->view->assign('categories' , $this->resourceCategoryRepository->findAll());
 	}
 
 	/**
@@ -131,6 +140,7 @@
 	public function editAction(Tx_CalendarDisplay_Domain_Model_Event $event) {
 		$this->view->assign('event', $event);
 		$this->view->assign('resources', $this->resourceRepository->findAll());
+		$this->view->assign('categories' , $this->resourceCategoryRepository->findAll());
 	}
 
 	/**

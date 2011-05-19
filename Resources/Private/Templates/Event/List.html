@@ -243,8 +243,11 @@
 				<div class="filter-wrapper">
 					<f:form method="post" action="list" name="filter">
 						<div class="filter">
-							<label><f:translate key="filter_category" /></label>							
-							<f:form.select class="category" name="category" options="{calendar:tca.options()}" /> 
+							<label><f:translate key="filter_selection" /></label>
+							<f:if condition="{categories}">		
+								<label><f:translate key="category" /></label>					
+								<calendar:form.select class="category" name="category" prependOption="<f:translate key='all' />" options="{categories}" optionValueField="uid" optionLabelField="name" />
+							</f:if>
 						</div>
 						<div class="search">
 							<f:form.textbox class="keyword" name="keyword" class="keyword" value="<f:translate key='search' />" />
@@ -266,7 +269,6 @@
 								<th class="end"><f:translate key="end" /></th>
 								<th class="note"><f:translate key="note" /></th>
 								<th class="material"><f:translate key="material" /></th>
-								<th class="quantity"><f:translate key="quantity" /></th>
 								<th class="bookedBy"><f:translate key="booked_by" /></th>
 								<th class="phone"><f:translate key="phone" /></th>
 								<th class="edit"><f:translate key="edit" /></th>
@@ -281,23 +283,18 @@
 										<td class="end"><f:format.date format="d.m.Y @ H:i">{event.timeEnd}</f:format.date></td>
 										<td class="note">{event.note}</td>
 										<td class="material">
-											<f:for each="{event.booking}" as="booking" iteration="resourceIterator">
-												<f:for each="{booking.resources}" as="resource">
-													{resource.name}
-												</f:for>
-												<f:if condition="{event.resources -> f:count()} > {resourceIterator.cycle}">
-													<f:then><br /></f:then>
-												</f:if>
-											</f:for>
-										</td>
-										<td class="quantity">
-											<f:for each="{event.booking}" as="booking" iteration="resourceIterator">
-												{booking.number}
-												<f:if condition="{event.booking-> f:count()} > {resourceIterator.cycle}">
-													<f:then><br /></f:then>
-												</f:if>
-											</f:for>
-										</td>
+											<f:if condition="{event.booking}">
+												<f:then>
+													<ul>
+														<f:for each="{event.booking}" as="booking" iteration="resourceIterator">
+															<f:for each="{booking.resources}" as="resource">
+																<li>{resource.name} ({booking.number})</li>
+															</f:for>
+														</f:for>
+													</ul>
+												</f:then>
+											</f:if>											
+										</td>										
 										<td class="bookedBy"></td>
 										<td class="phone"></td>
 										<td class="edit">
