@@ -60,7 +60,7 @@
 	/**
 	 * category
 	 *
-	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_CalendarDisplay_Domain_Model_ResourceCategory> $category
+	 * @var Tx_CalendarDisplay_Domain_Model_ResourceCategory $category
 	 */
 	protected $category;
 
@@ -124,7 +124,7 @@
  	/**
 	 * Setter for category
 	 *
-	 * @param Tx_Extbase_Persistence_ObjectStorage<Tx_CalendarDisplay_Domain_Model_ResourceCategory> $category category
+	 * @param Tx_CalendarDisplay_Domain_Model_ResourceCategory $category category
 	 * @return void
 	 */
 	public function setCategory($category) {
@@ -134,7 +134,7 @@
 	/**
 	 * Getter for category
 	 *
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_CalendarDisplay_Domain_Model_ResourceCategory> category
+	 * @return Tx_CalendarDisplay_Domain_Model_ResourceCategory category
 	 */
 	public function getCategory() {
 		return $this->category;
@@ -147,20 +147,6 @@
 	 */
 	public function __construct() {
 
-	}
-	
- 	/**
-	 * Initializes all Tx_Extbase_Persistence_ObjectStorage properties.
-	 *
-	 * @return void
-	 */
-	protected function initStorageObjects() {
-		/**
-		* Do not modify this method!
-		* It will be rewritten on each save in the kickstarter
-		* You may modify the constructor of this class instead
-		*/
-		$this->category = new Tx_Extbase_Persistence_ObjectStorage();
 	}
 }
 ?>

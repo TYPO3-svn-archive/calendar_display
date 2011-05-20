@@ -33,9 +33,22 @@ plugin.tx_calendardisplay {
 		templateRootPath = {$plugin.tx_calendardisplay.view.templateRootPath}
 		partialRootPath = {$plugin.tx_calendardisplay.view.partialRootPath}
 		layoutRootPath = {$plugin.tx_calendardisplay.view.layoutRootPath}
+		defaultPid = auto
 	}
 	persistence {
 		storagePid = {$plugin.tx_calendardisplay.persistence.storagePid}
+		enableAutomaticCacheClearing = 1
+		updateReferenceIndex = 0
+		classes {
+			Tx_CalendarDisplay_Domain_Model_FeUser {
+				mapping {
+					tableName = fe_users
+					columns {
+						lockToDomain.mapOnProperty = lockToDomain
+					}
+				}
+			}
+		}
 	}
 }
 

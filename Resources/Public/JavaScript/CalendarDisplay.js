@@ -2,15 +2,15 @@ $(document).ready(function(){
 	// hide the loading image
 	$('.loading').hide();
 	
-	$('div.event-list > div.filter-wrapper > form > div.filter > select.category').change(function(){
+	$('div.event-list select.category').change(function(){
 		filterBooking();
 	});
 	
-	$('div.event-list > div.filter-wrapper > form > div.search > input.keyword').keyup(function(){
+	$('div.event-list input.keyword').keyup(function(){
 		filterBooking();
 	});
 	
-	$('input.timeBegin').change(function(){
+	$('div.event-list input.timeBegin').change(function(){
 		filterBooking();
 	});
 	
@@ -19,22 +19,22 @@ $(document).ready(function(){
 	$('.date-start > input').datetimepicker();
 
 	// add key word search box background
-	$('.keyword').focus(function() {
+	$('div.event-list .keyword').focus(function() {
 		var defaultValue = $('#defauleSearchLabel').val();
-		if(defaultValue == $('.keyword').val()) $('.keyword').val('');
-		else if ($('.keyword').val() == '') $('.keyword').val(defaultValue);
+		if(defaultValue == $('div.event-list .keyword').val()) $('div.event-list .keyword').val('');
+		else if ($('div.event-list .keyword').val() == '') $('div.event-list .keyword').val(defaultValue);
 	});
 
-	$('.keyword').blur(function() {
+	$('div.event-list .keyword').blur(function() {
 		var defaultValue = $('#defauleSearchLabel').val();
-		if(defaultValue == $('.keyword').val()) $('.keyword').val('');
-		else if ($('.keyword').val() == '') $('.keyword').val(defaultValue);
+		if(defaultValue == $('div.event-list .keyword').val()) $('div.event-list .keyword').val('');
+		else if ($('div.event-list .keyword').val() == '') $('div.event-list .keyword').val(defaultValue);
 	});
 });
 
 function filterItems() {
-	var category = $('div.available-item > div.filter-wrapper > div.filter > select.category').val();
-	var keyword = $('div.available-item > div.filter-wrapper > div.search > input.keyword').val();
+	var category = $('div.available-item select.category').val();
+	var keyword = $('div.available-item input.keyword').val();
 	var defaultValue = $('#defauleSearchLabel').val();
 	if(keyword == defaultValue) {
 		keyword = '';
@@ -50,13 +50,13 @@ function filterItems() {
 }
 
 function filterBooking() {
-	var category = $('div.event-list > div.filter-wrapper > form > div.filter > select.category').val();
-	var keyword = $('div.event-list > div.filter-wrapper > form > div.search > input.keyword').val();
+	var category = $('div.event-list select.category').val();
+	var keyword = $('div.event-list input.keyword').val();
 	var defaultValue = $('#defauleSearchLabel').val();
 	if(keyword == defaultValue) {
 		keyword = '';
 	}
-	var timeBegin = $('input.timeBegin').val();
+	var timeBegin = $('div.event-list input.timeBegin').val();
 	$.ajax({
 		url: '/?type=12638&tx_calendardisplay_pi1[category]=' + category + '&tx_calendardisplay_pi1[keyword]=' + keyword + '&tx_calendardisplay_pi1[dateBegin]=' + timeBegin,
 		beforeSend: function() {enableLoading(true)},

@@ -10,7 +10,7 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 		'Event' => 'calendar, list, show, new, create, edit, update, delete, filterItems, filter'
 	),
 	array(
-		'Event' => 'list, create, update, delete, categoryFilter'
+		'Event' => 'list, create, edit, update, delete, categoryFilter'
 	)
 );
 

@@ -9,11 +9,11 @@
 			$('.loading').hide();
 			
 			// filter option
-			$('div.available-item > div.filter-wrapper > div.filter > select.category').change(function(){
+			$('div.available-item select.category').change(function(){
 				filterItems();
 			});	
 			
-			$('div.available-item > div.filter-wrapper > div.search > input.keyword').keyup(function(){
+			$('div.available-item input.keyword').keyup(function(){
 				filterItems();
 			});	
 			
@@ -22,19 +22,17 @@
 			$('#timeEnd').datetimepicker();
 			
 			// add key word search box background
-			$('.keyword').focus(function() {
+			$('div.available-item .keyword').focus(function() {
 				var defaultValue = $('#defauleSearchLabel').val();
-				if(defaultValue == $('.keyword').val()) $('.keyword').val('');
-				else if ($('.keyword').val() == '') $('.keyword').val(defaultValue);
+				if(defaultValue == $('div.available-item .keyword').val()) $('div.available-item .keyword').val('');
+				else if ($('div.available-item .keyword').val() == '') $('div.available-item .keyword').val(defaultValue);
 			});
 
-			$('.keyword').blur(function() {
+			$('div.available-item .keyword').blur(function() {
 				var defaultValue = $('#defauleSearchLabel').val();
-				if(defaultValue == $('.keyword').val()) $('.keyword').val('');
-				else if ($('.keyword').val() == '') $('.keyword').val(defaultValue);
+				if(defaultValue == $('div.available-item .keyword').val()) $('div.available-item .keyword').val('');
+				else if ($('div.available-item .keyword').val() == '') $('div.available-item .keyword').val(defaultValue);
 			});
-
-			//$('#example1').datetimepicker(CalendarDisplay.TimePicker.options);
 		}); // end DOM ready
 	}); // end of clausure
 })(jQuery);
@@ -109,9 +107,7 @@
 										</f:if>
 									</td>
 									<td class="material">{resource.name}</td>
-									<td class="category">
-										{resource.category.name}
-									</td>								
+									<td class="category">{resource.category.name}</td>								
 									<td class="available-number">{resource.number}</td>
 									<td class="reserve-number">
 										<f:form.textbox name="booking" value="" />

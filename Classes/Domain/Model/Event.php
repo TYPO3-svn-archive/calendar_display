@@ -60,7 +60,7 @@
 	/**
 	 * purchaser
 	 *
-	 * @var integer $purchaser
+	 * @var Tx_CalendarDisplay_Domain_Model_FeUser $purchaser
 	 */
 	protected $purchaser;
 	
@@ -155,7 +155,7 @@
  	/**
 	 * Setter for purchaser
 	 *
-	 * @param integer $purchaser purchaser
+	 * @param Tx_CalendarDisplay_Domain_Model_FeUser $purchaser purchaser
 	 * @return void
 	 */
 	public function setPurchaser($purchaser) {
@@ -165,7 +165,7 @@
 	/**
 	 * Getter for purchaser
 	 *
-	 * @return integer purchaser
+	 * @return Tx_CalendarDisplay_Domain_Model_FeUser purchaser
 	 */
 	public function getPurchaser() {
 		return $this->purchaser;
