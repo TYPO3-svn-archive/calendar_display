@@ -257,3 +257,14 @@ input.f3-form-error {
 .tx-calendardisplay-pi1 .available-item table td.reserve-number input {
 	width: 50px;
 }
+
+/* pagination */
+.tx-calendardisplay-pi1 ul.f3-widget-paginator {
+	margin: 10px 0 0 0;
+	float: right;
+}
+
+.tx-calendardisplay-pi1 ul.f3-widget-paginator li {
+	float: left;
+	padding: 0 0 0 5px;
+} 

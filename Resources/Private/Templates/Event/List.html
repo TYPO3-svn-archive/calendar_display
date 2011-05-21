@@ -261,7 +261,7 @@
 				</div>
 				<div class="list-wrapper">
 					<f:image class="loading" src="EXT:calendar_display/Resources/Public/Media/Icons/loading.gif" alt="" />
-					<f:widget.paginate objects="{events}" as="paginatedEvents" configuration="{itemsPerPage: 5, insertAbove: 0, insertBelow: 1}">
+					<calendar:widget.paginate objects="{events}" as="paginatedEvents" configuration="{itemsPerPage: 10, insertAbove: 0, insertBelow: 1}">
 					<table>
 						<thead>
 							<tr>
@@ -325,7 +325,7 @@
 							</f:for>
 						</tbody>
 					</table>
-					</f:widget.paginate>
+					</calendar:widget.paginate>
 				</div>
 			</f:then>
 			<f:else>

@@ -41,6 +41,9 @@
 			<label index="no_available_item">No available item</label>
 			<label index="category">category</label>
 			<label index="all">All</label>
+			<label index="next">next</label>
+			<label index="previous">previous</label>
+			<label index="per_page">per page</label>
 		</languageKey>
 	</data>
 </T3locallang>
