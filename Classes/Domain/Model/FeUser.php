@@ -56,6 +56,13 @@ class Tx_CalendarDisplay_Domain_Model_FeUser extends Tx_Extbase_DomainObject_Abs
 	protected $telephone;
 	
 	/**
+	 * txCalendardisplayAdmin
+	 * 
+	 * @var integer $telephone
+	 */
+	protected $txCalendardisplayAdmin;
+	
+	/**
 	 * setter for username
 	 * 
 	 * @param string $username username
@@ -100,7 +107,7 @@ class Tx_CalendarDisplay_Domain_Model_FeUser extends Tx_Extbase_DomainObject_Abs
 	 * @return void
 	 */
 	public function setTelephone($telephone) {
-		$this->telephone = telephone;
+		$this->telephone = $telephone;
 	}
 	
 	/**
@@ -110,6 +117,25 @@ class Tx_CalendarDisplay_Domain_Model_FeUser extends Tx_Extbase_DomainObject_Abs
 	 */
 	public function getTelephone() {
 		return $this->telephone;
+	}
+	
+	/**
+	 * setter for txCalendardisplayAdmin
+	 * 
+	 * @param integer $txCalendardisplayAdmin txCalendardisplayAdmin
+	 * @return void
+	 */
+	public function setTxCalendardisplayAdmin($txCalendardisplayAdmin) {
+		$this->txCalendardisplayAdmin= $txCalendardisplayAdmin;
+	}
+	
+	/**
+	 * getter for txCalendardisplayAdmin
+	 * 
+	 * @return integer txCalendardisplayAdmin  
+	 */
+	public function getTxCalendardisplayAdmin() {
+		return $this->txCalendardisplayAdmin;
 	}
 }
 ?>

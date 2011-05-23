@@ -54,6 +54,13 @@
 	 * @var Tx_CalendarDisplay_Domain_Repository_ResourceCategoryRepository
 	 */
 	protected $resourceCategoryRepository;
+	
+	/**
+	 * feUserRepository
+	 *
+	 * @var Tx_CalendarDisplay_Domain_Repository_FeUserRepository
+	 */
+	protected $feUserRepository;
 
 	/**
 	 * Initializes the current action
@@ -64,6 +71,7 @@
 		$this->eventRepository = t3lib_div::makeInstance('Tx_CalendarDisplay_Domain_Repository_EventRepository');
 		$this->resourceRepository = t3lib_div::makeInstance('Tx_CalendarDisplay_Domain_Repository_ResourceRepository');
 		$this->resourceCategoryRepository = t3lib_div::makeInstance('Tx_CalendarDisplay_Domain_Repository_ResourceCategoryRepository');
+		$this->feUserRepository = t3lib_div::makeInstance('Tx_CalendarDisplay_Domain_Repository_FeUserRepository');
 	}
 
 	/**
@@ -72,7 +80,8 @@
 	 * @return string The rendered list view
 	 */
 	public function calendarAction() {
-		$this->view->assign('settings', $this->settings);
+		//$this->view->assign('settings', $this->settings);
+		$this->view->assign('currentUser', $this->feUserRepository->findByUid(intval($GLOBALS['TSFE']->fe_user->user['uid'])));	
 	}
 
 	/**
@@ -92,6 +101,7 @@
 		
 		$this->view->assign('events', $events);
 		$this->view->assign('categories' , $this->resourceCategoryRepository->findAll());
+		$this->view->assign('currentUser', $this->feUserRepository->findByUid(intval($GLOBALS['TSFE']->fe_user->user['uid'])));		
 	}
 
 	/**
@@ -124,6 +134,12 @@
 	 * @return void
 	 */
 	public function createAction(Tx_CalendarDisplay_Domain_Model_Event $newEvent) {
+		// get current login user then attach with the new event
+		if (intval($GLOBALS['TSFE']->fe_user->user['uid'])) {
+			$login_user = intval($GLOBALS['TSFE']->fe_user->user['uid']);
+			$purchaser = $this->feUserRepository->findByUid($login_user);
+			$newEvent->setPurchaser($purchaser);
+		}
 		$this->eventRepository->add($newEvent);
 		$this->flashMessageContainer->add('Your new Event was created.');
 		

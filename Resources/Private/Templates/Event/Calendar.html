@@ -244,8 +244,11 @@ Otherwise your changes will be overwritten the next time you save the extension 
 	</script>
 
 	<f:flashMessages />
-
-	<a href="#" id="tx-calendardisplay-link-new"><f:translate key="new_event" /></a>
+	
+	<f:if condition="{currentUser}">
+		<a href="#" id="tx-calendardisplay-link-new"><f:translate key="new_event" /></a>
+	</f:if>
+	&nbsp;
 	<div style="float: right; margin-bottom: 20px">
 		<f:link.action action="list">List View</f:link.action>
 	</div>

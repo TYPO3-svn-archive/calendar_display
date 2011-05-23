@@ -159,7 +159,7 @@
 	 * @return void
 	 */
 	public function setPurchaser($purchaser) {
-		$this->purchaser = purchaser;
+		$this->purchaser = $purchaser;
 	}
 
 	/**

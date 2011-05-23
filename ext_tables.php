@@ -97,4 +97,19 @@ $TCA['tx_calendardisplay_domain_model_resourcecategory'] = array (
 	)
 );
 
+/**
+ * fe_users update tca
+ */
+t3lib_div::loadTCA('fe_users');
+t3lib_extMgm::addTCAcolumns('fe_users', array (
+        'tx_calendardisplay_admin' => array (
+            'exclude' => 0,
+            'label' => 'LLL:EXT:calendar_display/Resources/Private/Language/locallang_db.xml:tx_calendardisplay_domain_model_event.feuser_calendardisplay_admin',  
+            'config'  => array(
+				'type' => 'check'
+			)
+        )		
+     )
+);
+t3lib_extMgm::addToAllTCAtypes('fe_users', 'tx_calendardisplay_admin');
 ?>
