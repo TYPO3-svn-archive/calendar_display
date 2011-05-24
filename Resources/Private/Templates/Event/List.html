@@ -313,39 +313,47 @@
 										</td>
 										<td class="phone">{event.purchaser.telephone}</td>
 										<td class="edit">
-											<f:if condition="{currentUser.txCalendardisplayAdmin}">
+											<f:if condition="{currentUser}">
 												<f:then>
-													<f:link.action action="edit" arguments="{event: event}" title="<f:translate key='edit' />">
-														<f:translate key="edit" />
-													</f:link.action>
-												</f:then>
-												<f:else>
-													<f:if condition="{event.purchaser.uid} == {currentUser.uid}">
+													<f:if condition="{currentUser.txCalendardisplayAdmin}">
 														<f:then>
 															<f:link.action action="edit" arguments="{event: event}" title="<f:translate key='edit' />">
 																<f:translate key="edit" />
 															</f:link.action>
 														</f:then>
+														<f:else>
+															<f:if condition="{event.purchaser.uid} == {currentUser.uid}">
+																<f:then>
+																	<f:link.action action="edit" arguments="{event: event}" title="<f:translate key='edit' />">
+																		<f:translate key="edit" />
+																	</f:link.action>
+																</f:then>
+															</f:if>
+														</f:else>
 													</f:if>
-												</f:else>
+												</f:then>
 											</f:if>
 										</td>
 										<td class="delete">
-											<f:if condition="{currentUser.txCalendardisplayAdmin}">
+											<f:if condition="{currentUser}">
 												<f:then>
-													<f:link.action action="delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
-														<f:translate key="delete" />
-													</f:link.action>
-												</f:then>
-												<f:else>
-													<f:if condition="{event.purchaser.uid} == {currentUser.uid}">
+													<f:if condition="{currentUser.txCalendardisplayAdmin}">
 														<f:then>
 															<f:link.action action="delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
 																<f:translate key="delete" />
 															</f:link.action>
 														</f:then>
+														<f:else>
+															<f:if condition="{event.purchaser.uid} == {currentUser.uid}">
+																<f:then>
+																	<f:link.action action="delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
+																		<f:translate key="delete" />
+																	</f:link.action>
+																</f:then>
+															</f:if>
+														</f:else>
 													</f:if>
-												</f:else>
+												</f:then>
 											</f:if>
 										</td>
 									</tr>

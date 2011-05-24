@@ -80,7 +80,7 @@
 	 * @return string The rendered list view
 	 */
 	public function calendarAction() {
-		//$this->view->assign('settings', $this->settings);
+		$this->view->assign('events',  $this->eventRepository->findAll());
 		$this->view->assign('currentUser', $this->feUserRepository->findByUid(intval($GLOBALS['TSFE']->fe_user->user['uid'])));	
 	}
 
@@ -134,15 +134,15 @@
 	 * @return void
 	 */
 	public function createAction(Tx_CalendarDisplay_Domain_Model_Event $newEvent) {
-		// get current login user then attach with the new event
-		if (intval($GLOBALS['TSFE']->fe_user->user['uid'])) {
-			$login_user = intval($GLOBALS['TSFE']->fe_user->user['uid']);
-			$purchaser = $this->feUserRepository->findByUid($login_user);
-			$newEvent->setPurchaser($purchaser);
-		}
-		$this->eventRepository->add($newEvent);
-		$this->flashMessageContainer->add('Your new Event was created.');
-		
+		// get current login user if it have right then add the new event
+		$currentUser = $this->feUserRepository->findByUid(intval($GLOBALS['TSFE']->fe_user->user['uid']));
+		if ($currentUser) {
+			$newEvent->setPurchaser($currentUser);			
+			$this->eventRepository->add($newEvent);
+			$this->flashMessageContainer->add('Your new Event was created.');
+		} else {
+			$this->flashMessageContainer->add('Your new Event was not created.');
+		}				
 		$this->redirect('list');
 	}
 
@@ -166,8 +166,15 @@
 	 * @return void
 	 */
 	public function updateAction(Tx_CalendarDisplay_Domain_Model_Event $event) {
-		$this->eventRepository->update($event);
-		$this->flashMessageContainer->add('Your Event was updated.');
+		// get current login user if it have right then add the new event
+		$currentUser = $this->feUserRepository->findByUid(intval($GLOBALS['TSFE']->fe_user->user['uid']));
+		$getPurchaserId = $event->getPurchaser() ? $event->getPurchaser()->getUid() : NULL;
+		if ($currentUser->getUid() == $getPurchaserId || $currentUser->getTxCalendardisplayAdmin() == 1) {
+			$this->eventRepository->update($event);
+			$this->flashMessageContainer->add('Your Event was updated.');
+		} else {
+			$this->flashMessageContainer->add('Your Event was not updated.');
+		}
 		$this->redirect('list');
 	}
 
@@ -178,8 +185,15 @@
 	 * @return void
 	 */
 	public function deleteAction(Tx_CalendarDisplay_Domain_Model_Event $event) {
-		$this->eventRepository->remove($event);
-		$this->flashMessageContainer->add('Your Event was removed.');
+		// get current login user if it have right then add the new event
+		$currentUser = $this->feUserRepository->findByUid(intval($GLOBALS['TSFE']->fe_user->user['uid']));
+		$getPurchaserId = $event->getPurchaser() ? $event->getPurchaser()->getUid() : NULL;
+		if ($currentUser->getUid() == $getPurchaserId || $currentUser->getTxCalendardisplayAdmin() == 1) {
+			$this->eventRepository->remove($event);
+			$this->flashMessageContainer->add('Your Event was removed.');			
+		} else {
+			$this->flashMessageContainer->add('Your Event was not removed.');
+		}
 		$this->redirect('list');
 	}
 	

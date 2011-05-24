@@ -267,4 +267,19 @@ input.f3-form-error {
 .tx-calendardisplay-pi1 ul.f3-widget-paginator li {
 	float: left;
 	padding: 0 0 0 5px;
-} 
+}
+
+/* Calendar */
+.tx-calendardisplay-pi1 .header {
+	overflow: hidden;
+	margin: 0 0 10px 0;
+}
+
+.tx-calendardisplay-pi1 .header a.new-event {
+	background: url("../Icons/new.gif") no-repeat scroll right center transparent;
+	padding: 0 20px 0 0;
+}
+
+.tx-calendardisplay-pi1 .header .list-view {
+	float: right;
+}

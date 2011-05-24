@@ -1,19 +1,5 @@
 <f:layout name="Default" />
-
-This Template is responsible for creating a table of domain objects.
-
-
-If you modify this template, do not forget to change the overwrite settings 
-in /Configuration/Kickstarter/settings.yaml:
-	Resources:
-		Private: 
-			Templates:
-				List.html		keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the kickstarter
-
 <f:section name="main">
-
 	<script type="text/javascript">
 
 		var _dialogTitleNew = '<f:translate key="new_event" />';
@@ -95,7 +81,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 			.dialog({
 				autoOpen: false,
 				modal: true,
-				width: 500
+				width: 610
 			});
 			
 			return dialog;
@@ -199,7 +185,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 						// your event source
 						{
 							events: [ // put the array in the `events` property
-							   {
+							  /* {
 										id: 123,
 										title: 'Meeting',
 										start: new Date(y, m, d, 10, 30),
@@ -210,13 +196,23 @@ Otherwise your changes will be overwritten the next time you save the extension 
 										start: new Date(y, m, d, 12, 0),
 										end: new Date(y, m, d, 14, 0),
 										allDay: false
-									},
-									{
+									},*/
+									/*{
 										title: 'Birthday Party',
-										start: new Date(y, m, d+1, 19, 0),
+										start: 'Wed May 25 2011',
 										end: new Date(y, m, d+1, 22, 30),
 										allDay: false
-									}
+									}*/
+									// ]]>
+									<f:for each="{events}" as="event">
+										{
+											title: '{event.note}',
+											start: '<f:format.date format="m d Y H:i">{event.timeBegin}</f:format.date>',
+											end: '<f:format.date format="m d Y H:i">{event.timeEnd}</f:format.date>',
+											allDay: false
+										},							
+									</f:for>
+									// <![CDATA[
 							]
 				//            color: 'black',     // an option!
 				//            textColor: 'yellow' // an option!
@@ -245,13 +241,14 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 	<f:flashMessages />
 	
-	<f:if condition="{currentUser}">
-		<a href="#" id="tx-calendardisplay-link-new"><f:translate key="new_event" /></a>
-	</f:if>
-	&nbsp;
-	<div style="float: right; margin-bottom: 20px">
-		<f:link.action action="list">List View</f:link.action>
+	<div class="header">
+		<f:if condition="{currentUser}">
+			<a class="new-event" href="#" id="tx-calendardisplay-link-new"><f:translate key="new_event" /></a>
+		</f:if>
+		<div class="list-view">
+			<f:link.action action="list"><f:translate key="list_view" /></f:link.action>
+		</div>
 	</div>
-
+	
 	<div id="calendar"></div>
 </f:section>

@@ -44,6 +44,7 @@
 			<label index="next">next</label>
 			<label index="previous">previous</label>
 			<label index="per_page">per page</label>
+			<lable index="list_view">List View</lable>
 		</languageKey>
 	</data>
 </T3locallang>
