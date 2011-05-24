@@ -1,7 +1,6 @@
 <f:layout name="Default" />
 <f:section name="main">
 	<script type="text/javascript">
-
 		var _dialogTitleNew = '<f:translate key="new_event" />';
 		var _dialogTitleUpdate = '<f:translate key="update_event" />';
 		var _timePicker = {settings.timePicker.options};
@@ -9,12 +8,12 @@
 		var _waitingUI = {settings.waitingUI.options};
 
 		// <![CDATA[
-
 		/**
 		 * Initialize object that contains configuration
 		 */
 		var CalendarDisplay = {
 			newUrl : '/?type=12636', // &no_cache=1 (debug purposes)
+			editUrl : '/?type=12639', // &no_cache=1 (debug purposes)
 			TimePicker : {},
 			Calendar : {},
 			Dialog : {},
@@ -150,14 +149,11 @@
 				selectable: false,
 				selectHelper: true,
 				eventClick: function(calEvent, jsEvent, view) {
-
 					if (calEvent.id) {
-
 						// GUI
 						$.blockUI(CalendarDisplay.WaitingUI.options);
-
-						CalendarDisplay.Dialog.load(
-							CalendarDisplay.newUrl,
+						CalendarDisplay.Dialog.load(								
+							CalendarDisplay.editUrl + '&tx_calendardisplay_pi1[event]=' + calEvent.id,
 							{},
 							function (responseText, textStatus, XMLHttpRequest) {
 								
@@ -174,55 +170,27 @@
 					}
 					// change the border color just for fun
 					$(this).css('border-color', 'red');
-
 				},
-				//select: function(start, end, allDay) {
-				// @see check example online
-				//},
 
 				eventSources: [
-
-						// your event source
-						{
-							events: [ // put the array in the `events` property
-							  /* {
-										id: 123,
-										title: 'Meeting',
-										start: new Date(y, m, d, 10, 30),
-										allDay: false
-									},
-									{
-										title: 'Lunch',
-										start: new Date(y, m, d, 12, 0),
-										end: new Date(y, m, d, 14, 0),
-										allDay: false
-									},*/
-									/*{
-										title: 'Birthday Party',
-										start: 'Wed May 25 2011',
-										end: new Date(y, m, d+1, 22, 30),
-										allDay: false
-									}*/
-									// ]]>
-									<f:for each="{events}" as="event">
-										{
-											title: '{event.note}',
-											start: '<f:format.date format="m d Y H:i">{event.timeBegin}</f:format.date>',
-											end: '<f:format.date format="m d Y H:i">{event.timeEnd}</f:format.date>',
-											allDay: false
-										},							
-									</f:for>
-									// <![CDATA[
-							]
-				//            color: 'black',     // an option!
-				//            textColor: 'yellow' // an option!
-						},
-						// http://arshaw.com/fullcalendar/docs/event_data/events_json_feed/
-				//		{
-				//			url: '/myFeed.php'
-				//
-				//		}
-
+					// your event source
+					{
+						events: [ // put the array in the `events` property
+							// ]]>
+							<f:for each="{events}" as="event">
+								{
+									<f:if condition="{currentUser}">
+										id: <f:format.number thousandsSeparator="">{event.uid}</f:format.number>,
+									</f:if>
+									title: '<f:format.crop maxCharacters="25" append="...">{event.note}</f:format.crop>',
+									start: '<f:format.date format="m d Y H:i">{event.timeBegin}</f:format.date>',
+									end: '<f:format.date format="m d Y H:i">{event.timeEnd}</f:format.date>',
+									allDay: false
+								},							
+							</f:for>
+							// <![CDATA[
+						]
+					},
 				]
 				
 			};
@@ -234,8 +202,7 @@
 			}
 
 			return $.extend(defaultOptions, languageOptions, _calendar);
-		}
-		
+		}		
 		// ]]>
 	</script>
 

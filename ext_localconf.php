@@ -7,10 +7,10 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,
 	'Pi1',
 	array(
-		'Event' => 'calendar, list, show, new, create, edit, update, delete, filterItems, filter'
+		'Event' => 'calendar, list, new, create, edit, update, delete, filterItems, filter'
 	),
 	array(
-		'Event' => 'list, create, edit, update, delete, categoryFilter'
+		'Event' => 'calendar, list, create, edit, update, delete, categoryFilter'
 	)
 );
 

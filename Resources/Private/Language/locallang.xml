@@ -18,7 +18,7 @@
 			<label index="tx_calendardisplay_domain_model_resourcecategory">Resource Category</label>
 
 			<label index="new_event">New Event</label>
-			<label index="update_event">Update Booking</label>
+			<label index="update_event">Update Event</label>
 			<label index="make_new_event">Make new evnet</label>
 			<label index="filter_selection">Filter selection:</label>
 			<label index="search">Search...</label>

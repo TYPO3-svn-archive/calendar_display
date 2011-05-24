@@ -129,3 +129,7 @@ ajax12637.10.10.switchableControllerActions.Event.1 = filterItems
 ajax12638 < ajax12636
 ajax12638.typeNum = 12638
 ajax12638.10.10.switchableControllerActions.Event.1 = filter
+
+ajax12639 < ajax12636
+ajax12639.typeNum = 12639
+ajax12639.10.10.switchableControllerActions.Event.1 = edit
