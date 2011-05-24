@@ -45,6 +45,12 @@
 			<label index="previous">previous</label>
 			<label index="per_page">per page</label>
 			<lable index="list_view">List View</lable>
+			<lable index="event_created">Your new Event was created.</lable>
+			<lable index="event_not_created">Your new Event was not created.</lable>
+			<lable index="event_updated">Your new Event was updated.</lable>
+			<lable index="event_not_updated">Your new Event was not updated.</lable>
+			<lable index="event_removed">Your new Event was removed.</lable>
+			<lable index="event_not_removed">Your new Event was not removed.</lable>
 		</languageKey>
 	</data>
 </T3locallang>

@@ -105,16 +105,6 @@
 	}
 
 	/**
-	 * Displays a single Event
-	 *
-	 * @param Tx_CalendarDisplay_Domain_Model_Event $event the Event to display
-	 * @return string The rendered view
-	 */
-	public function showAction(Tx_CalendarDisplay_Domain_Model_Event $event) {
-		$this->view->assign('event', $event);
-	}
-
-	/**
 	 * Creates a new Event and forwards to the list action.
 	 *
 	 * @param Tx_CalendarDisplay_Domain_Model_Event $newEvent a fresh Event object which has not yet been added to the repository
@@ -139,9 +129,9 @@
 		if ($currentUser) {
 			$newEvent->setPurchaser($currentUser);			
 			$this->eventRepository->add($newEvent);
-			$this->flashMessageContainer->add('Your new Event was created.');
+			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('event_created', 'CalendarDisplay'));
 		} else {
-			$this->flashMessageContainer->add('Your new Event was not created.');
+			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('event_not_created', 'CalendarDisplay'));
 		}				
 		$this->redirect('list');
 	}
@@ -171,9 +161,9 @@
 		$getPurchaserId = $event->getPurchaser() ? $event->getPurchaser()->getUid() : NULL;
 		if ($currentUser->getUid() == $getPurchaserId || $currentUser->getTxCalendardisplayAdmin() == 1) {
 			$this->eventRepository->update($event);
-			$this->flashMessageContainer->add('Your Event was updated.');
+			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('event_updated', 'CalendarDisplay'));
 		} else {
-			$this->flashMessageContainer->add('Your Event was not updated.');
+			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('event_not_updated', 'CalendarDisplay'));
 		}
 		$this->redirect('list');
 	}
@@ -190,9 +180,9 @@
 		$getPurchaserId = $event->getPurchaser() ? $event->getPurchaser()->getUid() : NULL;
 		if ($currentUser->getUid() == $getPurchaserId || $currentUser->getTxCalendardisplayAdmin() == 1) {
 			$this->eventRepository->remove($event);
-			$this->flashMessageContainer->add('Your Event was removed.');			
+			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('event_removed', 'CalendarDisplay'));			
 		} else {
-			$this->flashMessageContainer->add('Your Event was not removed.');
+			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('event_not_removed', 'CalendarDisplay'));
 		}
 		$this->redirect('list');
 	}
@@ -207,6 +197,7 @@
 	 */
 	public function filterAction($category = NULL, $keyword = '', $dateBegin = NULL) {
 		$this->view->assign('events', $this->eventRepository->filter($category, $keyword, $dateBegin));
+		$this->view->assign('currentUser', $this->feUserRepository->findByUid(intval($GLOBALS['TSFE']->fe_user->user['uid'])));
 	}
 	
  	/**

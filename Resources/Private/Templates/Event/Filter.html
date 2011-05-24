@@ -1,7 +1,8 @@
 {namespace calendar=Tx_CalendarDisplay_ViewHelpers}
 <f:if condition="{events}">
 	<f:then>
-		<f:for each="{events}" as="event">
+		<calendar:widget.paginate objects="{events}" as="paginatedEvents" configuration="{itemsPerPage: 10, insertAbove: 0, insertBelow: 0}">
+		<f:for each="{paginatedEvents}" as="event">
 			<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
 				<tr class="{zebraClass}">
 					<td class="start">
@@ -29,25 +30,60 @@
 									</f:for>
 								</ul>
 							</f:then>
-						</f:if>						
-					</td>
+						</f:if>											
+					</td>																		
 					<td class="bookedBy">
 						<f:link.email email="{event.purchaser.email}">{event.purchaser.username}</f:link.email>
 					</td>
 					<td class="phone">{event.purchaser.telephone}</td>
 					<td class="edit">
-						<f:link.action action="edit" arguments="{event: event}" title="<f:translate key='edit' />">
-							<f:translate key="edit" />
-						</f:link.action>
+						<f:if condition="{currentUser}">
+							<f:then>
+								<f:if condition="{currentUser.txCalendardisplayAdmin}">
+									<f:then>
+										<f:link.action action="edit" arguments="{event: event}" title="<f:translate key='edit' />">
+											<f:translate key="edit" />
+										</f:link.action>
+									</f:then>
+									<f:else>
+										<f:if condition="{event.purchaser.uid} == {currentUser.uid}">
+											<f:then>
+												<f:link.action action="edit" arguments="{event: event}" title="<f:translate key='edit' />">
+													<f:translate key="edit" />
+												</f:link.action>
+											</f:then>
+										</f:if>
+									</f:else>
+								</f:if>
+							</f:then>
+						</f:if>
 					</td>
 					<td class="delete">
-						<f:link.action action="delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
-							<f:translate key="delete" />
-						</f:link.action>
+						<f:if condition="{currentUser}">
+							<f:then>
+								<f:if condition="{currentUser.txCalendardisplayAdmin}">
+									<f:then>
+										<f:link.action action="delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
+											<f:translate key="delete" />
+										</f:link.action>
+									</f:then>
+									<f:else>
+										<f:if condition="{event.purchaser.uid} == {currentUser.uid}">
+											<f:then>
+												<f:link.action action="delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
+													<f:translate key="delete" />
+												</f:link.action>
+											</f:then>
+										</f:if>
+									</f:else>
+								</f:if>
+							</f:then>
+						</f:if>
 					</td>
 				</tr>
 			</f:cycle>
 		</f:for>
+		</calendar:widget.paginate>
 	</f:then>
 	<f:else>
 		<tr class="odd">
