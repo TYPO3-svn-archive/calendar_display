@@ -58,6 +58,13 @@
 	protected $image;
 	
 	/**
+	 * availableNumber
+	 *
+	 * @var integer $availableNumber
+	 */
+	protected $availableNumber;
+	
+	/**
 	 * category
 	 *
 	 * @var Tx_CalendarDisplay_Domain_Model_ResourceCategory $category
@@ -119,6 +126,29 @@
 	 */
 	public function getImage() {
 		return $this->image;
+	}
+	
+	/**
+	 * Getter for availableNumber
+	 *
+	 * @return integer availableNumber
+	 */
+	public function getAvailableNumber() {
+		$eventRepository = t3lib_div::makeInstance('Tx_CalendarDisplay_Domain_Repository_EventRepository');
+		$events = $eventRepository->getAllByTimeEnd(strtotime('now'));
+		$numResourceBooking = 0;
+		foreach ($events as $event) {
+			$bookings = $event->getBooking();
+			foreach ($bookings as $booking) {
+				foreach ($booking->getResources() as $resource) {
+					if ($this->getUid() == $resource->getUid()) {
+						$numResourceBooking += $booking->getNumber();
+					}
+				}				
+			}		
+		}
+		$this->availableNumber = $this->getNumber() - $numResourceBooking;
+		return $this->availableNumber;
 	}
 	
  	/**

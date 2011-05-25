@@ -104,13 +104,17 @@ input.f3-form-error {
 	width: 100%;
 }
 
-.tx-calendardisplay-pi1 .event-list table thead {
+.tx-calendardisplay-pi1 .event-list table thead tr th {
 	background-color: #396BA0;
 	color: #FFFFFF;
 }
 
-.tx-calendardisplay-pi1 .event-list table tr.odd {
+.tx-calendardisplay-pi1 .event-list table tr.odd td {
 	background-color: #E3ECF5;
+}
+
+.tx-calendardisplay-pi1 .event-list table tr.even td {
+	background-color: #FFFFFF;
 }
 
 .tx-calendardisplay-pi1 .event-list table th,
@@ -228,7 +232,7 @@ input.f3-form-error {
 	width: 100%;
 }
 
-.tx-calendardisplay-pi1 .available-item table thead {
+.tx-calendardisplay-pi1 .available-item table thead tr th {
 	background-color: #396BA0;
 	color: #FFFFFF;
 }

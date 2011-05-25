@@ -84,5 +84,19 @@
 			->execute();
 	}
 	
+ 	/**
+	 * Gets all events which as start from the $timeEnd
+	 * 
+	 * @param integer $timeEnd Unix timestamp
+	 * @return array of Tx_CalendarDisplay_Domain_Model_Event
+	 */
+ 	public function getAllByTimeEnd($timeEnd) { 		
+		$query = $this->createQuery();
+		$constraint = $query->greaterThanOrEqual('time_end', $timeEnd);
+
+		return $query->matching($constraint)
+			->setOrderings(array('time_begin' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))
+			->execute();
+	}
 }
 ?>
