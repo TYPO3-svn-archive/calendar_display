@@ -180,7 +180,22 @@
 							<f:for each="{events}" as="event">
 								{
 									<f:if condition="{currentUser}">
-										id: <f:format.number thousandsSeparator="">{event.uid}</f:format.number>,
+										<f:then>
+											<f:if condition="{currentUser.txCalendardisplayAdmin}">
+												<f:then>
+													id: <f:format.number thousandsSeparator="">{event.uid}</f:format.number>,
+													className: 'edit-sign',
+												</f:then>
+												<f:else>
+													<f:if condition="{event.purchaser.uid} == {currentUser.uid}">
+														<f:then>
+															id: <f:format.number thousandsSeparator="">{event.uid}</f:format.number>,
+															className: 'edit-sign',
+														</f:then>
+													</f:if>
+												</f:else>
+											</f:if>
+										</f:then>
 									</f:if>
 									title: '<f:format.crop maxCharacters="25" append="...">{event.note}</f:format.crop>',
 									start: '<f:format.date format="m d Y H:i">{event.timeBegin}</f:format.date>',

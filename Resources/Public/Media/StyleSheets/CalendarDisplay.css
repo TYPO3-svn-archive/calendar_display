@@ -283,3 +283,7 @@ input.f3-form-error {
 .tx-calendardisplay-pi1 .header .list-view {
 	float: right;
 }
+
+.tx-calendardisplay-pi1 .edit-sign .fc-event-inner .fc-event-head {
+	background: url("../Icons/edit.gif") no-repeat right top;
+}
