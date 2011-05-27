@@ -28,25 +28,6 @@ input.f3-form-error {
 	width: 100%;
 }
 
-.tx-calendardisplay-pi1 .event-list .new-event {
-	overflow: hidden;
-	margin: 0 0 30px 0;
-}
-
-.tx-calendardisplay-pi1 .event-list .new-event h2 {
-	float: left;
-	margin: 0 8px 0 0;
-}
-
-.tx-calendardisplay-pi1 .event-list .new-event a {
-	display: block;
-	width: 16px;
-	height: 16px;
-	overflow: hidden;
-	text-indent: 999em;
-	float: left;
-	background: url("../Icons/new.gif") no-repeat center center;
-}
 	
 .tx-calendardisplay-pi1 .event-list .filter-wrapper {
 	width: 100%;
@@ -274,20 +255,25 @@ input.f3-form-error {
 }
 
 /* Calendar */
-.tx-calendardisplay-pi1 .header {
+.tx-calendardisplay-pi1 .tx-calendardisplay-box-header {
 	overflow: hidden;
 	margin: 0 0 10px 0;
 }
 
-.tx-calendardisplay-pi1 .header a.new-event {
-	background: url("../Icons/new.gif") no-repeat scroll right center transparent;
+.tx-calendardisplay-pi1 .tx-calendardisplay-box-header a.new-event {
+	background: url("../Icons/add.png") no-repeat scroll right center transparent;
 	padding: 0 20px 0 0;
-}
-
-.tx-calendardisplay-pi1 .header .list-view {
-	float: right;
 }
 
 .tx-calendardisplay-pi1 .edit-sign .fc-event-inner .fc-event-head {
 	background: url("../Icons/edit.gif") no-repeat right top;
+}
+
+.tx-calendardisplay-box-header-right {
+	float: right;
+}
+
+.tx-calendardisplay-box-header-left {
+	width: 300px;
+	float: left;
 }

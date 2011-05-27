@@ -141,7 +141,7 @@
 					center: 'title',
 					right: 'month,agendaWeek,agendaDay'
 				},
-				theme: true,
+				theme: false,
 				defaultView: 'agendaWeek',
 				allDaySlot: false,
 				firstHour: 8,
@@ -223,11 +223,11 @@
 
 	<f:flashMessages />
 	
-	<div class="header">
+	<div class="tx-calendardisplay-box-header">
 		<f:if condition="{currentUser}">
 			<a class="new-event" href="#" id="tx-calendardisplay-link-new"><f:translate key="new_event" /></a>
 		</f:if>
-		<div class="list-view">
+		<div class="tx-calendardisplay-box-header-right">
 			<f:link.action action="list"><f:translate key="list_view" /></f:link.action>
 		</div>
 	</div>

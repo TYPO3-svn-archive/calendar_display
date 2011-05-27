@@ -69,10 +69,12 @@ page.includeJSlibs.jquery_ui = EXT:calendar_display/Resources/Public/JavaScript/
 
 # jQuery FullCalendar
 page.includeJS.jquery_fullcalendar = EXT:calendar_display/Resources/Public/JavaScript/fullcalendar/fullcalendar.js
+# Example line to have the Calender View translated
 // page.includeJS.jquery_fullcalendar_lang = EXT:calendar_display/Resources/Public/JavaScript/fullcalendar/fullcalendar-fr.js
 
 # jQuery Time Picker
 page.includeJS.jquery_timepicker = EXT:calendar_display/Resources/Public/JavaScript/timepicker/jquery-ui-timepicker-addon.js
+# Example line to have the Calender View translated
 // page.includeJS.jquery_timepicker_lang = EXT:calendar_display/Resources/Public/JavaScript/timepicker/jquery-ui-timepicker-addon-fr.js
 
 # jQuery Block UI

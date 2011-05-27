@@ -206,16 +206,21 @@
 	</script>
 	
 	<f:flashMessages />
-	
 	<div class="event-list">
-		<f:if condition="{currentUser}">
-			<div class="new-event">
-				<h2><f:translate key="make_new_event" /></h2>
-				<f:link.action id="tx-calendardisplay-link-new" action="new" title="<f:translate key='new_event' />">
-					<f:translate key="new_event" />			
-				</f:link.action>
+		
+		<div class="tx-calendardisplay-box-header">		
+			<f:if condition="{currentUser}">
+				<div class="tx-calendardisplay-box-header-left">
+					<f:link.action class="new-event" id="tx-calendardisplay-link-new" action="new" title="<f:translate key='new_event' />">
+						<f:translate key="new_event" />
+					</f:link.action>
+				</div>
+			</f:if>
+			
+			<div class="tx-calendardisplay-box-header-right">
+				<f:link.action action="calendar"><f:translate key="calendar_view" /></f:link.action>
 			</div>
-		</f:if>
+		</div>
 		
 		<f:if condition="{events}">
 			<f:then>
@@ -342,8 +347,8 @@
 				</div>
 			</f:then>
 			<f:else>
-				<div class="noBookingItem">
-					<f:translate key="no_booking_item" />
+				<div class="tx-calendardisplay-box-header-left">
+					<f:translate key="no_booking_item" /> <f:if condition="{currentUser}"><f:then></f:then><f:else><f:translate key="please_login" /></f:else></f:if>
 				</div>
 			</f:else>
 		</f:if>	
