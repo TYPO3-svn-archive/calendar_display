@@ -53,11 +53,12 @@
 			<lable index="event_not_updated">Your new Event was not updated.</lable>
 			<lable index="event_removed">Your new Event was removed.</lable>
 			<lable index="event_not_removed">Your new Event was not removed.</lable>
+			
+			/* new not yet translate */
+			<label index="action">Action</label>
 		</languageKey>
-	</data>
-	<data type="array">
-		<languageKey index="fr" type="array">
-		
+
+		<languageKey index="fr" type="array">		
 			<label index="tx_calendardisplay_domain_model_resource">Resource</label>
 			<label index="tx_calendardisplay_domain_model_resource.name">Name</label>
 			<label index="tx_calendardisplay_domain_model_resource.number">Number</label>

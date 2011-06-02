@@ -277,3 +277,7 @@ input.f3-form-error {
 	width: 300px;
 	float: left;
 }
+
+.tx-calendardisplay-text-align-center {
+	text-align: center;
+}
