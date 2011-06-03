@@ -47,7 +47,7 @@
 		}
 		
 		if ($keyword) {
-			$constraintKeyword = $query->like('note', '%' . $keyword . '%');
+			$constraintKeyword = $query->logicalOr($query->like('note', '%' . $keyword . '%'), $query->like('booking.resources.name', '%' . $keyword . '%'));
 			if ($constraint) {
 				$constraint = $query->logicalAnd($constraint, $constraintKeyword);
 			} else {

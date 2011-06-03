@@ -114,7 +114,7 @@
 	 */
 	public function newAction(Tx_CalendarDisplay_Domain_Model_Event $newEvent = null, $refererAction = 'list') {
 		$this->view->assign('newEvent', $newEvent);
-		$this->view->assign('resources', $this->resourceRepository->findAll());
+		//$this->view->assign('resources', $this->resourceRepository->findAll());
 		$this->view->assign('categories' , $this->resourceCategoryRepository->findAll());
 		$this->view->assign('refererAction', $refererAction);
 	}
@@ -148,7 +148,7 @@
 	 */
 	public function editAction(Tx_CalendarDisplay_Domain_Model_Event $event, $refererAction = 'list') {
 		$this->view->assign('event', $event);
-		$this->view->assign('resources', $this->resourceRepository->findAll());
+		//$this->view->assign('resources', $this->resourceRepository->findAll());
 		$this->view->assign('categories' , $this->resourceCategoryRepository->findAll());
 		$this->view->assign('refererAction', $refererAction);
 	}
@@ -212,7 +212,8 @@
 	 * @return void
 	 */
 	public function filterItemsAction($category = NULL, $keyword = '') {
-		$this->view->assign('resources', $this->resourceRepository->filterItems($category, $keyword));
+		$this->view->assign('availableResources', $this->resourceRepository->filterItems($category, $keyword));
+		//$this->view->assign('availableResources', $this->getAvailableResources());
 	}
 }
 ?>

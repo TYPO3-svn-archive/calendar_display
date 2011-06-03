@@ -58,6 +58,13 @@
 	protected $image;
 	
 	/**
+	 * bookingNumber
+	 *
+	 * @var integer bookingNumber
+	 */
+	protected $bookingNumber;
+	
+	/**
 	 * availableNumber
 	 *
 	 * @var integer $availableNumber
@@ -149,6 +156,46 @@
 		}
 		$this->availableNumber = $this->getNumber() - $numResourceBooking;
 		return $this->availableNumber;
+	}
+	
+ 	/**
+	 * Adds a Resource
+	 *
+	 * @param Tx_CalendarDisplay_Domain_Model_Resource the Resource to be added
+	 * @return void
+	 */
+	public function addResource(Tx_CalendarDisplay_Domain_Model_Resource $resource) {
+		$this->resources->attach($resource);
+	}
+
+	/**
+	 * Removes a Resource
+	 *
+	 * @param Tx_CalendarDisplay_Domain_Model_Resource the Resource to be removed
+	 * @return void
+	 */
+	public function removeResource(Tx_CalendarDisplay_Domain_Model_Resource $resourceToRemove) {
+		$this->resources->detach($resourceToRemove);
+	}
+	
+ 	/**
+	 * Setter for bookingNumber
+	 * 
+	 * @param integer $bookingNumber bookingNumber
+	 * @return void
+	 */
+	public function setBookingNumber($bookingNumber) {
+		$this->bookingNumber = $bookingNumber;
+	}
+	
+ 	/**
+	 * Getter for bookingNumber
+	 *
+	 * @return integer bookingNumber
+	 */
+	public function getBookingNumber() {
+
+		return $this->bookingNumber;
 	}
 	
  	/**

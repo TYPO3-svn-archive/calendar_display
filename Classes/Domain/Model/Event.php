@@ -70,6 +70,13 @@
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_CalendarDisplay_Domain_Model_Booking> $booking
 	 */
 	protected $booking;
+	
+	/**
+	 * availableResources
+	 * 
+	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_CalendarDisplay_Domain_Model_Resource> $availableResources
+	 */
+	protected $availableResources;
 
 	/**
 	 * The constructor.
@@ -218,6 +225,25 @@
 	 */
 	public function removeBooking(Tx_CalendarDisplay_Domain_Model_Booking $bookingToRemove) {
 		$this->booking->detach($bookingToRemove);
+	}
+	
+ 	/**
+	 * Getter for availableResources
+	 *
+	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_CalendarDisplay_Domain_Model_Resource> availableResources
+	 */
+	public function getAvailableResources() {
+		$resourceRepository = t3lib_div::makeInstance('Tx_CalendarDisplay_Domain_Repository_ResourceRepository');
+		$bookings = $this->getBooking();		
+		if ($bookings) {
+			foreach ($bookings as $booking) {
+				foreach ($booking->getResources() as $resource) {
+					$resource->setBookingNumber($booking->getNumber());
+				}
+			}
+		}
+
+		return $resourceRepository->findAll();
 	}
 }
 ?>

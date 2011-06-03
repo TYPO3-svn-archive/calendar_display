@@ -66,7 +66,7 @@
 	</div>
 </div>
 
-<f:if condition="{resources}">
+<f:if condition="{event.availableResources}">
 	<f:then>
 		<div class="available-item">
 			<p>
@@ -98,8 +98,8 @@
 						</tr>
 					</thead>
 					<tbody>
-						<f:for each="{resources}" as="resource">
-							<f:if condition="{resource.availableNumber} > 0"> 
+						<f:for each="{event.availableResources}" as="resource">
+							<f:if condition="{resource.availableNumber} > 0">
 								<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
 									<tr class="{zebraClass}">
 										<td class="image">
@@ -111,7 +111,7 @@
 										<td class="category">{resource.category.name}</td>								
 										<td class="available-number">{resource.availableNumber}</td>
 										<td class="reserve-number">
-											<f:form.textbox name="booking" value="" />
+											<f:form.textbox name="booking" value="{resource.bookingNumber}" />
 										</td>
 									</tr>
 								</f:cycle>
