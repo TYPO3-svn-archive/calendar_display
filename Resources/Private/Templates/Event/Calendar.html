@@ -12,8 +12,8 @@
 		 * Initialize object that contains configuration
 		 */
 		var CalendarDisplay = {
-			newUrl : '/?type=12636', // &no_cache=1 (debug purposes)
-			editUrl : '/?type=12639', // &no_cache=1 (debug purposes)
+			newUrl : '/?type=12636&tx_calendardisplay_pi1[refererAction]=calendar', // &no_cache=1 (debug purposes)
+			editUrl : '/?type=12639&tx_calendardisplay_pi1[refererAction]=calendar', // &no_cache=1 (debug purposes)
 			TimePicker : {},
 			Calendar : {},
 			Dialog : {},
@@ -225,7 +225,9 @@
 	
 	<div class="tx-calendardisplay-box-header">
 		<f:if condition="{currentUser}">
-			<a class="new-event" href="#" id="tx-calendardisplay-link-new"><f:translate key="new_event" /></a>
+			<f:link.action class="new-event" id="tx-calendardisplay-link-new" action="new" arguments="{refererAction:'calendar'}" title="<f:translate key='new_event' />">
+				<f:translate key="new_event" />
+			</f:link.action>
 		</f:if>
 		<div class="tx-calendardisplay-box-header-right">
 			<f:link.action action="list"><f:translate key="list_view" /></f:link.action>

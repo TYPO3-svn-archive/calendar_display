@@ -48,7 +48,7 @@
 		}
 		
 		if ($keyword) {
-			$constraintKeyword = $query->like('name', '%' . $keyword . '%');
+			$constraintKeyword = $query->logicalOr($query->like('name', '%' . $keyword . '%'), $query->like('category.name', '%' . $keyword . '%'));
 			if ($constraint) {
 				$constraint = $query->logicalAnd($constraint, $constraintKeyword);
 			} else {

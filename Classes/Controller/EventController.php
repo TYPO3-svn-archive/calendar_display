@@ -90,7 +90,7 @@
 	 * @return string The rendered list view
 	 */
 	public function listAction() {
-		$events = $this->eventRepository->getAllByTimeBegin(strtotime('now'));
+		$events = $this->eventRepository->getAllByTimeBegin(strtotime('day'));
 		
 		if(count($events) < 1){
 			$settings = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
@@ -108,13 +108,15 @@
 	 * Creates a new Event and forwards to the list action.
 	 *
 	 * @param Tx_CalendarDisplay_Domain_Model_Event $newEvent a fresh Event object which has not yet been added to the repository
+	 * @param string $newEvent a referer action, it will redirect to the prevoius action
 	 * @return string An HTML form for creating a new Event
 	 * @dontvalidate $newEvent
 	 */
-	public function newAction(Tx_CalendarDisplay_Domain_Model_Event $newEvent = null) {
+	public function newAction(Tx_CalendarDisplay_Domain_Model_Event $newEvent = null, $refererAction = 'list') {
 		$this->view->assign('newEvent', $newEvent);
 		$this->view->assign('resources', $this->resourceRepository->findAll());
 		$this->view->assign('categories' , $this->resourceCategoryRepository->findAll());
+		$this->view->assign('refererAction', $refererAction);
 	}
 
 	/**
@@ -132,21 +134,23 @@
 			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('event_created', 'CalendarDisplay'));
 		} else {
 			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('event_not_created', 'CalendarDisplay'));
-		}				
-		$this->redirect('list');
+		}
+		$this->redirect($this->request->getArgument('refererAction'));
 	}
 
 	/**
 	 * Updates an existing Event and forwards to the index action afterwards.
 	 *
 	 * @param Tx_CalendarDisplay_Domain_Model_Event $event the Event to display
+	 * @param string $newEvent a referer action, it will redirect to the prevoius action
 	 * @return string A form to edit a Event
 	 * @dontvalidate $event
 	 */
-	public function editAction(Tx_CalendarDisplay_Domain_Model_Event $event) {
+	public function editAction(Tx_CalendarDisplay_Domain_Model_Event $event, $refererAction = 'list') {
 		$this->view->assign('event', $event);
 		$this->view->assign('resources', $this->resourceRepository->findAll());
 		$this->view->assign('categories' , $this->resourceCategoryRepository->findAll());
+		$this->view->assign('refererAction', $refererAction);
 	}
 
 	/**
@@ -165,7 +169,7 @@
 		} else {
 			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('event_not_updated', 'CalendarDisplay'));
 		}
-		$this->redirect('list');
+		$this->redirect($this->request->getArgument('refererAction'));
 	}
 
 	/**

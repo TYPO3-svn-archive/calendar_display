@@ -10,13 +10,13 @@ $(document).ready(function(){
 		filterBooking();
 	});
 	
-	$('div.event-list input.timeBegin').change(function(){
+	$('div.event-list input.timeBegin').blur(function(){
 		filterBooking();
 	});
 	
 
 	// add datetime picker to date-start
-	$('.date-start > input').datetimepicker();
+	$('.date-start > input').datepicker();
 
 	// add key word search box background
 	$('div.event-list .keyword').focus(function() {

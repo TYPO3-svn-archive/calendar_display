@@ -36,31 +36,31 @@
 						<f:link.email email="{event.purchaser.email}">{event.purchaser.username}</f:link.email>
 					</td>
 					<td class="phone">{event.purchaser.telephone}</td>
-					<td class="edit">
-						<f:if condition="{currentUser}">
-							<f:then>
+					<f:if condition="{currentUser}">
+						<f:then>
+							<td class="edit">
 								<f:if condition="{currentUser.txCalendardisplayAdmin}">
 									<f:then>
-										<f:link.action action="edit" arguments="{event: event}" title="<f:translate key='edit' />">
+										<f:link.action action="edit" class="tx-calendardisplay-edit-event_{event.uid}" arguments="{event: event}" title="<f:translate key='edit' />">
 											<f:translate key="edit" />
 										</f:link.action>
 									</f:then>
 									<f:else>
 										<f:if condition="{event.purchaser.uid} == {currentUser.uid}">
 											<f:then>
-												<f:link.action action="edit" arguments="{event: event}" title="<f:translate key='edit' />">
+												<f:link.action action="edit" class="tx-calendardisplay-edit-event_{event.uid}" arguments="{event: event}" title="<f:translate key='edit' />">
 													<f:translate key="edit" />
 												</f:link.action>
 											</f:then>
 										</f:if>
 									</f:else>
 								</f:if>
-							</f:then>
-						</f:if>
-					</td>
-					<td class="delete">
-						<f:if condition="{currentUser}">
-							<f:then>
+							</td>
+						</f:then>
+					</f:if>
+					<f:if condition="{currentUser}">
+						<f:then>
+							<td class="delete">
 								<f:if condition="{currentUser.txCalendardisplayAdmin}">
 									<f:then>
 										<f:link.action action="delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
@@ -77,9 +77,9 @@
 										</f:if>
 									</f:else>
 								</f:if>
-							</f:then>
-						</f:if>
-					</td>
+							</td>
+						</f:then>
+					</f:if>
 				</tr>
 			</f:cycle>
 		</f:for>

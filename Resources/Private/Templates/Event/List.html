@@ -13,8 +13,8 @@
 		 * Initialize object that contains configuration
 		 */
 		var CalendarDisplay = {
-			newUrl : '/?type=12636', // &no_cache=1 (debug purposes)
-			editUrl : '/?type=12639', // &no_cache=1 (debug purposes)
+			newUrl : '/?type=12636&tx_calendardisplay_pi1[refererAction]=list', // &no_cache=1 (debug purposes)
+			editUrl : '/?type=12639tx_calendardisplay_pi1[refererAction]=list', // &no_cache=1 (debug purposes)
 			TimePicker : {},
 			Calendar : {},
 			Dialog : {},
@@ -59,6 +59,32 @@
 								CalendarDisplay.Dialog.dialog('open');
 							}
 						);
+
+						// prevent the default action, e.g., following a link
+						return false;
+					});
+					$('.edit > a').click(function() {
+						var preClass = 'tx-calendardisplay-edit-event_';
+						var eventId = ($(this).attr('class')).substring(preClass.length);
+						if (eventId) {
+							$.blockUI(CalendarDisplay.WaitingUI.options);
+	
+							CalendarDisplay.Dialog.load(
+								CalendarDisplay.editUrl + '&tx_calendardisplay_pi1[event]=' + eventId,
+								{},
+								function (responseText, textStatus, XMLHttpRequest) {
+									
+									// release UI
+									$.unblockUI();
+	
+									// define title dialog box
+									CalendarDisplay.Dialog.dialog('option', 'title', CalendarDisplay.Lang.dialogTitleUpdate);
+	
+									// open dialog box
+									CalendarDisplay.Dialog.dialog('open');
+								}
+							);
+						}
 
 						// prevent the default action, e.g., following a link
 						return false;
@@ -211,7 +237,7 @@
 		<div class="tx-calendardisplay-box-header">		
 			<f:if condition="{currentUser}">
 				<div class="tx-calendardisplay-box-header-left">
-					<f:link.action class="new-event" id="tx-calendardisplay-link-new" action="new" title="<f:translate key='new_event' />">
+					<f:link.action class="new-event" id="tx-calendardisplay-link-new" action="new" arguments="{refererAction:'list'}" title="<f:translate key='new_event' />">
 						<f:translate key="new_event" />
 					</f:link.action>
 				</div>
@@ -239,7 +265,7 @@
 						</div>
 						<div class="date-start">
 							<label><f:translate key="choose_start_date" /></label>
-							<f:form.textbox class="timeBegin" name="dateStart" value="<f:format.date format='m/d/Y H:i'>now</f:format.date>" />
+							<f:form.textbox class="timeBegin" name="dateStart" value="<f:format.date format='m/d/Y'>now</f:format.date>" />
 						</div>
 					</f:form>
 				</div>
@@ -255,7 +281,9 @@
 								<th class="material"><f:translate key="material" /></th>
 								<th class="bookedBy"><f:translate key="booked_by" /></th>
 								<th class="phone"><f:translate key="phone" /></th>
-								<th class="action tx-calendardisplay-text-align-center" colspan="2"><f:translate key="action" /></th>
+								<f:if condition="{currentUser}">
+									<th class="action tx-calendardisplay-text-align-center" colspan="2"><f:translate key="action" /></th>
+								</f:if>
 							</tr>
 						</thead>
 						<tbody>
@@ -293,31 +321,32 @@
 											<f:link.email email="{event.purchaser.email}">{event.purchaser.username}</f:link.email>
 										</td>
 										<td class="phone">{event.purchaser.telephone}</td>
-										<td class="edit">
-											<f:if condition="{currentUser}">
-												<f:then>
+										
+										<f:if condition="{currentUser}">
+											<f:then>
+												<td class="edit">
 													<f:if condition="{currentUser.txCalendardisplayAdmin}">
 														<f:then>
-															<f:link.action action="edit" arguments="{event: event}" title="<f:translate key='edit' />">
+															<f:link.action action="edit" class="tx-calendardisplay-edit-event_{event.uid}" arguments="{event: event}" title="<f:translate key='edit' />">
 																<f:translate key="edit" />
 															</f:link.action>
 														</f:then>
 														<f:else>
 															<f:if condition="{event.purchaser.uid} == {currentUser.uid}">
 																<f:then>
-																	<f:link.action action="edit" arguments="{event: event}" title="<f:translate key='edit' />">
+																	<f:link.action action="edit" class="tx-calendardisplay-edit-event_{event.uid}" arguments="{event: event}" title="<f:translate key='edit' />">
 																		<f:translate key="edit" />
 																	</f:link.action>
 																</f:then>
 															</f:if>
 														</f:else>
 													</f:if>
-												</f:then>
-											</f:if>
-										</td>
-										<td class="delete">
-											<f:if condition="{currentUser}">
-												<f:then>
+												</td>
+											</f:then>
+										</f:if>
+										<f:if condition="{currentUser}">
+											<f:then>
+												<td class="delete">
 													<f:if condition="{currentUser.txCalendardisplayAdmin}">
 														<f:then>
 															<f:link.action action="delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
@@ -334,9 +363,9 @@
 															</f:if>
 														</f:else>
 													</f:if>
-												</f:then>
-											</f:if>
-										</td>
+												</td>
+											</f:then>
+										</f:if>
 									</tr>
 								</f:cycle>
 							</f:for>
