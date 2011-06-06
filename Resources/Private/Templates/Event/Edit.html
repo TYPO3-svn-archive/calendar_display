@@ -5,7 +5,7 @@
 
 <f:render partial="formErrors" />
 
-<f:form method="post" action="update" name="event" object="{event}" >
+<f:form method="post" class="tx-calendardisplay-pi1-form-event" action="update" name="event" object="{event}" >
 	<f:render partial="Event/formFields" arguments="{event:event, availableResources:availableResources, categories:categories}" />
 	<f:form.hidden name="refererAction" value="{refererAction}" />
 	<f:form.submit value="Save" />

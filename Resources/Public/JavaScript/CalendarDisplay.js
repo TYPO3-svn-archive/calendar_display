@@ -67,7 +67,6 @@ function filterBooking() {
 	});
 }
 
-
 function enableLoading(enable){
 	if (enable) {
 		$('.loading').show();

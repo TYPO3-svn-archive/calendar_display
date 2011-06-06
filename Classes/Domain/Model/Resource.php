@@ -158,6 +158,15 @@
 		return $this->availableNumber;
 	}
 	
+	/**
+	 * Getter for totalAvailableNum
+	 *
+	 * @return integer totalAvailableNum
+	 */
+	public function getTotalAvailableNum() {
+		return $this->getAvailableNumber() + $this->getBookingNumber();
+	}
+	
  	/**
 	 * Adds a Resource
 	 *

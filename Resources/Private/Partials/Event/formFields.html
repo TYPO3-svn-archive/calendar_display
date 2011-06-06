@@ -33,27 +33,44 @@
 				if(defaultValue == $('div.available-item .keyword').val()) $('div.available-item .keyword').val('');
 				else if ($('div.available-item .keyword').val() == '') $('div.available-item .keyword').val(defaultValue);
 			});
+
+			$(".tx-calendardisplay-pi1-form-event").validationEngine();
+			
 		}); // end DOM ready
 	}); // end of clausure
 })(jQuery);
+   /**
+	*
+	* @param {jqObject} the field where the validation applies
+	* @param {Array[String]} validation rules for this field
+	* @param {int} rule index
+	* @param {Map} form options
+	* @return an error string if validation failed
+	*/
+	function checkDateRange(field, rules, i, options){
+	   var startDate = $('#timeBegin').val();
+	   var endDate = field.val();
+	   if (new Date(startDate.toString()) >= new Date(endDate.toString())) {
+	      return '* Invalid Date Time Range'; 
+	   }          
+	}
 // ]]>
 </script>
 
 <div class="event-form">
-
 	<table>
 		<tr>
 			<td>
 				<label for="timeBegin">
 					<f:translate key="tx_calendardisplay_domain_model_event.time_begin" />
 				</label>
-				<f:form.textbox id="timeBegin" property="timeBegin" value="{event.timeBegin -> f:format.date(format:'m/d/Y H:i')}" />
+				<f:form.textbox class="validate[required]" id="timeBegin" property="timeBegin" value="{event.timeBegin -> f:format.date(format:'m/d/Y H:i')}" />
 			</td>
 			<td style="padding-left: 20px">
 				<label for="timeEnd">
 					<f:translate key="tx_calendardisplay_domain_model_event.time_end" />
 				</label>
-				<f:form.textbox id="timeEnd" property="timeEnd" value="{event.timeEnd -> f:format.date(format:'m/d/Y H:i')}" />
+				<f:form.textbox class="validate[required,funcCall[checkDateRange]]" id="timeEnd" property="timeEnd" value="{event.timeEnd -> f:format.date(format:'m/d/Y H:i')}" />
 			</td>
 		</tr>
 	</table>
@@ -112,7 +129,7 @@
 											<td class="category">{resource.category.name}</td>								
 											<td class="available-number">{resource.availableNumber}</td>
 											<td class="reserve-number">
-												<input type="text" name="booking[{resource.uid}]" value="{resource.bookingNumber}" />
+												<input id="booking_{resource.uid}" class="validate[custom[integer],max[{resource.totalAvailableNum}]]" type="text" name="booking[{resource.uid}]" value="{resource.bookingNumber}" />
 											</td>
 										</tr>
 									</f:then>
@@ -128,7 +145,7 @@
 												<td class="category">{resource.category.name}</td>								
 												<td class="available-number">{resource.availableNumber}</td>
 												<td class="reserve-number">
-													<input type="text" name="booking[{resource.uid}]" value="{resource.bookingNumber}" />
+													<input id="booking_{resource.uid}"  class="validate[custom[integer],max[{resource.totalAvailableNum]]" type="text" name="booking[{resource.uid}]" value="{resource.bookingNumber}" />
 												</td>
 											</tr>
 										</f:if>
