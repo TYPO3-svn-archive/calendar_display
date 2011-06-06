@@ -126,10 +126,26 @@
 	 * @return void
 	 */
 	public function createAction(Tx_CalendarDisplay_Domain_Model_Event $newEvent) {
-		// get current login user if it have right then add the new event
+			// get current login user if it have right then add the new event
 		$currentUser = $this->feUserRepository->findByUid(intval($GLOBALS['TSFE']->fe_user->user['uid']));
 		if ($currentUser) {
-			$newEvent->setPurchaser($currentUser);			
+			$bookings = t3lib_div::_POST('booking');	
+			$bookingAttached = new Tx_Extbase_Persistence_ObjectStorage();
+			foreach ($bookings as $key=>$value) {
+				if ($value) {
+					$resouce = $this->resourceRepository->findByUid($key);
+					if ($resouce) {
+						$bookingObj = new Tx_CalendarDisplay_Domain_Model_Booking();
+						$resourceAttached = new Tx_Extbase_Persistence_ObjectStorage();
+						$resourceAttached->attach($resouce);						
+						$bookingObj->setResources($resourceAttached);
+						$bookingObj->setNumber($value);
+						$bookingAttached->attach($bookingObj);	
+					}
+				}
+			}
+			$newEvent->setPurchaser($currentUser);
+			$newEvent->setBooking($bookingAttached);
 			$this->eventRepository->add($newEvent);
 			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('event_created', 'CalendarDisplay'));
 		} else {
@@ -160,10 +176,26 @@
 	 * @return void
 	 */
 	public function updateAction(Tx_CalendarDisplay_Domain_Model_Event $event) {
-		// get current login user if it have right then add the new event
+			// get current login user if it have right then add the new event
 		$currentUser = $this->feUserRepository->findByUid(intval($GLOBALS['TSFE']->fe_user->user['uid']));
 		$getPurchaserId = $event->getPurchaser() ? $event->getPurchaser()->getUid() : NULL;
 		if ($currentUser->getUid() == $getPurchaserId || $currentUser->getTxCalendardisplayAdmin() == 1) {
+			$bookings = t3lib_div::_POST('booking');	
+			$bookingAttached = new Tx_Extbase_Persistence_ObjectStorage();
+			foreach ($bookings as $key=>$value) {
+				if ($value) {
+					$resouce = $this->resourceRepository->findByUid($key);
+					if ($resouce) {
+						$bookingObj = new Tx_CalendarDisplay_Domain_Model_Booking();
+						$resourceAttached = new Tx_Extbase_Persistence_ObjectStorage();
+						$resourceAttached->attach($resouce);						
+						$bookingObj->setResources($resourceAttached);
+						$bookingObj->setNumber($value);
+						$bookingAttached->attach($bookingObj);	
+					}
+				}
+			}	
+			$event->setBooking($bookingAttached);		
 			$this->eventRepository->update($event);
 			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('event_updated', 'CalendarDisplay'));
 		} else {
@@ -207,13 +239,17 @@
  	/**
 	 * Filter available item by some parameters category and keyword
 	 *
+	 * @param Tx_CalendarDisplay_Domain_Model_Event $event the Event to display
 	 * @param integer $category the Category to be filter
 	 * @param string $keyword the Keyword
 	 * @return void
 	 */
-	public function filterItemsAction($category = NULL, $keyword = '') {
-		$this->view->assign('availableResources', $this->resourceRepository->filterItems($category, $keyword));
-		//$this->view->assign('availableResources', $this->getAvailableResources());
+	public function filterItemsAction($event = NULL, $category = NULL, $keyword = '') {
+		if ($event) {
+			//$this->view->assign('availableResources', $event->getAvailableResources());
+		} else {
+			$this->view->assign('availableResources', $this->resourceRepository->filterItems($category, $keyword));
+		}
 	}
 }
 ?>

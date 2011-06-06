@@ -10,7 +10,7 @@ $(document).ready(function(){
 		filterBooking();
 	});
 	
-	$('div.event-list input.timeBegin').blur(function(){
+	$('div.event-list input.timeBegin').change(function(){
 		filterBooking();
 	});
 	

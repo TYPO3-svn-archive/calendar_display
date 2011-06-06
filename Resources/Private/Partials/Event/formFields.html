@@ -98,24 +98,43 @@
 						</tr>
 					</thead>
 					<tbody>
-						<f:for each="{availableResources}" as="resource">
-							<f:if condition="{resource.availableNumber} > 0">
-								<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
-									<tr class="{zebraClass}">
-										<td class="image">
-											<f:if condition="{resource.image}">
-												<f:image src="uploads/tx_calendardisplay/{resource.image}"  width="50" alt="{resource.name}" />
-											</f:if>
-										</td>
-										<td class="material">{resource.name}</td>
-										<td class="category">{resource.category.name}</td>								
-										<td class="available-number">{resource.availableNumber}</td>
-										<td class="reserve-number">
-											<f:form.textbox name="booking" value="{resource.bookingNumber}" />
-										</td>
-									</tr>
-								</f:cycle>
-							</f:if>
+						<f:for each="{availableResources}" as="resource">							
+							<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
+								<f:if condition="{resource.availableNumber} > 0">
+									<f:then>
+										<tr class="{zebraClass}">
+											<td class="image">
+												<f:if condition="{resource.image}">
+													<f:image src="uploads/tx_calendardisplay/{resource.image}"  width="50" alt="{resource.name}" />
+												</f:if>
+											</td>
+											<td class="material">{resource.name}</td>
+											<td class="category">{resource.category.name}</td>								
+											<td class="available-number">{resource.availableNumber}</td>
+											<td class="reserve-number">
+												<input type="text" name="booking[{resource.uid}]" value="{resource.bookingNumber}" />
+											</td>
+										</tr>
+									</f:then>
+									<f:else>
+										<f:if condition="{resource.bookingNumber} > 0">
+											<tr class="{zebraClass}">
+												<td class="image">
+													<f:if condition="{resource.image}">
+														<f:image src="uploads/tx_calendardisplay/{resource.image}"  width="50" alt="{resource.name}" />
+													</f:if>
+												</td>
+												<td class="material">{resource.name}</td>
+												<td class="category">{resource.category.name}</td>								
+												<td class="available-number">{resource.availableNumber}</td>
+												<td class="reserve-number">
+													<input type="text" name="booking[{resource.uid}]" value="{resource.bookingNumber}" />
+												</td>
+											</tr>
+										</f:if>
+									</f:else>
+								</f:if>
+							</f:cycle>							
 						</f:for>
 					</tbody>
 				</table>
