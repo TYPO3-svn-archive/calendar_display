@@ -242,11 +242,12 @@
 	 * @param Tx_CalendarDisplay_Domain_Model_Event $event the Event to display
 	 * @param integer $category the Category to be filter
 	 * @param string $keyword the Keyword
+	 * @param string $dateBegin the dateBegin
 	 * @return void
 	 */
-	public function filterItemsAction($event = NULL, $category = NULL, $keyword = '') {
+	public function filterItemsAction($event = NULL, $category = NULL, $keyword = '', $dateBegin = NULL) {
 		if ($event) {
-			//$this->view->assign('availableResources', $event->getAvailableResources());
+			$this->view->assign('availableResources', $event->getAvailableResources($category, $keyword, $dateBegin));
 		} else {
 			$this->view->assign('availableResources', $this->resourceRepository->filterItems($category, $keyword));
 		}

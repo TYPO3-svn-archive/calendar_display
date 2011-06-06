@@ -36,11 +36,13 @@ function filterItems() {
 	var category = $('div.available-item select.category').val();
 	var keyword = $('div.available-item input.keyword').val();
 	var defaultValue = $('#defauleSearchLabel').val();
+	var eventId = $('#tx-calendardisplay-pi1-event-id').val();
 	if(keyword == defaultValue) {
 		keyword = '';
 	}
+	var timeBegin = $('#timeBegin').val();
 	$.ajax({
-		url: '/?type=12637&tx_calendardisplay_pi1[category]=' + category + '&tx_calendardisplay_pi1[keyword]=' + keyword,
+		url: '/?type=12637&tx_calendardisplay_pi1[event]=' + eventId + '&tx_calendardisplay_pi1[category]=' + category + '&tx_calendardisplay_pi1[keyword]=' + keyword + '&tx_calendardisplay_pi1[dateBegin]=' + timeBegin,
 		beforeSend: function() {enableLoading(true)},
 		success: function(data) {
 			enableLoading(false);

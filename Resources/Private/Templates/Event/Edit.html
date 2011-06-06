@@ -8,6 +8,7 @@
 <f:form method="post" class="tx-calendardisplay-pi1-form-event" action="update" name="event" object="{event}" >
 	<f:render partial="Event/formFields" arguments="{event:event, availableResources:availableResources, categories:categories}" />
 	<f:form.hidden name="refererAction" value="{refererAction}" />
+	<f:form.hidden id="tx-calendardisplay-pi1-event-id" name="eventId" value="{event.uid}" />
 	<f:form.submit value="Save" />
 </f:form>
 </f:section>

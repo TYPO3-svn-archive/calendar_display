@@ -72,6 +72,13 @@
 	protected $availableNumber;
 	
 	/**
+	 * availableDateBegin
+	 *
+	 * @var integer $availableDateBegin
+	 */
+	protected $availableDateBegin;
+	
+	/**
 	 * category
 	 *
 	 * @var Tx_CalendarDisplay_Domain_Model_ResourceCategory $category
@@ -142,7 +149,11 @@
 	 */
 	public function getAvailableNumber() {
 		$eventRepository = t3lib_div::makeInstance('Tx_CalendarDisplay_Domain_Repository_EventRepository');
-		$events = $eventRepository->getAllByTimeEnd(strtotime('now'));
+		if ($this->getAvailableDateBegin()) {
+			$events = $eventRepository->getAllByTimeEnd($this->getAvailableDateBegin());
+		} else {
+			$events = $eventRepository->getAllByTimeEnd(strtotime('now'));
+		}
 		$numResourceBooking = 0;
 		foreach ($events as $event) {
 			$bookings = $event->getBooking();
@@ -205,6 +216,30 @@
 	public function getBookingNumber() {
 
 		return $this->bookingNumber;
+	}
+	
+ 	/**
+	 * Setter for availableDateBegin
+	 * 
+	 * @param integer $availableDateBegin availableDateBegin
+	 * @return void
+	 */
+	public function setAvailableDateBegin($availableDateBegin = NULL) {
+		if ($availableDateBegin) {
+			$this->availableDateBegin = $availableDateBegin;
+		} else {
+			$this->availableDateBegin = strtotime('now');
+		}
+	}
+	
+ 	/**
+	 * Getter for availableDateBegin
+	 *
+	 * @return integer availableDateBegin
+	 */
+	public function getAvailableDateBegin() {
+
+		return $this->availableDateBegin;
 	}
 	
  	/**

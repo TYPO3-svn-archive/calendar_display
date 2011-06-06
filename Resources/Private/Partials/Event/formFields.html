@@ -16,7 +16,11 @@
 			$('div.available-item input.keyword').keyup(function(){
 				filterItems();
 			});	
-			
+
+			$('#timeBegin').change(function(){
+				filterItems();
+			});
+						
 			// add datetime picker to date-start
 			$('#timeBegin').datetimepicker();
 			$('#timeEnd').datetimepicker();
