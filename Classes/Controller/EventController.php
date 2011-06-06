@@ -90,7 +90,7 @@
 	 * @return string The rendered list view
 	 */
 	public function listAction() {
-		$events = $this->eventRepository->getAllByTimeBegin(strtotime('day'));
+		$events = $this->eventRepository->getAllByTimeBegin(strtotime('today'));
 		
 		if(count($events) < 1){
 			$settings = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
@@ -114,7 +114,7 @@
 	 */
 	public function newAction(Tx_CalendarDisplay_Domain_Model_Event $newEvent = null, $refererAction = 'list') {
 		$this->view->assign('newEvent', $newEvent);
-		//$this->view->assign('resources', $this->resourceRepository->findAll());
+		$this->view->assign('availableResources', $this->resourceRepository->findAll());
 		$this->view->assign('categories' , $this->resourceCategoryRepository->findAll());
 		$this->view->assign('refererAction', $refererAction);
 	}
@@ -148,7 +148,7 @@
 	 */
 	public function editAction(Tx_CalendarDisplay_Domain_Model_Event $event, $refererAction = 'list') {
 		$this->view->assign('event', $event);
-		//$this->view->assign('resources', $this->resourceRepository->findAll());
+		$this->view->assign('availableResources', $event->getAvailableResources());
 		$this->view->assign('categories' , $this->resourceCategoryRepository->findAll());
 		$this->view->assign('refererAction', $refererAction);
 	}

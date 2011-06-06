@@ -66,7 +66,7 @@
 	</div>
 </div>
 
-<f:if condition="{event.availableResources}">
+<f:if condition="{availableResources}">
 	<f:then>
 		<div class="available-item">
 			<p>
@@ -98,7 +98,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<f:for each="{event.availableResources}" as="resource">
+						<f:for each="{availableResources}" as="resource">
 							<f:if condition="{resource.availableNumber} > 0">
 								<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
 									<tr class="{zebraClass}">

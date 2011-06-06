@@ -6,7 +6,7 @@
 <f:render partial="formErrors" />
 
 <f:form method="post" action="create"  name="newEvent" object="{newEvent}">
-	<f:render partial="Event/formFields"  arguments="{resources:resources, categories:categories}" />
+	<f:render partial="Event/formFields"  arguments="{availableResources:availableResources, categories:categories}" />
 	<f:form.hidden name="refererAction" value="{refererAction}" />
 	<f:form.submit value="Save" />
 </f:form>
