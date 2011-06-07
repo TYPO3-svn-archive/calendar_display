@@ -1,4 +1,5 @@
 /* CSS to make sure UI looks good */
+.ui-datepicker,
 .ui-dialog-content {
 	font-size: 13px;
 	text-align: left;
