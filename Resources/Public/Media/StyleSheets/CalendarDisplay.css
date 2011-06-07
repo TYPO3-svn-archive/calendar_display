@@ -1,3 +1,22 @@
+/* CSS to make sure UI looks good */
+.ui-dialog-content {
+	font-size: 13px;
+	text-align: left;
+}
+.tx-calendardisplay-pi1-form-event th,
+.tx-calendardisplay-pi1-form-event td {
+	padding: 0;
+}
+
+.tx-calendardisplay-pi1-form-event input {
+	margin-left: 0;
+}
+
+.tx-calendardisplay-pi1-form-event textarea {
+	margin-left: 0;
+	width: 400px;
+}
+
 input.f3-form-error {
 	background-color:#FF9F9F;
 	border: 1px #FF0000 solid;

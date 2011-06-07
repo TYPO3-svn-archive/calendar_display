@@ -18,28 +18,12 @@ $(document).ready(function(){
 	// add datetime picker to date-start
 	$('.tx-calendardisplay-filter-date-start > input').datepicker();
 
-	// add key word search box background
-	$('.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-keyword').focus(function() {
-		var defaultValue = $('#defauleSearchLabel').val();
-		if(defaultValue == $('.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-keyword').val()) $('.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-keyword').val('');
-		else if ($('.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-keyword').val() == '') $('.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-keyword').val(defaultValue);
-	});
-
-	$('.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-keyword').blur(function() {
-		var defaultValue = $('#defauleSearchLabel').val();
-		if(defaultValue == $('.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-keyword').val()) $('.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-keyword').val('');
-		else if ($('.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-keyword').val() == '') $('.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-keyword').val(defaultValue);
-	});
 });
 
 function filterItems() {
 	var category = $('.tx-calendardisplay-available-item select.tx-calendardisplay-filter-category').val();
 	var keyword = $('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').val();
-	var defaultValue = $('#defauleSearchLabel').val();
 	var eventId = $('#tx-calendardisplay-pi1-event-id').val();
-	if(keyword == defaultValue) {
-		keyword = '';
-	}
 	var timeBegin = $('#tx-calendardisplay-form-event-time-begin').val();
 	$.ajax({
 		url: '/?type=12637&tx_calendardisplay_pi1[event]=' + eventId + '&tx_calendardisplay_pi1[category]=' + category + '&tx_calendardisplay_pi1[keyword]=' + keyword + '&tx_calendardisplay_pi1[dateBegin]=' + timeBegin,
@@ -54,10 +38,6 @@ function filterItems() {
 function filterBooking() {
 	var category = $('.tx-calendardisplay-available-item-event-list select.tx-calendardisplay-filter-category').val();
 	var keyword = $('.tx-calendardisplay-available-item-event-list input.tx-calendardisplay-filter-keyword').val();
-	var defaultValue = $('#defauleSearchLabel').val();
-	if(keyword == defaultValue) {
-		keyword = '';
-	}
 	var timeBegin = $('.tx-calendardisplay-available-item-event-list input.tx-calendardisplay-filter-time-begin').val();
 	$.ajax({
 		url: '/?type=12638&tx_calendardisplay_pi1[category]=' + category + '&tx_calendardisplay_pi1[keyword]=' + keyword + '&tx_calendardisplay_pi1[dateBegin]=' + timeBegin,
