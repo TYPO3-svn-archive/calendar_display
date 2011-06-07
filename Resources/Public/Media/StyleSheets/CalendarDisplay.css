@@ -24,107 +24,107 @@ input.f3-form-error {
 }
 
 /* CSS for event list */
-.tx-calendardisplay-pi1 .event-list {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list {
 	width: 100%;
 }
 
 	
-.tx-calendardisplay-pi1 .event-list .filter-wrapper {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper {
 	width: 100%;
 	margin: 0 0 10px 0;
 	overflow: hidden;
 }
 
-.tx-calendardisplay-pi1 .event-list .filter {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper-filter {
 	float: left;
 }
 
-.tx-calendardisplay-pi1 .event-list .filter select {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper-filter select {
 	width: 80px;
 	margin: 0 20px 0 5px;
 }
 
-.tx-calendardisplay-pi1 .event-list .search {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper-search {
 	float: left;
 }
 
-.tx-calendardisplay-pi1 .event-list .search input.keyword {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper-search input.tx-calendardisplay-filter-keyword {
 	width: 120px;
 	margin: 0 0 0 5px;
 	background: #FFFFFF url("../Icons/search_bg.gif") no-repeat left center;
 	padding-left: 12px;
 }
 
-.tx-calendardisplay-pi1 .event-list .date-start {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-date-start {
 	float: right;
 }
 
-.tx-calendardisplay-pi1 .event-list .date-start input {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-date-start input {
 	width: 100px;
 	margin: 0 0 0 5px;
 }
 
-.tx-calendardisplay-pi1 .event-list .filter-wrapper
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper
 
-.tx-calendardisplay-pi1 .event-list .filter-wrapper div {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper div {
 	float: left;
 }
 
-.tx-calendardisplay-pi1 .event-list .list-wrapper {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-list-wrapper {
 	position: relative;
 	overflow: hidden;
 }
 
-.tx-calendardisplay-pi1 .event-list .list-wrapper img.loading {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-list-wrapper img.tx-calendardisplay-loading {
 	position: absolute;
 	left: 45%;
 	top: 35%
 }
 	
-.tx-calendardisplay-pi1 .event-list table {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table {
 	width: 100%;
 }
 
-.tx-calendardisplay-pi1 .event-list table thead tr th {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table thead tr th {
 	background-color: #396BA0;
 	color: #FFFFFF;
 }
 
-.tx-calendardisplay-pi1 .event-list table tr.odd td {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table tr.tx-calendardisplay-odd td {
 	background-color: #E3ECF5;
 }
 
-.tx-calendardisplay-pi1 .event-list table tr.even td {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table tr.tx-calendardisplay-even td {
 	background-color: #FFFFFF;
 }
 
-.tx-calendardisplay-pi1 .event-list table th,
-.tx-calendardisplay-pi1 .event-list table td {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table th,
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table td {
 	border: 1px solid #000000;
 	padding: 5px 5px 5px 5px;
 }
 
-.tx-calendardisplay-pi1 .event-list ul {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list ul {
 	margin: 0;
 }
 
-.tx-calendardisplay-pi1 .event-list ul li {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list ul li {
 	margin: 0;
 	list-style: none;
 }
 
-.tx-calendardisplay-pi1 .event-list table tbody tr {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table tbody tr {
 	vertical-align: top;
 }
 
-.tx-calendardisplay-pi1 .event-list table .quantity,
-.tx-calendardisplay-pi1 .event-list table .edit,
-.tx-calendardisplay-pi1 .event-list table .delete {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table .tx-calendardisplay-list-wrapper-quantity,
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table .tx-calendardisplay-list-wrapper-edit,
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table .tx-calendardisplay-list-wrapper-delete {
 	text-align: center;
 }
 
-.tx-calendardisplay-pi1 .event-list table td.edit a,
-.tx-calendardisplay-pi1 .event-list table td.delete a {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table td.tx-calendardisplay-list-wrapper-edit a,
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table td.tx-calendardisplay-list-wrapper-delete a {
 	display: block;
 	width: 16px;
 	height: 16px;
@@ -133,113 +133,113 @@ input.f3-form-error {
 	margin: auto;
 }
 
-.tx-calendardisplay-pi1 .event-list table td.edit a {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table td.tx-calendardisplay-list-wrapper-edit a {
 	background: url("../Icons/edit.gif") no-repeat center center;
 }
 
-.tx-calendardisplay-pi1 .event-list table td.delete a {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table td.tx-calendardisplay-list-wrapper-delete a {
 	background: url("../Icons/delete.gif") no-repeat center center;
 }
 
 /* CSS for event edit */
-.tx-calendardisplay-pi1 .event-form {
+.tx-calendardisplay-pi1 .tx-calendardisplay-form-event-wrapper {
 	margin: 0 0 30px 0;
 }
 
-.tx-calendardisplay-pi1 .event-form div {
+.tx-calendardisplay-pi1 .tx-calendardisplay-form-event-wrapper div {
 	clear: both;
 	padding: 0 0 10px 0;
 }
 
-.tx-calendardisplay-pi1 .event-form div.note {
+.tx-calendardisplay-pi1 .tx-calendardisplay-form-event-wrapper .tx-calendardisplay-form-event-note {
 	margin: 20px 0 0 0;
 }
 
-.tx-calendardisplay-pi1 .event-form label {
+.tx-calendardisplay-pi1 .tx-calendardisplay-form-event-wrapper label {
 	width: 100px;
 	display: block;
 }
 
-#timeBegin,
-#timeEnd {
+#tx-calendardisplay-form-event-time-begin,
+#tx-calendardisplay-form-event-time-end {
 	width: 200px;
 }
 
-.tx-calendardisplay-pi1 .available-item .filter-wrapper {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item .tx-calendardisplay-filter-wrapper {
 	width: 100%;
 	margin: 0 0 10px 0;
 	overflow: hidden;
 }
 
-.tx-calendardisplay-pi1 .available-item .filter {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item .tx-calendardisplay-filter-wrapper-filter {
 	float: left;
 }
 
-.tx-calendardisplay-pi1 .available-item .filter select {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item .tx-calendardisplay-filter-wrapper-filter select {
 	width: 80px;
 	margin: 0 0 0 5px;
 }
 
-.tx-calendardisplay-pi1 .available-item .search {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item .tx-calendardisplay-filter-wrapper-search {
 	float: right;
 }
 
-.tx-calendardisplay-pi1 .available-item .search input.keyword {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item .tx-calendardisplay-filter-wrapper-search input.tx-calendardisplay-filter-keyword {
 	width: 120px;
 	background: #FFFFFF url("../Icons/search_bg.gif") no-repeat left center;
 	padding-left: 12px;
 }
 
-.tx-calendardisplay-pi1 .available-item {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item {
 	width: 80%;
 }
 
-.tx-calendardisplay-pi1 .available-item p {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item p {
 	margin: 0 0 30px 0;
 }
 
-.tx-calendardisplay-pi1 .available-item .list-wrapper {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item .tx-calendardisplay-list-wrapper {
 	position: relative;
 	overflow: hidden;
 }
 
-.tx-calendardisplay-pi1 .available-item .list-wrapper img.loading {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item .tx-calendardisplay-list-wrapper img.tx-calendardisplay-loading {
 	position: absolute;
 	left: 45%;
 	top: 35%
 }
 
-.tx-calendardisplay-pi1 .available-item table {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item table {
 	width: 100%;
 }
 
-.tx-calendardisplay-pi1 .available-item table thead tr th {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item table thead tr th {
 	background-color: #396BA0;
 	color: #FFFFFF;
 }
 
-.tx-calendardisplay-pi1 .available-item table tr.odd {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item table tr.tx-calendardisplay-odd {
 	background-color: #E3ECF5;
 }
 
-.tx-calendardisplay-pi1 .available-item table th,
-.tx-calendardisplay-pi1 .available-item table td {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item table th,
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item table td {
 	border: 1px solid #000000;
 	padding: 5px 5px 5px 5px;
 	
 }
 
-.tx-calendardisplay-pi1 .available-item table tbody tr {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item table tbody tr {
 	vertical-align: top;
 }
 
-.tx-calendardisplay-pi1 .available-item table .available-number,
-.tx-calendardisplay-pi1 .available-item table .reserve-number,
-.tx-calendardisplay-pi1 .available-item table .image {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item table .tx-calendardisplay-list-wrapper-available-number,
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item table .tx-calendardisplay-list-wrapper-reserve-number,
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item table .tx-calendardisplay-list-wrapper-image {
 	text-align: center;
 }
 
-.tx-calendardisplay-pi1 .available-item table td.reserve-number input {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item table .tx-calendardisplay-list-wrapper-reserve-number input {
 	width: 50px;
 }
 
@@ -260,7 +260,7 @@ input.f3-form-error {
 	margin: 0 0 10px 0;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-box-header a.new-event {
+.tx-calendardisplay-pi1 .tx-calendardisplay-box-header a.tx-calendardisplay-link-new {
 	background: url("../Icons/add.png") no-repeat scroll right center transparent;
 	padding: 0 20px 0 0;
 }

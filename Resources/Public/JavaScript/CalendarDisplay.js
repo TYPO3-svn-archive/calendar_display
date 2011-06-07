@@ -1,78 +1,78 @@
 $(document).ready(function(){
 	// hide the loading image
-	$('.loading').hide();
+	enableLoading(false);
 	
-	$('div.event-list select.category').change(function(){
+	$('.tx-calendardisplay-available-item-event-list select.tx-calendardisplay-filter-category').change(function(){
 		filterBooking();
 	});
 	
-	$('div.event-list input.keyword').keyup(function(){
+	$('.tx-calendardisplay-available-item-event-list input.tx-calendardisplay-filter-keyword').keyup(function(){
 		filterBooking();
 	});
 	
-	$('div.event-list input.timeBegin').change(function(){
+	$('.tx-calendardisplay-available-item-event-list input.tx-calendardisplay-filter-time-begin').change(function(){
 		filterBooking();
 	});
 	
 
 	// add datetime picker to date-start
-	$('.date-start > input').datepicker();
+	$('.tx-calendardisplay-filter-date-start > input').datepicker();
 
 	// add key word search box background
-	$('div.event-list .keyword').focus(function() {
+	$('.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-keyword').focus(function() {
 		var defaultValue = $('#defauleSearchLabel').val();
-		if(defaultValue == $('div.event-list .keyword').val()) $('div.event-list .keyword').val('');
-		else if ($('div.event-list .keyword').val() == '') $('div.event-list .keyword').val(defaultValue);
+		if(defaultValue == $('.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-keyword').val()) $('.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-keyword').val('');
+		else if ($('.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-keyword').val() == '') $('.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-keyword').val(defaultValue);
 	});
 
-	$('div.event-list .keyword').blur(function() {
+	$('.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-keyword').blur(function() {
 		var defaultValue = $('#defauleSearchLabel').val();
-		if(defaultValue == $('div.event-list .keyword').val()) $('div.event-list .keyword').val('');
-		else if ($('div.event-list .keyword').val() == '') $('div.event-list .keyword').val(defaultValue);
+		if(defaultValue == $('.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-keyword').val()) $('.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-keyword').val('');
+		else if ($('.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-keyword').val() == '') $('.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-keyword').val(defaultValue);
 	});
 });
 
 function filterItems() {
-	var category = $('div.available-item select.category').val();
-	var keyword = $('div.available-item input.keyword').val();
+	var category = $('.tx-calendardisplay-available-item select.tx-calendardisplay-filter-category').val();
+	var keyword = $('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').val();
 	var defaultValue = $('#defauleSearchLabel').val();
 	var eventId = $('#tx-calendardisplay-pi1-event-id').val();
 	if(keyword == defaultValue) {
 		keyword = '';
 	}
-	var timeBegin = $('#timeBegin').val();
+	var timeBegin = $('#tx-calendardisplay-form-event-time-begin').val();
 	$.ajax({
 		url: '/?type=12637&tx_calendardisplay_pi1[event]=' + eventId + '&tx_calendardisplay_pi1[category]=' + category + '&tx_calendardisplay_pi1[keyword]=' + keyword + '&tx_calendardisplay_pi1[dateBegin]=' + timeBegin,
 		beforeSend: function() {enableLoading(true)},
 		success: function(data) {
 			enableLoading(false);
-			$('.available-item > .list-wrapper > table > tbody').html(data);
+			$('.tx-calendardisplay-available-item tbody').html(data);
 		}
 	});
 }
 
 function filterBooking() {
-	var category = $('div.event-list select.category').val();
-	var keyword = $('div.event-list input.keyword').val();
+	var category = $('.tx-calendardisplay-available-item-event-list select.tx-calendardisplay-filter-category').val();
+	var keyword = $('.tx-calendardisplay-available-item-event-list input.tx-calendardisplay-filter-keyword').val();
 	var defaultValue = $('#defauleSearchLabel').val();
 	if(keyword == defaultValue) {
 		keyword = '';
 	}
-	var timeBegin = $('div.event-list input.timeBegin').val();
+	var timeBegin = $('.tx-calendardisplay-available-item-event-list input.tx-calendardisplay-filter-time-begin').val();
 	$.ajax({
 		url: '/?type=12638&tx_calendardisplay_pi1[category]=' + category + '&tx_calendardisplay_pi1[keyword]=' + keyword + '&tx_calendardisplay_pi1[dateBegin]=' + timeBegin,
 		beforeSend: function() {enableLoading(true)},
 		success: function(data) {
 			enableLoading(false);
-			$('.event-list > .list-wrapper > table > tbody').html(data);
+			$('.tx-calendardisplay-available-item-event-list tbody').html(data);
 		}
 	});
 }
 
 function enableLoading(enable){
 	if (enable) {
-		$('.loading').show();
+		$('.tx-calendardisplay-loading').show();
 	} else {
-		$('.loading').hide();
+		$('.tx-calendardisplay-loading').hide();
 	}
 }

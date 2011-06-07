@@ -6,36 +6,36 @@
 	$(function() {
 		$(document).ready(function(){
 			// hide the loading image
-			$('.loading').hide();
+			$('.tx-calendardisplay-loading').hide();
 			
 			// filter option
-			$('div.available-item select.category').change(function(){
+			$('.tx-calendardisplay-available-item select.tx-calendardisplay-filter-category').change(function(){
 				filterItems();
 			});	
 			
-			$('div.available-item input.keyword').keyup(function(){
+			$('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').keyup(function(){
 				filterItems();
 			});	
 
-			$('#timeBegin').change(function(){
+			$('#tx-calendardisplay-form-event-time-begin').change(function(){
 				filterItems();
 			});
 						
 			// add datetime picker to date-start
-			$('#timeBegin').datetimepicker();
-			$('#timeEnd').datetimepicker();
+			$('#tx-calendardisplay-form-event-time-begin').datetimepicker();
+			$('#tx-calendardisplay-form-event-time-end').datetimepicker();
 			
 			// add key word search box background
-			$('div.available-item .keyword').focus(function() {
+			$('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').focus(function() {
 				var defaultValue = $('#defauleSearchLabel').val();
-				if(defaultValue == $('div.available-item .keyword').val()) $('div.available-item .keyword').val('');
-				else if ($('div.available-item .keyword').val() == '') $('div.available-item .keyword').val(defaultValue);
+				if(defaultValue == $('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').val()) $('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').val('');
+				else if ($('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').val() == '') $('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').val(defaultValue);
 			});
 
-			$('div.available-item .keyword').blur(function() {
+			$('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').blur(function() {
 				var defaultValue = $('#defauleSearchLabel').val();
-				if(defaultValue == $('div.available-item .keyword').val()) $('div.available-item .keyword').val('');
-				else if ($('div.available-item .keyword').val() == '') $('div.available-item .keyword').val(defaultValue);
+				if(defaultValue == $('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').val()) $('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').val('');
+				else if ($('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').val() == '') $('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').val(defaultValue);
 			});
 
 			$(".tx-calendardisplay-pi1-form-event").validationEngine();
@@ -52,7 +52,7 @@
 	* @return an error string if validation failed
 	*/
 	function checkDateRange(field, rules, i, options){
-	   var startDate = $('#timeBegin').val();
+	   var startDate = $('#tx-calendardisplay-form-event-time-begin').val();
 	   var endDate = field.val();
 	   if (new Date(startDate.toString()) >= new Date(endDate.toString())) {
 	      return '* Invalid Date Time Range'; 
@@ -61,78 +61,78 @@
 // ]]>
 </script>
 
-<div class="event-form">
+<div class="tx-calendardisplay-form-event-wrapper">
 	<table>
 		<tr>
 			<td>
-				<label for="timeBegin">
+				<label for="tx-calendardisplay-form-event-time-begin">
 					<f:translate key="tx_calendardisplay_domain_model_event.time_begin" />
 				</label>
-				<f:form.textbox class="validate[required]" id="timeBegin" property="timeBegin" value="{event.timeBegin -> f:format.date(format:'m/d/Y H:i')}" />
+				<f:form.textbox class="validate[required]" id="tx-calendardisplay-form-event-time-begin" property="timeBegin" value="{event.timeBegin -> f:format.date(format:'m/d/Y H:i')}" />
 			</td>
 			<td style="padding-left: 20px">
-				<label for="timeEnd">
+				<label for="tx-calendardisplay-form-event-time-end">
 					<f:translate key="tx_calendardisplay_domain_model_event.time_end" />
 				</label>
-				<f:form.textbox class="validate[required,funcCall[checkDateRange]]" id="timeEnd" property="timeEnd" value="{event.timeEnd -> f:format.date(format:'m/d/Y H:i')}" />
+				<f:form.textbox class="validate[required,funcCall[checkDateRange]]" id="tx-calendardisplay-form-event-time-end" property="timeEnd" value="{event.timeEnd -> f:format.date(format:'m/d/Y H:i')}" />
 			</td>
 		</tr>
 	</table>
 	
-	<div class="note">
-		<label for="note">
+	<div class="tx-calendardisplay-form-event-note">
+		<label for="tx-calendardisplay-form-event-note">
 			<f:translate key="tx_calendardisplay_domain_model_event.note" />
 		</label>
-		<f:form.textarea id="note" property="note" rows="3" cols="80" />
+		<f:form.textarea id="tx-calendardisplay-form-event-note" property="note" rows="3" cols="80" />
 	</div>
 </div>
 
 <f:if condition="{availableResources}">
 	<f:then>
-		<div class="available-item">
+		<div class="tx-calendardisplay-available-item">
 			<p>
 				<f:translate key="alvailable_item_description" />
 			</p>
-			<div class="filter-wrapper">
-				<div class="filter">
+			<div class="tx-calendardisplay-filter-wrapper">
+				<div class="tx-calendardisplay-filter-wrapper-filter">
 					<label><f:translate key="filter_selection" /></label>
 					<f:if condition="{categories}">
 						<label><f:translate key="category" /></label>	
-						<calendar:form.select class="category" name="category" prependOption="<f:translate key='all' />" options="{categories}" optionValueField="uid" optionLabelField="name" />
+						<calendar:form.select class="tx-calendardisplay-filter-category" name="category" prependOption="<f:translate key='all' />" options="{categories}" optionValueField="uid" optionLabelField="name" />
 					</f:if>
 				</div>
-				<div class="search">
-					<f:form.textbox name="keyword" class="keyword" value="<f:translate key='search' />" />
+				<div class="tx-calendardisplay-filter-wrapper-search">
+					<f:form.textbox name="keyword" class="tx-calendardisplay-filter-keyword" value="<f:translate key='search' />" />
 					<input id="defauleSearchLabel" type="hidden" value="<f:translate key='search' />" />
 				</div>
 			</div>
-			<div class="list-wrapper">
-				<f:image class="loading" src="EXT:calendar_display/Resources/Public/Media/Icons/loading.gif" alt="" />
+			<div class="tx-calendardisplay-list-wrapper">
+				<f:image class="tx-calendardisplay-loading" src="EXT:calendar_display/Resources/Public/Media/Icons/loading.gif" alt="" />
 				<table>
 					<thead>
 						<tr>
-							<th class="image"></th>
-							<th class="material"><f:translate key="material" /></th>
-							<th class="category"><f:translate key="category" /></th>
-							<th class="available-number"><f:translate key="available_number" /></th>
-							<th class="reserve-number"><f:translate key="reserve_number" /></th>
+							<th class="tx-calendardisplay-list-wrapper-image"></th>
+							<th class="tx-calendardisplay-list-wrapper-material"><f:translate key="material" /></th>
+							<th class="tx-calendardisplay-list-wrapper-category"><f:translate key="category" /></th>
+							<th class="tx-calendardisplay-list-wrapper-available-number"><f:translate key="available_number" /></th>
+							<th class="tx-calendardisplay-list-wrapper-reserve-number"><f:translate key="reserve_number" /></th>
 						</tr>
 					</thead>
 					<tbody>
 						<f:for each="{availableResources}" as="resource">							
-							<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
+							<f:cycle values="{0: 'tx-calendardisplay-odd', 1: 'tx-calendardisplay-even'}" as="zebraClass">
 								<f:if condition="{resource.availableNumber} > 0">
 									<f:then>
 										<tr class="{zebraClass}">
-											<td class="image">
+											<td class="tx-calendardisplay-list-wrapper-image">
 												<f:if condition="{resource.image}">
 													<f:image src="uploads/tx_calendardisplay/{resource.image}"  width="50" alt="{resource.name}" />
 												</f:if>
 											</td>
-											<td class="material">{resource.name}</td>
-											<td class="category">{resource.category.name}</td>								
-											<td class="available-number">{resource.availableNumber}</td>
-											<td class="reserve-number">
+											<td class="tx-calendardisplay-list-wrapper-material">{resource.name}</td>
+											<td class="tx-calendardisplay-list-wrapper-category">{resource.category.name}</td>								
+											<td class="tx-calendardisplay-list-wrapper-available-number">{resource.availableNumber}</td>
+											<td class="tx-calendardisplay-list-wrapper-reserve-number">
 												<input id="booking_{resource.uid}" class="validate[custom[integer],max[{resource.totalAvailableNum}]]" type="text" name="booking[{resource.uid}]" value="{resource.bookingNumber}" />
 											</td>
 										</tr>
@@ -163,7 +163,7 @@
 		</div>
 	</f:then>
 	<f:else>
-		<div class="noAvailableItem">
+		<div class="tx-calendardisplay-no-available-item">
 			<f:translate key="no_available_item" />
 		</div>
 	</f:else>

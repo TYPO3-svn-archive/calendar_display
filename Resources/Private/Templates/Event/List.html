@@ -232,12 +232,11 @@
 	</script>
 	
 	<f:flashMessages />
-	<div class="event-list">
-		
+	<div class="tx-calendardisplay-available-item-event-list">
 		<div class="tx-calendardisplay-box-header">		
 			<f:if condition="{currentUser}">
 				<div class="tx-calendardisplay-box-header-left">
-					<f:link.action class="new-event" id="tx-calendardisplay-link-new" action="new" arguments="{refererAction:'list'}" title="<f:translate key='new_event' />">
+					<f:link.action class="tx-calendardisplay-link-new" id="tx-calendardisplay-link-new" action="new" arguments="{refererAction:'list'}" title="<f:translate key='new_event' />">
 						<f:translate key="new_event" />
 					</f:link.action>
 				</div>
@@ -250,50 +249,50 @@
 		
 		<f:if condition="{events}">
 			<f:then>
-				<div class="filter-wrapper">
+				<div class="tx-calendardisplay-filter-wrapper">
 					<f:form method="post" action="list" name="filter">
-						<div class="filter">
+						<div class="tx-calendardisplay-filter-wrapper-filter">
 							<label><f:translate key="filter_selection" /></label>
 							<f:if condition="{categories}">		
 								<label><f:translate key="category" /></label>					
-								<calendar:form.select class="category" name="category" prependOption="<f:translate key='all' />" options="{categories}" optionValueField="uid" optionLabelField="name" />
+								<calendar:form.select class="tx-calendardisplay-filter-category" name="category" prependOption="<f:translate key='all' />" options="{categories}" optionValueField="uid" optionLabelField="name" />
 							</f:if>
 						</div>
-						<div class="search">
-							<f:form.textbox class="keyword" name="keyword" class="keyword" value="<f:translate key='search' />" />
+						<div class="tx-calendardisplay-filter-wrapper-search">
+							<f:form.textbox name="keyword" class="tx-calendardisplay-filter-keyword" value="<f:translate key='search' />" />
 							<input id="defauleSearchLabel" type="hidden" value="<f:translate key='search' />" />
 						</div>
-						<div class="date-start">
+						<div class="tx-calendardisplay-filter-date-start">
 							<label><f:translate key="choose_start_date" /></label>
-							<f:form.textbox class="timeBegin" name="dateStart" value="<f:format.date format='m/d/Y'>now</f:format.date>" />
+							<f:form.textbox class="tx-calendardisplay-filter-time-begin" name="dateStart" value="<f:format.date format='m/d/Y'>now</f:format.date>" />
 						</div>
 					</f:form>
 				</div>
-				<div class="list-wrapper">
-					<f:image class="loading" src="EXT:calendar_display/Resources/Public/Media/Icons/loading.gif" alt="" />
+				<div class="tx-calendardisplay-list-wrapper">
+					<f:image class="tx-calendardisplay-loading" src="EXT:calendar_display/Resources/Public/Media/Icons/loading.gif" alt="" />
 					<calendar:widget.paginate objects="{events}" as="paginatedEvents" configuration="{itemsPerPage: 10, insertAbove: 0, insertBelow: 1}">
 					<table>
 						<thead>
 							<tr>
-								<th class="start"><f:translate key="start" /></th>
-								<th class="end"><f:translate key="end" /></th>
-								<th class="note"><f:translate key="note" /></th>
-								<th class="material"><f:translate key="material" /></th>
-								<th class="bookedBy"><f:translate key="booked_by" /></th>
-								<th class="phone"><f:translate key="phone" /></th>
+								<th class="tx-calendardisplay-list-wrapper-start"><f:translate key="start" /></th>
+								<th class="tx-calendardisplay-list-wrapper-end"><f:translate key="end" /></th>
+								<th class="tx-calendardisplay-list-wrapper-note"><f:translate key="note" /></th>
+								<th class="tx-calendardisplay-list-wrapper-material"><f:translate key="material" /></th>
+								<th class="tx-calendardisplay-list-wrapper-bookedBy"><f:translate key="booked_by" /></th>
+								<th class="tx-calendardisplay-list-wrapper-phone"><f:translate key="phone" /></th>
 								<f:if condition="{currentUser}">
-									<th class="action tx-calendardisplay-text-align-center" colspan="2"><f:translate key="action" /></th>
+									<th class="tx-calendardisplay-list-wrapper-action tx-calendardisplay-text-align-center" colspan="2"><f:translate key="action" /></th>
 								</f:if>
 							</tr>
 						</thead>
 						<tbody>
 							<f:for each="{paginatedEvents}" as="event">
-								<f:cycle values="{0: 'odd', 1: 'even'}" as="zebraClass">
+								<f:cycle values="{0: 'tx-calendardisplay-odd', 1: 'tx-calendardisplay-even'}" as="zebraClass">
 									<tr class="{zebraClass}">
-										<td class="start">
+										<td class="tx-calendardisplay-list-wrapper-start">
 											<f:format.date format="d.m.Y @ H\h:i">{event.timeBegin}</f:format.date>
 										</td>
-										<td class="end">
+										<td class="tx-calendardisplay-list-wrapper-end">
 											<f:if condition="{event.compareDayBeginDayEnd}">
 												<f:then>
 													<f:format.date format="@ H\h:i">{event.timeEnd}</f:format.date>
@@ -303,8 +302,8 @@
 												</f:else>
 											</f:if>												
 										</td>
-										<td class="note">{event.note}</td>
-										<td class="material">
+										<td class="tx-calendardisplay-list-wrapper-note">{event.note}</td>
+										<td class="tx-calendardisplay-list-wrapper-material">
 											<f:if condition="{event.booking}">
 												<f:then>
 													<ul>
@@ -317,14 +316,14 @@
 												</f:then>
 											</f:if>											
 										</td>																		
-										<td class="bookedBy">
+										<td class="tx-calendardisplay-list-wrapper-bookedBy">
 											<f:link.email email="{event.purchaser.email}">{event.purchaser.username}</f:link.email>
 										</td>
 										<td class="phone">{event.purchaser.telephone}</td>
 										
 										<f:if condition="{currentUser}">
 											<f:then>
-												<td class="edit">
+												<td class="tx-calendardisplay-list-wrapper-edit">
 													<f:if condition="{currentUser.txCalendardisplayAdmin}">
 														<f:then>
 															<f:link.action action="edit" class="tx-calendardisplay-edit-event_{event.uid}" arguments="{event: event}" title="<f:translate key='edit' />">
@@ -346,7 +345,7 @@
 										</f:if>
 										<f:if condition="{currentUser}">
 											<f:then>
-												<td class="delete">
+												<td class="tx-calendardisplay-list-wrapper-delete">
 													<f:if condition="{currentUser.txCalendardisplayAdmin}">
 														<f:then>
 															<f:link.action action="delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
