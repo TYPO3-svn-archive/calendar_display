@@ -45,20 +45,20 @@
 						$.blockUI(CalendarDisplay.WaitingUI.options);
 
 						CalendarDisplay.Dialog.load(
-							CalendarDisplay.newUrl,
-							{},
-							function (responseText, textStatus, XMLHttpRequest) {
+						CalendarDisplay.newUrl,
+						{},
+						function (responseText, textStatus, XMLHttpRequest) {
 								
-								// release UI
-								$.unblockUI();
+							// release UI
+							$.unblockUI();
 
-								// define title dialog box
-								CalendarDisplay.Dialog.dialog('option', 'title', CalendarDisplay.Lang.dialogTitleNew);
+							// define title dialog box
+							CalendarDisplay.Dialog.dialog('option', 'title', CalendarDisplay.Lang.dialogTitleNew);
 
-								// open dialog box
-								CalendarDisplay.Dialog.dialog('open');
-							}
-						);
+							// open dialog box
+							CalendarDisplay.Dialog.dialog('open');
+						}
+					);
 
 						// prevent the default action, e.g., following a link
 						return false;
@@ -70,20 +70,20 @@
 							$.blockUI(CalendarDisplay.WaitingUI.options);
 	
 							CalendarDisplay.Dialog.load(
-								CalendarDisplay.editUrl + '&tx_calendardisplay_pi1[event]=' + eventId,
-								{},
-								function (responseText, textStatus, XMLHttpRequest) {
+							CalendarDisplay.editUrl + '&tx_calendardisplay_pi1[event]=' + eventId,
+							{},
+							function (responseText, textStatus, XMLHttpRequest) {
 									
-									// release UI
-									$.unblockUI();
+								// release UI
+								$.unblockUI();
 	
-									// define title dialog box
-									CalendarDisplay.Dialog.dialog('option', 'title', CalendarDisplay.Lang.dialogTitleUpdate);
+								// define title dialog box
+								CalendarDisplay.Dialog.dialog('option', 'title', CalendarDisplay.Lang.dialogTitleUpdate);
 	
-									// open dialog box
-									CalendarDisplay.Dialog.dialog('open');
-								}
-							);
+								// open dialog box
+								CalendarDisplay.Dialog.dialog('open');
+							}
+						);
 						}
 
 						// prevent the default action, e.g., following a link
@@ -179,21 +179,21 @@
 					if (calEvent.id) {
 						// GUI
 						$.blockUI(CalendarDisplay.WaitingUI.options);
-						CalendarDisplay.Dialog.load(								
-							CalendarDisplay.editUrl + '&tx_calendardisplay_pi1[event]=' + calEvent.id,
-							{},
-							function (responseText, textStatus, XMLHttpRequest) {
+						CalendarDisplay.Dialog.load(
+						CalendarDisplay.editUrl + '&tx_calendardisplay_pi1[event]=' + calEvent.id,
+						{},
+						function (responseText, textStatus, XMLHttpRequest) {
 								
-								// release UI
-								$.unblockUI();
+							// release UI
+							$.unblockUI();
 
-								// define title dialog box
-								CalendarDisplay.Dialog.dialog('option', 'title', CalendarDisplay.Lang.dialogTitleUpdate);
+							// define title dialog box
+							CalendarDisplay.Dialog.dialog('option', 'title', CalendarDisplay.Lang.dialogTitleUpdate);
 
-								// open dialog box
-								CalendarDisplay.Dialog.dialog('open');
-							}
-						);
+							// open dialog box
+							CalendarDisplay.Dialog.dialog('open');
+						}
+					);
 					}
 					// change the border color just for fun
 					$(this).css('border-color', 'red');
@@ -204,16 +204,16 @@
 					{
 						events: [ // put the array in the `events` property
 							// ]]>
-							<f:for each="{events}" as="event">
+								<f:for each="{events}" as="event">
 								{
-									id: <f:format.number thousandsSeparator="">{event.uid}</f:format.number>,
-									title: '<f:format.crop maxCharacters="25" append="...">{event.note}</f:format.crop>',
-									start: '<f:format.date format="m d Y H:i">{event.timeBegin}</f:format.date>',
-									end: '<f:format.date format="m d Y H:i">{event.timeEnd}</f:format.date>',
-									allDay: false
-								},							
-							</f:for>
-							// <![CDATA[
+								id: <f:format.number thousandsSeparator="">{event.uid}</f:format.number>,
+								title: '<f:format.crop maxCharacters="25" append="...">{event.note}</f:format.crop>',
+								start: '<f:format.date format="m d Y H:i">{event.timeBegin}</f:format.date>',
+								end: '<f:format.date format="m d Y H:i">{event.timeEnd}</f:format.date>',
+								allDay: false
+							},
+								</f:for>
+								// <![CDATA[
 						]
 					},
 				]
@@ -227,13 +227,13 @@
 			}
 
 			return $.extend(defaultOptions, languageOptions, _calendar);
-		}		
+		}
 		// ]]>
 	</script>
-	
+
 	<f:flashMessages />
 	<div class="tx-calendardisplay-available-item-event-list">
-		<div class="tx-calendardisplay-box-header">		
+		<div class="tx-calendardisplay-box-header">
 			<f:if condition="{currentUser}">
 				<div class="tx-calendardisplay-box-header-left">
 					<f:link.action class="tx-calendardisplay-link-new" id="tx-calendardisplay-link-new" action="new" arguments="{refererAction:'list'}" title="<f:translate key='new_event' />">
@@ -241,143 +241,126 @@
 					</f:link.action>
 				</div>
 			</f:if>
-			
+
 			<div class="tx-calendardisplay-box-header-right">
 				<f:link.action action="calendar"><f:translate key="calendar_view" /></f:link.action>
 			</div>
 		</div>
-		
-		<f:if condition="{events}">
-			<f:then>
-				<div class="tx-calendardisplay-filter-wrapper">
-					<f:form method="post" action="list" name="filter">
-						<div class="tx-calendardisplay-filter-wrapper-filter">
-							<label><f:translate key="filter_selection" /></label>
-							<f:if condition="{categories}">		
-								<label><f:translate key="category" /></label>					
-								<calendar:form.select class="tx-calendardisplay-filter-category" name="category" prependOption="<f:translate key='all' />" options="{categories}" optionValueField="uid" optionLabelField="name" />
+
+		<div class="tx-calendardisplay-filter-wrapper">
+			<f:form method="post" action="list" name="filter">
+				<div class="tx-calendardisplay-filter-wrapper-filter">
+					<label><f:translate key="filter_selection" /></label>
+					<f:if condition="{categories}">
+						<label><f:translate key="category" /></label>
+						<calendar:form.select class="tx-calendardisplay-filter-category" name="category" prependOption="<f:translate key='all' />" options="{categories}" optionValueField="uid" optionLabelField="name" />
+					</f:if>
+				</div>
+				<div class="tx-calendardisplay-filter-wrapper-search">
+					<f:form.textfield name="keyword" class="tx-calendardisplay-filter-keyword" placeholder="<f:translate key='search' />" />
+				</div>
+				<div class="tx-calendardisplay-filter-date-start">
+					<label><f:translate key="choose_start_date" /></label>
+					<f:form.textfield class="tx-calendardisplay-filter-time-begin" name="dateStart" value="<f:format.date format='m/d/Y'>now</f:format.date>" />
+				</div>
+			</f:form>
+		</div>
+		<div class="tx-calendardisplay-list-wrapper">
+			<f:image class="tx-calendardisplay-loading" src="EXT:calendar_display/Resources/Public/Media/Icons/loading.gif" alt="" />
+			<calendar:widget.paginate objects="{events}" as="paginatedEvents" configuration="{itemsPerPage: 10, insertAbove: 0, insertBelow: 1}">
+				<table>
+					<thead>
+						<tr>
+							<th class="tx-calendardisplay-list-wrapper-start"><f:translate key="start" /></th>
+					<th class="tx-calendardisplay-list-wrapper-end"><f:translate key="end" /></th>
+					<th class="tx-calendardisplay-list-wrapper-note"><f:translate key="note" /></th>
+					<th class="tx-calendardisplay-list-wrapper-material"><f:translate key="material" /></th>
+					<th class="tx-calendardisplay-list-wrapper-bookedBy"><f:translate key="booked_by" /></th>
+					<th class="tx-calendardisplay-list-wrapper-phone"><f:translate key="phone" /></th>
+					<f:if condition="{currentUser}">
+						<th class="tx-calendardisplay-list-wrapper-action tx-calendardisplay-text-align-center" colspan="2"><f:translate key="action" /></th>
+					</f:if>
+					</tr>
+					</thead>
+					<tbody>
+					<f:for each="{paginatedEvents}" as="event">
+						<f:cycle values="{0: 'tx-calendardisplay-odd', 1: 'tx-calendardisplay-even'}" as="zebraClass">
+							<tr class="{zebraClass}">
+								<td class="tx-calendardisplay-list-wrapper-start">
+							<f:format.date format="d.m.Y @ H\h:i">{event.timeBegin}</f:format.date>
+							</td>
+							<td class="tx-calendardisplay-list-wrapper-end">
+							<f:if condition="{event.compareDayBeginDayEnd}">
+								<f:then>
+									<f:format.date format="@ H\h:i">{event.timeEnd}</f:format.date>
+								</f:then>
+								<f:else>
+									<f:format.date format="d.m.Y @ H\h:i">{event.timeEnd}</f:format.date>
+								</f:else>
 							</f:if>
-						</div>
-						<div class="tx-calendardisplay-filter-wrapper-search">
-							<f:form.textbox name="keyword" class="tx-calendardisplay-filter-keyword" value="<f:translate key='search' />" />
-							<input id="defauleSearchLabel" type="hidden" value="<f:translate key='search' />" />
-						</div>
-						<div class="tx-calendardisplay-filter-date-start">
-							<label><f:translate key="choose_start_date" /></label>
-							<f:form.textbox class="tx-calendardisplay-filter-time-begin" name="dateStart" value="<f:format.date format='m/d/Y'>now</f:format.date>" />
-						</div>
-					</f:form>
-				</div>
-				<div class="tx-calendardisplay-list-wrapper">
-					<f:image class="tx-calendardisplay-loading" src="EXT:calendar_display/Resources/Public/Media/Icons/loading.gif" alt="" />
-					<calendar:widget.paginate objects="{events}" as="paginatedEvents" configuration="{itemsPerPage: 10, insertAbove: 0, insertBelow: 1}">
-					<table>
-						<thead>
-							<tr>
-								<th class="tx-calendardisplay-list-wrapper-start"><f:translate key="start" /></th>
-								<th class="tx-calendardisplay-list-wrapper-end"><f:translate key="end" /></th>
-								<th class="tx-calendardisplay-list-wrapper-note"><f:translate key="note" /></th>
-								<th class="tx-calendardisplay-list-wrapper-material"><f:translate key="material" /></th>
-								<th class="tx-calendardisplay-list-wrapper-bookedBy"><f:translate key="booked_by" /></th>
-								<th class="tx-calendardisplay-list-wrapper-phone"><f:translate key="phone" /></th>
-								<f:if condition="{currentUser}">
-									<th class="tx-calendardisplay-list-wrapper-action tx-calendardisplay-text-align-center" colspan="2"><f:translate key="action" /></th>
-								</f:if>
+							</td>
+							<td class="tx-calendardisplay-list-wrapper-note">{event.note}</td>
+							<td class="tx-calendardisplay-list-wrapper-material">
+							<f:if condition="{event.booking}">
+								<f:then>
+									<ul>
+										<f:for each="{event.booking}" as="booking" iteration="resourceIterator">
+											<f:for each="{booking.resources}" as="resource">
+												<li>{resource.name} ({booking.number})</li>
+											</f:for>
+										</f:for>
+									</ul>
+								</f:then>
+							</f:if>
+							</td>
+							<td class="tx-calendardisplay-list-wrapper-bookedBy">
+							<f:link.email email="{event.purchaser.email}">{event.purchaser.username}</f:link.email>
+							</td>
+							<td class="phone">{event.purchaser.telephone}</td>
+
+							<f:if condition="{currentUser}">
+								<f:then>
+									<td>
+									<f:if condition="{currentUser.txCalendardisplayAdmin}">
+										<f:then>
+											<f:link.action action="edit" class="tx-calendardisplay-list-wrapper-edit tx-calendardisplay-edit-event_{event.uid}" arguments="{event: event}" title="<f:translate key='edit' />">
+												<f:translate key="edit" />
+											</f:link.action>
+											<f:link.action class="tx-calendardisplay-list-wrapper-delete" action="delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
+												<f:translate key="delete" />
+											</f:link.action>
+										</f:then>
+										<f:else>
+											<f:if condition="{event.purchaser.uid} == {currentUser.uid}">
+												<f:then>
+													<f:link.action action="edit" class="tx-calendardisplay-list-wrapper-edit tx-calendardisplay-edit-event_{event.uid}" arguments="{event: event}" title="<f:translate key='edit' />">
+														<f:translate key="edit" />
+													</f:link.action>
+													<f:link.action class="tx-calendardisplay-list-wrapper-delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
+														<f:translate key="delete" />
+													</f:link.action>
+												</f:then>
+											</f:if>
+										</f:else>
+									</f:if>
+									</td>
+								</f:then>
+							</f:if>
+
 							</tr>
-						</thead>
-						<tbody>
-							<f:for each="{paginatedEvents}" as="event">
-								<f:cycle values="{0: 'tx-calendardisplay-odd', 1: 'tx-calendardisplay-even'}" as="zebraClass">
-									<tr class="{zebraClass}">
-										<td class="tx-calendardisplay-list-wrapper-start">
-											<f:format.date format="d.m.Y @ H\h:i">{event.timeBegin}</f:format.date>
-										</td>
-										<td class="tx-calendardisplay-list-wrapper-end">
-											<f:if condition="{event.compareDayBeginDayEnd}">
-												<f:then>
-													<f:format.date format="@ H\h:i">{event.timeEnd}</f:format.date>
-												</f:then>
-												<f:else>
-													<f:format.date format="d.m.Y @ H\h:i">{event.timeEnd}</f:format.date>
-												</f:else>
-											</f:if>												
-										</td>
-										<td class="tx-calendardisplay-list-wrapper-note">{event.note}</td>
-										<td class="tx-calendardisplay-list-wrapper-material">
-											<f:if condition="{event.booking}">
-												<f:then>
-													<ul>
-														<f:for each="{event.booking}" as="booking" iteration="resourceIterator">
-															<f:for each="{booking.resources}" as="resource">
-																<li>{resource.name} ({booking.number})</li>
-															</f:for>
-														</f:for>
-													</ul>
-												</f:then>
-											</f:if>											
-										</td>																		
-										<td class="tx-calendardisplay-list-wrapper-bookedBy">
-											<f:link.email email="{event.purchaser.email}">{event.purchaser.username}</f:link.email>
-										</td>
-										<td class="phone">{event.purchaser.telephone}</td>
-										
-										<f:if condition="{currentUser}">
-											<f:then>
-												<td class="tx-calendardisplay-list-wrapper-edit">
-													<f:if condition="{currentUser.txCalendardisplayAdmin}">
-														<f:then>
-															<f:link.action action="edit" class="tx-calendardisplay-edit-event_{event.uid}" arguments="{event: event}" title="<f:translate key='edit' />">
-																<f:translate key="edit" />
-															</f:link.action>
-														</f:then>
-														<f:else>
-															<f:if condition="{event.purchaser.uid} == {currentUser.uid}">
-																<f:then>
-																	<f:link.action action="edit" class="tx-calendardisplay-edit-event_{event.uid}" arguments="{event: event}" title="<f:translate key='edit' />">
-																		<f:translate key="edit" />
-																	</f:link.action>
-																</f:then>
-															</f:if>
-														</f:else>
-													</f:if>
-												</td>
-											</f:then>
-										</f:if>
-										<f:if condition="{currentUser}">
-											<f:then>
-												<td class="tx-calendardisplay-list-wrapper-delete">
-													<f:if condition="{currentUser.txCalendardisplayAdmin}">
-														<f:then>
-															<f:link.action action="delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
-																<f:translate key="delete" />
-															</f:link.action>
-														</f:then>
-														<f:else>
-															<f:if condition="{event.purchaser.uid} == {currentUser.uid}">
-																<f:then>
-																	<f:link.action action="delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
-																		<f:translate key="delete" />
-																	</f:link.action>
-																</f:then>
-															</f:if>
-														</f:else>
-													</f:if>
-												</td>
-											</f:then>
-										</f:if>
-									</tr>
-								</f:cycle>
-							</f:for>
-						</tbody>
-					</table>
-					</calendar:widget.paginate>
-				</div>
-			</f:then>
-			<f:else>
-				<div class="tx-calendardisplay-box-header-left">
-					<f:translate key="no_booking_item" /> <f:if condition="{currentUser}"><f:then></f:then><f:else><f:translate key="please_login" /></f:else></f:if>
-				</div>
-			</f:else>
-		</f:if>	
+						</f:cycle>
+					</f:for>
+					</tbody>
+				</table>
+
+				<f:if condition="{events}">
+					<f:then>
+					</f:then>
+					<f:else>
+						<f:translate key="no_booking_item" /> <f:if condition="{currentUser}"><f:then></f:then><f:else><f:translate key="please_login" /></f:else></f:if>
+					</f:else>
+				</f:if>
+			</calendar:widget.paginate>
+		</div>
 	</div>
 </f:section>

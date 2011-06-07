@@ -50,7 +50,7 @@ input.f3-form-error {
 	
 .tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper {
 	width: 100%;
-	margin: 0 0 10px 0;
+	padding: 15px 0 0 0;
 	overflow: hidden;
 }
 
@@ -142,22 +142,23 @@ input.f3-form-error {
 	text-align: center;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table td.tx-calendardisplay-list-wrapper-edit a,
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table td.tx-calendardisplay-list-wrapper-delete a {
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table a.tx-calendardisplay-list-wrapper-edit,
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table a.tx-calendardisplay-list-wrapper-delete {
 	display: block;
+	float: left;
 	width: 16px;
 	height: 16px;
 	overflow: hidden;
 	text-indent: 999em;
-	margin: auto;
+	margin-left: 5px;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table td.tx-calendardisplay-list-wrapper-edit a {
-	background: url("../Icons/edit.gif") no-repeat center center;
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table a.tx-calendardisplay-list-wrapper-edit {
+	background: url("../Icons/edit.png") no-repeat center center;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table td.tx-calendardisplay-list-wrapper-delete a {
-	background: url("../Icons/delete.gif") no-repeat center center;
+.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table a.tx-calendardisplay-list-wrapper-delete {
+	background: url("../Icons/delete.png") no-repeat center center;
 }
 
 /* CSS for event edit */
@@ -285,7 +286,7 @@ input.f3-form-error {
 }
 
 .tx-calendardisplay-pi1 .edit-sign .fc-event-inner .fc-event-head {
-	background: url("../Icons/edit.gif") no-repeat right top;
+	background: url("../Icons/edit.png") no-repeat right top;
 }
 
 .tx-calendardisplay-box-header-right {

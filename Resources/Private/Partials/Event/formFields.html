@@ -25,19 +25,6 @@
 			$('#tx-calendardisplay-form-event-time-begin').datetimepicker();
 			$('#tx-calendardisplay-form-event-time-end').datetimepicker();
 			
-			// add key word search box background
-			$('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').focus(function() {
-				var defaultValue = $('#defauleSearchLabel').val();
-				if(defaultValue == $('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').val()) $('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').val('');
-				else if ($('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').val() == '') $('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').val(defaultValue);
-			});
-
-			$('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').blur(function() {
-				var defaultValue = $('#defauleSearchLabel').val();
-				if(defaultValue == $('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').val()) $('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').val('');
-				else if ($('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').val() == '') $('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').val(defaultValue);
-			});
-
 			$(".tx-calendardisplay-pi1-form-event").validationEngine();
 			
 		}); // end DOM ready
@@ -68,13 +55,13 @@
 				<label for="tx-calendardisplay-form-event-time-begin">
 					<f:translate key="tx_calendardisplay_domain_model_event.time_begin" />
 				</label>
-				<f:form.textbox class="validate[required]" id="tx-calendardisplay-form-event-time-begin" property="timeBegin" value="{event.timeBegin -> f:format.date(format:'m/d/Y H:i')}" />
+				<f:form.textfield class="validate[required]" id="tx-calendardisplay-form-event-time-begin" property="timeBegin" value="{event.timeBegin -> f:format.date(format:'m/d/Y H:i')}" />
 			</td>
 			<td style="padding-left: 20px">
 				<label for="tx-calendardisplay-form-event-time-end">
 					<f:translate key="tx_calendardisplay_domain_model_event.time_end" />
 				</label>
-				<f:form.textbox class="validate[required,funcCall[checkDateRange]]" id="tx-calendardisplay-form-event-time-end" property="timeEnd" value="{event.timeEnd -> f:format.date(format:'m/d/Y H:i')}" />
+				<f:form.textfield class="validate[required,funcCall[checkDateRange]]" id="tx-calendardisplay-form-event-time-end" property="timeEnd" value="{event.timeEnd -> f:format.date(format:'m/d/Y H:i')}" />
 			</td>
 		</tr>
 	</table>
@@ -95,15 +82,13 @@
 			</p>
 			<div class="tx-calendardisplay-filter-wrapper">
 				<div class="tx-calendardisplay-filter-wrapper-filter">
-					<label><f:translate key="filter_selection" /></label>
 					<f:if condition="{categories}">
 						<label><f:translate key="category" /></label>	
 						<calendar:form.select class="tx-calendardisplay-filter-category" name="category" prependOption="<f:translate key='all' />" options="{categories}" optionValueField="uid" optionLabelField="name" />
 					</f:if>
 				</div>
 				<div class="tx-calendardisplay-filter-wrapper-search">
-					<f:form.textbox name="keyword" class="tx-calendardisplay-filter-keyword" value="<f:translate key='search' />" />
-					<input id="defauleSearchLabel" type="hidden" value="<f:translate key='search' />" />
+					<f:form.textfield name="keyword" class="tx-calendardisplay-filter-keyword" value="<f:translate key='search' />" />
 				</div>
 			</div>
 			<div class="tx-calendardisplay-list-wrapper">
