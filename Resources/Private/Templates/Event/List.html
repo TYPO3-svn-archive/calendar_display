@@ -1,234 +1,19 @@
 {namespace calendar=Tx_CalendarDisplay_ViewHelpers}
+
 <f:layout name="Default" />
 <f:section name="main">
+
+	<calendar:script src="EXT:calendar_display/Resources/Public/JavaScript/CalendarDisplay.js" />
+	<calendar:script src="EXT:calendar_display/Resources/Public/JavaScript/CalendarDisplayListView.js" />
+
 	<script type="text/javascript">
+		var CalendarDisplay = {};
+
 		var _dialogTitleNew = '<f:translate key="new_event" />';
 		var _dialogTitleUpdate = '<f:translate key="update_event" />';
-		var _timePicker = {settings.timePicker.options};
-		var _calendar = {settings.calendar.options};
-		var _waitingUI = {settings.waitingUI.options};
+		CalendarDisplay._timePicker = {settings.timePicker.options};
+		CalendarDisplay._waitingUI = {settings.waitingUI.options};
 
-		// <![CDATA[
-		/**
-		 * Initialize object that contains configuration
-		 */
-		var CalendarDisplay = {
-			newUrl : '/?type=12636&tx_calendardisplay_pi1[refererAction]=list', // &no_cache=1 (debug purposes)
-			editUrl : '/?type=12639tx_calendardisplay_pi1[refererAction]=list', // &no_cache=1 (debug purposes)
-			TimePicker : {},
-			Calendar : {},
-			Dialog : {},
-			WaitingUI : {},
-			Lang : {
-				dialogTitleNew :  _dialogTitleNew,
-				dialogTitleUpdate :  _dialogTitleUpdate
-			}
-		};
-
-		/**
-		 * Return Dialog object
-		 */
-		(function($) {
-			$(function() {
-				$(document).ready(function(){
-
-					// Initialize CalendarDisplay object
-					CalendarDisplay.Dialog = CalendarDisplay.initializeDialog();
-					CalendarDisplay.TimePicker.options = CalendarDisplay.getTimePickerOptions();
-					CalendarDisplay.Calendar.options = CalendarDisplay.getCalendarOptions();
-					CalendarDisplay.WaitingUI.options = CalendarDisplay.getWaitingUIOptions();
-
-					
-					// Load dialog box
-					$('#tx-calendardisplay-link-new').click(function() {
-
-						$.blockUI(CalendarDisplay.WaitingUI.options);
-
-						CalendarDisplay.Dialog.load(
-						CalendarDisplay.newUrl,
-						{},
-						function (responseText, textStatus, XMLHttpRequest) {
-								
-							// release UI
-							$.unblockUI();
-
-							// define title dialog box
-							CalendarDisplay.Dialog.dialog('option', 'title', CalendarDisplay.Lang.dialogTitleNew);
-
-							// open dialog box
-							CalendarDisplay.Dialog.dialog('open');
-						}
-					);
-
-						// prevent the default action, e.g., following a link
-						return false;
-					});
-					$('.edit > a').click(function() {
-						var preClass = 'tx-calendardisplay-edit-event_';
-						var eventId = ($(this).attr('class')).substring(preClass.length);
-						if (eventId) {
-							$.blockUI(CalendarDisplay.WaitingUI.options);
-	
-							CalendarDisplay.Dialog.load(
-							CalendarDisplay.editUrl + '&tx_calendardisplay_pi1[event]=' + eventId,
-							{},
-							function (responseText, textStatus, XMLHttpRequest) {
-									
-								// release UI
-								$.unblockUI();
-	
-								// define title dialog box
-								CalendarDisplay.Dialog.dialog('option', 'title', CalendarDisplay.Lang.dialogTitleUpdate);
-	
-								// open dialog box
-								CalendarDisplay.Dialog.dialog('open');
-							}
-						);
-						}
-
-						// prevent the default action, e.g., following a link
-						return false;
-					});
-
-					var calendar = $('#calendar').fullCalendar(CalendarDisplay.Calendar.options);
-
-				}); // end DOM ready
-
-			}); // end of clausure
-		})(jQuery);
-
-
-		/**
-		 * Return Dialog object
-		 */
-		CalendarDisplay.initializeDialog = function() {
-			// Dialog box
-			var dialog = $('<div></div>')
-			.dialog({
-				autoOpen: false,
-				modal: true,
-				width: 610
-			});
-			
-			return dialog;
-		}
-
-		/**
-		 * Return WaitingUI options
-		 */
-		CalendarDisplay.getWaitingUIOptions = function() {
-			// Calendar default options
-			var defaultOptions = {
-				message: null
-			}
-			return $.extend(defaultOptions, _waitingUI);
-		}
-
-		/**
-		 * Return Time picker options
-		 */
-		CalendarDisplay.getTimePickerOptions = function() {
-			// Calendar default options
-			var defaultOptions = {
-				hourMin: 8,
-				hourMax: 18,
-				stepHour: 1,
-				stepMinute: 10
-			}
-
-			// merge language options if any
-			var languageOptions = {};
-			if (typeof($.timepicker.getLanguageOptions) == 'function') {
-				languageOptions = $.timepicker.getLanguageOptions();
-			}
-
-			return $.extend(defaultOptions, languageOptions, _timePicker);
-		}
-
-		/**
-		 * Return calendar options
-		 */
-		CalendarDisplay.getCalendarOptions = function() {
-
-			// Calendar
-			var date = new Date();
-			var d = date.getDate();
-			var m = date.getMonth();
-			var y = date.getFullYear();
-
-			// @temp
-			console.log(d);
-			console.log(m);
-			console.log(y);
-
-			// Calendar default options
-			var defaultOptions = {
-				header: {
-					left: 'prev,next today',
-					center: 'title',
-					right: 'month,agendaWeek,agendaDay'
-				},
-				theme: true,
-				defaultView: 'agendaWeek',
-				allDaySlot: false,
-				firstHour: 8,
-				editable: false,
-				selectable: false,
-				selectHelper: true,
-				eventClick: function(calEvent, jsEvent, view) {
-					if (calEvent.id) {
-						// GUI
-						$.blockUI(CalendarDisplay.WaitingUI.options);
-						CalendarDisplay.Dialog.load(
-						CalendarDisplay.editUrl + '&tx_calendardisplay_pi1[event]=' + calEvent.id,
-						{},
-						function (responseText, textStatus, XMLHttpRequest) {
-								
-							// release UI
-							$.unblockUI();
-
-							// define title dialog box
-							CalendarDisplay.Dialog.dialog('option', 'title', CalendarDisplay.Lang.dialogTitleUpdate);
-
-							// open dialog box
-							CalendarDisplay.Dialog.dialog('open');
-						}
-					);
-					}
-					// change the border color just for fun
-					$(this).css('border-color', 'red');
-				},
-
-				eventSources: [
-					// your event source
-					{
-						events: [ // put the array in the `events` property
-							// ]]>
-								<f:for each="{events}" as="event">
-								{
-								id: <f:format.number thousandsSeparator="">{event.uid}</f:format.number>,
-								title: '<f:format.crop maxCharacters="25" append="...">{event.note}</f:format.crop>',
-								start: '<f:format.date format="m d Y H:i">{event.timeBegin}</f:format.date>',
-								end: '<f:format.date format="m d Y H:i">{event.timeEnd}</f:format.date>',
-								allDay: false
-							},
-								</f:for>
-								// <![CDATA[
-						]
-					},
-				]
-				
-			};
-
-			// merge language options if any
-			var languageOptions = {};
-			if (typeof($.fullCalendar.getLanguageOptions) == 'function') {
-				languageOptions = $.fullCalendar.getLanguageOptions();
-			}
-
-			return $.extend(defaultOptions, languageOptions, _calendar);
-		}
-		// ]]>
 	</script>
 
 	<f:flashMessages />
@@ -248,20 +33,20 @@
 		</div>
 
 		<div class="tx-calendardisplay-filter-wrapper">
-			<f:form method="post" action="list" name="filter">
+			<f:form method="get" action="list" name="filter">
 				<div class="tx-calendardisplay-filter-wrapper-filter">
 					<label><f:translate key="filter_selection" /></label>
 					<f:if condition="{categories}">
 						<label><f:translate key="category" /></label>
-						<calendar:form.select class="tx-calendardisplay-filter-category" name="category" prependOption="<f:translate key='all' />" options="{categories}" optionValueField="uid" optionLabelField="name" />
+						<calendar:form.select id="tx-calendardisplay-list-filter-category" name="category" prependOption="<f:translate key='all' />" options="{categories}" optionValueField="uid" optionLabelField="name" />
 					</f:if>
 				</div>
 				<div class="tx-calendardisplay-filter-wrapper-search">
-					<f:form.textfield name="keyword" class="tx-calendardisplay-filter-keyword" placeholder="<f:translate key='search' />" />
+					<f:form.textfield id="tx-calendardisplay-list-filter-keyword" name="keyword" placeholder="<f:translate key='search' />" />
 				</div>
 				<div class="tx-calendardisplay-filter-date-start">
 					<label><f:translate key="choose_start_date" /></label>
-					<f:form.textfield class="tx-calendardisplay-filter-time-begin" name="dateStart" value="<f:format.date format='m/d/Y'>now</f:format.date>" />
+					<f:form.textfield id="tx-calendardisplay-list-filter-timeBegin" name="dateStart" value="<f:format.date format='m/d/Y'>now</f:format.date>" />
 				</div>
 			</f:form>
 		</div>
@@ -272,84 +57,84 @@
 					<thead>
 						<tr>
 							<th class="tx-calendardisplay-list-wrapper-start"><f:translate key="start" /></th>
-					<th class="tx-calendardisplay-list-wrapper-end"><f:translate key="end" /></th>
-					<th class="tx-calendardisplay-list-wrapper-note"><f:translate key="note" /></th>
-					<th class="tx-calendardisplay-list-wrapper-material"><f:translate key="material" /></th>
-					<th class="tx-calendardisplay-list-wrapper-bookedBy"><f:translate key="booked_by" /></th>
-					<th class="tx-calendardisplay-list-wrapper-phone"><f:translate key="phone" /></th>
-					<f:if condition="{currentUser}">
-						<th class="tx-calendardisplay-list-wrapper-action tx-calendardisplay-text-align-center" colspan="2"><f:translate key="action" /></th>
-					</f:if>
-					</tr>
+							<th class="tx-calendardisplay-list-wrapper-end"><f:translate key="end" /></th>
+							<th class="tx-calendardisplay-list-wrapper-note"><f:translate key="note" /></th>
+							<th class="tx-calendardisplay-list-wrapper-material"><f:translate key="material" /></th>
+							<th class="tx-calendardisplay-list-wrapper-bookedBy"><f:translate key="booked_by" /></th>
+							<th class="tx-calendardisplay-list-wrapper-phone"><f:translate key="phone" /></th>
+							<f:if condition="{currentUser}">
+								<th class="tx-calendardisplay-list-wrapper-action tx-calendardisplay-text-align-center" colspan="2"><f:translate key="action" /></th>
+							</f:if>
+						</tr>
 					</thead>
 					<tbody>
-					<f:for each="{paginatedEvents}" as="event">
-						<f:cycle values="{0: 'tx-calendardisplay-odd', 1: 'tx-calendardisplay-even'}" as="zebraClass">
-							<tr class="{zebraClass}">
-								<td class="tx-calendardisplay-list-wrapper-start">
-							<f:format.date format="d.m.Y @ H\h:i">{event.timeBegin}</f:format.date>
-							</td>
-							<td class="tx-calendardisplay-list-wrapper-end">
-							<f:if condition="{event.compareDayBeginDayEnd}">
-								<f:then>
-									<f:format.date format="@ H\h:i">{event.timeEnd}</f:format.date>
-								</f:then>
-								<f:else>
-									<f:format.date format="d.m.Y @ H\h:i">{event.timeEnd}</f:format.date>
-								</f:else>
-							</f:if>
-							</td>
-							<td class="tx-calendardisplay-list-wrapper-note">{event.note}</td>
-							<td class="tx-calendardisplay-list-wrapper-material">
-							<f:if condition="{event.booking}">
-								<f:then>
-									<ul>
-										<f:for each="{event.booking}" as="booking" iteration="resourceIterator">
-											<f:for each="{booking.resources}" as="resource">
-												<li>{resource.name} ({booking.number})</li>
+						<f:for each="{paginatedEvents}" as="event">
+							<f:cycle values="{0: 'tx-calendardisplay-odd', 1: 'tx-calendardisplay-even'}" as="zebraClass">
+								<tr class="{zebraClass}">
+									<td class="tx-calendardisplay-list-wrapper-start">
+								<f:format.date format="d.m.Y @ H\h:i">{event.timeBegin}</f:format.date>
+								</td>
+								<td class="tx-calendardisplay-list-wrapper-end">
+								<f:if condition="{event.compareDayBeginDayEnd}">
+									<f:then>
+										<f:format.date format="@ H\h:i">{event.timeEnd}</f:format.date>
+									</f:then>
+									<f:else>
+										<f:format.date format="d.m.Y @ H\h:i">{event.timeEnd}</f:format.date>
+									</f:else>
+								</f:if>
+								</td>
+								<td class="tx-calendardisplay-list-wrapper-note">{event.note}</td>
+								<td class="tx-calendardisplay-list-wrapper-material">
+								<f:if condition="{event.booking}">
+									<f:then>
+										<ul>
+											<f:for each="{event.booking}" as="booking" iteration="resourceIterator">
+												<f:for each="{booking.resources}" as="resource">
+													<li>{resource.name} ({booking.number})</li>
+												</f:for>
 											</f:for>
-										</f:for>
-									</ul>
-								</f:then>
-							</f:if>
-							</td>
-							<td class="tx-calendardisplay-list-wrapper-bookedBy">
-							<f:link.email email="{event.purchaser.email}">{event.purchaser.username}</f:link.email>
-							</td>
-							<td class="phone">{event.purchaser.telephone}</td>
+										</ul>
+									</f:then>
+								</f:if>
+								</td>
+								<td class="tx-calendardisplay-list-wrapper-bookedBy">
+								<f:link.email email="{event.purchaser.email}">{event.purchaser.username}</f:link.email>
+								</td>
+								<td class="phone">{event.purchaser.telephone}</td>
 
-							<f:if condition="{currentUser}">
-								<f:then>
-									<td>
-									<f:if condition="{currentUser.txCalendardisplayAdmin}">
-										<f:then>
-											<f:link.action action="edit" class="tx-calendardisplay-list-wrapper-edit tx-calendardisplay-edit-event_{event.uid}" arguments="{event: event}" title="<f:translate key='edit' />">
-												<f:translate key="edit" />
-											</f:link.action>
-											<f:link.action class="tx-calendardisplay-list-wrapper-delete" action="delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
-												<f:translate key="delete" />
-											</f:link.action>
-										</f:then>
-										<f:else>
-											<f:if condition="{event.purchaser.uid} == {currentUser.uid}">
-												<f:then>
-													<f:link.action action="edit" class="tx-calendardisplay-list-wrapper-edit tx-calendardisplay-edit-event_{event.uid}" arguments="{event: event}" title="<f:translate key='edit' />">
-														<f:translate key="edit" />
-													</f:link.action>
-													<f:link.action class="tx-calendardisplay-list-wrapper-delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
-														<f:translate key="delete" />
-													</f:link.action>
-												</f:then>
-											</f:if>
-										</f:else>
-									</f:if>
-									</td>
-								</f:then>
-							</f:if>
+								<f:if condition="{currentUser}">
+									<f:then>
+										<td>
+										<f:if condition="{currentUser.txCalendardisplayAdmin}">
+											<f:then>
+												<f:link.action action="edit" id="tx-calendardisplay-edit-event_{event.uid}" class="tx-calendardisplay-list-wrapper-edit" arguments="{event: event}" title="<f:translate key='edit' />">
+													<f:translate key="edit" />
+												</f:link.action>
+												<f:link.action class="tx-calendardisplay-list-wrapper-delete" action="delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
+													<f:translate key="delete" />
+												</f:link.action>
+											</f:then>
+											<f:else>
+												<f:if condition="{event.purchaser.uid} == {currentUser.uid}">
+													<f:then>
+														<f:link.action action="edit" class="tx-calendardisplay-list-wrapper-edit tx-calendardisplay-edit-event_{event.uid}" arguments="{event: event}" title="<f:translate key='edit' />">
+															<f:translate key="edit" />
+														</f:link.action>
+														<f:link.action class="tx-calendardisplay-list-wrapper-delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
+															<f:translate key="delete" />
+														</f:link.action>
+													</f:then>
+												</f:if>
+											</f:else>
+										</f:if>
+										</td>
+									</f:then>
+								</f:if>
 
-							</tr>
-						</f:cycle>
-					</f:for>
+								</tr>
+							</f:cycle>
+						</f:for>
 					</tbody>
 				</table>
 

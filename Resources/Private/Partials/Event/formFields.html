@@ -9,17 +9,9 @@
 			$('.tx-calendardisplay-loading').hide();
 			
 			// filter option
-			$('.tx-calendardisplay-available-item select.tx-calendardisplay-filter-category').change(function(){
-				filterItems();
-			});	
-			
-			$('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').keyup(function(){
-				filterItems();
-			});	
-
-			$('#tx-calendardisplay-form-event-time-begin').change(function(){
-				filterItems();
-			});
+			$('.tx-calendardisplay-available-item select.tx-calendardisplay-filter-category').change(CalendarDisplay.filterItems);
+			$('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').keyup(CalendarDisplay.filterItems);
+			$('#tx-calendardisplay-form-event-time-begin').change(CalendarDisplay.filterItems);
 						
 			// add datetime picker to date-start
 			$('#tx-calendardisplay-form-event-time-begin').datetimepicker();

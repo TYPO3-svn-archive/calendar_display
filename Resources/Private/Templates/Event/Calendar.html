@@ -1,228 +1,55 @@
+{namespace calendar=Tx_CalendarDisplay_ViewHelpers}
+
 <f:layout name="Default" />
 <f:section name="main">
+
+	<calendar:script src="EXT:calendar_display/Resources/Public/JavaScript/CalendarDisplay.js" />
+	<calendar:script src="EXT:calendar_display/Resources/Public/JavaScript/CalendarDisplayCalendarView.js" />
+
 	<script type="text/javascript">
+
+		var CalendarDisplay = {};
+
 		var _dialogTitleNew = '<f:translate key="new_event" />';
 		var _dialogTitleUpdate = '<f:translate key="update_event" />';
-		var _timePicker = {settings.timePicker.options};
-		var _calendar = {settings.calendar.options};
-		var _waitingUI = {settings.waitingUI.options};
+		CalendarDisplay._timePicker = {settings.timePicker.options};
+		CalendarDisplay._waitingUI = {settings.waitingUI.options};
+		CalendarDisplay._calendar = {settings.calendar.options};
 
-		// <![CDATA[
-		/**
-		 * Initialize object that contains configuration
-		 */
-		var CalendarDisplay = {
-			newUrl : '/?type=12636&tx_calendardisplay_pi1[refererAction]=calendar', // &no_cache=1 (debug purposes)
-			editUrl : '/?type=12639&tx_calendardisplay_pi1[refererAction]=calendar', // &no_cache=1 (debug purposes)
-			TimePicker : {},
-			Calendar : {},
-			Dialog : {},
-			WaitingUI : {},
-			Lang : {
-				dialogTitleNew :  _dialogTitleNew,
-				dialogTitleUpdate :  _dialogTitleUpdate
-			}
-		};
-
-		/**
-		 * Return Dialog object
-		 */
-		(function($) {
-			$(function() {
-				$(document).ready(function(){
-
-					// Initialize CalendarDisplay object
-					CalendarDisplay.Dialog = CalendarDisplay.initializeDialog();
-					CalendarDisplay.TimePicker.options = CalendarDisplay.getTimePickerOptions();
-					CalendarDisplay.Calendar.options = CalendarDisplay.getCalendarOptions();
-					CalendarDisplay.WaitingUI.options = CalendarDisplay.getWaitingUIOptions();
-
-					
-					// Load dialog box
-					$('#tx-calendardisplay-link-new').click(function() {
-
-						$.blockUI(CalendarDisplay.WaitingUI.options);
-
-						CalendarDisplay.Dialog.load(
-							CalendarDisplay.newUrl,
-							{},
-							function (responseText, textStatus, XMLHttpRequest) {
-								
-								// release UI
-								$.unblockUI();
-
-								// define title dialog box
-								CalendarDisplay.Dialog.dialog('option', 'title', CalendarDisplay.Lang.dialogTitleNew);
-
-								// open dialog box
-								CalendarDisplay.Dialog.dialog('open');
-							}
-						);
-
-						// prevent the default action, e.g., following a link
-						return false;
-					});
-
-					var calendar = $('#calendar').fullCalendar(CalendarDisplay.Calendar.options);
-
-				}); // end DOM ready
-
-			}); // end of clausure
-		})(jQuery);
-
-
-		/**
-		 * Return Dialog object
-		 */
-		CalendarDisplay.initializeDialog = function() {
-			// Dialog box
-			var dialog = $('<div></div>')
-			.dialog({
-				autoOpen: false,
-				modal: true,
-				width: 610
-			});
-			
-			return dialog;
-		}
-
-		/**
-		 * Return WaitingUI options
-		 */
-		CalendarDisplay.getWaitingUIOptions = function() {
-			// Calendar default options
-			var defaultOptions = {
-				message: null
-			}
-			return $.extend(defaultOptions, _waitingUI);
-		}
-
-		/**
-		 * Return Time picker options
-		 */
-		CalendarDisplay.getTimePickerOptions = function() {
-			// Calendar default options
-			var defaultOptions = {
-				hourMin: 8,
-				hourMax: 18,
-				stepHour: 1,
-				stepMinute: 10
-			}
-
-			// merge language options if any
-			var languageOptions = {};
-			if (typeof($.timepicker.getLanguageOptions) == 'function') {
-				languageOptions = $.timepicker.getLanguageOptions();
-			}
-
-			return $.extend(defaultOptions, languageOptions, _timePicker);
-		}
-
-		/**
-		 * Return calendar options
-		 */
-		CalendarDisplay.getCalendarOptions = function() {
-
-			// Calendar
-			var date = new Date();
-			var d = date.getDate();
-			var m = date.getMonth();
-			var y = date.getFullYear();
-
-			// @temp
-			console.log(d);
-			console.log(m);
-			console.log(y);
-
-			// Calendar default options
-			var defaultOptions = {
-				header: {
-					left: 'prev,next today',
-					center: 'title',
-					right: 'month,agendaWeek,agendaDay'
-				},
-				theme: false,
-				defaultView: 'agendaWeek',
-				allDaySlot: false,
-				firstHour: 8,
-				editable: false,
-				selectable: false,
-				selectHelper: true,
-				eventClick: function(calEvent, jsEvent, view) {
-					if (calEvent.id) {
-						// GUI
-						$.blockUI(CalendarDisplay.WaitingUI.options);
-						CalendarDisplay.Dialog.load(								
-							CalendarDisplay.editUrl + '&tx_calendardisplay_pi1[event]=' + calEvent.id,
-							{},
-							function (responseText, textStatus, XMLHttpRequest) {
-								
-								// release UI
-								$.unblockUI();
-
-								// define title dialog box
-								CalendarDisplay.Dialog.dialog('option', 'title', CalendarDisplay.Lang.dialogTitleUpdate);
-
-								// open dialog box
-								CalendarDisplay.Dialog.dialog('open');
-							}
-						);
-					}
-					// change the border color just for fun
-					$(this).css('border-color', 'red');
-				},
-
-				eventSources: [
-					// your event source
-					{
-						events: [ // put the array in the `events` property
-							// ]]>
-							<f:for each="{events}" as="event">
-								{
-									<f:if condition="{currentUser}">
+		CalendarDisplay._events = [
+			<f:for each="{events}" as="event">
+				{
+					<f:if condition="{currentUser}">
+						<f:then>
+							<f:if condition="{currentUser.txCalendardisplayAdmin}">
+								<f:then>
+									id: <f:format.number thousandsSeparator="">{event.uid}</f:format.number>,
+									className: 'edit-sign',
+								</f:then>
+								<f:else>
+									<f:if condition="{event.purchaser.uid} == {currentUser.uid}">
 										<f:then>
-											<f:if condition="{currentUser.txCalendardisplayAdmin}">
-												<f:then>
-													id: <f:format.number thousandsSeparator="">{event.uid}</f:format.number>,
-													className: 'edit-sign',
-												</f:then>
-												<f:else>
-													<f:if condition="{event.purchaser.uid} == {currentUser.uid}">
-														<f:then>
-															id: <f:format.number thousandsSeparator="">{event.uid}</f:format.number>,
-															className: 'edit-sign',
-														</f:then>
-													</f:if>
-												</f:else>
-											</f:if>
+											id: <f:format.number thousandsSeparator="">{event.uid}</f:format.number>,
+											className: 'edit-sign',
 										</f:then>
 									</f:if>
-									title: '<f:format.crop maxCharacters="25" append="...">{event.note}</f:format.crop>',
-									start: '<f:format.date format="m d Y H:i">{event.timeBegin}</f:format.date>',
-									end: '<f:format.date format="m d Y H:i">{event.timeEnd}</f:format.date>',
-									allDay: false
-								},							
-							</f:for>
-							// <![CDATA[
-						]
-					},
-				]
-				
-			};
+								</f:else>
+							</f:if>
+						</f:then>
+					</f:if>
+					title: '<f:format.crop maxCharacters="25" append="...">{event.note}</f:format.crop>',
+					start: '<f:format.date format="m d Y H:i">{event.timeBegin}</f:format.date>',
+					end: '<f:format.date format="m d Y H:i">{event.timeEnd}</f:format.date>',
+					allDay: false
+				},
+			</f:for>
 
-			// merge language options if any
-			var languageOptions = {};
-			if (typeof($.fullCalendar.getLanguageOptions) == 'function') {
-				languageOptions = $.fullCalendar.getLanguageOptions();
-			}
-
-			return $.extend(defaultOptions, languageOptions, _calendar);
-		}		
+		]
 		// ]]>
 	</script>
 
 	<f:flashMessages />
-	
+
 	<div class="tx-calendardisplay-box-header">
 		<f:if condition="{currentUser}">
 			<f:link.action class="tx-calendardisplay-link-new" id="tx-calendardisplay-link-new" action="new" arguments="{refererAction:'calendar'}" title="<f:translate key='new_event' />">
@@ -233,6 +60,6 @@
 			<f:link.action action="list"><f:translate key="list_view" /></f:link.action>
 		</div>
 	</div>
-	
+
 	<div id="calendar"></div>
 </f:section>

@@ -60,7 +60,7 @@ plugin.tx_calendardisplay {
 page.includeCSS.jquery_fullcalendar = EXT:calendar_display/Resources/Public/JavaScript/fullcalendar/fullcalendar.css
 page.includeCSS.jquery_fullcalendar_print = EXT:calendar_display/Resources/Public/JavaScript/fullcalendar/fullcalendar.print.css
 page.includeCSS.jquery_fullcalendar_print.media = print
-page.includeCSS.jquery_uid = EXT:calendar_display/Resources/Public/JavaScript/jquery-ui-1.8.12.custom/css/ui-lightness/jquery-ui-1.8.12.custom.css
+page.includeCSS.jquery_ui = EXT:calendar_display/Resources/Public/JavaScript/jquery-ui-1.8.12.custom/css/redmond/jquery-ui-1.8.12.custom.css
 page.includeCSS.calendar_display = EXT:calendar_display/Resources/Public/Media/StyleSheets/CalendarDisplay.css
 page.includeCSS.calendar_validationEngine = EXT:calendar_display/Resources/Public/Media/StyleSheets/validationEngine.jquery.css
 
@@ -80,9 +80,6 @@ page.includeJS.jquery_timepicker = EXT:calendar_display/Resources/Public/JavaScr
 
 # jQuery Block UI
 page.includeJS.jquery_blockuid = EXT:calendar_display/Resources/Public/JavaScript/jquery.blockUI/jquery.blockUI.js
-
-# JavaScript for CalendarDisplay
-page.includeJS.calendar_display  = EXT:calendar_display/Resources/Public/JavaScript/CalendarDisplay.js
 
 # JavaScript for Validator
 page.includeJS.calendar_validator = EXT:calendar_display/Resources/Public/JavaScript/jquery.validationEngine/jquery.validationEngine.js
