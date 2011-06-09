@@ -3,87 +3,72 @@
 	<f:then>
 		<calendar:widget.paginate objects="{events}" as="paginatedEvents" configuration="{itemsPerPage: 10, insertAbove: 0, insertBelow: 0}">
 		<f:for each="{paginatedEvents}" as="event">
-			<f:cycle values="{0: 'tx-calendardisplay-odd', 1: 'tx-calendardisplay-even'}" as="zebraClass">
-				<tr class="{zebraClass}">
-					<td class="tx-calendardisplay-list-wrapper-start">
-						<f:format.date format="d.m.Y @ H\h:i">{event.timeBegin}</f:format.date>
-					</td>
-					<td class="tx-calendardisplay-list-wrapper-end">
-						<f:if condition="{event.compareDayBeginDayEnd}">
-							<f:then>
-								<f:format.date format="@ H\h:i">{event.timeEnd}</f:format.date>
-							</f:then>
-							<f:else>
-								<f:format.date format="d.m.Y @ H\h:i">{event.timeEnd}</f:format.date>
-							</f:else>
-						</f:if>												
-					</td>
-					<td class="tx-calendardisplay-list-wrapper-note">{event.note}</td>
-					<td class="tx-calendardisplay-list-wrapper-material">
-						<f:if condition="{event.booking}">
-							<f:then>
-								<ul>
-									<f:for each="{event.booking}" as="booking" iteration="resourceIterator">
-										<f:for each="{booking.resources}" as="resource">
-											<li>{resource.name} ({booking.number})</li>
-										</f:for>
-									</f:for>
-								</ul>
-							</f:then>
-						</f:if>											
-					</td>																		
-					<td class="tx-calendardisplay-list-wrapper-bookedBy">
-						<f:link.email email="{event.purchaser.email}">{event.purchaser.username}</f:link.email>
-					</td>
-					<td class="phone">{event.purchaser.telephone}</td>
-					
-					<f:if condition="{currentUser}">
+		<f:cycle values="{0: 'tx-calendardisplay-odd', 1: 'tx-calendardisplay-even'}" as="zebraClass">
+			<tr class="{zebraClass}">
+				<td class="tx-calendardisplay-list-wrapper-start">
+			<f:format.date format="d.m.Y @ H\h:i">{event.timeBegin}</f:format.date>
+			</td>
+			<td class="tx-calendardisplay-list-wrapper-end">
+			<f:if condition="{event.compareDayBeginDayEnd}">
+				<f:then>
+					<f:format.date format="@ H\h:i">{event.timeEnd}</f:format.date>
+				</f:then>
+				<f:else>
+					<f:format.date format="d.m.Y @ H\h:i">{event.timeEnd}</f:format.date>
+				</f:else>
+			</f:if>
+			</td>
+			<td class="tx-calendardisplay-list-wrapper-note">{event.note}</td>
+			<td class="tx-calendardisplay-list-wrapper-material">
+			<f:if condition="{event.booking}">
+				<f:then>
+					<ul>
+						<f:for each="{event.booking}" as="booking" iteration="resourceIterator">
+							<f:for each="{booking.resources}" as="resource">
+								<li>{resource.name} ({booking.number})</li>
+							</f:for>
+						</f:for>
+					</ul>
+				</f:then>
+			</f:if>
+			</td>
+			<td class="tx-calendardisplay-list-wrapper-bookedBy">
+			<f:link.email email="{event.purchaser.email}">{event.purchaser.username}</f:link.email>
+			</td>
+			<td class="phone">{event.purchaser.telephone}</td>
+
+			<f:if condition="{currentUser}">
+				<f:then>
+					<td>
+					<f:if condition="{currentUser.txCalendardisplayAdmin}">
 						<f:then>
-							<td class="tx-calendardisplay-list-wrapper-edit">
-								<f:if condition="{currentUser.txCalendardisplayAdmin}">
-									<f:then>
-										<f:link.action action="edit" class="tx-calendardisplay-edit-event_{event.uid}" arguments="{event: event}" title="<f:translate key='edit' />">
-											<f:translate key="edit" />
-										</f:link.action>
-									</f:then>
-									<f:else>
-										<f:if condition="{event.purchaser.uid} == {currentUser.uid}">
-											<f:then>
-												<f:link.action action="edit" class="tx-calendardisplay-edit-event_{event.uid}" arguments="{event: event}" title="<f:translate key='edit' />">
-													<f:translate key="edit" />
-												</f:link.action>
-											</f:then>
-										</f:if>
-									</f:else>
-								</f:if>
-							</td>
+							<f:link.action action="edit" id="tx-calendardisplay-edit-event_{event.uid}" class="tx-calendardisplay-list-wrapper-edit" arguments="{event: event}" title="<f:translate key='edit' />">
+								<f:translate key="edit" />
+							</f:link.action>
+							<f:link.action class="tx-calendardisplay-list-wrapper-delete" action="delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
+								<f:translate key="delete" />
+							</f:link.action>
 						</f:then>
+						<f:else>
+							<f:if condition="{event.purchaser.uid} == {currentUser.uid}">
+								<f:then>
+									<f:link.action action="edit" class="tx-calendardisplay-list-wrapper-edit tx-calendardisplay-edit-event_{event.uid}" arguments="{event: event}" title="<f:translate key='edit' />">
+										<f:translate key="edit" />
+									</f:link.action>
+									<f:link.action class="tx-calendardisplay-list-wrapper-delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
+										<f:translate key="delete" />
+									</f:link.action>
+								</f:then>
+							</f:if>
+						</f:else>
 					</f:if>
-					<f:if condition="{currentUser}">
-						<f:then>
-							<td class="tx-calendardisplay-list-wrapper-delete">
-								<f:if condition="{currentUser.txCalendardisplayAdmin}">
-									<f:then>
-										<f:link.action action="delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
-											<f:translate key="delete" />
-										</f:link.action>
-									</f:then>
-									<f:else>
-										<f:if condition="{event.purchaser.uid} == {currentUser.uid}">
-											<f:then>
-												<f:link.action action="delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
-													<f:translate key="delete" />
-												</f:link.action>
-											</f:then>
-										</f:if>
-									</f:else>
-								</f:if>
-							</td>
-						</f:then>
-					</f:if>
-				</tr>
-			</f:cycle>
-		</f:for>
+					</td>
+				</f:then>
+			</f:if>
+
+			</tr>
+		</f:cycle>
+	</f:for>
 		</calendar:widget.paginate>
 	</f:then>
 	<f:else>
