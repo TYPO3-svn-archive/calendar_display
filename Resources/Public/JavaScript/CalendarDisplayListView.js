@@ -94,12 +94,3 @@ $(document).ready(function(){
 	$('.tx-calendardisplay-filter-date-start > input').datepicker();
 
 });
-
-
-function enableLoading(enable){
-	if (enable) {
-		$('.tx-calendardisplay-loading').show();
-	} else {
-		$('.tx-calendardisplay-loading').hide();
-	}
-}

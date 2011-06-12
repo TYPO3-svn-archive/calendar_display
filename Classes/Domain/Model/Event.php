@@ -232,25 +232,19 @@
 	 *
 	 * @param integer $category Category
 	 * @param string $keyword Keyword
-	 * @param string $dateBegin the dateBegin
 	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_CalendarDisplay_Domain_Model_Resource> availableResources
 	 */
-	public function getAvailableResources($category = NULL, $keyword = '', $dateBegin = NULL) {
+	public function getAvailableResources($category = NULL, $keyword = '') {
 		$resourceRepository = t3lib_div::makeInstance('Tx_CalendarDisplay_Domain_Repository_ResourceRepository');
 		$bookings = $this->getBooking();		
 		if ($bookings) {
 			foreach ($bookings as $booking) {
 				foreach ($booking->getResources() as $resource) {
-					$resource->setAvailableDateBegin(strtotime($timeBegin));
 					$resource->setBookingNumber($booking->getNumber());
 				}
 			}
 		}
-		if ($category || $keyword || $dateBegin) {
-			return $resourceRepository->filterItems($category, $keyword);
-		} else {
-			return $resourceRepository->findAll();	
-		}
+		return $resourceRepository->filterItems($category, $keyword);
 	}
 }
 ?>

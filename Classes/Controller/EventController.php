@@ -246,6 +246,9 @@
 	 * @return void
 	 */
 	public function filterItemsAction($event = NULL, $category = NULL, $keyword = '', $dateBegin = NULL) {
+		foreach ($this->resourceRepository->findAll() as $resource) {
+			$resource->setAvailableDateBegin(strtotime($dateBegin));
+		}
 		if ($event) {
 			$this->view->assign('availableResources', $event->getAvailableResources($category, $keyword, $dateBegin));
 		} else {

@@ -27,7 +27,7 @@ $(document).ready(function(){
 		// prevent the default action, e.g., following a link
 		return false;
 	});
-
+	
 });
 
 /*
@@ -189,3 +189,10 @@ $(document).ready(function(){
 
 });
 
+function enableLoading(enable){
+	if (enable) {
+		$('.tx-calendardisplay-loading').show();
+	} else {
+		$('.tx-calendardisplay-loading').hide();
+	}
+}

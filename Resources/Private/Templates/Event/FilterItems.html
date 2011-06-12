@@ -22,15 +22,15 @@
 					<f:else>
 						<f:if condition="{resource.bookingNumber} > 0">
 							<tr class="{zebraClass}">
-								<td class="image">
+								<td class="tx-calendardisplay-list-wrapper-image">
 									<f:if condition="{resource.image}">
 										<f:image src="uploads/tx_calendardisplay/{resource.image}"  width="50" alt="{resource.name}" />
 									</f:if>
 								</td>
-								<td class="material">{resource.name}</td>
-								<td class="category">{resource.category.name}</td>								
-								<td class="available-number">{resource.availableNumber}</td>
-								<td class="reserve-number">
+								<td class="tx-calendardisplay-list-wrapper-material">{resource.name}</td>
+								<td class="tx-calendardisplay-list-wrapper-category">{resource.category.name}</td>								
+								<td class="tx-calendardisplay-list-wrapper-available-number">{resource.availableNumber}</td>
+								<td class="tx-calendardisplay-list-wrapper-reserve-number">
 									<input id="booking_{resource.uid}"  class="validate[custom[integer],max[{resource.totalAvailableNum]]" type="text" name="booking[{resource.uid}]" value="{resource.bookingNumber}" />
 								</td>
 							</tr>
