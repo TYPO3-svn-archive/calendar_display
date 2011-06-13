@@ -43,6 +43,10 @@ input.f3-form-error {
 	opacity:0.4;
 }
 
+.tx-calendardisplay-loading {
+	display: none;
+}
+
 /* CSS for event list */
 .tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list {
 	width: 100%;
@@ -301,4 +305,9 @@ input.f3-form-error {
 
 .tx-calendardisplay-text-align-center {
 	text-align: center;
+}
+
+/* Flash Message */
+.tx-calendardisplay-pi1 .typo3-messages {
+	margin: 0 0 10px 0;
 }

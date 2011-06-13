@@ -56,6 +56,9 @@
 			
 			/* new not yet translate */
 			<label index="action">Action</label>
+			<label index="tx_calendardisplay_domain_model_event.time_begin.required">Time begin is required</label>
+			<label index="tx_calendardisplay_domain_model_event.time_end.required">Time end is required</label>
+			<label index="tx_calendardisplay_domain_model_event.time_begin_end_rank">Time begin and Time end must stay in rank</label>
 		</languageKey>
 
 		<languageKey index="fr" type="array">		

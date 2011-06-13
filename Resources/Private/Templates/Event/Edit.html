@@ -1,9 +1,7 @@
 <f:layout name="Default" />
 <f:section name="main">
 
-<f:flashMessages />
-
-<f:render partial="formErrors" />
+<f:render partial="formErrors" arguments="{for:'event'}" />
 
 <f:form method="post" class="tx-calendardisplay-pi1-form-event" action="update" name="event" object="{event}" >
 	<f:render partial="Event/formFields" arguments="{event:event, availableResources:availableResources, categories:categories}" />

@@ -117,12 +117,15 @@
 		$this->view->assign('availableResources', $this->resourceRepository->findAll());
 		$this->view->assign('categories' , $this->resourceCategoryRepository->findAll());
 		$this->view->assign('refererAction', $refererAction);
+		$this->flashMessageContainer->flush();
 	}
 
 	/**
 	 * Creates a new Event and forwards to the list action.
 	 *
 	 * @param Tx_CalendarDisplay_Domain_Model_Event $newEvent a fresh Event object which has not yet been added to the repository
+	 * @dontvalidate $newEvent
+	 * @validate $newEvent Tx_CalendarDisplay_Domain_Validator_EventValidator
 	 * @return void
 	 */
 	public function createAction(Tx_CalendarDisplay_Domain_Model_Event $newEvent) {
@@ -167,12 +170,15 @@
 		$this->view->assign('availableResources', $event->getAvailableResources());
 		$this->view->assign('categories' , $this->resourceCategoryRepository->findAll());
 		$this->view->assign('refererAction', $refererAction);
+		$this->flashMessageContainer->flush();
 	}
 
 	/**
 	 * Updates an existing Event and forwards to the list action afterwards.
 	 *
 	 * @param Tx_CalendarDisplay_Domain_Model_Event $event the Event to display
+	 * @dontvalidate $event
+	 * @validate $event Tx_CalendarDisplay_Domain_Validator_EventValidator
 	 * @return void
 	 */
 	public function updateAction(Tx_CalendarDisplay_Domain_Model_Event $event) {
