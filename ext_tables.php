@@ -12,12 +12,9 @@ Tx_Extbase_Utility_Extension::registerPlugin(
 //t3lib_extMgm::addPiFlexFormValue($_EXTKEY . '_pi1', 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_pi1.xml');
 
 
-
-
-
-t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Calendar Display');
-
-
+# ADD TYPOSCRIPT CONFIGURATION
+t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Calendar Display: configuration');
+t3lib_extMgm::addStaticFile($_EXTKEY, 'Configuration/TypoScript/Header', 'Calendar Display: JavaScript and CSS loading');
 
 
 t3lib_extMgm::addLLrefForTCAdescr('tx_calendardisplay_domain_model_resource', 'EXT:calendar_display/Resources/Private/Language/locallang_csh_tx_calendardisplay_domain_model_resource.xml');

@@ -53,40 +53,6 @@ plugin.tx_calendardisplay {
 }
 
 ################################
-# JavaScript + CSS inclusion
-################################
-
-# CSS
-page.includeCSS.jquery_fullcalendar = EXT:calendar_display/Resources/Public/JavaScript/fullcalendar/fullcalendar.css
-page.includeCSS.jquery_fullcalendar_print = EXT:calendar_display/Resources/Public/JavaScript/fullcalendar/fullcalendar.print.css
-page.includeCSS.jquery_fullcalendar_print.media = print
-page.includeCSS.jquery_ui = EXT:calendar_display/Resources/Public/JavaScript/jquery-ui-1.8.12.custom/css/redmond/jquery-ui-1.8.12.custom.css
-page.includeCSS.calendar_display = EXT:calendar_display/Resources/Public/Media/StyleSheets/CalendarDisplay.css
-page.includeCSS.calendar_validationEngine = EXT:calendar_display/Resources/Public/Media/StyleSheets/validationEngine.jquery.css
-
-# JavaScript Lib
-page.includeJSlibs.jquery = EXT:calendar_display/Resources/Public/JavaScript/jquery-1.5.2.min.js
-page.includeJSlibs.jquery_ui = EXT:calendar_display/Resources/Public/JavaScript/jquery-ui-1.8.12.custom/js/jquery-ui-1.8.12.custom.min.js
-
-# jQuery FullCalendar
-page.includeJS.jquery_fullcalendar = EXT:calendar_display/Resources/Public/JavaScript/fullcalendar/fullcalendar.js
-# Example line to have the Calender View translated
-// page.includeJS.jquery_fullcalendar_lang = EXT:calendar_display/Resources/Public/JavaScript/fullcalendar/fullcalendar-fr.js
-
-# jQuery Time Picker
-page.includeJS.jquery_timepicker = EXT:calendar_display/Resources/Public/JavaScript/timepicker/jquery-ui-timepicker-addon.js
-# Example line to have the Calender View translated
-// page.includeJS.jquery_timepicker_lang = EXT:calendar_display/Resources/Public/JavaScript/timepicker/jquery-ui-timepicker-addon-fr.js
-
-# jQuery Block UI
-page.includeJS.jquery_blockuid = EXT:calendar_display/Resources/Public/JavaScript/jquery.blockUI/jquery.blockUI.js
-
-# JavaScript for Validator
-page.includeJS.calendar_validator = EXT:calendar_display/Resources/Public/JavaScript/jquery.validationEngine/jquery.validationEngine.js
-page.includeJS.calendar_validator_lang  = EXT:calendar_display/Resources/Public/JavaScript/jquery.validationEngine/languages/jquery.validationEngine-en.js
-
-
-################################
 # CSS Styles
 ################################
 plugin.tx_calendardisplay._CSS_DEFAULT_STYLE (
