@@ -41,7 +41,7 @@
 			<label index="category">Category</label>
 			<label index="available_number">Available</label>
 			<label index="reserve_number">Booked</label>
-			<label index="no_available_item">No available item</label>
+			<label index="no_available_item">No item available</label>
 			<label index="category">category</label>
 			<label index="all">All</label>
 			<label index="next">next</label>
@@ -99,7 +99,7 @@
 			<label index="category">Catégorie</label>
 			<label index="available_number">Disponible</label>
 			<label index="reserve_number">Reservé</label>
-			<label index="no_available_item">No available item</label>
+			<label index="no_available_item">Pas de ressource disponible</label>
 			<label index="category">Catégorie</label>
 			<label index="all">Tous</label>
 			<label index="next">suivant</label>

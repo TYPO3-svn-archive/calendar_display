@@ -39,11 +39,14 @@ $(document).ready(function(){
 	 * Filter the list of event
 	 */
 	CalendarDisplay.filterEvents = function() {
-		var category = $('#tx-calendardisplay-list-filter-category').val();
-		var keyword = $('#tx-calendardisplay-list-filter-keyword').val();
-		var timeBegin = $('#tx-calendardisplay-list-filter-timeBegin').val();
 		$.ajax({
 			url: '/?type=12638&tx_calendardisplay_pi1[category]=' + category + '&tx_calendardisplay_pi1[keyword]=' + keyword + '&tx_calendardisplay_pi1[dateBegin]=' + timeBegin,
+			data: {
+				'type': 12638,
+				'tx_calendardisplay_pi1[keyword]': $('#tx-calendardisplay-list-filter-keyword').val(),
+				'tx_calendardisplay_pi1[category]': $('#tx-calendardisplay-list-filter-category').val(),
+				'tx_calendardisplay_pi1[dateBegin]': $('#tx-calendardisplay-list-filter-timeBegin').val()
+			},
 			beforeSend: function() {enableLoading(true)},
 			success: function(data) {
 				enableLoading(false);
@@ -57,12 +60,18 @@ $(document).ready(function(){
 	 * Filter the list of items
 	 */
 	CalendarDisplay.filterResources = function() {
-		var category = $('.tx-calendardisplay-wrapper-column-second select.tx-calendardisplay-filter-category').val();
-		var keyword = $('.tx-calendardisplay-wrapper-column-second input.tx-calendardisplay-filter-keyword').val();
-		var eventId = $('#tx-calendardisplay-pi1-event-id').val();
-		var timeBegin = $('#tx-calendardisplay-form-event-timeBegin').val();
 		$.ajax({
-			url: '/?type=12637&tx_calendardisplay_pi1[event]=' + eventId + '&tx_calendardisplay_pi1[category]=' + category + '&tx_calendardisplay_pi1[keyword]=' + keyword + '&tx_calendardisplay_pi1[dateBegin]=' + timeBegin,
+			url: '/index.php',
+			data: {
+				// Controller: "Event"
+				// Action: "filterItems"
+				'type': 12637,
+				'tx_calendardisplay_pi1[event]': $('#tx-calendardisplay-pi1-event-id').val(),
+				'tx_calendardisplay_pi1[keyword]': $('.tx-calendardisplay-filter-keyword').val(),
+				'tx_calendardisplay_pi1[category]': $('.tx-calendardisplay-filter-category').val(),
+				'tx_calendardisplay_pi1[dateBegin]': $('#tx-calendardisplay-form-event-timeBegin').val(),
+				'tx_calendardisplay_pi1[dateEnd]': $('#tx-calendardisplay-form-event-timeEnd').val()
+			},
 			beforeSend: function() {enableLoading(true)},
 			success: function(data) {
 				enableLoading(false);

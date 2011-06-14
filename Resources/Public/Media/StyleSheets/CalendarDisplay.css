@@ -73,13 +73,6 @@ input.f3-form-error {
 	float: left;
 }
 
-.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper-search input.tx-calendardisplay-filter-keyword {
-	width: 120px;
-	margin: 0 0 0 5px;
-	background: #FFFFFF url("../Icons/search_bg.gif") no-repeat left center;
-	padding-left: 12px;
-}
-
 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-date-start {
 	float: right;
 }
@@ -97,7 +90,6 @@ input.f3-form-error {
 
 .tx-calendardisplay-wrapper-column-second .tx-calendardisplay-list-wrapper {
 	max-height: 500px;
-	overflow: scroll;
 	overflow-x: hidden;
 	position: relative;
 }
@@ -212,12 +204,6 @@ input.f3-form-error {
 
 .tx-calendardisplay-wrapper-column-second .tx-calendardisplay-filter-wrapper-search {
 	float: right;
-}
-
-.tx-calendardisplay-wrapper-column-second .tx-calendardisplay-filter-wrapper-search input.tx-calendardisplay-filter-keyword {
-	width: 120px;
-	background: #FFFFFF url("../Icons/search_bg.gif") no-repeat left center;
-	padding-left: 12px;
 }
 
 .tx-calendardisplay-wrapper-column-second {

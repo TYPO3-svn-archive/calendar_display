@@ -249,16 +249,22 @@
 	 * @param integer $category the Category to be filter
 	 * @param string $keyword the Keyword
 	 * @param string $dateBegin the dateBegin
+	 * @param string $dateEnd the dateEnd
 	 * @return void
 	 */
-	public function filterItemsAction($event = NULL, $category = NULL, $keyword = '', $dateBegin = NULL) {
-		foreach ($this->resourceRepository->findAll() as $resource) {
-			$resource->setAvailableDateBegin(strtotime($dateBegin));
+	public function filterItemsAction($event = NULL, $category = NULL, $keyword = '', $dateBegin = NULL, $dateEnd = NULL) {
+		if (strtotime($dateBegin) <= strtotime($dateEnd)) {
+			foreach ($this->resourceRepository->findAll() as $resource) {
+				$resource->setAvailableDateBegin(strtotime($dateBegin));
+			}
+			if ($event) {
+				$this->view->assign('availableResources', $event->getAvailableResources($category, $keyword, $dateBegin));
+			} else {
+				$this->view->assign('availableResources', $this->resourceRepository->filterItems($category, $keyword));
+			}
 		}
-		if ($event) {
-			$this->view->assign('availableResources', $event->getAvailableResources($category, $keyword, $dateBegin));
-		} else {
-			$this->view->assign('availableResources', $this->resourceRepository->filterItems($category, $keyword));
+		else {
+			$this->view->assign('availableResources', array());
 		}
 	}
 }

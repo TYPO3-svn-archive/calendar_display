@@ -129,15 +129,11 @@ $.extend(Timepicker.prototype, {
 			beforeShow: function(input, dp_inst) {
 				// Patched by Fabien for calendar_display needs - 14.06.11
 				// Store values
-				if (typeof(CalendarDisplay.State.timeBegin) == 'undefined') {
-					CalendarDisplay.State.timeBegin = '';
-					CalendarDisplay.State.timeEnd = '';
+				if (typeof(CalendarDisplay.State.time) == 'undefined') {
+					CalendarDisplay.State.time = '';
 				}
-				if ($('#tx-calendardisplay-form-event-timeBegin').val() != '') {
-					CalendarDisplay.State.timeBegin = $('#tx-calendardisplay-form-event-timeBegin').val();
-				}
-				if ($('#tx-calendardisplay-form-event-timeEnd').val() != '') {
-					CalendarDisplay.State.timeEnd = $('#tx-calendardisplay-form-event-timeEnd').val();
+				if ($(this).val() != '') {
+					CalendarDisplay.State.time = $(this).val();
 				}
 				// End of patch
 				if ($.isFunction(o.beforeShow))
@@ -156,12 +152,8 @@ $.extend(Timepicker.prototype, {
 					o.onClose(dateText, dp_inst, tp_inst);
 				// Patched by Fabien for calendar_display needs - 14.06.11
 				// Reload the UI
-				if (CalendarDisplay.State.timeBegin == '' ||
-						CalendarDisplay.State.timeBegin != $('#tx-calendardisplay-form-event-timeBegin').val()) {
-					CalendarDisplay.filterResources();
-				}
-				if (CalendarDisplay.State.timeEnd == '' ||
-						CalendarDisplay.State.timeEnd != $('#tx-calendardisplay-form-event-timeEnd').val()) {
+				if (CalendarDisplay.State.time == '' ||
+						CalendarDisplay.State.time != $(this).val()) {
 					CalendarDisplay.filterResources();
 				}
 				// End of patch

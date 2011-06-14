@@ -15,8 +15,8 @@ function clock() {
 			$('.tx-calendardisplay-loading').hide();
 
 			// filter option
-			$('.tx-calendardisplay-wrapper-column-second select.tx-calendardisplay-filter-category').change(CalendarDisplay.filterResources);
-			$('.tx-calendardisplay-wrapper-column-second input.tx-calendardisplay-filter-keyword').keyup(CalendarDisplay.filterResources);
+			$('.tx-calendardisplay-filter-category').change(CalendarDisplay.filterResources);
+			$('.tx-calendardisplay-filter-keyword').keyup(CalendarDisplay.filterResources);
 
 			CalendarDisplay.timer = 0;
 
@@ -101,7 +101,7 @@ function clock() {
 					</f:if>
 				</div>
 				<div class="tx-calendardisplay-filter-wrapper-search">
-					<f:form.textfield name="keyword" class="tx-calendardisplay-filter-keyword" placeholder="<f:translate key='search' />" />
+					<f:form.textfield type="search" name="keyword" class="tx-calendardisplay-filter-keyword" placeholder="<f:translate key='search' />" />
 				</div>
 			</div>
 			<div class="tx-calendardisplay-list-wrapper">
