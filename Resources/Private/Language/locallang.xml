@@ -18,6 +18,7 @@
 			<label index="tx_calendardisplay_domain_model_resourcecategory">Resource Category</label>
 
 			<label index="new_event">New Event</label>
+			<label index="save">Save</label>
 			<label index="update_event">Update Event</label>
 			<label index="make_new_event">Make new event</label>
 			<label index="filter_selection">Filter selection:</label>
@@ -37,8 +38,8 @@
 			<label index="please_login">Please, log in to be able to create new event.</label>
 			<label index="alvailable_item_description">Among the equipment available, choose the desired number for each item.</label>
 			<label index="category">Category</label>
-			<label index="available_number">num. Available</label>
-			<label index="reserve_number">num. Reserve</label>
+			<label index="available_number">Available</label>
+			<label index="reserve_number">Booked</label>
 			<label index="no_available_item">No available item</label>
 			<label index="category">category</label>
 			<label index="all">All</label>
@@ -74,6 +75,7 @@
 			<label index="tx_calendardisplay_domain_model_resourcecategory">Ressource Catégorie</label>
 
 			<label index="new_event">Nouvel événement</label>
+			<label index="save">Sauver</label>
 			<label index="update_event">Mettre à jour événement</label>
 			<label index="make_new_event">Créer un événement</label>
 			<label index="filter_selection">Filtre:</label>
@@ -93,8 +95,8 @@
 			<label index="please_login">Veuillez vous identifier pour créer de nouveaux enregistrements.</label>
 			<label index="alvailable_item_description">Parmi les équipments disponibles, choisissez le nombre désiré à réserver.</label>
 			<label index="category">Catégorie</label>
-			<label index="available_number">num. Available</label>
-			<label index="reserve_number">num. Reserve</label>
+			<label index="available_number">Disponible</label>
+			<label index="reserve_number">Reservé</label>
 			<label index="no_available_item">No available item</label>
 			<label index="category">Catégorie</label>
 			<label index="all">Tous</label>

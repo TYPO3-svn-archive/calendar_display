@@ -1,5 +1,6 @@
 /* CSS to make sure UI looks good */
 .ui-datepicker,
+.ui-dialog-buttonpane,
 .ui-dialog-content {
 	font-size: 13px;
 	text-align: left;
@@ -48,107 +49,107 @@ input.f3-form-error {
 }
 
 /* CSS for event list */
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list {
+.tx-calendardisplay-available-item-event-list {
 	width: 100%;
 }
 
 	
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper {
+.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper {
 	width: 100%;
 	padding: 15px 0 0 0;
 	overflow: hidden;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper-filter {
+.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper-filter {
 	float: left;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper-filter select {
+.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper-filter select {
 	width: 80px;
 	margin: 0 20px 0 5px;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper-search {
+.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper-search {
 	float: left;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper-search input.tx-calendardisplay-filter-keyword {
+.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper-search input.tx-calendardisplay-filter-keyword {
 	width: 120px;
 	margin: 0 0 0 5px;
 	background: #FFFFFF url("../Icons/search_bg.gif") no-repeat left center;
 	padding-left: 12px;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-date-start {
+.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-date-start {
 	float: right;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-date-start input {
+.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-date-start input {
 	width: 100px;
 	margin: 0 0 0 5px;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper
+.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper div {
+.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper div {
 	float: left;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-list-wrapper {
+.tx-calendardisplay-available-item-event-list .tx-calendardisplay-list-wrapper {
 	position: relative;
 	overflow: hidden;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-list-wrapper img.tx-calendardisplay-loading {
+.tx-calendardisplay-available-item-event-list .tx-calendardisplay-list-wrapper img.tx-calendardisplay-loading {
 	position: absolute;
 	left: 45%;
 	top: 35%
 }
 	
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table {
+.tx-calendardisplay-available-item-event-list table {
 	width: 100%;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table thead tr th {
+.tx-calendardisplay-available-item-event-list table thead tr th {
 	background-color: #396BA0;
 	color: #FFFFFF;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table tr.tx-calendardisplay-odd td {
+.tx-calendardisplay-available-item-event-list table tr.tx-calendardisplay-odd td {
 	background-color: #E3ECF5;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table tr.tx-calendardisplay-even td {
+.tx-calendardisplay-available-item-event-list table tr.tx-calendardisplay-even td {
 	background-color: #FFFFFF;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table th,
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table td {
+.tx-calendardisplay-available-item-event-list table th,
+.tx-calendardisplay-available-item-event-list table td {
 	border: 1px solid #000000;
 	padding: 5px 5px 5px 5px;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list ul {
+.tx-calendardisplay-available-item-event-list ul {
 	margin: 0;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list ul li {
+.tx-calendardisplay-available-item-event-list ul li {
 	margin: 0;
 	list-style: none;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table tbody tr {
+.tx-calendardisplay-available-item-event-list table tbody tr {
 	vertical-align: top;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table .tx-calendardisplay-list-wrapper-quantity,
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table .tx-calendardisplay-list-wrapper-edit,
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table .tx-calendardisplay-list-wrapper-delete {
+.tx-calendardisplay-available-item-event-list table .tx-calendardisplay-list-wrapper-quantity,
+.tx-calendardisplay-available-item-event-list table .tx-calendardisplay-list-wrapper-edit,
+.tx-calendardisplay-available-item-event-list table .tx-calendardisplay-list-wrapper-delete {
 	text-align: center;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table a.tx-calendardisplay-list-wrapper-edit,
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table a.tx-calendardisplay-list-wrapper-delete {
+.tx-calendardisplay-available-item-event-list table a.tx-calendardisplay-list-wrapper-edit,
+.tx-calendardisplay-available-item-event-list table a.tx-calendardisplay-list-wrapper-delete {
 	display: block;
 	float: left;
 	width: 16px;
@@ -158,113 +159,120 @@ input.f3-form-error {
 	margin-left: 5px;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table a.tx-calendardisplay-list-wrapper-edit {
+.tx-calendardisplay-available-item-event-list table a.tx-calendardisplay-list-wrapper-edit {
 	background: url("../Icons/edit.png") no-repeat center center;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item-event-list table a.tx-calendardisplay-list-wrapper-delete {
+.tx-calendardisplay-available-item-event-list table a.tx-calendardisplay-list-wrapper-delete {
 	background: url("../Icons/delete.png") no-repeat center center;
 }
 
 /* CSS for event edit */
-.tx-calendardisplay-pi1 .tx-calendardisplay-form-event-wrapper {
-	margin: 0 0 30px 0;
-}
-
-.tx-calendardisplay-pi1 .tx-calendardisplay-form-event-wrapper div {
-	clear: both;
-	padding: 0 0 10px 0;
-}
-
-.tx-calendardisplay-pi1 .tx-calendardisplay-form-event-wrapper .tx-calendardisplay-form-event-note {
-	margin: 20px 0 0 0;
-}
-
-.tx-calendardisplay-pi1 .tx-calendardisplay-form-event-wrapper label {
-	width: 100px;
+.tx-calendardisplay-form-event-wrapper label {
+	width: 220px;
 	display: block;
+	color: #666;
 }
 
 #tx-calendardisplay-form-event-time-begin,
 #tx-calendardisplay-form-event-time-end {
-	width: 200px;
+	width: 220px;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item .tx-calendardisplay-filter-wrapper {
+#tx-calendardisplay-form-event-note {
+	width: 220px;
+	height: 100px;
+}
+
+.tx-calendardisplay-event-input {
+	margin-bottom: 10px;
+}
+
+.tx-calendardisplay-available-item .tx-calendardisplay-filter-wrapper {
 	width: 100%;
 	margin: 0 0 10px 0;
 	overflow: hidden;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item .tx-calendardisplay-filter-wrapper-filter {
+.tx-calendardisplay-available-item .tx-calendardisplay-filter-wrapper-filter {
 	float: left;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item .tx-calendardisplay-filter-wrapper-filter select {
+.tx-calendardisplay-available-item .tx-calendardisplay-filter-wrapper-filter select {
 	width: 80px;
 	margin: 0 0 0 5px;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item .tx-calendardisplay-filter-wrapper-search {
+.tx-calendardisplay-available-item .tx-calendardisplay-filter-wrapper-search {
 	float: right;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item .tx-calendardisplay-filter-wrapper-search input.tx-calendardisplay-filter-keyword {
+.tx-calendardisplay-available-item .tx-calendardisplay-filter-wrapper-search input.tx-calendardisplay-filter-keyword {
 	width: 120px;
 	background: #FFFFFF url("../Icons/search_bg.gif") no-repeat left center;
 	padding-left: 12px;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item {
+.tx-calendardisplay-available-item {
 	width: 80%;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item p {
+.tx-calendardisplay-available-item p {
 	margin: 0 0 30px 0;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item .tx-calendardisplay-list-wrapper {
+.tx-calendardisplay-available-item .tx-calendardisplay-list-wrapper {
 	position: relative;
 	overflow: hidden;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item .tx-calendardisplay-list-wrapper img.tx-calendardisplay-loading {
+.tx-calendardisplay-available-item .tx-calendardisplay-list-wrapper img.tx-calendardisplay-loading {
 	position: absolute;
 	left: 45%;
 	top: 35%
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item table {
+.tx-calendardisplay-available-item table {
 	width: 100%;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item table thead tr th {
+.tx-calendardisplay-available-item table thead tr th {
 	background-color: #396BA0;
 	color: #FFFFFF;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item table tr.tx-calendardisplay-odd {
+.tx-calendardisplay-available-item table tr.tx-calendardisplay-odd {
 	background-color: #E3ECF5;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item table th,
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item table td {
+.tx-calendardisplay-available-item table th,
+.tx-calendardisplay-available-item table td {
 	border: 1px solid #000000;
 	padding: 5px 5px 5px 5px;
 	
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item table tbody tr {
+.tx-calendardisplay-available-item table tbody tr {
 	vertical-align: top;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item table .tx-calendardisplay-list-wrapper-available-number,
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item table .tx-calendardisplay-list-wrapper-reserve-number,
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item table .tx-calendardisplay-list-wrapper-image {
+.tx-calendardisplay-list-wrapper-available-number,
+.tx-calendardisplay-list-wrapper-reserve-number,
+.tx-calendardisplay-list-wrapper-image {
 	text-align: center;
 }
 
-.tx-calendardisplay-pi1 .tx-calendardisplay-available-item table .tx-calendardisplay-list-wrapper-reserve-number input {
+.tx-calendardisplay-list-wrapper-image,
+.tx-calendardisplay-list-wrapper-available-number,
+.tx-calendardisplay-list-wrapper-reserve-number {
+	width: 1px;
+}
+
+.tx-calendardisplay-list-wrapper td {
+	vertical-align: middle;
+}
+
+.tx-calendardisplay-list-wrapper-reserve-number input {
 	width: 50px;
 }
 
@@ -293,6 +301,32 @@ input.f3-form-error {
 .tx-calendardisplay-pi1 .edit-sign .fc-event-inner .fc-event-head {
 	background: url("../Icons/edit.png") no-repeat right top;
 }
+
+.tx-calendardisplay-wrapper-column-first {
+	margin-right: 20px;
+}
+
+.tx-calendardisplay-wrapper-column-second {
+	width: 520px
+}
+
+.tx-calendardisplay-filter-category {
+	height: 20px;
+	font-size: 11px !important;
+}
+
+.tx-calendardisplay-wrapper-light {
+	color: #666;
+}
+
+.tx-calendardisplay-box-right {
+	float: right;
+}
+
+.tx-calendardisplay-box-left {
+	float: left;
+}
+
 
 .tx-calendardisplay-box-header-right {
 	float: right;

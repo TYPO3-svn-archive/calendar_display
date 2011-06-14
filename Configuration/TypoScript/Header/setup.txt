@@ -16,7 +16,7 @@ page.includeCSS.calendar_validationEngine = EXT:calendar_display/Resources/Publi
 ################################
 
 # JavaScript Lib
-page.includeJSlibs.jquery = EXT:calendar_display/Resources/Public/JavaScript/jquery-1.5.2.min.js
+page.includeJSlibs.jquery = EXT:calendar_display/Resources/Public/JavaScript/jquery-ui-1.8.12.custom/js/jquery-1.5.1.min.js
 page.includeJSlibs.jquery_ui = EXT:calendar_display/Resources/Public/JavaScript/jquery-ui-1.8.12.custom/js/jquery-ui-1.8.12.custom.min.js
 
 # jQuery FullCalendar

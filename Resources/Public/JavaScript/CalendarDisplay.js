@@ -79,7 +79,15 @@ $(document).ready(function(){
 		var dialog = $('<div></div>').dialog({
 			autoOpen: false,
 			modal: true,
-			width: 610
+			width: 800,
+			buttons: [{
+
+				text: CalendarDisplay.Lang.dialogSaveButton,
+				click: function() {
+
+					$(this).dialog("close");
+				}
+			}]
 		});
 
 		return dialog;
@@ -116,7 +124,6 @@ $(document).ready(function(){
 
 		return $.extend(defaultOptions, languageOptions, CalendarDisplay._timePicker);
 	}
-
 
 	/**
 	 * Return calendar options
@@ -189,6 +196,41 @@ $(document).ready(function(){
 
 });
 
+/*
+ * Common function for Calendar Display
+ */
+$(document).ready(function(){
+
+	/**
+	 * Initialize object that contains configuration
+	 */
+	var config = {
+
+		/*
+		 * jQuery Plugin
+		 */
+		WaitingUI : {
+			options: CalendarDisplay.getWaitingUIOptions()
+		},
+
+		/*
+		 * jQuery UI Timepicker widget
+		 */
+		TimePicker : {
+			options: CalendarDisplay.getTimePickerOptions()
+		},
+
+		/*
+		 * jQuery UI Dialog widget
+		 */
+		Dialog: CalendarDisplay.initializeDialog(),
+	};
+
+	// merge configuation
+	CalendarDisplay = $.extend(CalendarDisplay, config);
+});
+
+// @temp see how we can encapsulate this function
 function enableLoading(enable){
 	if (enable) {
 		$('.tx-calendardisplay-loading').show();

@@ -15,23 +15,25 @@
 /**
  * Return the language options
  */
-$.fullCalendar.getLanguageOptions = function () {
+(function($) {
+	$.fullCalendar.getLanguageOptions = function () {
 
-	var options = {
-		timeFormat: {
-			agenda: 'h(:mm)t{ - h(:mm)t}',
-			'': 'h(:mm)t{-h(:mm)t }'
-		},
-		monthNames: ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
-		monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
-		dayNames: [ 'Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
-		dayNamesShort: ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
-		buttonText: {
-			today: 'hoy',
-			month: 'mes',
-			week: 'semana',
-			day: 'día'
-		}
-	};
-	return options;
-}
+		var options = {
+			timeFormat: {
+				agenda: 'h(:mm)t{ - h(:mm)t}',
+				'': 'h(:mm)t{-h(:mm)t }'
+			},
+			monthNames: ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
+			monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'],
+			dayNames: [ 'Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+			dayNamesShort: ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'],
+			buttonText: {
+				today: 'hoy',
+				month: 'mes',
+				week: 'semana',
+				day: 'día'
+			}
+		};
+		return options;
+	}
+})(jQuery);

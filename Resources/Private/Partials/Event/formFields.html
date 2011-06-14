@@ -17,11 +17,12 @@
 			$('#tx-calendardisplay-form-event-time-begin').datetimepicker();
 			$('#tx-calendardisplay-form-event-time-end').datetimepicker();
 			
-			$(".tx-calendardisplay-pi1-form-event").validationEngine();
+			//$(".tx-calendardisplay-pi1-form-event").validationEngine();
 			
 		}); // end DOM ready
 	}); // end of clausure
 })(jQuery);
+
    /**
 	*
 	* @param {jqObject} the field where the validation applies
@@ -41,41 +42,41 @@
 </script>
 
 <div class="tx-calendardisplay-form-event-wrapper">
-	<table>
-		<tr>
-			<td>
-				<label for="tx-calendardisplay-form-event-time-begin">
-					<f:translate key="tx_calendardisplay_domain_model_event.time_begin" />
-				</label>
-				<f:form.textfield class="validate[required]" id="tx-calendardisplay-form-event-time-begin" property="timeBegin" value="{event.timeBegin -> f:format.date(format:'m/d/Y H:i')}" />
-			</td>
-			<td style="padding-left: 20px">
-				<label for="tx-calendardisplay-form-event-time-end">
-					<f:translate key="tx_calendardisplay_domain_model_event.time_end" />
-				</label>
-				<f:form.textfield class="validate[required,funcCall[checkDateRange]]" id="tx-calendardisplay-form-event-time-end" property="timeEnd" value="{event.timeEnd -> f:format.date(format:'m/d/Y H:i')}" />
-			</td>
-		</tr>
-	</table>
-	
-	<div class="tx-calendardisplay-form-event-note">
-		<label for="tx-calendardisplay-form-event-note">
-			<f:translate key="tx_calendardisplay_domain_model_event.note" />
-		</label>
-		<f:form.textarea id="tx-calendardisplay-form-event-note" property="note" rows="3" cols="80" />
+	<div class="tx-calendardisplay-box-left tx-calendardisplay-wrapper-column-first" >
+		<div class="tx-calendardisplay-event-input">
+			<label for="tx-calendardisplay-form-event-time-begin">
+				<f:translate key="tx_calendardisplay_domain_model_event.time_begin" />
+			</label>
+			<f:form.textfield class="validate[required]" id="tx-calendardisplay-form-event-time-begin" property="timeBegin" value="{event.timeBegin -> f:format.date(format:'m/d/Y H:i')}" />
+		</div>
+		
+		<div class="tx-calendardisplay-event-input">
+			<label for="tx-calendardisplay-form-event-time-end">
+				<f:translate key="tx_calendardisplay_domain_model_event.time_end" />
+			</label>
+			<f:form.textfield class="validate[required,funcCall[checkDateRange]]" id="tx-calendardisplay-form-event-time-end" property="timeEnd" value="{event.timeEnd -> f:format.date(format:'m/d/Y H:i')}" />
+		</div>
+
+		<div class="tx-calendardisplay-event-input">
+			<label for="tx-calendardisplay-form-event-note">
+				<f:translate key="tx_calendardisplay_domain_model_event.note" />
+			</label>
+			<f:form.textarea id="tx-calendardisplay-form-event-note" property="note" rows="3" cols="80" />
+		</div>
 	</div>
+	
 </div>
 
 <f:if condition="{availableResources}">
 	<f:then>
-		<div class="tx-calendardisplay-available-item">
-			<p>
+		<div class="tx-calendardisplay-available-item tx-calendardisplay-box-left tx-calendardisplay-wrapper-column-second">
+			<p class="tx-calendardisplay-wrapper-light">
 				<f:translate key="alvailable_item_description" />
 			</p>
 			<div class="tx-calendardisplay-filter-wrapper">
 				<div class="tx-calendardisplay-filter-wrapper-filter">
 					<f:if condition="{categories}">
-						<label><f:translate key="category" /></label>	
+						<label class="tx-calendardisplay-wrapper-light"><f:translate key="category" /></label>
 						<calendar:form.select class="tx-calendardisplay-filter-category" name="category" prependOption="<f:translate key='all' />" options="{categories}" optionValueField="uid" optionLabelField="name" />
 					</f:if>
 				</div>

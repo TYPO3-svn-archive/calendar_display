@@ -8,9 +8,12 @@
 	<script type="text/javascript">
 
 		var CalendarDisplay = {};
+		CalendarDisplay.Lang = {};
 
-		var _dialogTitleNew = '<f:translate key="new_event" />';
-		var _dialogTitleUpdate = '<f:translate key="update_event" />';
+		CalendarDisplay.Lang.dialogSaveButton = '<f:translate key="save" />';
+		CalendarDisplay.Lang.dialogTitleNew = '<f:translate key="new_event" />';
+		CalendarDisplay.Lang.dialogTitleUpdate = '<f:translate key="update_event" />';
+
 		CalendarDisplay._timePicker = {settings.timePicker.options};
 		CalendarDisplay._waitingUI = {settings.waitingUI.options};
 		CalendarDisplay._calendar = {settings.calendar.options};
