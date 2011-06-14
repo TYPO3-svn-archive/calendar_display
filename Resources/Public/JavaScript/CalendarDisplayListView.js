@@ -38,6 +38,9 @@ $(document).ready(function(){
 	$('#tx-calendardisplay-list-filter-keyword').keyup(CalendarDisplay.filterEvents);
 	$('#tx-calendardisplay-list-filter-timeBegin').change(CalendarDisplay.filterEvents);
 
+	// add datetime picker to date-start
+	$('#tx-calendardisplay-list-filter-timeBegin').datepicker(CalendarDisplay.TimePicker.options);
+
 });
 
 /*
@@ -62,9 +65,5 @@ $(document).ready(function(){
 
 	// merge configuation
 	CalendarDisplay = $.extend(CalendarDisplay, config);
-
-
-	// add datetime picker to date-start
-	$('.tx-calendardisplay-filter-date-start > input').datepicker();
 
 });

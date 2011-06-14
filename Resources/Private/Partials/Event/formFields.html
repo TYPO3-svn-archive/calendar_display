@@ -2,23 +2,43 @@
 <script type="text/javascript">
 // <![CDATA[
 
+function clock() {
+	console.log('*');
+}
+
+
+
 (function($) {
 	$(function() {
 		$(document).ready(function(){
 			// hide the loading image
 			$('.tx-calendardisplay-loading').hide();
-			
+
 			// filter option
-			$('.tx-calendardisplay-available-item select.tx-calendardisplay-filter-category').change(CalendarDisplay.filterItems);
-			$('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').keyup(CalendarDisplay.filterItems);
-			$('#tx-calendardisplay-form-event-time-begin').change(CalendarDisplay.filterItems);
-						
+			$('.tx-calendardisplay-wrapper-column-second select.tx-calendardisplay-filter-category').change(CalendarDisplay.filterResources);
+			$('.tx-calendardisplay-wrapper-column-second input.tx-calendardisplay-filter-keyword').keyup(CalendarDisplay.filterResources);
+
+			CalendarDisplay.timer = 0;
+
+			$('#tx-calendardisplay-form-event-time-begin').change(function() {
+
+				clock();
+
+				//CalendarDisplay.filterResources
+			});
+
+			$('#tx-calendardisplay-form-event-time-begin').change(function () {
+				if ($('#tx-calendardisplay-form-event-time-end').val() == '') {
+					$('#tx-calendardisplay-form-event-time-end').val($('#tx-calendardisplay-form-event-time-begin').val());
+				}
+			});
+
 			// add datetime picker to date-start
-			$('#tx-calendardisplay-form-event-time-begin').datetimepicker();
-			$('#tx-calendardisplay-form-event-time-end').datetimepicker();
-			
+			$('#tx-calendardisplay-form-event-time-begin').datetimepicker(CalendarDisplay.TimePicker.options);
+			$('#tx-calendardisplay-form-event-time-end').datetimepicker(CalendarDisplay.TimePicker.options);
+
 			//$(".tx-calendardisplay-pi1-form-event").validationEngine();
-			
+
 		}); // end DOM ready
 	}); // end of clausure
 })(jQuery);
@@ -35,8 +55,8 @@
 	   var startDate = $('#tx-calendardisplay-form-event-time-begin').val();
 	   var endDate = field.val();
 	   if (new Date(startDate.toString()) >= new Date(endDate.toString())) {
-	      return '* Invalid Date Time Range'; 
-	   }          
+	      return '* Invalid Date Time Range';
+	   }
 	}
 // ]]>
 </script>
@@ -49,7 +69,7 @@
 			</label>
 			<f:form.textfield class="validate[required]" id="tx-calendardisplay-form-event-time-begin" property="timeBegin" value="{event.timeBegin -> f:format.date(format:'m/d/Y H:i')}" />
 		</div>
-		
+
 		<div class="tx-calendardisplay-event-input">
 			<label for="tx-calendardisplay-form-event-time-end">
 				<f:translate key="tx_calendardisplay_domain_model_event.time_end" />
@@ -64,7 +84,7 @@
 			<f:form.textarea id="tx-calendardisplay-form-event-note" property="note" rows="3" cols="80" />
 		</div>
 	</div>
-	
+
 </div>
 
 <f:if condition="{availableResources}">
@@ -97,43 +117,24 @@
 						</tr>
 					</thead>
 					<tbody>
-						<f:for each="{availableResources}" as="resource">							
+						<f:for each="{availableResources}" as="resource">
 							<f:cycle values="{0: 'tx-calendardisplay-odd', 1: 'tx-calendardisplay-even'}" as="zebraClass">
 								<f:if condition="{resource.availableNumber} > 0">
-									<f:then>
-										<tr class="{zebraClass}">
-											<td class="tx-calendardisplay-list-wrapper-image">
-												<f:if condition="{resource.image}">
-													<f:image src="uploads/tx_calendardisplay/{resource.image}"  width="50" alt="{resource.name}" />
-												</f:if>
-											</td>
-											<td class="tx-calendardisplay-list-wrapper-material">{resource.name}</td>
-											<td class="tx-calendardisplay-list-wrapper-category">{resource.category.name}</td>								
-											<td class="tx-calendardisplay-list-wrapper-available-number">{resource.availableNumber}</td>
-											<td class="tx-calendardisplay-list-wrapper-reserve-number">
-												<input id="booking_{resource.uid}" class="validate[custom[integer],max[{resource.totalAvailableNum}]]" type="text" name="booking[{resource.uid}]" value="{resource.bookingNumber}" />
-											</td>
-										</tr>
-									</f:then>
-									<f:else>
-										<f:if condition="{resource.bookingNumber} > 0">
-											<tr class="{zebraClass}">
-												<td class="tx-calendardisplay-list-wrapper-image">
-													<f:if condition="{resource.image}">
-														<f:image src="uploads/tx_calendardisplay/{resource.image}"  width="50" alt="{resource.name}" />
-													</f:if>
-												</td>
-												<td class="tx-calendardisplay-list-wrapper-material">{resource.name}</td>
-												<td class="tx-calendardisplay-list-wrapper-category">{resource.category.name}</td>								
-												<td class="tx-calendardisplay-list-wrapper-available-number">{resource.availableNumber}</td>
-												<td class="tx-calendardisplay-list-wrapper-reserve-number">
-													<input id="booking_{resource.uid}"  class="validate[custom[integer],max[{resource.totalAvailableNum]]" type="text" name="booking[{resource.uid}]" value="{resource.bookingNumber}" />
-												</td>
-											</tr>
-										</f:if>
-									</f:else>
+									<tr class="{zebraClass}">
+										<td class="tx-calendardisplay-list-wrapper-image">
+											<f:if condition="{resource.image}">
+												<f:image src="uploads/tx_calendardisplay/{resource.image}"  width="50" alt="{resource.name}" />
+											</f:if>
+										</td>
+										<td class="tx-calendardisplay-list-wrapper-material">{resource.name}</td>
+										<td class="tx-calendardisplay-list-wrapper-category">{resource.category.name}</td>
+										<td class="tx-calendardisplay-list-wrapper-available-number">{resource.availableNumber}</td>
+										<td class="tx-calendardisplay-list-wrapper-reserve-number">
+											<input id="booking_{resource.uid}"  class="validate[custom[integer],max[{resource.totalAvailableNum]]" type="number" max="{resource.availableNumber}" step="1" name="booking[{resource.uid}]" value="{resource.bookingNumber}" />
+										</td>
+									</tr>
 								</f:if>
-							</f:cycle>							
+							</f:cycle>
 						</f:for>
 					</tbody>
 				</table>

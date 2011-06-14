@@ -19,6 +19,7 @@
 
 			<label index="new_event">New Event</label>
 			<label index="save">Save</label>
+			<label index="close">Close</label>
 			<label index="update_event">Update Event</label>
 			<label index="make_new_event">Make new event</label>
 			<label index="filter_selection">Filter selection:</label>
@@ -76,6 +77,7 @@
 
 			<label index="new_event">Nouvel événement</label>
 			<label index="save">Sauver</label>
+			<label index="close">Fermer</label>
 			<label index="update_event">Mettre à jour événement</label>
 			<label index="make_new_event">Créer un événement</label>
 			<label index="filter_selection">Filtre:</label>

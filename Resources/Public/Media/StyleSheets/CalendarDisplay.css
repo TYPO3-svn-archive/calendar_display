@@ -95,6 +95,10 @@ input.f3-form-error {
 	float: left;
 }
 
+.tx-calendardisplay-wrapper-column-second .tx-calendardisplay-list-wrapper {
+	max-height: 500px;
+	overflow: scroll;
+}
 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-list-wrapper {
 	position: relative;
 	overflow: hidden;

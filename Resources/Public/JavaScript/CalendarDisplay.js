@@ -56,7 +56,7 @@ $(document).ready(function(){
 	/**
 	 * Filter the list of items
 	 */
-	CalendarDisplay.filterItems = function() {
+	CalendarDisplay.filterResources = function() {
 		var category = $('.tx-calendardisplay-available-item select.tx-calendardisplay-filter-category').val();
 		var keyword = $('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').val();
 		var eventId = $('#tx-calendardisplay-pi1-event-id').val();
@@ -80,14 +80,19 @@ $(document).ready(function(){
 			autoOpen: false,
 			modal: true,
 			width: 800,
-			buttons: [{
-
-				text: CalendarDisplay.Lang.dialogSaveButton,
-				click: function() {
-
-					$(this).dialog("close");
+			buttons: [
+				{
+					text: CalendarDisplay.Lang.dialogSaveButton,
+					click: function() {
+						$(this).dialog("close");
+					}
+				}, {
+					text: CalendarDisplay.Lang.dialogCloseButton,
+					click: function() {
+						$(this).dialog("close");
+					}
 				}
-			}]
+			]
 		});
 
 		return dialog;
