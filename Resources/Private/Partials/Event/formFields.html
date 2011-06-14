@@ -20,22 +20,22 @@ function clock() {
 
 			CalendarDisplay.timer = 0;
 
-			$('#tx-calendardisplay-form-event-time-begin').change(function() {
+			$('#tx-calendardisplay-form-event-timeBegin').keyup(function() {
 
-				clock();
+				//clock();
 
 				//CalendarDisplay.filterResources
 			});
 
-			$('#tx-calendardisplay-form-event-time-begin').change(function () {
-				if ($('#tx-calendardisplay-form-event-time-end').val() == '') {
-					$('#tx-calendardisplay-form-event-time-end').val($('#tx-calendardisplay-form-event-time-begin').val());
+			$('#tx-calendardisplay-form-event-timeBegin').change(function () {
+				if ($('#tx-calendardisplay-form-event-timeEnd').val() == '') {
+					$('#tx-calendardisplay-form-event-timeEnd').val($('#tx-calendardisplay-form-event-timeBegin').val());
 				}
 			});
 
 			// add datetime picker to date-start
-			$('#tx-calendardisplay-form-event-time-begin').datetimepicker(CalendarDisplay.TimePicker.options);
-			$('#tx-calendardisplay-form-event-time-end').datetimepicker(CalendarDisplay.TimePicker.options);
+			$('#tx-calendardisplay-form-event-timeBegin').datetimepicker(CalendarDisplay.TimePicker.options);
+			$('#tx-calendardisplay-form-event-timeEnd').datetimepicker(CalendarDisplay.TimePicker.options);
 
 			//$(".tx-calendardisplay-pi1-form-event").validationEngine();
 
@@ -52,7 +52,7 @@ function clock() {
 	* @return an error string if validation failed
 	*/
 	function checkDateRange(field, rules, i, options){
-	   var startDate = $('#tx-calendardisplay-form-event-time-begin').val();
+	   var startDate = $('#tx-calendardisplay-form-event-timeBegin').val();
 	   var endDate = field.val();
 	   if (new Date(startDate.toString()) >= new Date(endDate.toString())) {
 	      return '* Invalid Date Time Range';
@@ -64,17 +64,17 @@ function clock() {
 <div class="tx-calendardisplay-form-event-wrapper">
 	<div class="tx-calendardisplay-box-left tx-calendardisplay-wrapper-column-first" >
 		<div class="tx-calendardisplay-event-input">
-			<label for="tx-calendardisplay-form-event-time-begin">
+			<label for="tx-calendardisplay-form-event-timeBegin">
 				<f:translate key="tx_calendardisplay_domain_model_event.time_begin" />
 			</label>
-			<f:form.textfield class="validate[required]" id="tx-calendardisplay-form-event-time-begin" property="timeBegin" value="{event.timeBegin -> f:format.date(format:'m/d/Y H:i')}" />
+			<f:form.textfield class="validate[required]" id="tx-calendardisplay-form-event-timeBegin" property="timeBegin" value="{event.timeBegin -> f:format.date(format:'m/d/Y H:i')}" />
 		</div>
 
 		<div class="tx-calendardisplay-event-input">
-			<label for="tx-calendardisplay-form-event-time-end">
+			<label for="tx-calendardisplay-form-event-timeEnd">
 				<f:translate key="tx_calendardisplay_domain_model_event.time_end" />
 			</label>
-			<f:form.textfield class="validate[required,funcCall[checkDateRange]]" id="tx-calendardisplay-form-event-time-end" property="timeEnd" value="{event.timeEnd -> f:format.date(format:'m/d/Y H:i')}" />
+			<f:form.textfield class="validate[required,funcCall[checkDateRange]]" id="tx-calendardisplay-form-event-timeEnd" property="timeEnd" value="{event.timeEnd -> f:format.date(format:'m/d/Y H:i')}" />
 		</div>
 
 		<div class="tx-calendardisplay-event-input">

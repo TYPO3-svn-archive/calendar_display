@@ -114,7 +114,7 @@
 	 */
 	public function newAction(Tx_CalendarDisplay_Domain_Model_Event $newEvent = null, $refererAction = 'list') {
 		$this->view->assign('newEvent', $newEvent);
-		$this->view->assign('availableResources', $this->resourceRepository->findAll());
+		$this->view->assign('availableResources', $this->resourceRepository->filterItems());
 		$this->view->assign('categories' , $this->resourceCategoryRepository->findAll());
 		$this->view->assign('refererAction', $refererAction);
 		$this->flashMessageContainer->flush();

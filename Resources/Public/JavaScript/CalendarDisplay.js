@@ -60,7 +60,7 @@ $(document).ready(function(){
 		var category = $('.tx-calendardisplay-wrapper-column-second select.tx-calendardisplay-filter-category').val();
 		var keyword = $('.tx-calendardisplay-wrapper-column-second input.tx-calendardisplay-filter-keyword').val();
 		var eventId = $('#tx-calendardisplay-pi1-event-id').val();
-		var timeBegin = $('#tx-calendardisplay-form-event-time-begin').val();
+		var timeBegin = $('#tx-calendardisplay-form-event-timeBegin').val();
 		$.ajax({
 			url: '/?type=12637&tx_calendardisplay_pi1[event]=' + eventId + '&tx_calendardisplay_pi1[category]=' + category + '&tx_calendardisplay_pi1[keyword]=' + keyword + '&tx_calendardisplay_pi1[dateBegin]=' + timeBegin,
 			beforeSend: function() {enableLoading(true)},
@@ -218,6 +218,7 @@ $(document).ready(function(){
 			options: CalendarDisplay.getWaitingUIOptions()
 		},
 
+
 		/*
 		 * jQuery UI Timepicker widget
 		 */
@@ -229,6 +230,11 @@ $(document).ready(function(){
 		 * jQuery UI Dialog widget
 		 */
 		Dialog: CalendarDisplay.initializeDialog(),
+
+		/*
+		 * Store some State variables
+		 */
+		State : {}
 	};
 
 	// merge configuation

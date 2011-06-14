@@ -181,8 +181,8 @@ input.f3-form-error {
 	color: #666;
 }
 
-#tx-calendardisplay-form-event-time-begin,
-#tx-calendardisplay-form-event-time-end {
+#tx-calendardisplay-form-event-timeBegin,
+#tx-calendardisplay-form-event-timeEnd {
 	width: 220px;
 }
 

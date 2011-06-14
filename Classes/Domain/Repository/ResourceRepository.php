@@ -3,7 +3,7 @@
 *  Copyright notice
 *
 *  (c) 2011 Fabien Udriot <fabien.udriot@ecodev.ch>, Ecodev
-*  	
+*
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -33,10 +33,10 @@
  */
 
  class Tx_CalendarDisplay_Domain_Repository_ResourceRepository extends Tx_Extbase_Persistence_Repository {
- 	
+
  	/**
 	 * Gets resoureces following by $category and $$keyword
-	 * 
+	 *
 	 * @param integer $category Category
 	 * @param string $keyword Keyword
 	 * @return array of Tx_CalendarDisplay_Domain_Model_Resource
@@ -46,7 +46,7 @@
 		if ($category) {
 			$constraint = $query->equals('category', $category);
 		}
-		
+
 		if ($keyword) {
 			$constraintKeyword = $query->logicalOr($query->like('name', '%' . $keyword . '%'), $query->like('category.name', '%' . $keyword . '%'));
 			if ($constraint) {
@@ -55,9 +55,9 @@
 				$constraint = $constraintKeyword;
 			}
 		}
-		
+
 		return $query->matching($constraint)
-			->setOrderings(array('name' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))	
+			->setOrderings(array('name' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))
 			->execute();
 	}
 }
