@@ -57,8 +57,8 @@ $(document).ready(function(){
 	 * Filter the list of items
 	 */
 	CalendarDisplay.filterResources = function() {
-		var category = $('.tx-calendardisplay-available-item select.tx-calendardisplay-filter-category').val();
-		var keyword = $('.tx-calendardisplay-available-item input.tx-calendardisplay-filter-keyword').val();
+		var category = $('.tx-calendardisplay-wrapper-column-second select.tx-calendardisplay-filter-category').val();
+		var keyword = $('.tx-calendardisplay-wrapper-column-second input.tx-calendardisplay-filter-keyword').val();
 		var eventId = $('#tx-calendardisplay-pi1-event-id').val();
 		var timeBegin = $('#tx-calendardisplay-form-event-time-begin').val();
 		$.ajax({
@@ -66,7 +66,7 @@ $(document).ready(function(){
 			beforeSend: function() {enableLoading(true)},
 			success: function(data) {
 				enableLoading(false);
-				$('.tx-calendardisplay-available-item tbody').html(data);
+				$('.tx-calendardisplay-wrapper-column-second tbody').html(data);
 			}
 		});
 	}

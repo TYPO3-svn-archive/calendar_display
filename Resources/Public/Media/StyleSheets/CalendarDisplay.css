@@ -98,7 +98,10 @@ input.f3-form-error {
 .tx-calendardisplay-wrapper-column-second .tx-calendardisplay-list-wrapper {
 	max-height: 500px;
 	overflow: scroll;
+	overflow-x: hidden;
+	position: relative;
 }
+
 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-list-wrapper {
 	position: relative;
 	overflow: hidden;
@@ -192,71 +195,66 @@ input.f3-form-error {
 	margin-bottom: 10px;
 }
 
-.tx-calendardisplay-available-item .tx-calendardisplay-filter-wrapper {
+.tx-calendardisplay-wrapper-column-second .tx-calendardisplay-filter-wrapper {
 	width: 100%;
 	margin: 0 0 10px 0;
 	overflow: hidden;
 }
 
-.tx-calendardisplay-available-item .tx-calendardisplay-filter-wrapper-filter {
+.tx-calendardisplay-wrapper-column-second .tx-calendardisplay-filter-wrapper-filter {
 	float: left;
 }
 
-.tx-calendardisplay-available-item .tx-calendardisplay-filter-wrapper-filter select {
+.tx-calendardisplay-wrapper-column-second .tx-calendardisplay-filter-wrapper-filter select {
 	width: 80px;
 	margin: 0 0 0 5px;
 }
 
-.tx-calendardisplay-available-item .tx-calendardisplay-filter-wrapper-search {
+.tx-calendardisplay-wrapper-column-second .tx-calendardisplay-filter-wrapper-search {
 	float: right;
 }
 
-.tx-calendardisplay-available-item .tx-calendardisplay-filter-wrapper-search input.tx-calendardisplay-filter-keyword {
+.tx-calendardisplay-wrapper-column-second .tx-calendardisplay-filter-wrapper-search input.tx-calendardisplay-filter-keyword {
 	width: 120px;
 	background: #FFFFFF url("../Icons/search_bg.gif") no-repeat left center;
 	padding-left: 12px;
 }
 
-.tx-calendardisplay-available-item {
+.tx-calendardisplay-wrapper-column-second {
 	width: 80%;
 }
 
-.tx-calendardisplay-available-item p {
+.tx-calendardisplay-wrapper-column-second p {
 	margin: 0 0 30px 0;
 }
 
-.tx-calendardisplay-available-item .tx-calendardisplay-list-wrapper {
-	position: relative;
-	overflow: hidden;
-}
-
-.tx-calendardisplay-available-item .tx-calendardisplay-list-wrapper img.tx-calendardisplay-loading {
+.tx-calendardisplay-wrapper-column-second .tx-calendardisplay-list-wrapper img.tx-calendardisplay-loading {
 	position: absolute;
 	left: 45%;
 	top: 35%
 }
 
-.tx-calendardisplay-available-item table {
+.tx-calendardisplay-wrapper-column-second table {
 	width: 100%;
 }
 
-.tx-calendardisplay-available-item table thead tr th {
+.tx-calendardisplay-wrapper-column-second table thead tr th {
 	background-color: #396BA0;
 	color: #FFFFFF;
 }
 
-.tx-calendardisplay-available-item table tr.tx-calendardisplay-odd {
+.tx-calendardisplay-wrapper-column-second table tr.tx-calendardisplay-odd {
 	background-color: #E3ECF5;
 }
 
-.tx-calendardisplay-available-item table th,
-.tx-calendardisplay-available-item table td {
+.tx-calendardisplay-wrapper-column-second table th,
+.tx-calendardisplay-wrapper-column-second table td {
 	border: 1px solid #000000;
 	padding: 5px 5px 5px 5px;
 	
 }
 
-.tx-calendardisplay-available-item table tbody tr {
+.tx-calendardisplay-wrapper-column-second table tbody tr {
 	vertical-align: top;
 }
 
