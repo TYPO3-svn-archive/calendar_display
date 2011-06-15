@@ -49,7 +49,7 @@
 			<label index="per_page">per page</label>
 			<lable index="list_view">List View</lable>
 			<lable index="calendar_view">Calendar View</lable>
-			<lable index="event_created">Your new Event was created.</lable>
+			<lable index="event_created">New Event was created.</lable>
 			<lable index="event_not_created">Your new Event was not created.</lable>
 			<lable index="event_updated">Your new Event was updated.</lable>
 			<lable index="event_not_updated">Your new Event was not updated.</lable>
@@ -107,7 +107,7 @@
 			<label index="per_page">per page</label>
 			<lable index="list_view">Vue liste</lable>
 			<lable index="calendar_view">Vue calendrier</lable>
-			<lable index="event_created">Your new Event was created.</lable>
+			<lable index="event_created">Nouvel événement créé</lable>
 			<lable index="event_not_created">Your new Event was not created.</lable>
 			<lable index="event_updated">Your new Event was updated.</lable>
 			<lable index="event_not_updated">Your new Event was not updated.</lable>

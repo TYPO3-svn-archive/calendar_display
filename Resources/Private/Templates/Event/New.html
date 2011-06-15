@@ -3,8 +3,11 @@
 
 <f:render partial="formErrors" arguments="{for:'newEvent'}" />
 
-<f:form method="post" class="tx-calendardisplay-pi1-form-event" action="create"  name="newEvent" object="{newEvent}">
+<div><f:link.action class="tx-calendardisplay-link-new" id="tx-calendardisplay-link-new" action="create" noCacheHash="TRUE">create</f:link.action></div>
+
+<f:form method="post" id="tx-calendardisplay-form-event" class="tx-calendardisplay-form" action="create" name="newEvent" object="{newEvent}">
 	<f:render partial="Event/formFields"  arguments="{availableResources:availableResources, categories:categories}" />
 	<f:form.hidden name="refererAction" value="{refererAction}" />
+	<f:form.submit value="Save" />
 </f:form>
 </f:section>

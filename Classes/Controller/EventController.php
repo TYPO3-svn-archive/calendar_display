@@ -73,7 +73,7 @@
 		$this->resourceCategoryRepository = t3lib_div::makeInstance('Tx_CalendarDisplay_Domain_Repository_ResourceCategoryRepository');
 		$this->feUserRepository = t3lib_div::makeInstance('Tx_CalendarDisplay_Domain_Repository_FeUserRepository');
 	}
-
+	
 	/**
 	 * Displays all Events in a calendar
 	 *
@@ -108,11 +108,11 @@
 	 * Creates a new Event and forwards to the list action.
 	 *
 	 * @param Tx_CalendarDisplay_Domain_Model_Event $newEvent a fresh Event object which has not yet been added to the repository
-	 * @param string $newEvent a referer action, it will redirect to the prevoius action
+	 * @param string $refererAction a referer action, it will redirect to the previous action
 	 * @return string An HTML form for creating a new Event
-	 * @dontvalidate $newEvent
+	 * @dontvalidate $newEvent Tx_CalendarDisplay_Domain_Validator_EventValidator
 	 */
-	public function newAction(Tx_CalendarDisplay_Domain_Model_Event $newEvent = null, $refererAction = 'list') {
+	public function newAction(Tx_CalendarDisplay_Domain_Model_Event $newEvent = NULL, $refererAction = 'list') {
 		$this->view->assign('newEvent', $newEvent);
 		$this->view->assign('availableResources', $this->resourceRepository->filterItems());
 		$this->view->assign('categories' , $this->resourceCategoryRepository->findAll());
@@ -124,7 +124,6 @@
 	 * Creates a new Event and forwards to the list action.
 	 *
 	 * @param Tx_CalendarDisplay_Domain_Model_Event $newEvent a fresh Event object which has not yet been added to the repository
-	 * @dontvalidate $newEvent
 	 * @validate $newEvent Tx_CalendarDisplay_Domain_Validator_EventValidator
 	 * @return void
 	 */
@@ -161,7 +160,7 @@
 	 * Updates an existing Event and forwards to the index action afterwards.
 	 *
 	 * @param Tx_CalendarDisplay_Domain_Model_Event $event the Event to display
-	 * @param string $newEvent a referer action, it will redirect to the prevoius action
+	 * @param string $newEvent a referer action, it will redirect to the previous action
 	 * @return string A form to edit a Event
 	 * @dontvalidate $event
 	 */
