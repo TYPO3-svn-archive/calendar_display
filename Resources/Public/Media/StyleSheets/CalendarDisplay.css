@@ -5,16 +5,16 @@
 	font-size: 13px;
 	text-align: left;
 }
-.tx-calendardisplay-pi1-form-event th,
-.tx-calendardisplay-pi1-form-event td {
+.tx-calendardisplay-form th,
+.tx-calendardisplay-form td {
 	padding: 0;
 }
 
-.tx-calendardisplay-pi1-form-event input {
+.tx-calendardisplay-form input {
 	margin-left: 0;
 }
 
-.tx-calendardisplay-pi1-form-event textarea {
+.tx-calendardisplay-form textarea {
 	margin-left: 0;
 	width: 400px;
 }
