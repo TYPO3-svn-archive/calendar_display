@@ -40,7 +40,7 @@ $(document).ready(function(){
 	 */
 	CalendarDisplay.filterEvents = function() {
 		$.ajax({
-			url: '/?type=12638&tx_calendardisplay_pi1[category]=' + category + '&tx_calendardisplay_pi1[keyword]=' + keyword + '&tx_calendardisplay_pi1[dateBegin]=' + timeBegin,
+			url: '/index.php',
 			data: {
 				'type': 12638,
 				'tx_calendardisplay_pi1[keyword]': $('#tx-calendardisplay-list-filter-keyword').val(),
@@ -66,7 +66,7 @@ $(document).ready(function(){
 				// Controller: "Event"
 				// Action: "filterItems"
 				'type': 12637,
-				'tx_calendardisplay_pi1[event]': $('#tx-calendardisplay-pi1-event-id').val(),
+				'tx_calendardisplay_pi1[event]': $('#tx-calendardisplay-event-id').val(),
 				'tx_calendardisplay_pi1[keyword]': $('.tx-calendardisplay-filter-keyword').val(),
 				'tx_calendardisplay_pi1[category]': $('.tx-calendardisplay-filter-category').val(),
 				'tx_calendardisplay_pi1[dateBegin]': $('#tx-calendardisplay-form-event-timeBegin').val(),
@@ -91,14 +91,14 @@ $(document).ready(function(){
 			width: 800,
 			buttons: [
 				{
-					text: CalendarDisplay.Lang.dialogSaveButton,
+					text: CalendarDisplay.Lang.dialogCloseButton,
 					click: function() {
 						$(this).dialog("close");
 					}
 				}, {
-					text: CalendarDisplay.Lang.dialogCloseButton,
+					text: CalendarDisplay.Lang.dialogSaveButton,
 					click: function() {
-						$(this).dialog("close");
+						$('#tx-calendardisplay-form-event').submit();
 					}
 				}
 			]
