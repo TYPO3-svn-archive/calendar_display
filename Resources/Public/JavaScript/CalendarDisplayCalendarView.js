@@ -3,7 +3,7 @@
  */
 $(document).ready(function(){
 
-/**
+	/**
 	 * Initialize object that contains configuration
 	 */
 	var config = {
