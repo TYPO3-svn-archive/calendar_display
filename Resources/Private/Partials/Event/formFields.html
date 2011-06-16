@@ -52,40 +52,37 @@
 // ]]>
 </script>
 
-<div class="tx-calendardisplay-form-event-wrapper">
-	<div class="tx-calendardisplay-box-left tx-calendardisplay-wrapper-column-first" >
-		<div class="tx-calendardisplay-event-input">
-			<label for="tx-calendardisplay-form-event-timeBegin">
-				<f:translate key="tx_calendardisplay_domain_model_event.time_begin" />
-			</label>
-			<f:form.textfield class="validate[required]"
-							  id="tx-calendardisplay-form-event-timeBegin"
-							  property="timeBegin"
-							  value="{event.timeBegin -> f:format.date(format:'m.d.Y H:i')}" />
-		</div>
-
-		<div class="tx-calendardisplay-event-input">
-			<label for="tx-calendardisplay-form-event-timeEnd">
-				<f:translate key="tx_calendardisplay_domain_model_event.time_end" />
-			</label>
-			<f:form.textfield class="validate[required,funcCall[checkDateRange]]" 
-							  id="tx-calendardisplay-form-event-timeEnd"
-							  property="timeEnd"
-							  value="{event.timeEnd -> f:format.date(format:'m.d.Y H:i')}" />
-		</div>
-
-		<div class="tx-calendardisplay-event-input">
-			<label for="tx-calendardisplay-form-event-note">
-				<f:translate key="tx_calendardisplay_domain_model_event.note" />
-			</label>
-			<f:form.textarea id="tx-calendardisplay-form-event-note" property="note" rows="3" cols="80" />
-		</div>
+<div class="tx-calendardisplay-box-left tx-calendardisplay-dialog-column-first" >
+	<div class="tx-calendardisplay-event-input">
+		<label for="tx-calendardisplay-form-event-timeBegin">
+			<f:translate key="tx_calendardisplay_domain_model_event.time_begin" />
+		</label>
+		<f:form.textfield class="validate[required]"
+						  id="tx-calendardisplay-form-event-timeBegin"
+						  property="timeBegin"
+						  value="{event.timeBegin -> f:format.date(format:'m.d.Y H:i')}" />
 	</div>
 
+	<div class="tx-calendardisplay-event-input">
+		<label for="tx-calendardisplay-form-event-timeEnd">
+			<f:translate key="tx_calendardisplay_domain_model_event.time_end" />
+		</label>
+		<f:form.textfield class="validate[required,funcCall[checkDateRange]]"
+						  id="tx-calendardisplay-form-event-timeEnd"
+						  property="timeEnd"
+						  value="{event.timeEnd -> f:format.date(format:'m.d.Y H:i')}" />
+	</div>
+
+	<div class="tx-calendardisplay-event-input">
+		<label for="tx-calendardisplay-form-event-note">
+			<f:translate key="tx_calendardisplay_domain_model_event.note" />
+		</label>
+		<f:form.textarea id="tx-calendardisplay-form-event-note" property="note" rows="3" cols="80" />
+	</div>
 </div>
 
 
-<div class="tx-calendardisplay-available-item tx-calendardisplay-box-left tx-calendardisplay-wrapper-column-second">
+<div class="tx-calendardisplay-available-item tx-calendardisplay-box-left tx-calendardisplay-dialog-column-second">
 	<div id="tx-calendardisplay-dialog-column-second-prepend" class="<f:if condition="{availableResources}"><f:then></f:then><f:else>tx-calendardisplay-hidden</f:else></f:if>">
 		<p class="tx-calendardisplay-wrapper-light">
 			<f:translate key="alvailable_item_description" />
