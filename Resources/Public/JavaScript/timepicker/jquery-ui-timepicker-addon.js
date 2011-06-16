@@ -17,6 +17,7 @@
 * .ui-timepicker-div td { font-size: 90%; }
 */
 
+var testing
 (function($) {
 
 $.extend($.ui, {timepicker: {version: "0.9.3"}});
@@ -125,10 +126,8 @@ $.extend(Timepicker.prototype, {
 				}
 			}
 		}
-		console.log(123);
 		tp_inst._defaults = $.extend({}, this._defaults, inlineSettings, o, {
 			beforeShow: function(input, dp_inst) {
-				console.log(789);
 				// Patched by Fabien for calendar_display needs - 14.06.11
 				// Store values
 				if (typeof(CalendarDisplay.State.time) == 'undefined') {

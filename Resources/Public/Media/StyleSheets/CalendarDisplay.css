@@ -51,6 +51,13 @@ input.f3-form-error {
 	border-color: #D66C68;
 }
 
+.message-information {
+	color: #396BA0;
+	background-color: #E3ECF5;
+	background-image: url('/typo3/sysext/t3skin/icons/gfx/information.png');
+	border-color: #396BA0;
+}
+
 /* CSS for timepicker */
 .ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
 .ui-timepicker-div dl{ text-align: left; }
@@ -70,7 +77,7 @@ input.f3-form-error {
 	/* CSS3 standard */
 	opacity:0.4;
 }
-
+.tx-calendardisplay-hidden,
 .tx-calendardisplay-loading {
 	display: none;
 }
@@ -241,7 +248,7 @@ input.f3-form-error {
 	margin: 0 0 30px 0;
 }
 
-.tx-calendardisplay-wrapper-column-second .tx-calendardisplay-list-wrapper img.tx-calendardisplay-loading {
+.tx-calendardisplay-wrapper-column-second .tx-calendardisplay-loading {
 	position: absolute;
 	left: 45%;
 	top: 35%

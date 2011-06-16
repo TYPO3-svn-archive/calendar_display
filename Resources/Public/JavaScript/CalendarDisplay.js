@@ -60,24 +60,31 @@ $(document).ready(function(){
 	 * Filter the list of items
 	 */
 	CalendarDisplay.filterResources = function() {
-		$.ajax({
-			url: '/index.php',
-			data: {
-				// Controller: "Event"
-				// Action: "filterItems"
-				'type': 12637,
-				'tx_calendardisplay_pi1[event]': $('#tx-calendardisplay-event-id').val(),
-				'tx_calendardisplay_pi1[keyword]': $('.tx-calendardisplay-filter-keyword').val(),
-				'tx_calendardisplay_pi1[category]': $('.tx-calendardisplay-filter-category').val(),
-				'tx_calendardisplay_pi1[dateBegin]': $('#tx-calendardisplay-form-event-timeBegin').val(),
-				'tx_calendardisplay_pi1[dateEnd]': $('#tx-calendardisplay-form-event-timeEnd').val()
-			},
-			beforeSend: function() {enableLoading(true)},
-			success: function(data) {
-				enableLoading(false);
-				$('.tx-calendardisplay-wrapper-column-second tbody').html(data);
-			}
-		});
+		// makes sure it is possible to filter the resource
+		var timeBegin = $('#tx-calendardisplay-form-event-timeBegin').val();
+		var timeEnd = $('#tx-calendardisplay-form-event-timeEnd').val();
+		if (timeBegin != '' && timeEnd != '' && timeBegin != timeEnd  || true) {
+			$.ajax({
+				url: '/index.php',
+				data: {
+					// Controller: "Event"
+					// Action: "filterItems"
+					'type': 12637,
+					'tx_calendardisplay_pi1[event]': $('#tx-calendardisplay-event-id').val(),
+					'tx_calendardisplay_pi1[keyword]': $('.tx-calendardisplay-filter-keyword').val(),
+					'tx_calendardisplay_pi1[category]': $('.tx-calendardisplay-filter-category').val(),
+					'tx_calendardisplay_pi1[dateBegin]': $('#tx-calendardisplay-form-event-timeBegin').val(),
+					'tx_calendardisplay_pi1[dateEnd]': $('#tx-calendardisplay-form-event-timeEnd').val()
+				},
+				beforeSend: function() {enableLoading(true)},
+				success: function(data) {
+					enableLoading(false);
+					$('#tx-calendardisplay-dialog-column-second-prepend').removeClass('tx-calendardisplay-hidden');
+					$('.tx-calendardisplay-list-wrapper').html(data);
+				}
+			});
+
+		}
 	}
 
 	/**

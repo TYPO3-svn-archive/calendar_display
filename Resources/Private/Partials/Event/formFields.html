@@ -2,12 +2,6 @@
 <script type="text/javascript">
 // <![CDATA[
 
-function clock() {
-	console.log('*');
-}
-
-
-
 (function($) {
 	$(function() {
 		$(document).ready(function(){
@@ -21,9 +15,6 @@ function clock() {
 			CalendarDisplay.timer = 0;
 
 			$('#tx-calendardisplay-form-event-timeBegin').keyup(function() {
-
-				//clock();
-
 				//CalendarDisplay.filterResources
 			});
 
@@ -67,7 +58,10 @@ function clock() {
 			<label for="tx-calendardisplay-form-event-timeBegin">
 				<f:translate key="tx_calendardisplay_domain_model_event.time_begin" />
 			</label>
-			<f:form.textfield class="validate[required]" id="tx-calendardisplay-form-event-timeBegin" property="timeBegin" value="{event.timeBegin -> f:format.date(format:'m.d.Y H:i')}" />
+			<f:form.textfield class="validate[required]"
+							  id="tx-calendardisplay-form-event-timeBegin"
+							  property="timeBegin"
+							  value="{event.timeBegin -> f:format.date(format:'m.d.Y H:i')}" />
 		</div>
 
 		<div class="tx-calendardisplay-event-input">
@@ -90,25 +84,28 @@ function clock() {
 
 </div>
 
-<f:if condition="{availableResources}">
-	<f:then>
-		<div class="tx-calendardisplay-available-item tx-calendardisplay-box-left tx-calendardisplay-wrapper-column-second">
-			<p class="tx-calendardisplay-wrapper-light">
-				<f:translate key="alvailable_item_description" />
-			</p>
-			<div class="tx-calendardisplay-filter-wrapper">
-				<div class="tx-calendardisplay-filter-wrapper-filter">
-					<f:if condition="{categories}">
-						<label class="tx-calendardisplay-wrapper-light"><f:translate key="category" /></label>
-						<calendar:form.select class="tx-calendardisplay-filter-category" name="category" prependOption="<f:translate key='all' />" options="{categories}" optionValueField="uid" optionLabelField="name" />
-					</f:if>
-				</div>
-				<div class="tx-calendardisplay-filter-wrapper-search">
-					<f:form.textfield type="search" name="keyword" class="tx-calendardisplay-filter-keyword" placeholder="<f:translate key='search' />" />
-				</div>
+
+<div class="tx-calendardisplay-available-item tx-calendardisplay-box-left tx-calendardisplay-wrapper-column-second">
+	<div id="tx-calendardisplay-dialog-column-second-prepend" class="<f:if condition="{availableResources}"><f:then></f:then><f:else>tx-calendardisplay-hidden</f:else></f:if>">
+		<p class="tx-calendardisplay-wrapper-light">
+			<f:translate key="alvailable_item_description" />
+		</p>
+		<div class="tx-calendardisplay-filter-wrapper">
+			<div class="tx-calendardisplay-filter-wrapper-filter">
+				<f:if condition="{categories}">
+					<label class="tx-calendardisplay-wrapper-light"><f:translate key="category" /></label>
+					<calendar:form.select class="tx-calendardisplay-filter-category" name="category" prependOption="<f:translate key='all' />" options="{categories}" optionValueField="uid" optionLabelField="name" />
+				</f:if>
 			</div>
-			<div class="tx-calendardisplay-list-wrapper">
-				<f:image class="tx-calendardisplay-loading" src="EXT:calendar_display/Resources/Public/Media/Icons/loading.gif" alt="" />
+			<div class="tx-calendardisplay-filter-wrapper-search">
+				<f:form.textfield type="search" name="keyword" class="tx-calendardisplay-filter-keyword" placeholder="<f:translate key='search' />" />
+			</div>
+		</div>
+	</div>
+	<f:image class="tx-calendardisplay-loading" src="EXT:calendar_display/Resources/Public/Media/Icons/loading.gif" alt="" />
+	<div class="tx-calendardisplay-list-wrapper">
+		<f:if condition="{availableResources}">
+			<f:then>
 				<table>
 					<thead>
 						<tr>
@@ -141,12 +138,16 @@ function clock() {
 						</f:for>
 					</tbody>
 				</table>
-			</div>
-		</div>
-	</f:then>
-	<f:else>
-		<div class="tx-calendardisplay-no-available-item">
-			<f:translate key="no_available_item" />
-		</div>
-	</f:else>
-</f:if>
+			</f:then>
+			<f:else>
+				<div class="typo3-messages" style="margin-top: 5px">
+					<div class="typo3-message message-information">
+						<div class="message-body">
+							{message}
+						</div>
+					</div>
+				</div>
+			</f:else>
+		</f:if>
+	</div>
+</div>

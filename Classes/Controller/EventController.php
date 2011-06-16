@@ -143,7 +143,8 @@
 	 */
 	public function newAction(Tx_CalendarDisplay_Domain_Model_Event $event = NULL, $refererAction = 'list') {
 		$this->view->assign('event', $event);
-		$this->view->assign('availableResources', $this->resourceRepository->filterItems());
+		$this->view->assign('availableResources', array());
+		$this->view->assign('message', Tx_Extbase_Utility_Localization::translate('set_date', 'CalendarDisplay'));
 		$this->view->assign('categories' , $this->resourceCategoryRepository->findAll());
 		$this->view->assign('refererAction', $refererAction);
 		$this->flashMessageContainer->flush();
