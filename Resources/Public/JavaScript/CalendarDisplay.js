@@ -47,9 +47,10 @@ $(document).ready(function(){
 				'tx_calendardisplay_pi1[category]': $('#tx-calendardisplay-list-filter-category').val(),
 				'tx_calendardisplay_pi1[dateBegin]': $('#tx-calendardisplay-list-filter-timeBegin').val()
 			},
-			beforeSend: function() {enableLoading(true)},
+			beforeSend: function() {
+				// @todo
+			},
 			success: function(data) {
-				enableLoading(false);
 				$('.tx-calendardisplay-available-item-event-list tbody').html(data);
 			}
 		});
@@ -63,7 +64,7 @@ $(document).ready(function(){
 		// makes sure it is possible to filter the resource
 		var timeBegin = $('#tx-calendardisplay-form-event-timeBegin').val();
 		var timeEnd = $('#tx-calendardisplay-form-event-timeEnd').val();
-		if (timeBegin != '' && timeEnd != '' && timeBegin != timeEnd  || true) {
+		if (timeBegin != '' && timeEnd != '' && timeBegin != timeEnd) {
 			$.ajax({
 				url: '/index.php',
 				data: {
@@ -76,14 +77,17 @@ $(document).ready(function(){
 					'tx_calendardisplay_pi1[dateBegin]': $('#tx-calendardisplay-form-event-timeBegin').val(),
 					'tx_calendardisplay_pi1[dateEnd]': $('#tx-calendardisplay-form-event-timeEnd').val()
 				},
-				beforeSend: function() {enableLoading(true)},
+				beforeSend: function() {
+					$('#tx-calendardisplay-dialog-column-second').addClass('tx-calendardisplay-waiting');
+				},
 				success: function(data) {
-					enableLoading(false);
+					$('#tx-calendardisplay-dialog-column-second').removeClass('tx-calendardisplay-waiting');
 					$('#tx-calendardisplay-dialog-column-second-prepend').removeClass('tx-calendardisplay-hidden');
-					$('.tx-calendardisplay-list-wrapper').html(data);
+					$('.tx-calendardisplay-dialog-list-wrapper').html(data);
+					// reposition the widget
+					CalendarDisplay.Dialog.dialog('option', 'position', CalendarDisplay.Dialog.dialog('option', 'position'));
 				}
 			});
-
 		}
 	}
 
@@ -256,12 +260,3 @@ $(document).ready(function(){
 	// merge configuation
 	CalendarDisplay = $.extend(CalendarDisplay, config);
 });
-
-// @temp see how we can encapsulate this function
-function enableLoading(enable){
-	if (enable) {
-		$('.tx-calendardisplay-loading').show();
-	} else {
-		$('.tx-calendardisplay-loading').hide();
-	}
-}

@@ -31,9 +31,6 @@ $(document).ready(function(){
 		return false;
 	});
 
-	// hide the loading image
-	//enableLoading(false);
-
 	$('#tx-calendardisplay-list-filter-category').change(CalendarDisplay.filterEvents);
 	$('#tx-calendardisplay-list-filter-keyword').keyup(CalendarDisplay.filterEvents);
 	$('#tx-calendardisplay-list-filter-timeBegin').change(CalendarDisplay.filterEvents);

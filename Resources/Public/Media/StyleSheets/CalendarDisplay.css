@@ -77,8 +77,7 @@ input.f3-form-error {
 	/* CSS3 standard */
 	opacity:0.4;
 }
-.tx-calendardisplay-hidden,
-.tx-calendardisplay-loading {
+.tx-calendardisplay-hidden {
 	display: none;
 }
 
@@ -122,7 +121,7 @@ input.f3-form-error {
 	float: left;
 }
 
-.tx-calendardisplay-dialog-column-second .tx-calendardisplay-list-wrapper {
+#tx-calendardisplay-dialog-column-second .tx-calendardisplay-dialog-list-wrapper {
 	max-height: 500px;
 	overflow-x: hidden;
 	position: relative;
@@ -131,12 +130,6 @@ input.f3-form-error {
 .tx-calendardisplay-available-item-event-list .tx-calendardisplay-list-wrapper {
 	position: relative;
 	overflow: hidden;
-}
-
-.tx-calendardisplay-available-item-event-list .tx-calendardisplay-list-wrapper img.tx-calendardisplay-loading {
-	position: absolute;
-	left: 45%;
-	top: 35%
 }
 	
 .tx-calendardisplay-available-item-event-list table {
@@ -175,14 +168,14 @@ input.f3-form-error {
 	vertical-align: top;
 }
 
-.tx-calendardisplay-available-item-event-list table .tx-calendardisplay-list-wrapper-quantity,
-.tx-calendardisplay-available-item-event-list table .tx-calendardisplay-list-wrapper-edit,
-.tx-calendardisplay-available-item-event-list table .tx-calendardisplay-list-wrapper-delete {
+.tx-calendardisplay-available-item-event-list .tx-calendardisplay-list-wrapper-quantity,
+.tx-calendardisplay-available-item-event-list .tx-calendardisplay-list-wrapper-edit,
+.tx-calendardisplay-available-item-event-list .tx-calendardisplay-list-wrapper-delete {
 	text-align: center;
 }
 
-.tx-calendardisplay-available-item-event-list table a.tx-calendardisplay-list-wrapper-edit,
-.tx-calendardisplay-available-item-event-list table a.tx-calendardisplay-list-wrapper-delete {
+.tx-calendardisplay-available-item-event-list a.tx-calendardisplay-list-wrapper-edit,
+.tx-calendardisplay-available-item-event-list a.tx-calendardisplay-list-wrapper-delete {
 	display: block;
 	float: left;
 	width: 16px;
@@ -222,60 +215,54 @@ input.f3-form-error {
 }
 
 
-.tx-calendardisplay-dialog-column-second .tx-calendardisplay-filter-wrapper {
+#tx-calendardisplay-dialog-column-second .tx-calendardisplay-filter-wrapper {
 	width: 100%;
 	margin: 0 0 10px 0;
 	overflow: hidden;
 }
 
-.tx-calendardisplay-dialog-column-second .tx-calendardisplay-filter-wrapper-filter {
+#tx-calendardisplay-dialog-column-second .tx-calendardisplay-filter-wrapper-filter {
 	float: left;
 }
 
-.tx-calendardisplay-dialog-column-second .tx-calendardisplay-filter-wrapper-filter select {
+#tx-calendardisplay-dialog-column-second .tx-calendardisplay-filter-wrapper-filter select {
 	width: 80px;
 	margin: 0 0 0 5px;
 }
 
-.tx-calendardisplay-dialog-column-second .tx-calendardisplay-filter-wrapper-search {
+#tx-calendardisplay-dialog-column-second .tx-calendardisplay-filter-wrapper-search {
 	float: right;
 }
 
-.tx-calendardisplay-dialog-column-second {
+#tx-calendardisplay-dialog-column-second {
 	width: 80%;
 }
 
-.tx-calendardisplay-dialog-column-second p {
+#tx-calendardisplay-dialog-column-second p {
 	margin: 0 0 30px 0;
 }
 
-.tx-calendardisplay-dialog-column-second .tx-calendardisplay-loading {
-	position: absolute;
-	left: 45%;
-	top: 35%
-}
-
-.tx-calendardisplay-dialog-column-second table {
+#tx-calendardisplay-dialog-column-second table {
 	width: 100%;
 }
 
-.tx-calendardisplay-dialog-column-second table thead tr th {
+#tx-calendardisplay-dialog-column-second table thead tr th {
 	background-color: #396BA0;
 	color: #FFFFFF;
 }
 
-.tx-calendardisplay-dialog-column-second table tr.tx-calendardisplay-odd {
+#tx-calendardisplay-dialog-column-second table tr.tx-calendardisplay-odd {
 	background-color: #E3ECF5;
 }
 
-.tx-calendardisplay-dialog-column-second table th,
-.tx-calendardisplay-dialog-column-second table td {
+#tx-calendardisplay-dialog-column-second table th,
+#tx-calendardisplay-dialog-column-second table td {
 	border: 1px solid #000000;
 	padding: 5px 5px 5px 5px;
 	
 }
 
-.tx-calendardisplay-dialog-column-second table tbody tr {
+#tx-calendardisplay-dialog-column-second table tbody tr {
 	vertical-align: top;
 }
 
@@ -329,7 +316,7 @@ input.f3-form-error {
 	margin-right: 20px;
 }
 
-.tx-calendardisplay-dialog-column-second {
+#tx-calendardisplay-dialog-column-second {
 	width: 520px
 }
 

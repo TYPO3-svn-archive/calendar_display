@@ -5,8 +5,6 @@
 (function($) {
 	$(function() {
 		$(document).ready(function(){
-			// hide the loading image
-			$('.tx-calendardisplay-loading').hide();
 
 			// filter option
 			$('.tx-calendardisplay-filter-category').change(CalendarDisplay.filterResources);
@@ -82,7 +80,7 @@
 </div>
 
 
-<div class="tx-calendardisplay-available-item tx-calendardisplay-box-left tx-calendardisplay-dialog-column-second">
+<div id="tx-calendardisplay-dialog-column-second" class="tx-calendardisplay-available-item tx-calendardisplay-box-left">
 	<div id="tx-calendardisplay-dialog-column-second-prepend" class="<f:if condition="{availableResources}"><f:then></f:then><f:else>tx-calendardisplay-hidden</f:else></f:if>">
 		<p class="tx-calendardisplay-wrapper-light">
 			<f:translate key="alvailable_item_description" />
@@ -99,8 +97,7 @@
 			</div>
 		</div>
 	</div>
-	<f:image class="tx-calendardisplay-loading" src="EXT:calendar_display/Resources/Public/Media/Icons/loading.gif" alt="" />
-	<div class="tx-calendardisplay-list-wrapper">
+	<div class="tx-calendardisplay-dialog-list-wrapper">
 		<f:if condition="{availableResources}">
 			<f:then>
 				<table>
