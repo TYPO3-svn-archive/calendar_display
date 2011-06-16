@@ -3,7 +3,7 @@
 *  Copyright notice
 *
 *  (c) 2011 Fabien Udriot <fabien.udriot@ecodev.ch>, Ecodev
-*  	
+*
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -56,24 +56,24 @@
 	 * @var string $note
 	 */
 	protected $note;
-	
+
 	/**
 	 * purchaser
 	 *
 	 * @var Tx_CalendarDisplay_Domain_Model_FeUser $purchaser
 	 */
 	protected $purchaser;
-	
+
 	/**
 	 * booking
 	 *
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_CalendarDisplay_Domain_Model_Booking> $booking
 	 */
 	protected $booking;
-	
+
 	/**
 	 * availableResources
-	 * 
+	 *
 	 * @var Tx_Extbase_Persistence_ObjectStorage<Tx_CalendarDisplay_Domain_Model_Resource> $availableResources
 	 */
 	protected $availableResources;
@@ -158,7 +158,7 @@
 	public function getNote() {
 		return $this->note;
 	}
-	
+
  	/**
 	 * Setter for purchaser
 	 *
@@ -177,7 +177,7 @@
 	public function getPurchaser() {
 		return $this->purchaser;
 	}
-	
+
  	/**
 	 * Setter for booking
 	 *
@@ -196,17 +196,17 @@
 	public function getBooking() {
 		return $this->booking;
 	}
-	
+
 	/**
 	 * Gets the boolean value of comparing the TimeBegin and TimeEnd
-	 * 
+	 *
 	 * @return boolean
 	 */
  	public function getCompareDayBeginDayEnd() {
  		return $this->getTimeBegin()->format('Y-m-d') == $this->getTimeEnd()->format('Y-m-d');
 	}
-	
-	
+
+
 	/**
 	 * Adds a Booking
 	 *
@@ -226,17 +226,17 @@
 	public function removeBooking(Tx_CalendarDisplay_Domain_Model_Booking $bookingToRemove) {
 		$this->booking->detach($bookingToRemove);
 	}
-	
+
  	/**
 	 * Getter for availableResources
 	 *
 	 * @param integer $category Category
 	 * @param string $keyword Keyword
-	 * @return Tx_Extbase_Persistence_ObjectStorage<Tx_CalendarDisplay_Domain_Model_Resource> availableResources
+	 * @return Tx_Extbase_Persistence_ObjectStorage <Tx_CalendarDisplay_Domain_Model_Resource> availableResources
 	 */
 	public function getAvailableResources($category = NULL, $keyword = '') {
 		$resourceRepository = t3lib_div::makeInstance('Tx_CalendarDisplay_Domain_Repository_ResourceRepository');
-		$bookings = $this->getBooking();		
+		$bookings = $this->getBooking();
 		if ($bookings) {
 			foreach ($bookings as $booking) {
 				foreach ($booking->getResources() as $resource) {

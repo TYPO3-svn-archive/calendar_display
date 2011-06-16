@@ -27,9 +27,9 @@
 									<td class="tx-calendardisplay-list-wrapper-available-number">{resource.availableNumber}</td>
 									<td class="tx-calendardisplay-list-wrapper-reserve-number">
 										<input id="booking_{resource.uid}"
-											   class="validate[custom[integer],max[{resource.totalAvailableNum]]"
+											   class="validate[custom[integer],max[{resource.totalAvailableNumber]]"
 											   type="number"
-											   max="{resource.availableNumber}"
+											   max="{resource.totalAvailableNumber}"
 											   step="1"
 											   name="booking[{resource.uid}]"
 											   value="{resource.bookingNumber}" />

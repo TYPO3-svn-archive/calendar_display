@@ -70,6 +70,13 @@
 	 * @var integer $availableNumber
 	 */
 	protected $availableNumber;
+
+	/**
+	 * availableNumber
+	 *
+	 * @var integer $availableNumber
+	 */
+	protected $availableNumberDisplayed;
 	
 	/**
 	 * availableDateBegin
@@ -166,11 +173,11 @@
 	}
 	
 	/**
-	 * Getter for totalAvailableNum
+	 * Getter for totalAvailableNumber
 	 *
-	 * @return integer totalAvailableNum
+	 * @return integer totalAvailableNumber
 	 */
-	public function getTotalAvailableNum() {
+	public function getTotalAvailableNumber() {
 		return $this->getAvailableNumber() + $this->getBookingNumber();
 	}
 	
