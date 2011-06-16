@@ -128,8 +128,8 @@ $.extend(Timepicker.prototype, {
 		}
 		tp_inst._defaults = $.extend({}, this._defaults, inlineSettings, o, {
 			beforeShow: function(input, dp_inst) {
-				// Patched by Fabien for calendar_display needs - 14.06.11
-				// Store values
+				// @patched by Fabien for calendar_display needs - 14.06.11
+				// Store values for defining whether the time has changed
 				if (typeof(CalendarDisplay.State.time) == 'undefined') {
 					CalendarDisplay.State.time = '';
 				}
@@ -151,8 +151,8 @@ $.extend(Timepicker.prototype, {
 					tp_inst._updateDateTime(dp_inst);
 				if ($.isFunction(o.onClose))
 					o.onClose(dateText, dp_inst, tp_inst);
-				// Patched by Fabien for calendar_display needs - 14.06.11
-				// Reload the UI
+				// @patched by Fabien for calendar_display needs - 14.06.11
+				// will reload the UI -> the list of resources
 				if (CalendarDisplay.State.time == '' ||
 						CalendarDisplay.State.time != $(this).val()) {
 					CalendarDisplay.filterResources();
@@ -588,7 +588,9 @@ $.extend(Timepicker.prototype, {
 		this._formatTime();
 		if (this.$timeObj) this.$timeObj.text(this.formattedTime);
 		this.timeDefined = true;
-		if (hasChanged) this._updateDateTime();
+		// @patched by Fabien
+		//if (hasChanged) this._updateDateTime();
+		// end of patch
 	},
 
 	//########################################################################

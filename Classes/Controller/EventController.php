@@ -119,7 +119,7 @@
 	 * @return string The rendered list view
 	 */
 	public function listAction() {
-		$events = $this->eventRepository->getAllByTimeBegin(strtotime('today'));
+		$events = $this->eventRepository->getAllByTimeEnd(strtotime('today'));
 		
 		if(count($events) < 1){
 			$settings = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
@@ -145,6 +145,7 @@
 		$this->view->assign('event', $event);
 		$this->view->assign('availableResources', array());
 		$this->view->assign('message', Tx_Extbase_Utility_Localization::translate('set_date', 'CalendarDisplay'));
+		$this->view->assign('messageType', 'information');
 		$this->view->assign('categories' , $this->resourceCategoryRepository->findAll());
 		$this->view->assign('refererAction', $refererAction);
 		$this->flashMessageContainer->flush();
@@ -298,6 +299,8 @@
 			}
 		}
 		else {
+			$this->view->assign('message', Tx_Extbase_Utility_Localization::translate('date_error', 'CalendarDisplay'));
+			$this->view->assign('messageType', 'error');
 			$this->view->assign('availableResources', array());
 		}
 	}

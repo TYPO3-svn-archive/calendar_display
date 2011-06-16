@@ -42,6 +42,12 @@
 			</tbody>
 	</f:then>
 	<f:else>
-		<f:translate key="no_available_item" />
+		<div class="typo3-messages" style="margin-top: 5px">
+			<div class="typo3-message message-{messageType}">
+				<div class="message-body">
+					{message}
+				</div>
+			</div>
+		</div>
 	</f:else>
 </f:if>

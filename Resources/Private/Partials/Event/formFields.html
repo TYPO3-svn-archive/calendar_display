@@ -16,9 +16,45 @@
 				//CalendarDisplay.filterResources
 			});
 
+			// Store default values
+			CalendarDisplay.State.timeBeginDateCurrent = $('#tx-calendardisplay-form-event-timeBegin').val().split(' ')[0];
+			CalendarDisplay.State.timeEndDateCurrent = $('#tx-calendardisplay-form-event-timeEnd').val().split(' ')[0];
+
+			$('#tx-calendardisplay-form-event-timeBegin, #tx-calendardisplay-form-event-timeEnd').keyup(function(event) {
+				if ($(this).val().match(/[0-9]{2}.[0-9]{2}.[0-9]{4} [0-9]{2}.[0-9]{2}/gi) &&
+						event.keyCode >= 48 &&
+						event.keyCode <= 57) {
+					CalendarDisplay.filterResources();
+				}
+			})
+			
+			// hacky code to prevent the event "change" to be thrown by the calendar
 			$('#tx-calendardisplay-form-event-timeBegin').change(function () {
-				if ($('#tx-calendardisplay-form-event-timeEnd').val() == '') {
-					$('#tx-calendardisplay-form-event-timeEnd').val($('#tx-calendardisplay-form-event-timeBegin').val());
+
+				// for "new event" only: copy the content of timeBegin and inject it into timeEnd
+				// this code does not work currently as it will make the calendar poping up and ends up with a UI problem
+				//if (CalendarDisplay.State.timeEndCurrent == '') {
+				//	$('#tx-calendardisplay-form-event-timeEnd').val($('#tx-calendardisplay-form-event-timeBegin').val());
+				//}
+
+				// Detect is there is anything happend
+				var date = $(this).val().split(' ')[0];
+
+				if (hasTimeBeginDateChanged(date)) {
+					// will triger even onclose which will reload the calendar
+					$(this).datetimepicker('hide');
+				}
+			});
+
+			// hacky code to prevent the event "change" to be thrown by the calendar
+			$('#tx-calendardisplay-form-event-timeEnd').change(function () {
+
+				// Detect is there is anything happend
+				var date = $(this).val().split(' ')[0];
+
+				if (hasTimeEndDateChanged(date)) {
+					// will triger even onclose which will reload the calendar
+					$(this).datetimepicker('hide');
 				}
 			});
 
@@ -47,6 +83,37 @@
 	      return '* Invalid Date Time Range';
 	   }
 	}
+
+
+   /**
+	* Check whether the Time Begin has changed. Resolves a GUI bug
+	*
+	* @param {String} the begin time
+	* @return boolean
+	*/
+	function hasTimeBeginDateChanged(date) {
+		var result = false;
+		if (CalendarDisplay.State.timeBeginDateCurrent != date) {
+			CalendarDisplay.State.timeBeginDateCurrent = date
+			result = true;
+		}
+		return result;
+	}
+
+   /**
+	* Check whether the Time End has changed. Resolves a GUI bug
+	*
+	* @param {String} the end time
+	* @return boolean
+	*/
+	function hasTimeEndDateChanged(date) {
+		var result = false;
+		if (CalendarDisplay.State.timeEndDateCurrent != date) {
+			CalendarDisplay.State.timeEndDateCurrent = date
+			result = true;
+		}
+		return result;
+	}
 // ]]>
 </script>
 
@@ -58,7 +125,7 @@
 		<f:form.textfield class="validate[required]"
 						  id="tx-calendardisplay-form-event-timeBegin"
 						  property="timeBegin"
-						  value="{event.timeBegin -> f:format.date(format:'m.d.Y H:i')}" />
+						  value="{event.timeBegin -> f:format.date(format:'d.m.Y H:i')}" />
 	</div>
 
 	<div class="tx-calendardisplay-event-input">
@@ -68,7 +135,7 @@
 		<f:form.textfield class="validate[required,funcCall[checkDateRange]]"
 						  id="tx-calendardisplay-form-event-timeEnd"
 						  property="timeEnd"
-						  value="{event.timeEnd -> f:format.date(format:'m.d.Y H:i')}" />
+						  value="{event.timeEnd -> f:format.date(format:'d.m.Y H:i')}" />
 	</div>
 
 	<div class="tx-calendardisplay-event-input">

@@ -3,7 +3,7 @@
  */
 $(document).ready(function(){
 
-	// Load dialog box
+	// Listener on "new event" link -> load the dialog box
 	$('#tx-calendardisplay-link-new').click(function() {
 
 		$.blockUI(CalendarDisplay.WaitingUI.options);
@@ -86,6 +86,12 @@ $(document).ready(function(){
 					$('.tx-calendardisplay-dialog-list-wrapper').html(data);
 					// reposition the widget
 					CalendarDisplay.Dialog.dialog('option', 'position', CalendarDisplay.Dialog.dialog('option', 'position'));
+
+					// hide prepend content is an error is detected
+					if (data.search('typo3-message message-error') > -1) {
+						$('#tx-calendardisplay-dialog-column-second-prepend').addClass('tx-calendardisplay-hidden');
+					}
+
 				}
 			});
 		}
