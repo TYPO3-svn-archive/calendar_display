@@ -34,25 +34,25 @@
 class Tx_CalendarDisplay_Domain_Validator_EventValidator extends Tx_Extbase_Validation_Validator_AbstractValidator {
 
 	/**
-	 * If the given blog is valid
+	 * If the given event is valid
 	 *
-	 * @param Tx_CalendarDisplay_Domain_Model_Event $newEvent
+	 * @param Tx_CalendarDisplay_Domain_Model_Event $event
 	 * @return boolean true
 	 */
-	public function isValid($newEvent) {
-		$isValid = true;
-		if ($newEvent->getTimeBegin() == NULL || $newEvent->getTimeBegin() == '') {
+	public function isValid($event) {
+		$isValid = TRUE;
+		if ($event->getTimeBegin() == NULL || $event->getTimeBegin() == '') {
 			$this->addError(Tx_Extbase_Utility_Localization::translate('tx_calendardisplay_domain_model_event.time_begin.required', 'CalendarDisplay'), 2);
-			$isValid = false;
+			$isValid = FALSE;
 		}
-		if ($newEvent->getTimeEnd() == NULL || $newEvent->getTimeEnd() == '') {
+		if ($event->getTimeEnd() == NULL || $event->getTimeEnd() == '') {
 			$this->addError(Tx_Extbase_Utility_Localization::translate('tx_calendardisplay_domain_model_event.time_end.required', 'CalendarDisplay'), 2);
-			$isValid = false;
+			$isValid = FALSE;
 		}
-		if ($newEvent->getTimeBegin() >= $newEvent->getTimeEnd()) {
-			$this->addError(Tx_Extbase_Utility_Localization::translate('tx_calendardisplay_domain_model_event.time_begin_end_rank', 'CalendarDisplay'), 2);
-			$isValid = false;
-		}
+//		if ($event->getTimeBegin() >= $event->getTimeEnd()) {
+//			$this->addError(Tx_Extbase_Utility_Localization::translate('tx_calendardisplay_domain_model_event.time_begin_end_rank', 'CalendarDisplay'), 2);
+//			$isValid = FALSE;
+//		}
 		return $isValid;
 	}
 

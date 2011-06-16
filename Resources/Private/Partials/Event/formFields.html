@@ -67,14 +67,17 @@ function clock() {
 			<label for="tx-calendardisplay-form-event-timeBegin">
 				<f:translate key="tx_calendardisplay_domain_model_event.time_begin" />
 			</label>
-			<f:form.textfield class="validate[required]" id="tx-calendardisplay-form-event-timeBegin" property="timeBegin" value="{event.timeBegin -> f:format.date(format:'m/d/Y H:i')}" />
+			<f:form.textfield class="validate[required]" id="tx-calendardisplay-form-event-timeBegin" property="timeBegin" value="{event.timeBegin -> f:format.date(format:'m.d.Y H:i')}" />
 		</div>
 
 		<div class="tx-calendardisplay-event-input">
 			<label for="tx-calendardisplay-form-event-timeEnd">
 				<f:translate key="tx_calendardisplay_domain_model_event.time_end" />
 			</label>
-			<f:form.textfield class="validate[required,funcCall[checkDateRange]]" id="tx-calendardisplay-form-event-timeEnd" property="timeEnd" value="{event.timeEnd -> f:format.date(format:'m/d/Y H:i')}" />
+			<f:form.textfield class="validate[required,funcCall[checkDateRange]]" 
+							  id="tx-calendardisplay-form-event-timeEnd"
+							  property="timeEnd"
+							  value="{event.timeEnd -> f:format.date(format:'m.d.Y H:i')}" />
 		</div>
 
 		<div class="tx-calendardisplay-event-input">

@@ -1,11 +1,9 @@
 <f:layout name="Default" />
 <f:section name="main">
 
-<f:render partial="formErrors" arguments="{for:'newEvent'}" />
+<f:render partial="formErrors" arguments="{for:'event'}" />
 
-<div><f:link.action class="tx-calendardisplay-link-new" id="tx-calendardisplay-link-new" action="create" noCacheHash="TRUE">create</f:link.action></div>
-
-<f:form method="post" id="tx-calendardisplay-form-event" class="tx-calendardisplay-form" action="create" name="newEvent" object="{newEvent}">
+<f:form method="post" id="tx-calendardisplay-form-event" class="tx-calendardisplay-form" action="create" name="event" object="{event}">
 	<f:render partial="Event/formFields"  arguments="{availableResources:availableResources, categories:categories}" />
 	<f:form.hidden name="refererAction" value="{refererAction}" />
 	<f:form.submit value="Save" />

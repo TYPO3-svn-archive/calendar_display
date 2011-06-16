@@ -85,6 +85,35 @@
 	}
 
 	/**
+	 * Creates and returns a Flash Message
+	 *
+	 * @param $messageType if the Event is updated or created
+	 * @param $event the Event created
+	 * @return string The rendered message
+	 * @dontvalidate $event Tx_CalendarDisplay_Domain_Validator_EventValidator
+	 */
+	protected function getMessage($messageType, Tx_CalendarDisplay_Domain_Model_Event $event) {
+		
+		$arguments['tx_calendardisplay_pi1'] = array(
+			'event' => 1,
+			'action' => 'edit',
+			'controller' => 'Event',
+		);
+
+		/* @var $uri Tx_Extbase_MVC_Web_Routing_UriBuilder */
+		$uri = $this->uriBuilder
+				->setUseCacheHash(FALSE)
+				->setArguments($arguments)
+				->buildFrontendUri();
+
+		$message = Tx_Extbase_Utility_Localization::translate($messageType, 'CalendarDisplay') . ' ';
+		$message .= '<a href="' . $uri . '" class="tx-calendardisplay-list-wrapper-edit" id="tx-calendardisplay-edit-event' . $event->getUid() . '">';
+		$message .= Tx_Extbase_Utility_Localization::translate('see_event', 'CalendarDisplay');
+		$message .= '</a>.';
+		return $message;
+	}
+
+	/**
 	 * Displays all Events
 	 *
 	 * @return string The rendered list view
@@ -107,13 +136,13 @@
 	/**
 	 * Creates a new Event and forwards to the list action.
 	 *
-	 * @param Tx_CalendarDisplay_Domain_Model_Event $newEvent a fresh Event object which has not yet been added to the repository
+	 * @param Tx_CalendarDisplay_Domain_Model_Event $event a fresh Event object which has not yet been added to the repository
 	 * @param string $refererAction a referer action, it will redirect to the previous action
 	 * @return string An HTML form for creating a new Event
-	 * @dontvalidate $newEvent Tx_CalendarDisplay_Domain_Validator_EventValidator
+	 * @dontvalidate $event Tx_CalendarDisplay_Domain_Validator_EventValidator
 	 */
-	public function newAction(Tx_CalendarDisplay_Domain_Model_Event $newEvent = NULL, $refererAction = 'list') {
-		$this->view->assign('newEvent', $newEvent);
+	public function newAction(Tx_CalendarDisplay_Domain_Model_Event $event = NULL, $refererAction = 'list') {
+		$this->view->assign('event', $event);
 		$this->view->assign('availableResources', $this->resourceRepository->filterItems());
 		$this->view->assign('categories' , $this->resourceCategoryRepository->findAll());
 		$this->view->assign('refererAction', $refererAction);
@@ -123,11 +152,11 @@
 	/**
 	 * Creates a new Event and forwards to the list action.
 	 *
-	 * @param Tx_CalendarDisplay_Domain_Model_Event $newEvent a fresh Event object which has not yet been added to the repository
-	 * @validate $newEvent Tx_CalendarDisplay_Domain_Validator_EventValidator
+	 * @param Tx_CalendarDisplay_Domain_Model_Event $event a fresh Event object which has not yet been added to the repository
+	 * @validate $event Tx_CalendarDisplay_Domain_Validator_EventValidator
 	 * @return void
 	 */
-	public function createAction(Tx_CalendarDisplay_Domain_Model_Event $newEvent) {
+	public function createAction(Tx_CalendarDisplay_Domain_Model_Event $event) {
 			// get current login user if it have right then add the new event
 		$currentUser = $this->feUserRepository->findByUid(intval($GLOBALS['TSFE']->fe_user->user['uid']));
 		if ($currentUser) {
@@ -146,10 +175,15 @@
 					}
 				}
 			}
-			$newEvent->setPurchaser($currentUser);
-			$newEvent->setBooking($bookingAttached);
-			$this->eventRepository->add($newEvent);
-			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('event_created', 'CalendarDisplay'));
+			$event->setPurchaser($currentUser);
+			$event->setBooking($bookingAttached);
+			$this->eventRepository->add($event);
+
+			// persist everything to set the uid of an object
+			$persistenceManager = $this->objectManager->get('Tx_Extbase_Persistence_Manager');
+			$persistenceManager->persistAll();
+
+			$this->flashMessageContainer->add($this->getMessage('event_created', $event));
 		} else {
 			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('event_not_created', 'CalendarDisplay'));
 		}
@@ -160,7 +194,7 @@
 	 * Updates an existing Event and forwards to the index action afterwards.
 	 *
 	 * @param Tx_CalendarDisplay_Domain_Model_Event $event the Event to display
-	 * @param string $newEvent a referer action, it will redirect to the previous action
+	 * @param string $event a referer action, it will redirect to the previous action
 	 * @return string A form to edit a Event
 	 * @dontvalidate $event
 	 */
@@ -202,7 +236,7 @@
 			}	
 			$event->setBooking($bookingAttached);		
 			$this->eventRepository->update($event);
-			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('event_updated', 'CalendarDisplay'));
+			$this->flashMessageContainer->add($this->getMessage('event_updated', $event));
 		} else {
 			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('event_not_updated', 'CalendarDisplay'));
 		}

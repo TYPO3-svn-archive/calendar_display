@@ -111,7 +111,7 @@
 										<td>
 										<f:if condition="{currentUser.txCalendardisplayAdmin}">
 											<f:then>
-												<f:link.action action="edit" id="tx-calendardisplay-edit-event_{event.uid}" class="tx-calendardisplay-list-wrapper-edit" arguments="{event: event}" title="<f:translate key='edit' />">
+												<f:link.action action="edit" id="tx-calendardisplay-edit-event{event.uid}" class="tx-calendardisplay-list-wrapper-edit" arguments="{event: event}" title="<f:translate key='edit' />">
 													<f:translate key="edit" />
 												</f:link.action>
 												<f:link.action class="tx-calendardisplay-list-wrapper-delete" action="delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
@@ -121,7 +121,7 @@
 											<f:else>
 												<f:if condition="{event.purchaser.uid} == {currentUser.uid}">
 													<f:then>
-														<f:link.action action="edit" class="tx-calendardisplay-list-wrapper-edit tx-calendardisplay-edit-event_{event.uid}" arguments="{event: event}" title="<f:translate key='edit' />">
+														<f:link.action action="edit" id="tx-calendardisplay-edit-event{event.uid}" class="tx-calendardisplay-list-wrapper-edit" arguments="{event: event}" title="<f:translate key='edit' />">
 															<f:translate key="edit" />
 														</f:link.action>
 														<f:link.action class="tx-calendardisplay-list-wrapper-delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">

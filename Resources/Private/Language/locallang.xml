@@ -55,9 +55,8 @@
 			<lable index="event_not_updated">Your new Event was not updated.</lable>
 			<lable index="event_removed">Your new Event was removed.</lable>
 			<lable index="event_not_removed">Your new Event was not removed.</lable>
-			
-			/* new not yet translate */
-			<label index="action">Action</label>
+			<lable index="see_event">Update this event</lable>
+			<label index="action">Edit</label>
 			<label index="tx_calendardisplay_domain_model_event.time_begin.required">Time begin is required</label>
 			<label index="tx_calendardisplay_domain_model_event.time_end.required">Time end is required</label>
 			<label index="tx_calendardisplay_domain_model_event.time_begin_end_rank">Time begin and Time end must stay in rank</label>
@@ -107,12 +106,17 @@
 			<label index="per_page">per page</label>
 			<lable index="list_view">Vue liste</lable>
 			<lable index="calendar_view">Vue calendrier</lable>
-			<lable index="event_created">Nouvel événement créé</lable>
+			<lable index="event_created">Nouvel événement créé.</lable>
 			<lable index="event_not_created">Your new Event was not created.</lable>
-			<lable index="event_updated">Your new Event was updated.</lable>
-			<lable index="event_not_updated">Your new Event was not updated.</lable>
-			<lable index="event_removed">Your new Event was removed.</lable>
-			<lable index="event_not_removed">Your new Event was not removed.</lable>
+			<lable index="event_updated">Evénement mis à jour.</lable>
+			<lable index="event_not_updated">Evénement non mis à jour.</lable>
+			<lable index="event_removed">Evénement supprimé.</lable>
+			<lable index="event_not_removed">Evénement non supprimé.</lable>
+			<lable index="see_event">Mettre à jour cet évenement</lable>
+			<label index="action">Edition</label>
+			<label index="tx_calendardisplay_domain_model_event.time_begin.required">Temps début est obligatoire</label>
+			<label index="tx_calendardisplay_domain_model_event.time_end.required">Temps fin est obligatoire</label>
+			<label index="tx_calendardisplay_domain_model_event.time_begin_end_rank">Temps début et fin doivent rester dans l'interval</label>
 		</languageKey>
 	</data>
 </T3locallang>

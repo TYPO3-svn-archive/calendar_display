@@ -5,7 +5,7 @@ $(document).ready(function(){
 
 	// Edit icon
 	$('.tx-calendardisplay-list-wrapper-edit').click(function() {
-		var preClass = 'tx-calendardisplay-edit-event_';
+		var preClass = 'tx-calendardisplay-edit-event';
 		var eventId = ($(this).attr('id')).substring(preClass.length);
 		if (eventId) {
 			$.blockUI(CalendarDisplay.WaitingUI.options);
@@ -40,7 +40,6 @@ $(document).ready(function(){
 
 	// add datetime picker to date-start
 	$('#tx-calendardisplay-list-filter-timeBegin').datepicker(CalendarDisplay.TimePicker.options);
-
 });
 
 /*

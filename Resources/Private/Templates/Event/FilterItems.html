@@ -15,7 +15,13 @@
 							<td class="tx-calendardisplay-list-wrapper-category">{resource.category.name}</td>								
 							<td class="tx-calendardisplay-list-wrapper-available-number">{resource.availableNumber}</td>
 							<td class="tx-calendardisplay-list-wrapper-reserve-number">
-								<input id="booking_{resource.uid}"  class="validate[custom[integer],max[{resource.totalAvailableNum]]" type="number" max="{resource.availableNumber}" step="1" name="booking[{resource.uid}]" value="{resource.bookingNumber}" />
+								<input id="booking_{resource.uid}"
+									   class="validate[custom[integer],max[{resource.totalAvailableNum]]"
+									   type="number"
+									   max="{resource.availableNumber}"
+									   step="1"
+									   name="booking[{resource.uid}]"
+									   value="{resource.bookingNumber}" />
 							</td>
 						</tr>
 					</f:then>
