@@ -256,7 +256,9 @@
 		$currentUser = $this->feUserRepository->findByUid(intval($GLOBALS['TSFE']->fe_user->user['uid']));
 		$getPurchaserId = $event->getPurchaser() ? $event->getPurchaser()->getUid() : NULL;
 		if ($currentUser->getUid() == $getPurchaserId || $currentUser->getTxCalendardisplayAdmin() == 1) {
-			#$this->eventRepository->remove($event);
+
+			// @bug Bookings are not deleted even if they seem attached to the event
+			$this->eventRepository->remove($event);
 			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('event_removed', 'CalendarDisplay'));
 		} else {
 			$this->flashMessageContainer->add(Tx_Extbase_Utility_Localization::translate('event_not_removed', 'CalendarDisplay'));

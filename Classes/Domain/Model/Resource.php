@@ -70,13 +70,6 @@
 	 * @var integer $availableNumber
 	 */
 	protected $availableNumber;
-
-	/**
-	 * availableNumber
-	 *
-	 * @var integer $availableNumber
-	 */
-	protected $availableNumberDisplayed;
 	
 	/**
 	 * availableDateBegin

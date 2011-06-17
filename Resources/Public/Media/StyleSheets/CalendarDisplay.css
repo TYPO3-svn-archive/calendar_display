@@ -159,11 +159,6 @@ input.f3-form-error {
 	margin: 0;
 }
 
-.tx-calendardisplay-available-item-event-list ul li {
-	margin: 0;
-	list-style: none;
-}
-
 .tx-calendardisplay-available-item-event-list table tbody tr {
 	vertical-align: top;
 }

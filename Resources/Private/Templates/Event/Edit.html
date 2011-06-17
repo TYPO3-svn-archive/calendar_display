@@ -4,7 +4,7 @@
 <f:render partial="formErrors" arguments="{for:'event'}" />
 
 <f:form method="post" id="tx-calendardisplay-form-event" class="tx-calendardisplay-form" action="update" name="event" object="{event}" >
-	<f:render partial="Event/formFields" arguments="{event:event, availableResources:availableResources, categories:categories}" />
+	<f:render partial="Event/form" arguments="{event:event, availableResources:availableResources, categories:categories}" />
 	<f:form.hidden name="refererAction" value="{refererAction}" />
 	<f:form.hidden id="tx-calendardisplay-event-id" name="eventId" value="{event.uid}" />
 </f:form>

@@ -43,6 +43,7 @@
 	 */
 	public function filterItems($category = NULL, $keyword = '') {
 		$query = $this->createQuery();
+		$constraint = NULL;
 		if ($category) {
 			$constraint = $query->equals('category', $category);
 		}
@@ -56,9 +57,10 @@
 			}
 		}
 
-		return $query->matching($constraint)
-			->setOrderings(array('name' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))
-			->execute();
+		$result = $query->matching($constraint)
+						->setOrderings(array('name' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))
+						->execute();
+		return $result;
 	}
 }
 ?>
