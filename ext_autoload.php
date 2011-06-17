@@ -7,5 +7,6 @@
 $extensionPath = t3lib_extMgm::extPath('calendar_display');
 return array(
 	'tx_calendardisplay_viewhelpers_scriptviewhelper' => $extensionPath . 'Classes/ViewHelpers/ScriptViewHelper.php',
+	#'tx_calendardisplay_viewhelpers_permissionviewhelper' => $extensionPath . 'Classes/ViewHelpers/PermissionViewHelper.php',
 );
 ?>
