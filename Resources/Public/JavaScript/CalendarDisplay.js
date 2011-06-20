@@ -36,22 +36,68 @@ $(document).ready(function(){
 $(document).ready(function(){
 
 	/**
+	 * Load the Interface for editting
+	 */
+	CalendarDisplay.editEvent = function() {
+		var preClass = 'tx-calendardisplay-edit-event';
+		var eventId = ($(this).attr('id')).substring(preClass.length);
+		if (eventId) {
+			$.blockUI(CalendarDisplay.WaitingUI.options);
+
+			CalendarDisplay.Dialog.load(
+				CalendarDisplay.editUrl + '&tx_calendardisplay_pi1[event]=' + eventId,
+				{},
+				function (responseText, textStatus, XMLHttpRequest) {
+
+					// release UI
+					$.unblockUI();
+
+					// define title dialog box
+					CalendarDisplay.Dialog.dialog('option', 'title', CalendarDisplay.Lang.dialogTitleUpdate);
+
+					// open dialog box
+					CalendarDisplay.Dialog.dialog('open');
+				}
+			);
+		}
+
+		// prevent the default action, e.g., following a link
+		return false;
+	}
+
+	/**
 	 * Filter the list of event
 	 */
 	CalendarDisplay.filterEvents = function() {
+		
+		var searchWord = $('#tx-calendardisplay-list-filter-keyword').val();
+		// still a bug of field type=search ? if value is NULL, value is replaced by the placeholder
+		if (searchWord == $('#tx-calendardisplay-list-filter-keyword').attr('placeholder')) {
+			searchWord = '';
+		}
+
 		$.ajax({
 			url: '/index.php',
 			data: {
 				'type': 12638,
-				'tx_calendardisplay_pi1[keyword]': $('#tx-calendardisplay-list-filter-keyword').val(),
+				'tx_calendardisplay_pi1[controller]': 'Event',
+				'tx_calendardisplay_pi1[action]': 'filter',
+				'tx_calendardisplay_pi1[keyword]': searchWord,
 				'tx_calendardisplay_pi1[category]': $('#tx-calendardisplay-list-filter-category').val(),
 				'tx_calendardisplay_pi1[dateBegin]': $('#tx-calendardisplay-list-filter-timeBegin').val()
 			},
 			beforeSend: function() {
-				// @todo
+				$('#tx-calendardisplay-event-box').addClass('tx-calendardisplay-waiting');
 			},
 			success: function(data) {
-				$('.tx-calendardisplay-available-item-event-list tbody').html(data);
+				// replaces the content
+				$('.tx-calendardisplay-list tbody').html(data);
+
+				// adds listener
+				$('.tx-calendardisplay-list-wrapper-edit').click(CalendarDisplay.editEvent);
+
+				// removes the loading message
+				$('#tx-calendardisplay-event-box').removeClass('tx-calendardisplay-waiting');
 			}
 		});
 	}
@@ -61,6 +107,12 @@ $(document).ready(function(){
 	 * Filter the list of items
 	 */
 	CalendarDisplay.filterResources = function() {
+		var searchWord = $('.tx-calendardisplay-filter-keyword').val();
+		// still a bug of field type=search ? if value is NULL, value is replaced by the placeholder
+		if (searchWord == $('.tx-calendardisplay-filter-keyword').attr('placeholder')) {
+			searchWord = '';
+		}
+
 		// makes sure it is possible to filter the resource
 		var timeBegin = $('#tx-calendardisplay-form-event-timeBegin').val();
 		var timeEnd = $('#tx-calendardisplay-form-event-timeEnd').val();
@@ -72,7 +124,7 @@ $(document).ready(function(){
 					// Action: "filterItems"
 					'type': 12637,
 					'tx_calendardisplay_pi1[event]': $('#tx-calendardisplay-event-id').val(),
-					'tx_calendardisplay_pi1[keyword]': $('.tx-calendardisplay-filter-keyword').val(),
+					'tx_calendardisplay_pi1[keyword]': searchWord,
 					'tx_calendardisplay_pi1[category]': $('.tx-calendardisplay-filter-category').val(),
 					'tx_calendardisplay_pi1[dateBegin]': $('#tx-calendardisplay-form-event-timeBegin').val(),
 					'tx_calendardisplay_pi1[dateEnd]': $('#tx-calendardisplay-form-event-timeEnd').val()
@@ -266,3 +318,15 @@ $(document).ready(function(){
 	// merge configuation
 	CalendarDisplay = $.extend(CalendarDisplay, config);
 });
+
+
+/*
+ * Global function - closure
+ */
+var delay = (function(){
+  var timer = 0;
+  return function(callback, ms){
+    clearTimeout (timer);
+    timer = setTimeout(callback, ms);
+  };
+})();

@@ -1,39 +1,34 @@
 /*
  * Special Listner for List View
  */
+
 $(document).ready(function(){
 
 	// Edit icon
-	$('.tx-calendardisplay-list-wrapper-edit').click(function() {
-		var preClass = 'tx-calendardisplay-edit-event';
-		var eventId = ($(this).attr('id')).substring(preClass.length);
-		if (eventId) {
-			$.blockUI(CalendarDisplay.WaitingUI.options);
+	$('.tx-calendardisplay-list-wrapper-edit').click(CalendarDisplay.editEvent);
 
-			CalendarDisplay.Dialog.load(
-				CalendarDisplay.editUrl + '&tx_calendardisplay_pi1[event]=' + eventId,
-				{},
-				function (responseText, textStatus, XMLHttpRequest) {
-
-					// release UI
-					$.unblockUI();
-
-					// define title dialog box
-					CalendarDisplay.Dialog.dialog('option', 'title', CalendarDisplay.Lang.dialogTitleUpdate);
-
-					// open dialog box
-					CalendarDisplay.Dialog.dialog('open');
-				}
-			);
-		}
-
-		// prevent the default action, e.g., following a link
-		return false;
-	});
-
+	// Listner on filter controller
 	$('#tx-calendardisplay-list-filter-category').change(CalendarDisplay.filterEvents);
-	$('#tx-calendardisplay-list-filter-keyword').keyup(CalendarDisplay.filterEvents);
 	$('#tx-calendardisplay-list-filter-timeBegin').change(CalendarDisplay.filterEvents);
+	$('#tx-calendardisplay-list-filter-keyword').keyup(function(event) {
+
+		// Key up is a bit more complicated as it needs to be delayed
+		if ((event.keyCode > 48 && event.keyCode < 57) ||
+				(event.keyCode >= 65 && event.keyCode <= 90) ||
+				event.keyCode == 8 ||
+				event.keyCode == 48) {
+			delay(function() {
+				CalendarDisplay.filterEvents();
+			},1000);
+		}
+		else if (event.keyCode == 13) {
+			// user hit enter
+			delay(function() {
+				CalendarDisplay.filterEvents();
+			},0);
+		}
+		
+	});
 
 	// add datetime picker to date-start
 	$('#tx-calendardisplay-list-filter-timeBegin').datepicker(CalendarDisplay.TimePicker.options);

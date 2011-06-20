@@ -150,6 +150,7 @@
 	public function getAvailableNumber() {
 		$eventRepository = t3lib_div::makeInstance('Tx_CalendarDisplay_Domain_Repository_EventRepository');
 		$events = $eventRepository->getAllByTimeEnd($this->getAvailableDateBegin());
+		#$events = $eventRepository->getAllByTimeRange($this->getAvailableDateBegin(), $this->getAvailableDateEnd());
 		$numResourceBooking = 0;
 		foreach ($events as $event) {
 			$bookings = $event->getBooking();

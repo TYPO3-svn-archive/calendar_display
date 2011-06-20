@@ -24,7 +24,7 @@
 			<label index="make_new_event">Make new event</label>
 			<label index="filter_selection">Filter selection:</label>
 			<label index="search">Search...</label>
-			<label index="choose_start_date">choose a start date</label>
+			<label index="choose_start_date">Choose a date</label>
 			<label index="start">Start</label>
 			<label index="end">End</label>
 			<label index="note">Note</label>
@@ -83,7 +83,7 @@
 			<label index="make_new_event">Créer un événement</label>
 			<label index="filter_selection">Filtre:</label>
 			<label index="search">Recherche...</label>
-			<label index="choose_start_date">Date de début</label>
+			<label index="choose_start_date">Date d'affichage</label>
 			<label index="start">Début</label>
 			<label index="end">Fin</label>
 			<label index="note">Note</label>

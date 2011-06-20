@@ -41,6 +41,7 @@ class Tx_CalendarDisplay_ViewHelpers_Check_DisplayViewHelper extends Tx_Fluid_Co
 		if ($resource->getAvailableNumber() > 0 || $resource->getTotalAvailableNumber() > 0) {
 			$result = TRUE;
 		}
+		return TRUE;
 		return $result;
 	}
 }

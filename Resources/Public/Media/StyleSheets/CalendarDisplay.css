@@ -67,9 +67,8 @@ input.f3-form-error {
 
 /* CSS for waiting */
 .tx-calendardisplay-waiting {
-
 	background-image: url('../Icons/loading_big.gif');
-	background-repeat:no-repeat;
+	background-repeat: no-repeat;
 	background-position: 50% center;
 
 	/* for IE */
@@ -82,42 +81,39 @@ input.f3-form-error {
 }
 
 /* CSS for event list */
-.tx-calendardisplay-available-item-event-list {
-	width: 100%;
-}
 
 	
-.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper {
+.tx-calendardisplay-filter-wrapper {
 	width: 100%;
 	padding: 15px 0 0 0;
 	overflow: hidden;
 }
 
-.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper-filter {
+.tx-calendardisplay-filter-wrapper-filter {
 	float: left;
 }
 
-.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper-filter select {
+.tx-calendardisplay-filter-wrapper-filter select {
 	width: 80px;
 	margin: 0 20px 0 5px;
 }
 
-.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper-search {
+.tx-calendardisplay-filter-wrapper-search {
 	float: left;
 }
 
-.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-date-start {
+.tx-calendardisplay-filter-date-start {
 	float: right;
 }
 
-.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-date-start input {
+.tx-calendardisplay-filter-date-start input {
 	width: 100px;
 	margin: 0 0 0 5px;
 }
 
-.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper
+.tx-calendardisplay-filter-wrapper
 
-.tx-calendardisplay-available-item-event-list .tx-calendardisplay-filter-wrapper div {
+.tx-calendardisplay-filter-wrapper div {
 	float: left;
 }
 
@@ -127,50 +123,50 @@ input.f3-form-error {
 	position: relative;
 }
 
-.tx-calendardisplay-available-item-event-list .tx-calendardisplay-list-wrapper {
+.tx-calendardisplay-list-wrapper {
 	position: relative;
 	overflow: hidden;
 }
 	
-.tx-calendardisplay-available-item-event-list table {
+.tx-calendardisplay-list {
 	width: 100%;
 }
 
-.tx-calendardisplay-available-item-event-list table thead tr th {
+.tx-calendardisplay-list thead tr th {
 	background-color: #396BA0;
 	color: #FFFFFF;
 }
 
-.tx-calendardisplay-available-item-event-list table tr.tx-calendardisplay-odd td {
+.tx-calendardisplay-odd td {
 	background-color: #E3ECF5;
 }
 
-.tx-calendardisplay-available-item-event-list table tr.tx-calendardisplay-even td {
+.tx-calendardisplay-even td {
 	background-color: #FFFFFF;
 }
 
-.tx-calendardisplay-available-item-event-list table th,
-.tx-calendardisplay-available-item-event-list table td {
+.tx-calendardisplay-list th,
+.tx-calendardisplay-list td {
 	border: 1px solid #000000;
 	padding: 5px 5px 5px 5px;
 }
 
-.tx-calendardisplay-available-item-event-list ul {
+.tx-calendardisplay-list ul {
 	margin: 0;
 }
 
-.tx-calendardisplay-available-item-event-list table tbody tr {
+.tx-calendardisplay-list tbody tr {
 	vertical-align: top;
 }
 
-.tx-calendardisplay-available-item-event-list .tx-calendardisplay-list-wrapper-quantity,
-.tx-calendardisplay-available-item-event-list .tx-calendardisplay-list-wrapper-edit,
-.tx-calendardisplay-available-item-event-list .tx-calendardisplay-list-wrapper-delete {
+.tx-calendardisplay-list-wrapper-quantity,
+.tx-calendardisplay-list-wrapper-edit,
+.tx-calendardisplay-list-wrapper-delete {
 	text-align: center;
 }
 
-.tx-calendardisplay-available-item-event-list a.tx-calendardisplay-list-wrapper-edit,
-.tx-calendardisplay-available-item-event-list a.tx-calendardisplay-list-wrapper-delete {
+.tx-calendardisplay-list a.tx-calendardisplay-list-wrapper-edit,
+.tx-calendardisplay-list a.tx-calendardisplay-list-wrapper-delete {
 	display: block;
 	float: left;
 	width: 16px;
@@ -180,11 +176,11 @@ input.f3-form-error {
 	margin-left: 5px;
 }
 
-.tx-calendardisplay-available-item-event-list table a.tx-calendardisplay-list-wrapper-edit {
+.tx-calendardisplay-list a.tx-calendardisplay-list-wrapper-edit {
 	background: url("../Icons/edit.png") no-repeat center center;
 }
 
-.tx-calendardisplay-available-item-event-list table a.tx-calendardisplay-list-wrapper-delete {
+.tx-calendardisplay-list a.tx-calendardisplay-list-wrapper-delete {
 	background: url("../Icons/delete.png") no-repeat center center;
 }
 

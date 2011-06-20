@@ -20,7 +20,7 @@
 	</script>
 
 	<f:flashMessages renderMode="div" />
-	<div class="tx-calendardisplay-available-item-event-list">
+	<div id="tx-calendardisplay-event-box">
 		<div class="tx-calendardisplay-box-header">
 			<f:if condition="{currentUser}">
 				<div class="tx-calendardisplay-box-header-left">
@@ -36,7 +36,8 @@
 		</div>
 
 		<div class="tx-calendardisplay-filter-wrapper">
-			<f:form method="get" action="list" name="filter">
+			<f:form id="tx-calendardisplay-filter-form" method="get" action="list" name="filter">
+				<input type="hidden" name="type" value="12638" />
 				<div class="tx-calendardisplay-filter-wrapper-filter">
 					<label><f:translate key="filter_selection" /></label>
 					<f:if condition="{categories}">
@@ -45,7 +46,7 @@
 					</f:if>
 				</div>
 				<div class="tx-calendardisplay-filter-wrapper-search">
-					<f:form.textfield id="tx-calendardisplay-list-filter-keyword" name="keyword" type="search" placeholder="<f:translate key='search' />" />
+					<f:form.textfield id="tx-calendardisplay-list-filter-keyword" name="keyword" type="search" value="" placeholder="<f:translate key='search' />" />
 				</div>
 				<div class="tx-calendardisplay-filter-date-start">
 					<label><f:translate key="choose_start_date" /></label>
@@ -55,7 +56,7 @@
 		</div>
 		<div class="tx-calendardisplay-list-wrapper">
 			<calendar:widget.paginate objects="{events}" as="paginatedEvents" configuration="{itemsPerPage: 10, insertAbove: 0, insertBelow: 1}">
-				<table>
+				<table class="tx-calendardisplay-list">
 					<thead>
 						<tr>
 							<th class="tx-calendardisplay-list-wrapper-start"><f:translate key="start" /></th>
@@ -72,57 +73,7 @@
 					<tbody>
 						<f:for each="{paginatedEvents}" as="event">
 							<f:cycle values="{0: 'tx-calendardisplay-odd', 1: 'tx-calendardisplay-even'}" as="zebraClass">
-								<tr class="{zebraClass}">
-									<td class="tx-calendardisplay-list-wrapper-start">
-								<f:format.date format="d.m.Y @ H\h:i">{event.timeBegin}</f:format.date>
-								</td>
-								<td class="tx-calendardisplay-list-wrapper-end">
-								<f:if condition="{event.compareDayBeginDayEnd}">
-									<f:then>
-										<f:format.date format="@ H\h:i">{event.timeEnd}</f:format.date>
-									</f:then>
-									<f:else>
-										<f:format.date format="d.m.Y @ H\h:i">{event.timeEnd}</f:format.date>
-									</f:else>
-								</f:if>
-								</td>
-								<td class="tx-calendardisplay-list-wrapper-note">{event.note}</td>
-								<td class="tx-calendardisplay-list-wrapper-material">
-								<f:if condition="{event.booking}">
-									<f:then>
-										<ul>
-											<f:for each="{event.booking}" as="booking" iteration="resourceIterator">
-												<f:for each="{booking.resources}" as="resource">
-													<li>{resource.name} ({booking.number})</li>
-												</f:for>
-											</f:for>
-										</ul>
-									</f:then>
-								</f:if>
-								</td>
-								<td class="tx-calendardisplay-list-wrapper-bookedBy">
-								<f:link.email email="{event.purchaser.email}">{event.purchaser.username}</f:link.email>
-								</td>
-								<td class="phone">{event.purchaser.telephone}</td>
-
-								<f:if condition="{currentUser}">
-									<f:then>
-										<td>
-										<f:if condition="{calendar:check.permission(user: currentUser, event: event)}">
-											<f:then>
-												<f:link.action action="edit" id="tx-calendardisplay-edit-event{event.uid}" class="tx-calendardisplay-list-wrapper-edit" arguments="{event: event}" title="<f:translate key='edit' />">
-													<f:translate key="edit" />
-												</f:link.action>
-												<f:link.action noCacheHash="true" class="tx-calendardisplay-list-wrapper-delete" action="delete" arguments="{event: event}" onclick="return confirm(\"<f:translate key='confirm_delete' />\");" title="<f:translate key='delete' />">
-													<f:translate key="delete" />
-												</f:link.action>
-											</f:then>
-										</f:if>
-										</td>
-									</f:then>
-								</f:if>
-
-								</tr>
+								<f:render partial="Event/rowEvent"  arguments="{zebraClass : zebraClass, event: event, user: currentUser}" />
 							</f:cycle>
 						</f:for>
 					</tbody>

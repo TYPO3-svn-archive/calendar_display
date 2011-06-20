@@ -3,7 +3,7 @@
 *  Copyright notice
 *
 *  (c) 2011 Fabien Udriot <fabien.udriot@ecodev.ch>, Ecodev
-*  	
+*
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -35,7 +35,7 @@
  class Tx_CalendarDisplay_Domain_Repository_EventRepository extends Tx_Extbase_Persistence_Repository {
  	/**
 	 * Gets events following by $category and $keyword
-	 * 
+	 *
 	 * @param integer $category Category
 	 * @param string $keyword Keyword
 	 * @return array of Tx_CalendarDisplay_Domain_Model_Event
@@ -45,7 +45,7 @@
 		if ($category) {
 			$constraint = $query->equals('booking.resources.category', $category);
 		}
-		
+
 		if ($keyword) {
 			$constraintKeyword = $query->logicalOr($query->like('note', '%' . $keyword . '%'), $query->like('booking.resources.name', '%' . $keyword . '%'));
 			if ($constraint) {
@@ -55,7 +55,8 @@
 			}
 		}
 
-		if ($timeBegin) {			
+		if ($timeBegin) {
+
 			$constraintTime = $query->greaterThanOrEqual('time_begin',  strtotime($timeBegin));
 			if ($constraint) {
 				$constraint = $query->logicalAnd($constraint, $constraintTime);
@@ -63,19 +64,19 @@
 				$constraint = $constraintTime;
 			}
 		}
-		
+
 		return $query->matching($constraint)
 			->setOrderings(array('time_begin' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))
 			->execute();
 	}
-	
+
 	/**
 	 * Gets all events which as start from the $timeBegin
-	 * 
+	 *
 	 * @param integer $timeBegin Unix timestamp
 	 * @return array of Tx_CalendarDisplay_Domain_Model_Event
 	 */
- 	public function getAllByTimeBegin($timeBegin) { 		
+ 	public function getAllByTimeBegin($timeBegin) {
 		$query = $this->createQuery();
 		$constraint = $query->greaterThanOrEqual('time_begin', $timeBegin);
 
@@ -83,18 +84,36 @@
 			->setOrderings(array('time_begin' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))
 			->execute();
 	}
-	
+
  	/**
 	 * Gets all events which as start from the $timeEnd
-	 * 
+	 *
 	 * @param integer $timeEnd Unix timestamp
 	 * @return array of Tx_CalendarDisplay_Domain_Model_Event
 	 */
- 	public function getAllByTimeEnd($timeEnd) { 		
+ 	public function getAllByTimeEnd($timeEnd) {
 		$query = $this->createQuery();
 		$constraint = $query->greaterThanOrEqual('time_end', $timeEnd);
 
 		return $query->matching($constraint)
+			->setOrderings(array('time_begin' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))
+			->execute();
+	}
+
+ 	/**
+	 * Gets all events which as start from the $timeEnd
+	 *
+	 * @param integer $timeBegin Unix timestamp
+	 * @param integer $timeEnd Unix timestamp
+	 * @return array of Tx_CalendarDisplay_Domain_Model_Event
+	 */
+ 	public function getAllByTimeRange($timeBegin, $timeEnd) {
+		$query = $this->createQuery();
+		$constraints = array();
+		$constraints[] = $query->greaterThanOrEqual('time_begin', $timeBegin);
+		$constraints[] = $query->lesserThanOrEqual('time_end', $timeEnd);
+
+		return $query->matching($constraints)
 			->setOrderings(array('time_begin' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))
 			->execute();
 	}
