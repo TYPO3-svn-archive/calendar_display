@@ -71,12 +71,12 @@
 	}
 
 	/**
-	 * Gets all events which as start from the $timeBegin
+	 * Gets all events which has start from the $timeBegin
 	 *
 	 * @param integer $timeBegin Unix timestamp
 	 * @return array of Tx_CalendarDisplay_Domain_Model_Event
 	 */
- 	public function getAllByTimeBegin($timeBegin) {
+ 	public function findAllByTimeBegin($timeBegin) {
 		$query = $this->createQuery();
 		$constraint = $query->greaterThanOrEqual('time_begin', $timeBegin);
 
@@ -86,18 +86,18 @@
 	}
 
  	/**
-	 * Gets all events which as start from the $timeEnd
+	 * Gets all events which has start from the $timeEnd
 	 *
 	 * @param integer $timeEnd Unix timestamp
 	 * @return array of Tx_CalendarDisplay_Domain_Model_Event
 	 */
- 	public function getAllByTimeEnd($timeEnd) {
+ 	public function findAllByTimeEnd($timeEnd) {
 		$query = $this->createQuery();
 		$constraint = $query->greaterThanOrEqual('time_end', $timeEnd);
 
 		return $query->matching($constraint)
-			->setOrderings(array('time_begin' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))
-			->execute();
+					->setOrderings(array('time_begin' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))
+					->execute();
 	}
 
  	/**
@@ -107,15 +107,18 @@
 	 * @param integer $timeEnd Unix timestamp
 	 * @return array of Tx_CalendarDisplay_Domain_Model_Event
 	 */
- 	public function getAllByTimeRange($timeBegin, $timeEnd) {
-		$query = $this->createQuery();
-		$constraints = array();
-		$constraints[] = $query->greaterThanOrEqual('time_begin', $timeBegin);
-		$constraints[] = $query->lesserThanOrEqual('time_end', $timeEnd);
+ 	public function findAllByTimeRange($timeBegin, $timeEnd) {
 
-		return $query->matching($constraints)
-			->setOrderings(array('time_begin' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))
-			->execute();
+		$query = $this->createQuery();
+		$constraint = array();
+		$constraint = $query->logicalAnd(
+			$query->greaterThanOrEqual('time_begin', $timeBegin),
+			$query->lessThanOrEqual('time_end', $timeEnd)
+		);
+
+		return $query->matching($constraint)
+					->setOrderings(array('time_begin' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))
+					->execute();
 	}
 }
 ?>

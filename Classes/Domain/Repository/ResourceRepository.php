@@ -62,5 +62,45 @@
 						->execute();
 		return $result;
 	}
+
+
+ 	/**
+	 * Gets resoureces following by $category and $$keyword
+	 *
+	 * @param array of Tx_CalendarDisplay_Domain_Model_Events
+	 * @return array of Tx_CalendarDisplay_Domain_Model_Resource
+	 */
+	public function findAvailable($events) {
+		$this->setDefaultOrderings(array('name' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING));
+		$resources = $this->findAll();
+		
+		foreach ($resources as $resource) {
+			$resource->setAvailableNumber($resource->getNumber());
+			$resource->setBookedResourcesNumber(0);
+		}
+
+		foreach ($events as $event) {
+//			if ($event->getUid() != $currentEvent->getUid()) {
+				$bookings = $event->getBooking();
+				foreach ($bookings as $booking) {
+					$_resource = $booking->getResources()->current();
+
+					// search for the corresponding resource
+					foreach ($resources as $resource) {
+						if ($resource->getUid() == $_resource->getUid()) {
+							$resource->setAvailableNumber($resource->getAvailableNumber() - $booking->getNumber());
+							$resource->setBookedResourcesNumber($resource->getBookedResourcesNumber() + $booking->getNumber());
+						}
+					}
+				}
+//			}
+		}
+//
+//		foreach ($resources as $resource) {
+//		 t3lib_utility_Debug::debug($resource, '$resource');
+//		}
+		return $resources;
+	}
+
 }
 ?>

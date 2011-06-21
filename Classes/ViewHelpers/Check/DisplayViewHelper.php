@@ -31,16 +31,16 @@
 class Tx_CalendarDisplay_ViewHelpers_Check_DisplayViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
-	 * Inject JS file in the header code.
+	 * Define wehther a resource should be displayed.
 	 *
 	 * @param Tx_CalendarDisplay_Domain_Model_Resource $resource
 	 * @return boolean
 	 */
 	public function render($resource) {
 		$result = FALSE;
-		if ($resource->getAvailableNumber() > 0 || $resource->getTotalAvailableNumber() > 0) {
-			$result = TRUE;
-		}
+//		if ($resource->getAvailableNumber() > 0) {
+//			$result = TRUE;
+//		}
 		return TRUE;
 		return $result;
 	}

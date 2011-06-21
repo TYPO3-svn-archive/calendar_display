@@ -119,7 +119,7 @@
 	 * @return string The rendered list view
 	 */
 	public function listAction() {
-		$events = $this->eventRepository->getAllByTimeEnd(strtotime('today'));
+		$events = $this->eventRepository->findAllByTimeEnd(strtotime('today'));
 
 		if(count($events) < 1){
 			$settings = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
@@ -202,7 +202,9 @@
 	 */
 	public function editAction(Tx_CalendarDisplay_Domain_Model_Event $event, $refererAction = 'list') {
 		$this->view->assign('event', $event);
-		$this->view->assign('availableResources', $event->getAvailableResources());
+		$events = $this->eventRepository->findAllByTimeRange($event->getTimeBegin(), $event->getTimeEnd());
+		$resources = $this->resourceRepository->findAvailable($events);
+		$this->view->assign('availableResources', $resources);
 		$this->view->assign('categories' , $this->resourceCategoryRepository->findAll());
 		$this->view->assign('refererAction', $refererAction);
 		$this->flashMessageContainer->flush();
@@ -295,7 +297,9 @@
 				$resource->setAvailableDateBegin(strtotime($dateBegin));
 			}
 			if ($event) {
-				$this->view->assign('availableResources', $event->getAvailableResources($category, $keyword, $dateBegin));
+				// @todo
+				t3lib_utility_Debug::debug('todo', 'todo');
+				#$this->view->assign('availableResources', $event->getAvailableResources($category, $keyword, $dateBegin));
 			} else {
 				$this->view->assign('availableResources', $this->resourceRepository->filterItems($category, $keyword));
 			}

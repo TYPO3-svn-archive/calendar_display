@@ -9,23 +9,23 @@
 	<td class="tx-calendardisplay-list-wrapper-material">{resource.name}</td>
 	<td class="tx-calendardisplay-list-wrapper-category">{resource.category.name}</td>
 	<td class="tx-calendardisplay-list-wrapper-available-number">
-		<f:if condition="{resource.number} == {resource.totalAvailableNumber}">
+		<f:if condition="{resource.number} == {resource.availableNumber}">
 			<f:then>
 				{resource.number}
 			</f:then>
 			<f:else>
-				{resource.totalAvailableNumber} / {resource.number}
+				{resource.availableNumber} / {resource.number}
 			</f:else>
 		</f:if>
 
 	</td>
 	<td class="tx-calendardisplay-list-wrapper-reserve-number">
 		<input id="booking_{resource.uid}"
-			   class="validate[custom[integer],max[{resource.totalAvailableNumber]]"
+			   class="validate[custom[integer],max[{resource.availableNumber]]"
 			   type="number"
-			   max="{resource.totalAvailableNumber}"
+			   max="{resource.availableNumber}"
 			   step="1"
 			   name="booking[{resource.uid}]"
-			   value="{resource.bookingNumber}" />
+			   value="{resource.bookedResourcesNumber}" />
 	</td>
 </tr>

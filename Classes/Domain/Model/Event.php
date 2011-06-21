@@ -226,25 +226,5 @@
 	public function removeBooking(Tx_CalendarDisplay_Domain_Model_Booking $bookingToRemove) {
 		$this->booking->detach($bookingToRemove);
 	}
-
- 	/**
-	 * Getter for availableResources
-	 *
-	 * @param integer $category Category
-	 * @param string $keyword Keyword
-	 * @return Tx_Extbase_Persistence_ObjectStorage <Tx_CalendarDisplay_Domain_Model_Resource> availableResources
-	 */
-	public function getAvailableResources($category = NULL, $keyword = '') {
-		$resourceRepository = t3lib_div::makeInstance('Tx_CalendarDisplay_Domain_Repository_ResourceRepository');
-		$bookings = $this->getBooking();
-		if ($bookings) {
-			foreach ($bookings as $booking) {
-				foreach ($booking->getResources() as $resource) {
-					$resource->setBookingNumber($booking->getNumber());
-				}
-			}
-		}
-		return $resourceRepository->filterItems($category, $keyword);
-	}
 }
 ?>
