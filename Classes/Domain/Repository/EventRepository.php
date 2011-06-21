@@ -116,9 +116,11 @@
 			$query->lessThanOrEqual('time_end', $timeEnd)
 		);
 
-		return $query->matching($constraint)
-					->setOrderings(array('time_begin' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))
-					->execute();
+		$result = $query->matching($constraint)
+						->setOrderings(array('time_begin' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))
+						->execute();
+		
+		return $result;
 	}
 }
 ?>

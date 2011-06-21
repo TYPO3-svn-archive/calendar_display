@@ -8,15 +8,28 @@
 
 			// filter option
 			$('.tx-calendardisplay-filter-category').change(CalendarDisplay.filterResources);
-			$('.tx-calendardisplay-filter-keyword').keyup(CalendarDisplay.filterResources);
+			$('.tx-calendardisplay-filter-keyword').keyup(function(event){
+				
+				// Key up is a bit more complicated as it needs to be delayed
+				// to avoid bombarding the server with request
+				if (CalendarDisplay.isRegularKey(event)) {
+					delay(function() {
+						CalendarDisplay.filterResources();
+					},1000);
+				}
+				else if (event.keyCode == 13) {
+					// user hit enter
+					delay(function() {
+						CalendarDisplay.filterResources();
+					},0);
+				}
+				
+			});
 
 			CalendarDisplay.timer = 0;
 
-//			$('#tx-calendardisplay-form-event-timeBegin').keyup(function() {
-//				//CalendarDisplay.filterResources
-//			});
-
-			// Store default values
+			// Store default values for later use
+			// Kind of hack to work around a double "change" event sent when click on a date
 			CalendarDisplay.State.timeBeginDateCurrent = $('#tx-calendardisplay-form-event-timeBegin').val().split(' ')[0];
 			CalendarDisplay.State.timeEndDateCurrent = $('#tx-calendardisplay-form-event-timeEnd').val().split(' ')[0];
 
@@ -182,7 +195,7 @@
 						<f:for each="{availableResources}" as="resource">
 							<f:cycle values="{0: 'tx-calendardisplay-odd', 1: 'tx-calendardisplay-even'}" as="zebraClass">
 								<f:if condition="{calendar:check.display(resource: resource)}">
-									<f:render partial="Event/rowResource"  arguments="{zebraClass : zebraClass, resource: resource}" />
+									<f:render partial="Event/rowResource"  arguments="{zebraClass : zebraClass, resource: resource, event: event}" />
 								</f:if>
 							</f:cycle>
 						</f:for>

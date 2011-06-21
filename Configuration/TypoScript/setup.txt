@@ -94,7 +94,7 @@ ajax12636 {
 
 ajax12637 < ajax12636
 ajax12637.typeNum = 12637
-ajax12637.10.10.switchableControllerActions.Event.1 = filterItems
+ajax12637.10.10.switchableControllerActions.Event.1 = filterResources
 
 ajax12638 < ajax12636
 ajax12638.typeNum = 12638

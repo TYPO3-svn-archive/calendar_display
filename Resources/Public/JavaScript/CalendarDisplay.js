@@ -123,13 +123,13 @@ $(document).ready(function(){
 				url: '/index.php',
 				data: {
 					// Controller: "Event"
-					// Action: "filterItems"
+					// Action: "filterResources"
 					'type': 12637,
 					'tx_calendardisplay_pi1[event]': $('#tx-calendardisplay-event-id').val(),
 					'tx_calendardisplay_pi1[keyword]': searchWord,
 					'tx_calendardisplay_pi1[category]': $('.tx-calendardisplay-filter-category').val(),
 					'tx_calendardisplay_pi1[dateBegin]': $('#tx-calendardisplay-form-event-timeBegin').val(),
-					'tx_calendardisplay_pi1[dateEnd]': $('#tx-calendardisplay-form-event-timeEnd').val()
+					'tx_calendardisplay_pi1[dateEnd]': $('#tx-calendardisplay-form-event-timeEnd').val(),
 				},
 				beforeSend: function() {
 					$('#tx-calendardisplay-dialog-column-second').addClass('tx-calendardisplay-waiting');
@@ -176,6 +176,20 @@ $(document).ready(function(){
 		});
 
 		return dialog;
+	}
+
+	/**
+	 * Returns whether the key is a regular key
+	 */
+	CalendarDisplay.isRegularKey = function() {
+		var result = false;
+		if ((event.keyCode > 48 && event.keyCode < 57) ||
+				(event.keyCode >= 65 && event.keyCode <= 90) ||
+				event.keyCode == 8 ||
+				event.keyCode == 48) {
+			result = true;
+		}
+		return result;
 	}
 
 	/**

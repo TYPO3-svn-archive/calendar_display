@@ -13,10 +13,8 @@ $(document).ready(function(){
 	$('#tx-calendardisplay-list-filter-keyword').keyup(function(event) {
 
 		// Key up is a bit more complicated as it needs to be delayed
-		if ((event.keyCode > 48 && event.keyCode < 57) ||
-				(event.keyCode >= 65 && event.keyCode <= 90) ||
-				event.keyCode == 8 ||
-				event.keyCode == 48) {
+		// to avoid bombarding the server with request
+		if (CalendarDisplay.isRegularKey(event)) {
 			delay(function() {
 				CalendarDisplay.filterEvents();
 			},1000);
@@ -27,7 +25,6 @@ $(document).ready(function(){
 				CalendarDisplay.filterEvents();
 			},0);
 		}
-		
 	});
 
 	// add datetime picker to date-start

@@ -2,6 +2,7 @@
 
 <tr class="{zebraClass}">
 	<td class="tx-calendardisplay-list-wrapper-image">
+		
 		<f:if condition="{resource.image}">
 			<f:image src="uploads/tx_calendardisplay/{resource.image}" width="50" alt="{resource.name}" />
 		</f:if>
@@ -17,6 +18,6 @@
 			   max="{resource.availableNumber}"
 			   step="1"
 			   name="booking[{resource.uid}]"
-			   value="{resource.bookedResourcesNumber}" />
+			   value="<calendar:display.bookedResources resource="{resource}" event="{event}"/>" />
 	</td>
 </tr>

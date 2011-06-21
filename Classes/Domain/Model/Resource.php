@@ -148,20 +148,6 @@
 	 * @return integer availableNumber
 	 */
 	public function getAvailableNumber() {
-//		$eventRepository = t3lib_div::makeInstance('Tx_CalendarDisplay_Domain_Repository_EventRepository');
-//		$events = $eventRepository->findAllByTimeEnd($this->getAvailableDateBegin());
-//		$numResourceBooking = 0;
-//		foreach ($events as $event) {
-//			$bookings = $event->getBooking();
-//			foreach ($bookings as $booking) {
-//				foreach ($booking->getResources() as $resource) {
-//					if ($this->getUid() == $resource->getUid()) {
-//						$numResourceBooking += $booking->getNumber();
-//					}
-//				}
-//			}
-//		}
-//		$this->availableNumber = $this->getNumber() - $numResourceBooking;
 		return $this->availableNumber;
 	}
 

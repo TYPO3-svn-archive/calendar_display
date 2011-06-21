@@ -290,18 +290,12 @@
 	 * @param string $dateEnd the dateEnd
 	 * @return void
 	 */
-	public function filterItemsAction($event = NULL, $category = NULL, $keyword = '', $dateBegin = NULL, $dateEnd = NULL) {
-		if (strtotime($dateBegin) <= strtotime($dateEnd)) {
-			foreach ($this->resourceRepository->findAll() as $resource) {
-				$resource->setAvailableDateBegin(strtotime($dateBegin));
-			}
-//			if ($event) {
-				$events = $this->eventRepository->findAllByTimeRange($event->getTimeBegin(), $event->getTimeEnd());
-				$this->view->assign('availableResources', $this->resourceRepository->findAvailable($events));
-				#$this->view->assign('availableResources', $this->resourceRepository->filterItems($category, $keyword));
-
-				#$this->view->assign('availableResources', $event->getAvailableResources($category, $keyword, $dateBegin));
-//			}
+	public function filterResourcesAction($event = NULL, $category = NULL, $keyword = '', $dateBegin = NULL, $dateEnd = NULL) {
+		$dateBegin = strtotime($dateBegin);
+		$dateEnd = strtotime($dateEnd);
+		if ($dateBegin <= $dateEnd) {
+			$events = $this->eventRepository->findAllByTimeRange($dateBegin, $dateEnd);
+			$this->view->assign('availableResources', $this->resourceRepository->findAvailable($events, $category, $keyword));
 		}
 		else {
 			$this->view->assign('message', Tx_Extbase_Utility_Localization::translate('date_error', 'CalendarDisplay'));

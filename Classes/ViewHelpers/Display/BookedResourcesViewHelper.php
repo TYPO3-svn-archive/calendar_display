@@ -28,20 +28,29 @@
  *
  * = Examples =
  */
-class Tx_CalendarDisplay_ViewHelpers_Check_DisplayViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
+class Tx_CalendarDisplay_ViewHelpers_Display_BookedResourcesViewHelper extends Tx_Fluid_Core_ViewHelper_AbstractViewHelper {
 
 	/**
 	 * Define whether a resource should be displayed.
 	 *
+	 * @param Tx_CalendarDisplay_Domain_Model_Event $event
 	 * @param Tx_CalendarDisplay_Domain_Model_Resource $resource
 	 * @return boolean
 	 */
-	public function render($resource) {
-		return TRUE;
-		$result = FALSE;
-//		if ($resource->getAvailableNumber() > 0) {
-//			$result = TRUE;
-//		}
+	public function render($event, $resource) {
+		$result = '0';
+
+		if ($event) {
+			$bookings = $event->getBooking();
+			foreach ($bookings as $booking) {
+				$_resource = $booking->getResources()->current();
+
+				if ($_resource->getUid() == $resource->getUid()) {
+					$result = $booking->getNumber();
+					break;
+				}
+			}
+		}
 		return $result;
 	}
 }
