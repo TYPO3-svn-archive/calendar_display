@@ -4,9 +4,9 @@
 
 $(document).ready(function(){
 
-	// Edit icon
+	// Edit icon listener + flash message
 	$('.tx-calendardisplay-list-wrapper-edit').click(CalendarDisplay.editEvent);
-
+	
 	// Listner on filter controller
 	$('#tx-calendardisplay-list-filter-category').change(CalendarDisplay.filterEvents);
 	$('#tx-calendardisplay-list-filter-timeBegin').change(CalendarDisplay.filterEvents);

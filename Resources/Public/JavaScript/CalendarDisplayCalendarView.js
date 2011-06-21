@@ -3,6 +3,9 @@
  */
 $(document).ready(function(){
 
+	// edit link in the flash message
+	$('.tx-calendardisplay-list-wrapper-edit').click(CalendarDisplay.editEvent);
+	
 	/**
 	 * Initialize object that contains configuration
 	 */

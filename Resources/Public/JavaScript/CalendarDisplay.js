@@ -2,7 +2,7 @@
  * Common Listner
  */
 $(document).ready(function(){
-
+	
 	// Listener on "new event" link -> load the dialog box
 	$('#tx-calendardisplay-link-new').click(function() {
 
@@ -183,6 +183,9 @@ $(document).ready(function(){
 	 */
 	CalendarDisplay.isRegularKey = function() {
 		var result = false;
+		// 48 -> 57: numeric
+		// 65 -> 90: alpha
+		// 8 + 48: suppr + delete
 		if ((event.keyCode > 48 && event.keyCode < 57) ||
 				(event.keyCode >= 65 && event.keyCode <= 90) ||
 				event.keyCode == 8 ||
@@ -228,17 +231,6 @@ $(document).ready(function(){
 	 * Return calendar options
 	 */
 	CalendarDisplay.getCalendarOptions = function() {
-
-		// Calendar
-		var date = new Date();
-		var d = date.getDate();
-		var m = date.getMonth();
-		var y = date.getFullYear();
-
-		// @temp
-		console.log(d);
-		console.log(m);
-		console.log(y);
 
 		// Calendar default options
 		var defaultOptions = {

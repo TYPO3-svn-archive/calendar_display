@@ -72,13 +72,6 @@
 	protected $availableNumber;
 	
 	/**
-	 * availableDateBegin
-	 *
-	 * @var integer $availableDateBegin
-	 */
-	protected $availableDateBegin;
-	
-	/**
 	 * category
 	 *
 	 * @var Tx_CalendarDisplay_Domain_Model_ResourceCategory $category
@@ -197,29 +190,6 @@
 	 */
 	public function getBookedResourcesNumber() {
 		return $this->bookedResourcesNumber;
-	}
-	
- 	/**
-	 * Setter for availableDateBegin
-	 * 
-	 * @param integer $availableDateBegin availableDateBegin
-	 * @return void
-	 */
-	public function setAvailableDateBegin($availableDateBegin = NULL) {
-		if ($availableDateBegin) {
-			$this->availableDateBegin = $availableDateBegin;
-		} else {
-			$this->availableDateBegin = strtotime('now');
-		}
-	}
-	
- 	/**
-	 * Getter for availableDateBegin
-	 *
-	 * @return integer availableDateBegin
-	 */
-	public function getAvailableDateBegin() {		
-		return $this->availableDateBegin ? $this->availableDateBegin : strtotime('now');
 	}
 	
  	/**
