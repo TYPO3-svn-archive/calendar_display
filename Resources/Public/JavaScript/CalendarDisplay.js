@@ -79,6 +79,8 @@ $(document).ready(function(){
 		$.ajax({
 			url: '/index.php',
 			data: {
+				// Controller: "Event"
+				// Action: "filter"
 				'type': 12638,
 				'tx_calendardisplay_pi1[controller]': 'Event',
 				'tx_calendardisplay_pi1[action]': 'filter',

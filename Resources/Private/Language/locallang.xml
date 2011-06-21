@@ -40,6 +40,7 @@
 			<label index="alvailable_item_description">Among the equipment available, choose the desired number for each item.</label>
 			<label index="category">Category</label>
 			<label index="available_number">Available</label>
+			<label index="stock">Stock</label>
 			<label index="reserve_number">Booked</label>
 			<label index="no_available_item">No item available</label>
 			<label index="category">category</label>
@@ -99,6 +100,7 @@
 			<label index="alvailable_item_description">Parmi les équipments disponibles, choisissez le nombre désiré à réserver.</label>
 			<label index="category">Catégorie</label>
 			<label index="available_number">Disponible</label>
+			<label index="stock">Stock</label>
 			<label index="reserve_number">Reservé</label>
 			<label index="no_available_item">Pas de ressource disponible</label>
 			<label index="category">Catégorie</label>
