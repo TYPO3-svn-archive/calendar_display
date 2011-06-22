@@ -1,7 +1,7 @@
 {namespace calendar=Tx_CalendarDisplay_ViewHelpers}
 
 <tr class="{zebraClass}">
-	<td class="tx-calendardisplay-list-wrapper-start" style="text-align: right; width: 130px">
+	<td class="tx-calendardisplay-list-column-start">
 		<div> 
 
 			<f:format.date format="d.m.Y @ H\h:i">{event.timeBegin}</f:format.date>
@@ -17,8 +17,8 @@
 			</f:if>
 		</div>
 	</td>
-	<td class="tx-calendardisplay-list-wrapper-note">{event.note}</td>
-	<td class="tx-calendardisplay-list-wrapper-material">
+	<td class="tx-calendardisplay-list-column-note">{event.note}</td>
+	<td class="tx-calendardisplay-list-column-material">
 	<f:if condition="{event.booking}">
 		<f:then>
 			<ul>
@@ -31,7 +31,7 @@
 		</f:then>
 	</f:if>
 	</td>
-	<td class="tx-calendardisplay-list-wrapper-bookedBy">
+	<td class="tx-calendardisplay-list-column-bookedBy">
 		<div><f:link.email email="{event.purchaser.email}">{event.purchaser.username}</f:link.email></div>
 		<div>{event.purchaser.telephone}</div>
 	</td>

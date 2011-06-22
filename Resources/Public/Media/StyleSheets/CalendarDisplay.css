@@ -127,6 +127,11 @@ input.f3-form-error {
 	position: relative;
 	overflow: hidden;
 }
+
+.tx-calendardisplay-list-column-start {
+	text-align: right; 
+	width: 130px;
+}
 	
 .tx-calendardisplay-list {
 	width: 100%;
