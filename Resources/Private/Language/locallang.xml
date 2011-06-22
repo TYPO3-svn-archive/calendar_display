@@ -63,6 +63,7 @@
 			<label index="tx_calendardisplay_domain_model_event.time_begin_end_rank">Time begin and Time end must stay in rank</label>
 			<label index="set_date">Please define a valid starting time and a valid end time to see the list of resources.</label>
 			<label index="date_error">End time is before begin time.</label>
+			<label index="date">Date</label>
 		</languageKey>
 
 		<languageKey index="fr" type="array">		
@@ -123,6 +124,7 @@
 			<label index="tx_calendardisplay_domain_model_event.time_begin_end_rank">Temps début et fin doivent rester dans l'interval</label>
 			<label index="set_date">Veuillez définir une date de début et de fin valide pour pouvoir réserver des ressources.</label>
 			<label index="date_error">La date de fin est antérieur à la date de début.</label>
+			<label index="date">Date (début - fin)</label>
 		</languageKey>
 	</data>
 </T3locallang>

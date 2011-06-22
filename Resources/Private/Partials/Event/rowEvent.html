@@ -1,18 +1,21 @@
 {namespace calendar=Tx_CalendarDisplay_ViewHelpers}
 
 <tr class="{zebraClass}">
-	<td class="tx-calendardisplay-list-wrapper-start">
-		<f:format.date format="d.m.Y @ H\h:i">{event.timeBegin}</f:format.date>
-	</td>
-	<td class="tx-calendardisplay-list-wrapper-end">
-	<f:if condition="{event.compareDayBeginDayEnd}">
-		<f:then>
-			<f:format.date format="@ H\h:i">{event.timeEnd}</f:format.date>
-		</f:then>
-		<f:else>
-			<f:format.date format="d.m.Y @ H\h:i">{event.timeEnd}</f:format.date>
-		</f:else>
-	</f:if>
+	<td class="tx-calendardisplay-list-wrapper-start" style="text-align: right; width: 130px">
+		<div> 
+
+			<f:format.date format="d.m.Y @ H\h:i">{event.timeBegin}</f:format.date>
+		</div>
+		<div> 
+			<f:if condition="{event.compareDayBeginDayEnd}">
+				<f:then>
+					<f:format.date format="@ H\h:i">{event.timeEnd}</f:format.date>
+				</f:then>
+				<f:else>
+					<f:format.date format="d.m.Y @ H\h:i">{event.timeEnd}</f:format.date>
+				</f:else>
+			</f:if>
+		</div>
 	</td>
 	<td class="tx-calendardisplay-list-wrapper-note">{event.note}</td>
 	<td class="tx-calendardisplay-list-wrapper-material">
@@ -29,9 +32,9 @@
 	</f:if>
 	</td>
 	<td class="tx-calendardisplay-list-wrapper-bookedBy">
-	<f:link.email email="{event.purchaser.email}">{event.purchaser.username}</f:link.email>
+		<div><f:link.email email="{event.purchaser.email}">{event.purchaser.username}</f:link.email></div>
+		<div>{event.purchaser.telephone}</div>
 	</td>
-	<td class="phone">{event.purchaser.telephone}</td>
 
 	<f:if condition="{user}">
 		<f:then>
