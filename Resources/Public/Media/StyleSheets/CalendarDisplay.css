@@ -262,10 +262,10 @@ input.f3-form-error {
 	vertical-align: top;
 }
 
-.tx-calendardisplay-list-wrapper-number,
-.tx-calendardisplay-list-wrapper-availableNumber,
-.tx-calendardisplay-list-wrapper-reserveNumber,
-.tx-calendardisplay-list-wrapper-image {
+.tx-calendardisplay-list-column-number,
+.tx-calendardisplay-list-column-availableNumber,
+.tx-calendardisplay-list-column-reserveNumber,
+.tx-calendardisplay-list-column-image {
 	text-align: center;
 	width: 1px;
 }

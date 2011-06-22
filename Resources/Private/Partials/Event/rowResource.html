@@ -9,9 +9,9 @@
 	</td>
 	<td class="tx-calendardisplay-list-column-material">{resource.name}</td>
 	<td class="tx-calendardisplay-list-column-category">{resource.category.name}</td>
-	<td class="tx-calendardisplay-list-wrapper-number">{resource.number}</td>
-	<td class="tx-calendardisplay-list-wrapper-availableNumber">{resource.availableNumber}</td>
-	<td class="tx-calendardisplay-list-wrapper-reserveNumber">
+	<td class="tx-calendardisplay-list-column-number">{resource.number}</td>
+	<td class="tx-calendardisplay-list-column-availableNumber">{resource.availableNumber}</td>
+	<td class="tx-calendardisplay-list-column-reserveNumber">
 		<input id="booking_{resource.uid}"
 			   class="validate[custom[integer],max[{resource.availableNumber]]"
 			   type="number"
