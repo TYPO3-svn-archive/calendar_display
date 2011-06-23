@@ -26,13 +26,13 @@
 						<f:then>
 							<f:if condition="{currentUser.txCalendardisplayAdmin}">
 								<f:then>
-									id: <f:format.number thousandsSeparator="">{event.uid}</f:format.number>,
+									id: {event.uid},
 									className: 'edit-sign',
 								</f:then>
 								<f:else>
 									<f:if condition="{event.purchaser.uid} == {currentUser.uid}">
 										<f:then>
-											id: <f:format.number thousandsSeparator="">{event.uid}</f:format.number>,
+											id: {event.uid},
 											className: 'edit-sign',
 										</f:then>
 									</f:if>
@@ -41,14 +41,13 @@
 						</f:then>
 					</f:if>
 					title: '<f:format.crop maxCharacters="25" append="...">{event.note}</f:format.crop>',
-					start: '<f:format.date format="m d Y H:i">{event.timeBegin}</f:format.date>',
-					end: '<f:format.date format="m d Y H:i">{event.timeEnd}</f:format.date>',
+					start: '<f:format.date format="Y/m/d H:i">{event.timeBegin}</f:format.date>',
+					end: '<f:format.date format="Y/m/d H:i">{event.timeEnd}</f:format.date>',
 					allDay: false
 				},
 			</f:for>
 
 		]
-		// ]]>
 	</script>
 
 	<f:flashMessages renderMode="div" />
