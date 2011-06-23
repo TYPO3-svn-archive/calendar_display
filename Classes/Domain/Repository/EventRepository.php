@@ -110,13 +110,31 @@
  	public function findAllByTimeRange($timeBegin, $timeEnd) {
 
 		$query = $this->createQuery();
-		$constraint = array();
-		$constraint = $query->logicalAnd(
+		
+		// there are 4 cases
+		$_constraints[] = $query->logicalAnd(
 			$query->greaterThanOrEqual('time_begin', $timeBegin),
 			$query->lessThanOrEqual('time_end', $timeEnd)
 		);
 
-		$result = $query->matching($constraint)
+		$_constraints[] = $query->logicalAnd(
+			$query->greaterThanOrEqual('time_begin', $timeBegin),
+			$query->lessThanOrEqual('time_begin', $timeEnd)
+		);
+		
+		$_constraints[] = $query->logicalAnd(
+			$query->greaterThanOrEqual('time_end', $timeBegin),
+			$query->lessThanOrEqual('time_end', $timeEnd)
+		);
+		
+		$_constraints[] = $query->logicalAnd(
+			$query->lessThanOrEqual('time_begin', $timeBegin),
+			$query->greaterThanOrEqual('time_end', $timeEnd)
+		);
+
+		$constraints = $query->logicalOr($_constraints);
+
+		$result = $query->matching($constraints)
 						->setOrderings(array('time_begin' => Tx_Extbase_Persistence_QueryInterface::ORDER_ASCENDING))
 						->execute();
 		
