@@ -3,7 +3,7 @@ CREATE TABLE tx_calendardisplay_domain_model_resource (
 	pid int(11) DEFAULT '0' NOT NULL,
 	
 	name varchar(255) DEFAULT '' NOT NULL,
-	number int(11) signed DEFAULT '0' NOT NULL,
+	number int(11) DEFAULT '0' NOT NULL,
 	image text NOT NULL,
 	category int(11) unsigned DEFAULT '0' NOT NULL,
 
@@ -55,7 +55,7 @@ CREATE TABLE tx_calendardisplay_domain_model_booking (
 	
 	event int(11) unsigned DEFAULT '0' NOT NULL,
 	resources int(11) unsigned DEFAULT '0' NOT NULL,
-	number int(11) signed DEFAULT '0' NOT NULL,
+	number int(11) DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -73,7 +73,7 @@ CREATE TABLE tx_calendardisplay_booking_resource_mm (
 	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
 	sorting int(11) unsigned DEFAULT '0' NOT NULL,
 	sorting_foreign int(11) unsigned DEFAULT '0' NOT NULL,
-	number int(11) signed DEFAULT '0' NOT NULL,
+	number int(11) DEFAULT '0' NOT NULL,
 	
 	KEY uid_local (uid_local),
 	KEY uid_foreign (uid_foreign)
